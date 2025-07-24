@@ -1,38 +1,30 @@
 ### `ANIMATION_GUIDE.md`
 
-# Synapse UI: Animation Guide
+# Synapse UI: Animation Philosophy
 
 ## 1. Core Philosophy: The Living Interface
 
-The animation in Synapse UI is its soul. We are not decorating components; we are giving them life. Our core philosophy is to build a **"Living Interface"—**a dynamic, multi-layered digital space that feels tangible, intelligent, and physically responsive to the user's presence.
+Our goal is to create a **"Living Interface."**
 
-We are moving away from the paradigm of a static page. Instead, we are creating an **environment**. Elements within this environment have presence, obey a consistent set of physical laws, and are in a constant, fluid conversation with user actions and data. This approach is essential for the next generation of AI-driven applications, where the interface must gracefully adapt to ever-changing information.
+This is an environment that feels tangible, intelligent, and physically responsive. We are moving beyond static pages and building a dynamic digital space where elements have presence and purpose.
 
-## 2. The Three Pillars of Interaction
+Animations are the physics of this space. They are not decoration; they are the visual language that communicates how the interface works and how the user can interact with it.
 
-Our entire animation and interaction model is built on three core pillars. Every component created for Synapse UI must adhere to these principles.
+## 2. Guiding Principles
 
-#### Pillar I: The Cursor is a Physical Force
+Instead of strict rules, follow these guiding principles. They are meant to inspire, not to limit.
 
-The user's cursor is not merely a pointer; it is an extension of their will, an object with **mass, velocity, and momentum**. The UI environment must react to it as a physical force.
+*   **Responsive & Aware:** The interface should acknowledge the user's presence and input. Elements can react to the cursor's proximity, speed, and clicks in subtle or significant ways. The key is to make the UI feel alive and aware.
 
-* **Edge Morphing**: The edges and surfaces of components are not rigid. They should subtly warp, indent, or ripple in response to the cursor's proximity and speed. A fast cursor movement should create a larger "wake" than a slow, deliberate one.
-* **Material Response**: Components should react differently to different cursor events. A quick click is a sharp "tap." A sustained "hold" should cause the component's material to feel like it's being pressed into, perhaps changing its lighting, texture, or shape to signal a new set of available interactions.
+*   **Tangible & Physical:** Interactions should have a satisfying, physical feel. Draggable objects should have weight and inertia. Buttons should feel like they are being pressed. This creates an intuitive experience that users understand without explanation.
 
-#### Pillar II: The Environment is Alive
+*   **Fluid & Cohesive:** Transitions between states should be smooth and natural, never abrupt. Animations should guide the user's eye and create a sense of flow throughout the application.
 
-The UI space itself is not empty. It has an ambient, ever-present energy that reacts to the user's global actions, primarily scrolling.
+## 3. Technical Approach & Experimentation
 
-* **Ambient Elements**: We will create components designed to live in the periphery of the screen (e.g., the corners). These elements are not static widgets.
-* **Scroll-Driven Fluidity**: These ambient elements will exhibit a "floating slime effect." As the user scrolls up and down, these elements will stretch, compress, and flow with a playful viscosity. This provides constant, subtle feedback that the environment is alive and responding.
-* **Functional Ambiance**: These fluid, peripheral elements are not just decoration. They are functional dashboards and navigation windows, housing subtle icons and controls that become accessible through interaction.
+Our stack is built on **Vue, Tailwind CSS, and GSAP**.
 
-#### Pillar III: Layers, Mass, and Orbital Mechanics
+*   Use **CSS transitions** for simple, state-based animations (like hover and active states).
+*   Use **GSAP** for complex, physics-based animations (like inertial dragging or orchestrated sequences).
 
-We are designing for a **zero-gravity, multi-layered environment**. Components do not "fall down"; they "float" with a sense of purpose and presence.
-
-* **Zero-G Physics**: All floating components, such as docks and windows, obey the laws of physics as if in space. They have mass and inertia. When a user "throws" a draggable window, it should coast to a stop naturally, not instantly.
-* **Gravitational Pull**: Larger or more important elements (like a main content panel) exert a subtle "gravitational pull" on smaller, floating components. A floating dock doesn't just "snap" to the edge of the screen; it is gently pulled into a stable "orbit" around its parent container or the viewport.
-* **Magnetism & Repulsion**: Components can be configured to be attracted to or repelled by one another, allowing for the creation of dynamic, self-organizing layouts that feel both magical and intuitive.
-
-This approach transforms UI management from a rigid, grid-based system into a dynamic, physics-based simulation, creating the paradigm shift you envision.
+**This guide is intentionally not prescriptive.** The goal is to provide a philosophical foundation. You are encouraged to experiment with new and creative ways to apply these principles to each component, discovering unique interactions that bring the Synapse UI vision to life.

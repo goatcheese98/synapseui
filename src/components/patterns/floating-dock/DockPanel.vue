@@ -126,8 +126,9 @@ onMounted(() => {
 
 .panel-header {
   @apply flex items-center justify-between px-3 py-2;
-  @apply border-b border-border/50 bg-muted/20;
-  @apply backdrop-blur-sm;
+  @apply border-b border-white/10 dark:border-white/5;
+  @apply bg-white/5 dark:bg-white/3;
+  backdrop-filter: blur(8px);
 }
 
 .panel-title {
@@ -141,9 +142,9 @@ onMounted(() => {
 
 .panel-action-btn {
   @apply w-5 h-5 flex items-center justify-center;
-  @apply rounded hover:bg-accent hover:text-accent-foreground;
+  @apply rounded hover:bg-white/20 dark:hover:bg-white/10;
   @apply transition-colors duration-200;
-  @apply text-muted-foreground hover:text-foreground;
+  @apply text-foreground/60 hover:text-foreground;
 }
 
 .panel-action-btn:hover {
@@ -153,11 +154,13 @@ onMounted(() => {
 .panel-content {
   @apply flex-1 p-3 overflow-auto;
   @apply text-sm text-foreground;
+  background: transparent;
 }
 
 .panel-footer {
-  @apply px-3 py-2 border-t border-border/50;
-  @apply bg-muted/10 text-xs text-muted-foreground;
+  @apply px-3 py-2 border-t border-white/10 dark:border-white/5;
+  @apply bg-white/5 dark:bg-white/3 text-xs text-foreground/70;
+  backdrop-filter: blur(8px);
 }
 
 /* Content area scroll styling */

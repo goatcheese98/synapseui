@@ -1,261 +1,161 @@
-import { ref, onMounted, onUnmounted, type Ref } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, type Ref } from 'vue'
+import { gsap } from 'gsap'
 
 export interface DraggableOptions {
-  bounds?: HTMLElement | string | { minX?: number; maxX?: number; minY?: number; maxY?: number }
+  bounds?: string | HTMLElement
   inertia?: boolean
-  edgeResistance?: number
-  onDragStart?: (event: Event) => void
-  onDrag?: (event: Event) => void
-  onDragEnd?: (event: Event) => void
-  disabled?: boolean
+  onDragStart?: () => void
+  onDrag?: (position: { x: number; y: number }) => void
+  onDragEnd?: () => void
 }
 
-export interface DraggableReturn {
+export interface DraggableState {
   isDragging: Ref<boolean>
   position: Ref<{ x: number; y: number }>
+  velocity: Ref<{ x: number; y: number }>
   enable: () => void
   disable: () => void
-  updatePosition: (x: number, y: number) => void
   destroy: () => void
 }
 
 export function useDraggable(
-  target: Ref<HTMLElement | undefined>,
+  element: Ref<HTMLElement | undefined>,
   options: DraggableOptions = {}
-): DraggableReturn {
+): DraggableState {
   const isDragging = ref(false)
   const position = ref({ x: 0, y: 0 })
-  let draggableInstance: any = null
-  let gsap: any = null
-  let Draggable: any = null
+  const velocity = ref({ x: 0, y: 0 })
+  
+  let dragState = {
+    startX: 0,
+    startY: 0,
+    lastX: 0,
+    lastY: 0,
+    lastTime: 0,
+    isEnabled: true
+  }
 
-  const {
-    bounds = 'body',
-    inertia = true,
-    edgeResistance = 0.65,
-    onDragStart,
-    onDrag,
-    onDragEnd,
-    disabled = false
-  } = options
-
-  async function loadGSAP() {
-    if (typeof window === 'undefined') return false
+  const updateVelocity = (newX: number, newY: number) => {
+    const now = Date.now()
+    const dt = Math.max(1, now - dragState.lastTime)
     
-    try {
-      const gsapModule = await import('gsap')
-      const draggableModule = await import('gsap/Draggable')
-      gsap = gsapModule.gsap
-      Draggable = draggableModule.Draggable
-      gsap.registerPlugin(Draggable)
-      return true
-    } catch (error) {
-      console.warn('GSAP not available:', error)
-      return false
+    velocity.value = {
+      x: (newX - dragState.lastX) / dt * 1000,
+      y: (newY - dragState.lastY) / dt * 1000
     }
+    
+    dragState.lastX = newX
+    dragState.lastY = newY
+    dragState.lastTime = now
   }
 
-  async function initDraggable() {
-    if (!target.value || draggableInstance) return
-
-    const gsapLoaded = await loadGSAP()
-    if (!gsapLoaded) {
-      // Fallback to basic dragging without GSAP
-      initBasicDragging()
-      return
-    }
-
-    draggableInstance = Draggable.create(target.value, {
-      type: 'x,y',
-      bounds,
-      edgeResistance,
-      inertia: inertia ? {
-        resistance: 300,
-        velocityScale: 0.8
-      } : false,
-      
-      onDragStart() {
-        isDragging.value = true
-        
-        // Apply cursor physics - increase scale slightly when dragging starts
-        if (target.value && gsap) {
-          gsap.to(target.value, {
-            scale: 1.02,
-            duration: 0.2,
-            ease: 'power2.out'
-          })
-        }
-        
-        onDragStart?.(arguments[0])
-      },
-      
-      onDrag() {
-        // Update position reactive ref
-        if (target.value && gsap) {
-          const transform = gsap.getProperty(target.value, 'transform') as string
-          const matrix = new DOMMatrix(transform)
-          position.value = { x: matrix.m41, y: matrix.m42 }
-        }
-        
-        onDrag?.(arguments[0])
-      },
-      
-      onDragEnd() {
-        isDragging.value = false
-        
-        // Apply physics-based settling animation
-        if (target.value && gsap) {
-          gsap.to(target.value, {
-            scale: 1,
-            duration: 0.3,
-            ease: 'elastic.out(1, 0.75)'
-          })
-        }
-        
-        // Add subtle magnetic attraction to viewport edges
-        if (target.value && typeof window !== 'undefined') {
-          const rect = target.value.getBoundingClientRect()
-          const viewportWidth = window.innerWidth
-          const viewportHeight = window.innerHeight
-          const threshold = 50 // Distance from edge to trigger magnetic effect
-          
-          let magneticX = position.value.x
-          let magneticY = position.value.y
-          
-          // Magnetic attraction to left/right edges
-          if (rect.left < threshold) {
-            magneticX = 0
-          } else if (rect.right > viewportWidth - threshold) {
-            magneticX = viewportWidth - rect.width
-          }
-          
-          // Magnetic attraction to top/bottom edges
-          if (rect.top < threshold) {
-            magneticY = 0
-          } else if (rect.bottom > viewportHeight - threshold) {
-            magneticY = viewportHeight - rect.height
-          }
-          
-          // Apply magnetic animation if position changed
-          if (magneticX !== position.value.x || magneticY !== position.value.y) {
-            if (gsap) {
-              gsap.to(target.value, {
-                x: magneticX,
-                y: magneticY,
-                duration: 0.5,
-                ease: 'power3.out'
-              })
-            }
-            position.value = { x: magneticX, y: magneticY }
-          }
-        }
-        
-        onDragEnd?.(arguments[0])
-      }
-    })
-
-    if (disabled) {
-      draggableInstance[0]?.disable()
-    }
-  }
-
-  function initBasicDragging() {
-    // Simple fallback dragging without GSAP
-    if (!target.value) return
-
-    let isDraggingNow = false
-    let startX = 0
-    let startY = 0
-    let initialX = 0
-    let initialY = 0
-
-    const handleMouseDown = (e: MouseEvent) => {
-      isDraggingNow = true
-      isDragging.value = true
-      startX = e.clientX
-      startY = e.clientY
-      const rect = target.value!.getBoundingClientRect()
-      initialX = rect.left
-      initialY = rect.top
-      onDragStart?.(e)
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDraggingNow || !target.value) return
-      
-      const x = initialX + (e.clientX - startX)
-      const y = initialY + (e.clientY - startY)
-      
-      target.value.style.transform = `translate(${x}px, ${y}px)`
-      position.value = { x, y }
-      onDrag?.(e)
-    }
-
-    const handleMouseUp = (e: MouseEvent) => {
-      if (!isDraggingNow) return
-      isDraggingNow = false
-      isDragging.value = false
-      onDragEnd?.(e)
-    }
-
-    target.value.addEventListener('mousedown', handleMouseDown)
+  const handleMouseDown = (e: MouseEvent) => {
+    if (!dragState.isEnabled || !element.value) return
+    
+    e.preventDefault()
+    isDragging.value = true
+    
+    const rect = element.value.getBoundingClientRect()
+    dragState.startX = e.clientX - rect.left
+    dragState.startY = e.clientY - rect.top
+    dragState.lastX = e.clientX
+    dragState.lastY = e.clientY
+    dragState.lastTime = Date.now()
+    
+    options.onDragStart?.()
+    
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
-
-    draggableInstance = {
-      destroy: () => {
-        if (target.value) {
-          target.value.removeEventListener('mousedown', handleMouseDown)
-        }
-        document.removeEventListener('mousemove', handleMouseMove)
-        document.removeEventListener('mouseup', handleMouseUp)
-      },
-      enable: () => {},
-      disable: () => {}
-    }
   }
 
-  function enable() {
-    if (draggableInstance?.enable) {
-      draggableInstance.enable()
-    } else if (draggableInstance?.[0]?.enable) {
-      draggableInstance[0].enable()
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging.value || !element.value) return
+    
+    const newX = e.clientX - dragState.startX
+    const newY = e.clientY - dragState.startY
+    
+    // Apply bounds if specified
+    let constrainedX = newX
+    let constrainedY = newY
+    
+    if (options.bounds === 'body') {
+      const rect = element.value.getBoundingClientRect()
+      constrainedX = Math.max(0, Math.min(window.innerWidth - rect.width, newX))
+      constrainedY = Math.max(0, Math.min(window.innerHeight - rect.height, newY))
     }
+    
+    position.value = { x: constrainedX, y: constrainedY }
+    updateVelocity(e.clientX, e.clientY)
+    
+    // Apply position using GSAP for smooth rendering
+    gsap.set(element.value, {
+      x: constrainedX,
+      y: constrainedY
+    })
+    
+    options.onDrag?.(position.value)
   }
 
-  function disable() {
-    if (draggableInstance?.disable) {
-      draggableInstance.disable()
-    } else if (draggableInstance?.[0]?.disable) {
-      draggableInstance[0].disable()
-    }
-  }
-
-  function updatePosition(x: number, y: number) {
-    if (target.value) {
-      if (gsap) {
-        gsap.set(target.value, { x, y })
-      } else {
-        target.value.style.transform = `translate(${x}px, ${y}px)`
+  const handleMouseUp = () => {
+    if (!isDragging.value) return
+    
+    isDragging.value = false
+    
+    // Apply inertia if enabled
+    if (options.inertia && element.value) {
+      const speed = Math.sqrt(velocity.value.x ** 2 + velocity.value.y ** 2)
+      if (speed > 100) { // Only apply inertia if moving fast enough
+        const duration = Math.min(2, speed / 1000) // Max 2 seconds
+        const finalX = position.value.x + velocity.value.x * duration * 0.3
+        const finalY = position.value.y + velocity.value.y * duration * 0.3
+        
+        gsap.to(element.value, {
+          x: finalX,
+          y: finalY,
+          duration: duration,
+          ease: "power2.out",
+          onUpdate: () => {
+            if (element.value) {
+              const transform = gsap.getProperty(element.value, "transform") as string
+              const matrix = new DOMMatrix(transform)
+              position.value = { x: matrix.e, y: matrix.f }
+            }
+          }
+        })
       }
-      position.value = { x, y }
+    }
+    
+    // Reset velocity
+    velocity.value = { x: 0, y: 0 }
+    
+    options.onDragEnd?.()
+    
+    document.removeEventListener('mousemove', handleMouseMove)
+    document.removeEventListener('mouseup', handleMouseUp)
+  }
+
+  const enable = () => {
+    dragState.isEnabled = true
+  }
+
+  const disable = () => {
+    dragState.isEnabled = false
+    if (isDragging.value) {
+      handleMouseUp()
     }
   }
 
-  function destroy() {
-    if (draggableInstance) {
-      if (draggableInstance.destroy) {
-        draggableInstance.destroy()
-      } else if (draggableInstance[0]?.kill) {
-        draggableInstance[0].kill()
-      }
-      draggableInstance = null
+  const destroy = () => {
+    disable()
+    if (element.value) {
+      element.value.removeEventListener('mousedown', handleMouseDown)
     }
   }
 
   onMounted(() => {
-    // Wait for next tick to ensure target.value is available
-    setTimeout(initDraggable, 0)
+    if (element.value) {
+      element.value.addEventListener('mousedown', handleMouseDown)
+    }
   })
 
   onUnmounted(() => {
@@ -265,9 +165,9 @@ export function useDraggable(
   return {
     isDragging,
     position,
+    velocity,
     enable,
     disable,
-    updatePosition,
     destroy
   }
 }
