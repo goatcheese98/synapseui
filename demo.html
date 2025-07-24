@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse UI - Floating Dock Demo</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/pinia@2/dist/pinia.iife.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(214.3 31.8% 91.4%)',
+                        input: 'hsl(214.3 31.8% 91.4%)',
+                        ring: 'hsl(222.2 84% 4.9%)',
+                        background: 'hsl(0 0% 100%)',
+                        foreground: 'hsl(222.2 84% 4.9%)',
+                        primary: {
+                            DEFAULT: 'hsl(222.2 47.4% 11.2%)',
+                            foreground: 'hsl(210 40% 98%)',
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(210 40% 96%)',
+                            foreground: 'hsl(222.2 84% 4.9%)',
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(0 84.2% 60.2%)',
+                            foreground: 'hsl(210 40% 98%)',
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(210 40% 96%)',
+                            foreground: 'hsl(215.4 16.3% 46.9%)',
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(210 40% 96%)',
+                            foreground: 'hsl(222.2 84% 4.9%)',
+                        },
+                        card: {
+                            DEFAULT: 'hsl(0 0% 100%)',
+                            foreground: 'hsl(222.2 84% 4.9%)',
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .floating-dock {
+            position: fixed;
+            z-index: 50;
+            background: hsl(0 0% 100% / 0.95);
+            border: 1px solid hsl(214.3 31.8% 91.4%);
+            border-radius: 0.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            user-select: none;
+            overflow: hidden;
+            min-width: 16rem;
+            min-height: 12rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .floating-dock:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            transform: scale(1.01);
+        }
+        
+        .dock-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-bottom: 1px solid hsl(214.3 31.8% 91.4%);
+            background: linear-gradient(to right, hsl(0 0% 100%), hsl(210 40% 96% / 0.5));
+            cursor: grab;
+        }
+        
+        .dock-header:active {
+            cursor: grabbing;
+        }
+        
+        .dock-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(222.2 84% 4.9%);
+        }
+        
+        .dock-content {
+            flex: 1;
+            padding: 1rem;
+            overflow: auto;
+            min-height: 7.5rem;
+        }
+        
+        .dock-tabs {
+            display: flex;
+            border-top: 1px solid hsl(214.3 31.8% 91.4%);
+            background: hsl(210 40% 96% / 0.3);
+        }
+        
+        .dock-tab {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: hsl(215.4 16.3% 46.9%);
+            border-right: 1px solid hsl(214.3 31.8% 91.4%);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .dock-tab:last-child {
+            border-right: none;
+        }
+        
+        .dock-tab:hover {
+            color: hsl(222.2 84% 4.9%);
+            background: hsl(210 40% 96% / 0.5);
+        }
+        
+        .dock-tab.active {
+            color: hsl(222.2 47.4% 11.2%);
+            background: hsl(222.2 47.4% 11.2% / 0.1);
+            border-top: 2px solid hsl(222.2 47.4% 11.2%);
+        }
+        
+        .demo-content {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        .demo-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 32rem;
+            text-align: center;
+        }
+        
+        .dock-control-btn {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.25rem;
+            color: hsl(215.4 16.3% 46.9%);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .dock-control-btn:hover {
+            background: hsl(210 40% 96%);
+            color: hsl(222.2 84% 4.9%);
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const { createApp, ref, computed, onMounted } = Vue;
+        const { createPinia, defineStore } = Pinia;
+
+        // Simple dock store
+        const useDockStore = defineStore('dock', () => {
+            const isVisible = ref(true);
+            const activePanel = ref('info');
+            const panels = ref([
+                { id: 'info', title: 'Information', content: 'Welcome to Synapse UI! This is a demo of the Floating Dock System.' },
+                { id: 'controls', title: 'Controls', content: 'Here you can find various controls and settings for the dock.' },
+                { id: 'data', title: 'Data', content: 'This panel shows data visualization and metrics.' }
+            ]);
+
+            const activePanelData = computed(() => 
+                panels.value.find(panel => panel.id === activePanel.value)
+            );
+
+            function setActivePanel(panelId) {
+                activePanel.value = panelId;
+            }
+
+            function toggleVisibility() {
+                isVisible.value = !isVisible.value;
+            }
+
+            return {
+                isVisible,
+                activePanel,
+                panels,
+                activePanelData,
+                setActivePanel,
+                toggleVisibility
+            };
+        });
+
+        // Floating Dock Component
+        const FloatingDock = {
+            template: `
+                <div v-if="dockStore.isVisible" 
+                     ref="dockElement"
+                     class="floating-dock"
+                     :style="{ left: position.x + 'px', top: position.y + 'px' }">
+                    <!-- Dock Header -->
+                    <div class="dock-header" @mousedown="startDrag">
+                        <div class="dock-title">
+                            🚀 Synapse UI Dock
+                        </div>
+                        <div class="dock-control-btn" @click="dockStore.toggleVisibility">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Dock Content -->
+                    <div class="dock-content">
+                        <div v-if="dockStore.activePanelData">
+                            <h3 class="font-semibold mb-2">{{ dockStore.activePanelData.title }}</h3>
+                            <p class="text-sm text-gray-600">{{ dockStore.activePanelData.content }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Panel Tabs -->
+                    <div class="dock-tabs">
+                        <div v-for="panel in dockStore.panels" 
+                             :key="panel.id"
+                             :class="['dock-tab', { active: panel.id === dockStore.activePanel }]"
+                             @click="dockStore.setActivePanel(panel.id)">
+                            {{ panel.title }}
+                        </div>
+                    </div>
+                </div>
+            `,
+            setup() {
+                const dockStore = useDockStore();
+                const dockElement = ref();
+                const position = ref({ x: 100, y: 100 });
+                const isDragging = ref(false);
+
+                let dragOffset = { x: 0, y: 0 };
+
+                function startDrag(e) {
+                    isDragging.value = true;
+                    const rect = dockElement.value.getBoundingClientRect();
+                    dragOffset.x = e.clientX - rect.left;
+                    dragOffset.y = e.clientY - rect.top;
+                    
+                    document.addEventListener('mousemove', drag);
+                    document.addEventListener('mouseup', stopDrag);
+                    e.preventDefault();
+                }
+
+                function drag(e) {
+                    if (!isDragging.value) return;
+                    position.value = {
+                        x: e.clientX - dragOffset.x,
+                        y: e.clientY - dragOffset.y
+                    };
+                }
+
+                function stopDrag() {
+                    isDragging.value = false;
+                    document.removeEventListener('mousemove', drag);
+                    document.removeEventListener('mouseup', stopDrag);
+                }
+
+                return {
+                    dockStore,
+                    dockElement,
+                    position,
+                    startDrag
+                };
+            }
+        };
+
+        // Main App
+        const App = {
+            template: `
+                <div class="demo-content">
+                    <div class="demo-info">
+                        <h1 class="text-2xl font-bold mb-4">Synapse UI Demo</h1>
+                        <p class="text-gray-600 mb-4">
+                            This is a live demo of the Floating Dock System - our signature "Intelligent & Composable Toolkit".
+                        </p>
+                        <p class="text-sm text-gray-500">
+                            Try dragging the dock around! Click the tabs to switch between panels.
+                        </p>
+                    </div>
+                    <FloatingDock />
+                </div>
+            `,
+            components: {
+                FloatingDock
+            }
+        };
+
+        // Initialize app
+        const pinia = createPinia();
+        const app = createApp(App);
+        app.use(pinia);
+        app.mount('#app');
+    </script>
+</body>
+</html>

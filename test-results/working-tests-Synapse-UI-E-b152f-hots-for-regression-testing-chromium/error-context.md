@@ -1,0 +1,193 @@
+# Page snapshot
+
+```yaml
+- img "Histoire logo"
+- button "Design System"
+- link "Tailwind 16":
+  - /url: /story/tailwind
+- button "Components"
+- link "Button 5":
+  - /url: /story/src-stories-button-story-vue
+- link "Simple Demo 1":
+  - /url: /story/src-stories-simple-story-vue
+- button "Patterns"
+- text: Button Demo a
+- link:
+  - /url: /__sandbox.html?storyId=src-stories-simple-story-vue&variantId=src-stories-simple-story-vue-0
+- iframe
+- link "Controls":
+  - /url: /story/src-stories-simple-story-vue?variantId=src-stories-simple-story-vue-0&tab=
+- link "Docs":
+  - /url: /story/src-stories-simple-story-vue?variantId=src-stories-simple-story-vue-0&tab=docs
+- link "Events":
+  - /url: /story/src-stories-simple-story-vue?variantId=src-stories-simple-story-vue-0&tab=events
+- text: Initial state <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: <Button> variant
+- textbox "variant"
+- text: size
+- textbox "size"
+- checkbox "disabled":
+  - text: disabled
+  - img
+- text: class
+- textbox "class"
+- text: classModifiers
+- textbox
+- text: Source
+- button "Dynamic"
+- button "Static"
+- code: "<div class=\"p-8 space-y-4\"> <h2 class=\"text-xl font-bold\"> Synapse UI Components </h2> <div class=\"space-y-4\"> <div> <h3 class=\"text-lg font-semibold mb-2\"> Button Variants </h3> <div class=\"flex gap-2 flex-wrap\"> <Button variant=\"default\"> Default </Button> <Button variant=\"secondary\"> Secondary </Button> <Button variant=\"destructive\"> Destructive </Button> <Button variant=\"outline\"> Outline </Button> <Button variant=\"ghost\"> Ghost </Button> <Button variant=\"link\"> Link </Button> </div> </div> <div> <h3 class=\"text-lg font-semibold mb-2\"> Button Sizes </h3> <div class=\"flex gap-2 items-center\"> <Button size=\"sm\"> Small </Button> <Button size=\"default\"> Default </Button> <Button size=\"lg\"> Large </Button> <Button size=\"icon\"> 🔥 </Button> </div> </div> <div> <h3 class=\"text-lg font-semibold mb-2\"> Interactive Demo </h3> <Button @click=\"handleClick\" variant=\"outline\" class=\"mr-2\" > Clicked 0 times </Button> <Button @click=\"clickCount = 0\" variant=\"ghost\" size=\"sm\" > Reset </Button> </div> <div> <h3 class=\"text-lg font-semibold mb-2\"> Store Demo </h3> <div class=\"text-sm space-y-2\"> <p>Dock visible: true</p> <p>Panel count: 0</p> <div class=\"space-x-2\"> <Button @click=\"function() { const _actionId = runningActionId; const trackedStore = wrapWithProxy ? new Proxy(store, { get(...args) { activeAction = _actionId; return Reflect.get(...args); }, set(...args) { activeAction = _actionId; return Reflect.set(...args); } }) : store; activeAction = _actionId; const retValue = actions[actionName].apply(trackedStore, arguments); activeAction = void 0; return retValue; }\" size=\"sm\" > Toggle Dock </Button> <Button @click=\"store.addPanel({ id: `panel-${Date.now()}`, title: 'New Panel' })\" size=\"sm\" > Add Panel </Button> <Button @click=\"function() { const _actionId = runningActionId; const trackedStore = wrapWithProxy ? new Proxy(store, { get(...args) { activeAction = _actionId; return Reflect.get(...args); }, set(...args) { activeAction = _actionId; return Reflect.set(...args); } }) : store; activeAction = _actionId; const retValue = actions[actionName].apply(trackedStore, arguments); activeAction = void 0; return retValue; }\" size=\"sm\" variant=\"outline\" > Reset Store </Button> </div> </div> </div> </div> </div>"
+```
