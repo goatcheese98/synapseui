@@ -2,7 +2,8 @@
   <TooltipPortal>
     <TooltipContentPrimitive
       :class="cn(
-        'z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md',
+        'z-50 overflow-hidden rounded-md border-2 border-slate-300 bg-white/70 backdrop-blur-sm px-3 py-1.5 text-sm text-slate-800 shadow-lg animate-fade-in',
+        'data-[state=closed]:animate-fade-out',
         $attrs.class
       )"
       :side="side"

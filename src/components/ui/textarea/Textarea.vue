@@ -1,16 +1,32 @@
 <template>
   <textarea
+    :id="fieldId"
     ref="textareaRef"
+    :value="modelValue"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :rows="rows"
     :class="cn(
-      'flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1)',
+      'flex min-h-[80px] w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1)',
       'placeholder:text-muted-foreground resize-none',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-ring',
       'hover:border-slate-700 hover:shadow-sm hover:bg-accent/50 dark:hover:border-slate-300',
       'disabled:cursor-not-allowed disabled:opacity-50',
+      // Error state styling
+      hasError 
+        ? 'border-error focus-visible:ring-error focus-visible:border-error' 
+        : 'border-input',
+      // Success state styling
+      isValid && touched 
+        ? 'border-success focus-visible:ring-success focus-visible:border-success' 
+        : '',
       $attrs.class,
       activeAnimation
     )"
-    v-bind="$attrs"
+    @input="handleInput"
+    @change="handleChange"
+    @blur="handleBlur"
+    @focus="handleFocus"
     @mouseenter="handleMouseEnter"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
@@ -21,15 +37,62 @@
 import { ref } from 'vue'
 import { cn } from '@/lib/utils'
 
-const textareaRef = ref<HTMLElement>()
+interface Props {
+  modelValue?: string
+  placeholder?: string
+  disabled?: boolean
+  rows?: number
+  fieldId?: string
+  hasError?: boolean
+  isValid?: boolean
+  touched?: boolean
+}
+
+interface Emits {
+  (e: 'update:modelValue', value: string): void
+  (e: 'change', value: string): void
+  (e: 'blur', event: FocusEvent): void
+  (e: 'focus', event: FocusEvent): void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  rows: 3,
+  hasError: false,
+  isValid: false,
+  touched: false
+})
+
+const emit = defineEmits<Emits>()
+
+const textareaRef = ref<HTMLTextAreaElement>()
 const activeAnimation = ref('')
 
+// Event handlers
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLTextAreaElement
+  emit('update:modelValue', target.value)
+}
+
+const handleChange = (event: Event) => {
+  const target = event.target as HTMLTextAreaElement
+  emit('change', target.value)
+}
+
+const handleBlur = (event: FocusEvent) => {
+  emit('blur', event)
+}
+
+const handleFocus = (event: FocusEvent) => {
+  emit('focus', event)
+}
+
+// Synapse corner detection
 const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
 const handleMouseMove = (event: MouseEvent) => {
-  // Future enhancements
+  // Future enhancements for cursor tracking
 }
 
 const handleMouseLeave = () => {
@@ -68,6 +131,13 @@ const detectCornerEntry = (event: MouseEvent) => {
     }, 500)
   }
 }
+
+// Expose textarea element for parent access
+defineExpose({
+  textareaRef,
+  focus: () => textareaRef.value?.focus(),
+  blur: () => textareaRef.value?.blur()
+})
 </script>
 
 <style scoped>

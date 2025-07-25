@@ -132,6 +132,83 @@ module.exports = {
         'token-ease': 'var(--easing-ease)',
         'token-ease-in': 'var(--easing-ease-in)',
         'token-ease-out': 'var(--easing-ease-out)',
+      },
+      
+      // Custom keyframes for tooltip animations
+      keyframes: {
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'fade-out': {
+          from: { opacity: '1' },
+          to: { opacity: '0' },
+        },
+        'zoom-in': {
+          from: { opacity: '0', transform: 'scale(0.95)' },
+          to: { opacity: '1', transform: 'scale(1)' },
+        },
+        'zoom-out': {
+          from: { opacity: '1', transform: 'scale(1)' },
+          to: { opacity: '0', transform: 'scale(0.95)' },
+        },
+        'slide-in-from-top': {
+          from: { opacity: '0', transform: 'translateY(-4px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-in-from-bottom': {
+          from: { opacity: '0', transform: 'translateY(4px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-in-from-left': {
+          from: { opacity: '0', transform: 'translateX(-4px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        'slide-in-from-right': {
+          from: { opacity: '0', transform: 'translateX(4px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        'scale-in': {
+          from: { opacity: '0', transform: 'scale(0.8)' },
+          to: { opacity: '1', transform: 'scale(1)' },
+        },
+        'expand-width': {
+          from: { width: 'auto' },
+          to: { width: '280px' },
+        },
+        'expand-height': {
+          from: { maxHeight: '2rem' },
+          to: { maxHeight: '6rem' },
+        },
+      },
+      
+      // Custom animations
+      animation: {
+        'fade-in': 'fade-in 0.2s ease-out',
+        'fade-out': 'fade-out 0.15s ease-in',
+        'zoom-in': 'zoom-in 0.2s ease-out',
+        'zoom-out': 'zoom-out 0.15s ease-in',
+        'slide-in-from-top': 'slide-in-from-top 0.2s ease-out',
+        'slide-in-from-bottom': 'slide-in-from-bottom 0.2s ease-out',
+        'slide-in-from-left': 'slide-in-from-left 0.2s ease-out',
+        'slide-in-from-right': 'slide-in-from-right 0.2s ease-out',
+        'scale-in': 'scale-in 0.2s ease-out',
+        // Duration variations
+        'fade-in-fast': 'fade-in 0.1s ease-out',
+        'zoom-in-fast': 'zoom-in 0.15s ease-out',
+        'slide-in-from-bottom-slow': 'slide-in-from-bottom 0.3s ease-out',
+        // Progressive tooltip animations
+        'expand-width': 'expand-width 0.3s ease-out',
+        'expand-height': 'expand-height 0.2s ease-out 0.3s',
+      },
+      
+      // Material Design Shadow Variations
+      dropShadow: {
+        'material-1': '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+        'material-2': '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
+        'material-3': '0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)',
+        'material-4': '0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)',
+        'material-5': '0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22)',
       }
     }
   },
