@@ -1,5 +1,5 @@
 export { Button, buttonVariants, type ButtonVariants } from './components/ui/button'
-export { FloatingDock, DockPanel, TimelineSlider } from './components/patterns/floating-dock'
-export { useDockStore, type DockPosition, type DockPanel as DockPanelType, type DockState } from './lib/stores/useDockStore'
+export { FloatingDock } from './components/patterns/floating-dock'
+export { useDockStore, type DockItem } from './lib/stores/useDockStore'
 export { useDraggable, type DraggableOptions, type DraggableReturn } from './composables/useDraggable'
 export { cn } from './lib/utils'

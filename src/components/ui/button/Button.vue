@@ -2,100 +2,53 @@
   <Primitive
     :as="as"
     :asChild="asChild"
-    :class="buttonVariants({ variant, size, loading: loading || isLoading, fullWidth, shape, class: className })"
-    :disabled="disabled || loading || isLoading"
-    :aria-label="ariaLabel"
-    :aria-describedby="ariaDescribedBy"
+    :class="cn(buttonVariants({ variant, size }), $attrs.class)"
+    :data-state="loading ? 'loading' : 'idle'"
+    :disabled="disabled || loading"
     :type="type"
     v-bind="$attrs"
     @click="handleClick"
-    @keydown="handleKeyDown"
   >
-    <slot name="icon-left" v-if="!loading && !isLoading" />
-    
-    <LoadingSpinner 
-      v-if="loading || isLoading" 
-      :size="getSpinnerSize()" 
-      class="text-current" 
+    <span
+      v-if="loading"
+      class="loading-spinner"
+      :style="{ width: `${getSpinnerSize()}px`, height: `${getSpinnerSize()}px` }"
     />
     
-    <span 
-      v-if="$slots.default"
-      :class="{ 'opacity-0': loading || isLoading }"
-      class="transition-opacity duration-200"
-    >
+    <span :class="cn('button-content', loading && 'button-content-loading')">
       <slot />
     </span>
-    
-    <slot name="icon-right" v-if="!loading && !isLoading" />
-    
-    <div
-      v-if="ripple && showRipple"
-      :class="rippleClasses"
-      :style="rippleStyle"
-      @animationend="showRipple = false"
-    />
   </Primitive>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { buttonVariants } from './variants'
-import LoadingSpinner from './LoadingSpinner.vue'
+import { cn } from '@/lib/utils'
 
-interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info' | 'outline' | 'outline-primary' | 'outline-success' | 'outline-error' | 'ghost' | 'ghost-primary' | 'link'
+interface Props {
+  variant?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'outline' | 'outline-primary' | 'outline-success' | 'outline-error' | 'ghost' | 'ghost-primary' | 'link'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon-xs' | 'icon-sm' | 'icon-md' | 'icon-lg' | 'icon-xl'
-  shape?: 'square' | 'rounded' | 'circle'
   as?: string | object
   asChild?: boolean
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
-  fullWidth?: boolean
-  ripple?: boolean
-  ariaLabel?: string
-  ariaDescribedBy?: string
-  class?: string
 }
 
-const props = withDefaults(defineProps<ButtonProps>(), {
-  variant: 'primary',
+const props = withDefaults(defineProps<Props>(), {
+  variant: 'neutral',
   size: 'md',
-  shape: 'rounded',
   as: 'button',
   asChild: false,
   type: 'button',
   disabled: false,
-  loading: false,
-  fullWidth: false,
-  ripple: true
+  loading: false
 })
 
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
-
-const className = defineModel<string>('class')
-
-const isLoading = ref(false)
-const showRipple = ref(false)
-const rippleX = ref(0)
-const rippleY = ref(0)
-
-const rippleClasses = computed(() => [
-  'absolute rounded-full bg-white/30 pointer-events-none',
-  'animate-ping duration-500'
-])
-
-const rippleStyle = computed(() => ({
-  left: `${rippleX.value}px`,
-  top: `${rippleY.value}px`,
-  width: '20px',
-  height: '20px',
-  transform: 'translate(-50%, -50%)'
-}))
 
 const getSpinnerSize = () => {
   const sizeMap = {
@@ -113,31 +66,53 @@ const getSpinnerSize = () => {
   return sizeMap[props.size] || 16
 }
 
-const handleClick = async (event: MouseEvent) => {
-  if (props.disabled || props.loading || isLoading.value) {
+const handleClick = (event: MouseEvent) => {
+  if (props.disabled || props.loading) {
     return
   }
-
-  if (props.ripple) {
-    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
-    rippleX.value = event.clientX - rect.left
-    rippleY.value = event.clientY - rect.top
-    showRipple.value = true
-  }
-
   emit('click', event)
 }
+</script>
 
-const handleKeyDown = (event: KeyboardEvent) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    handleClick(event as unknown as MouseEvent)
+<style scoped>
+.loading-spinner {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+.button-content {
+  transition: opacity 200ms ease-out;
+}
+
+.button-content-loading {
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-defineExpose({
-  setLoading: (loading: boolean) => {
-    isLoading.value = loading
-  }
-})
-</script>
+/* Rekha UI data-state animations */
+[data-state="loading"] {
+  cursor: wait;
+}
+
+[data-state="idle"]:hover {
+  transform: translateY(-1px);
+  transition: transform 150ms ease-out;
+}
+
+[data-state="idle"]:active {
+  transform: translateY(0px);
+  transition: transform 100ms ease-in;
+}
+</style>

@@ -1,169 +1,54 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-export interface DockPosition {
-  x: number
-  y: number
-}
-
-export interface DockPanel {
+export interface DockItem {
   id: string
-  title: string
-  isVisible: boolean
-  isMinimized: boolean
-  position?: DockPosition
-  width?: number
-  height?: number
-}
-
-export interface DockState {
-  isVisible: boolean
-  isDragging: boolean
-  position: DockPosition
-  panels: DockPanel[]
-  activePanel?: string
+  icon: string
+  label: string
+  action?: () => void
 }
 
 export const useDockStore = defineStore('dock', () => {
-  // State
+  const items = ref<DockItem[]>([])
+  const activeItem = ref<string | null>(null)
   const isVisible = ref(true)
-  const isDragging = ref(false)
-  const position = ref<DockPosition>({ x: 100, y: 100 })
-  const panels = ref<DockPanel[]>([])
-  const activePanel = ref<string>()
+  const position = ref({ x: 50, y: 50 })
 
-  // Getters
-  const visiblePanels = computed(() => 
-    panels.value.filter(panel => panel.isVisible)
-  )
-
-  const minimizedPanels = computed(() => 
-    panels.value.filter(panel => panel.isMinimized)
-  )
-
-  const activePanelData = computed(() => 
-    panels.value.find(panel => panel.id === activePanel.value)
-  )
-
-  // Actions
-  function setPosition(newPosition: DockPosition) {
-    position.value = newPosition
+  const addItem = (item: DockItem) => {
+    items.value.push(item)
   }
 
-  function setDragging(dragging: boolean) {
-    isDragging.value = dragging
+  const removeItem = (id: string) => {
+    const index = items.value.findIndex(item => item.id === id)
+    if (index > -1) {
+      items.value.splice(index, 1)
+    }
   }
 
-  function toggleVisibility() {
+  const setActiveItem = (id: string | null) => {
+    activeItem.value = id
+  }
+
+  const setPosition = (x: number, y: number) => {
+    position.value = { x, y }
+  }
+
+  const toggleVisibility = () => {
     isVisible.value = !isVisible.value
   }
 
-  function addPanel(panel: Omit<DockPanel, 'isVisible' | 'isMinimized'>) {
-    const newPanel: DockPanel = {
-      ...panel,
-      isVisible: true,
-      isMinimized: false
-    }
-    panels.value.push(newPanel)
-    
-    // Set as active if it's the first panel
-    if (panels.value.length === 1) {
-      activePanel.value = panel.id
-    }
-  }
-
-  function removePanel(panelId: string) {
-    const index = panels.value.findIndex(panel => panel.id === panelId)
-    if (index > -1) {
-      panels.value.splice(index, 1)
-      
-      // Clear active panel if it was removed
-      if (activePanel.value === panelId) {
-        activePanel.value = panels.value.length > 0 ? panels.value[0].id : undefined
-      }
-    }
-  }
-
-  function setActivePanel(panelId: string) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      activePanel.value = panelId
-      // Ensure the panel is visible when activated
-      panel.isVisible = true
-      panel.isMinimized = false
-    }
-  }
-
-  function togglePanelVisibility(panelId: string) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      panel.isVisible = !panel.isVisible
-    }
-  }
-
-  function minimizePanel(panelId: string) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      panel.isMinimized = true
-    }
-  }
-
-  function restorePanel(panelId: string) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      panel.isMinimized = false
-      panel.isVisible = true
-    }
-  }
-
-  function updatePanelPosition(panelId: string, newPosition: DockPosition) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      panel.position = newPosition
-    }
-  }
-
-  function updatePanelSize(panelId: string, width: number, height: number) {
-    const panel = panels.value.find(p => p.id === panelId)
-    if (panel) {
-      panel.width = width
-      panel.height = height
-    }
-  }
-
-  function reset() {
-    isVisible.value = true
-    isDragging.value = false
-    position.value = { x: 100, y: 100 }
-    panels.value = []
-    activePanel.value = undefined
-  }
+  const itemCount = computed(() => items.value.length)
 
   return {
-    // State
+    items,
+    activeItem,
     isVisible,
-    isDragging,
     position,
-    panels,
-    activePanel,
-    
-    // Getters
-    visiblePanels,
-    minimizedPanels,
-    activePanelData,
-    
-    // Actions
+    addItem,
+    removeItem,
+    setActiveItem,
     setPosition,
-    setDragging,
     toggleVisibility,
-    addPanel,
-    removePanel,
-    setActivePanel,
-    togglePanelVisibility,
-    minimizePanel,
-    restorePanel,
-    updatePanelPosition,
-    updatePanelSize,
-    reset
+    itemCount
   }
 })

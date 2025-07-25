@@ -26,6 +26,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
+    "@iconify/vue": "^5.0.0",
     "clsx": "^2.1.1",
     "pinia": "^3.0.3",
     "reka-ui": "^2.4.0",
@@ -40,6 +41,7 @@
     "@testing-library/vue": "^8.1.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.21",
     "commander": "^14.0.0",
     "gsap": "^3.13.0",
     "histoire": "1.0.0-alpha.2",
