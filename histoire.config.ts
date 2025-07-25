@@ -4,6 +4,11 @@ import { HstVue } from '@histoire/plugin-vue'
 export default defineConfig({
   plugins: [
     HstVue(),
+    // Override built-in plugins to disable tailwind-tokens
+    {
+      name: 'tailwind-tokens',
+      generate: () => {}
+    }
   ],
   setupFile: '/src/histoire.setup.ts',
   tree: {
@@ -56,6 +61,13 @@ export default defineConfig({
     },
     ssr: {
       noExternal: ['gsap']
+    },
+    // Resolve tailwind compatibility issue
+    resolve: {
+      alias: {
+        'tailwindcss/resolveConfig.js': './tailwind-resolve-config-mock.js',
+        'tailwindcss/resolveConfig': './tailwind-resolve-config-mock.js'
+      }
     }
   },
 })

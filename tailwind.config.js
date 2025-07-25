@@ -32,10 +32,10 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))'
         },
         background: 'hsl(var(--background))',
-        foreground: 'var(--adaptive-foreground)',
+        foreground: 'hsl(var(--foreground))',
         muted: {
           DEFAULT: 'hsl(var(--muted))',
-          foreground: 'var(--adaptive-muted-foreground)'
+          foreground: 'hsl(var(--muted-foreground))'
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',

@@ -28,11 +28,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Primitive } from 'reka-ui'
-import { buttonVariants } from './variants'
+import { buttonVariants } from './button-variants'
 import { cn } from '@/lib/utils'
 
 interface Props {
-  variant?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'outline' | 'outline-primary' | 'outline-success' | 'outline-error' | 'ghost' | 'ghost-primary' | 'link'
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'outline' | 'ghost' | 'link'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon-xs' | 'icon-sm' | 'icon-md' | 'icon-lg' | 'icon-xl'
   as?: string | object
   asChild?: boolean
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  variant: 'neutral',
+  variant: 'primary',
   size: 'md',
   as: 'button',
   asChild: false,
