@@ -172,9 +172,9 @@ const detectEntryCorner = (event: MouseEvent) => {
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base hover state */
+/* Base hover state - removed scaling, only corner animations */
 [data-state="idle"].edge-morph-button:hover {
-  transform: scale(1.02);
+  /* No transform - only corner pulse animations will play */
 }
 
 [data-state="idle"].edge-morph-button:active {

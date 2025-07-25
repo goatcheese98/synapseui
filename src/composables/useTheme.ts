@@ -103,6 +103,7 @@ function updateCSSCustomProperties(theme: Theme) {
   root.style.setProperty('--border-primary', theme.border.primary)
   root.style.setProperty('--border-secondary', theme.border.secondary)
   root.style.setProperty('--border-muted', theme.border.muted)
+  root.style.setProperty('--border-default', theme.border.primary) // Tailwind expects --border-default
   
   // Component colors
   Object.entries(theme.component).forEach(([variant, colors]) => {
@@ -112,12 +113,38 @@ function updateCSSCustomProperties(theme: Theme) {
     root.style.setProperty(`--${variant}-hover`, colors.hover)
   })
   
-  // Base tokens (these rarely change but good to have)
+  // Base tokens
+  // Spacing tokens
   Object.entries(spacing).forEach(([key, value]) => {
     root.style.setProperty(`--spacing-${key}`, value)
   })
   
+  // Border radius tokens
   Object.entries(borderRadius).forEach(([key, value]) => {
     root.style.setProperty(`--radius-${key}`, value)
+  })
+  
+  // Typography tokens
+  Object.entries(typography.fontFamily).forEach(([key, value]) => {
+    root.style.setProperty(`--font-${key}`, value.join(', '))
+  })
+  
+  Object.entries(typography.fontSize).forEach(([key, [size, { lineHeight }]]) => {
+    root.style.setProperty(`--text-${key}`, size)
+    root.style.setProperty(`--leading-${key}`, lineHeight)
+  })
+  
+  // Shadow tokens
+  Object.entries(shadows).forEach(([key, value]) => {
+    root.style.setProperty(`--shadow-${key}`, value)
+  })
+  
+  // Animation tokens
+  Object.entries(animation.duration).forEach(([key, value]) => {
+    root.style.setProperty(`--duration-${key}`, value)
+  })
+  
+  Object.entries(animation.easing).forEach(([key, value]) => {
+    root.style.setProperty(`--easing-${key}`, value)
   })
 }

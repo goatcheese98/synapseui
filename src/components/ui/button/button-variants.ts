@@ -13,83 +13,83 @@ export const buttonVariants = tv({
     // Typography
     'text-sm font-medium',
     
-    // Interactions
-    'ring-offset-background transition-colors duration-200',
+    // Interactions - using token classes
+    'transition-colors duration-token-normal',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',
     
     // Border radius from tokens
-    'rounded-md',
+    'rounded-token-md',
   ],
   variants: {
     variant: {
-      // ✅ Using CSS custom properties (design tokens)
+      // ✅ Using Tailwind token classes (clean and concise!)
       primary: [
-        'text-[var(--primary-text)]',
-        'bg-[var(--primary-bg)]', 
-        'border border-[var(--primary-border)]',
-        'hover:bg-[var(--primary-hover)]',
-        'focus-visible:ring-[var(--primary-bg)]'
+        'text-primary-text',
+        'bg-primary', 
+        'border border-primary-border',
+        'hover:bg-primary-hover',
+        'focus-visible:ring-primary'
       ],
       secondary: [
-        'text-[var(--secondary-text)]',
-        'bg-[var(--secondary-bg)]', 
-        'border border-[var(--secondary-border)]',
-        'hover:bg-[var(--secondary-hover)]',
-        'focus-visible:ring-[var(--secondary-bg)]'
+        'text-secondary-text',
+        'bg-secondary', 
+        'border border-secondary-border',
+        'hover:bg-secondary-hover',
+        'focus-visible:ring-secondary'
       ],
       success: [
-        'text-[var(--success-text)]',
-        'bg-[var(--success-bg)]', 
-        'border border-[var(--success-border)]',
-        'hover:bg-[var(--success-hover)]',
-        'focus-visible:ring-[var(--success-bg)]'
+        'text-success-text',
+        'bg-success', 
+        'border border-success-border',
+        'hover:bg-success-hover',
+        'focus-visible:ring-success'
       ],
       warning: [
-        'text-[var(--warning-text)]',
-        'bg-[var(--warning-bg)]', 
-        'border border-[var(--warning-border)]',
-        'hover:bg-[var(--warning-hover)]',
-        'focus-visible:ring-[var(--warning-bg)]'
+        'text-warning-text',
+        'bg-warning', 
+        'border border-warning-border',
+        'hover:bg-warning-hover',
+        'focus-visible:ring-warning'
       ],
       error: [
-        'text-[var(--error-text)]',
-        'bg-[var(--error-bg)]', 
-        'border border-[var(--error-border)]',
-        'hover:bg-[var(--error-hover)]',
-        'focus-visible:ring-[var(--error-bg)]'
+        'text-error-text',
+        'bg-error', 
+        'border border-error-border',
+        'hover:bg-error-hover',
+        'focus-visible:ring-error'
       ],
       
       // Outline variants - use primary colors with transparency
       outline: [
-        'text-[var(--primary-bg)]',
+        'text-primary',
         'bg-transparent', 
-        'border border-[var(--primary-bg)]',
-        'hover:bg-[var(--primary-bg)] hover:text-[var(--primary-text)]',
+        'border border-primary',
+        'hover:bg-primary hover:text-primary-text',
       ],
       
       // Ghost variants - subtle with hover effects
       ghost: [
-        'text-[var(--text-primary)]',
+        'text-text-primary',
         'bg-transparent', 
         'border border-transparent',
-        'hover:bg-[var(--bg-muted)] hover:text-[var(--text-primary)]',
+        'hover:bg-background-muted hover:text-text-primary',
       ],
       
       // Link variant
       link: [
-        'text-[var(--primary-bg)]',
+        'text-primary',
         'bg-transparent border-none shadow-none h-auto p-2',
         'hover:underline underline-offset-4',
       ]
     },
     size: {
-      // Using spacing tokens
-      xs: 'h-7 px-[var(--spacing-sm)] text-xs',
-      sm: 'h-9 px-[var(--spacing-md)] text-sm',
-      md: 'h-10 px-[var(--spacing-lg)] text-sm',
-      lg: 'h-12 px-[var(--spacing-xl)] text-base',
-      xl: 'h-14 px-[var(--spacing-2xl)] text-lg',
+      // Using spacing token classes
+      xs: 'h-7 px-token-sm text-xs',
+      sm: 'h-9 px-token-md text-sm',
+      md: 'h-10 px-token-lg text-sm',
+      lg: 'h-12 px-token-xl text-base',
+      xl: 'h-14 px-token-2xl text-lg',
       
       // Icon button sizes
       'icon-xs': 'h-6 w-6 p-0 text-xs',
