@@ -1,0 +1,98 @@
+
+<style scoped>
+/* Corner detection animations */
+.corner-top-left {
+  border-radius: 18px 6px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-top-right {
+  border-radius: 6px 18px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-left {
+  border-radius: 6px 6px 6px 18px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-right {
+  border-radius: 6px 6px 18px 6px;
+  transform: scale(1.02);
+}
+</style><template>
+  <SelectTrigger
+    ref="triggerRef"
+    :class="cn(
+      'flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1)',
+      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:border-ring',
+      'hover:border-slate-700 hover:shadow-sm hover:bg-accent/50 dark:hover:border-slate-300',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+      'data-[state=open]:border-ring data-[state=open]:ring-2 data-[state=open]:ring-ring data-[state=open]:ring-offset-2',
+      $attrs.class,
+      activeAnimation
+    )"
+    :data-state="isOpen ? 'open' : 'closed'"
+    v-bind="$attrs"
+    @mouseenter="handleMouseEnter"
+    @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
+  >
+    <slot />
+  </SelectTrigger>
+</template>
+
+<script setup lang="ts">
+import { ref, inject } from 'vue'
+import { SelectTrigger } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+const triggerRef = ref<HTMLElement>()
+const activeAnimation = ref('')
+const isOpen = inject('isSelectOpen', ref(false))
+
+const handleMouseEnter = (event: MouseEvent) => {
+  detectCornerEntry(event)
+}
+
+const handleMouseMove = (event: MouseEvent) => {
+  // Future enhancements
+}
+
+const handleMouseLeave = () => {
+  activeAnimation.value = ''
+}
+
+const detectCornerEntry = (event: MouseEvent) => {
+  if (!triggerRef.value) return
+  
+  const element = triggerRef.value.$el || triggerRef.value
+  if (!element || typeof element.getBoundingClientRect !== 'function') return
+  
+  const rect = element.getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+  const threshold = 15
+  
+  let cornerClass = ''
+  
+  if (x <= threshold && y <= threshold) {
+    cornerClass = 'corner-top-left'
+  } else if (x >= rect.width - threshold && y <= threshold) {
+    cornerClass = 'corner-top-right'
+  } else if (x <= threshold && y >= rect.height - threshold) {
+    cornerClass = 'corner-bottom-left'
+  } else if (x >= rect.width - threshold && y >= rect.height - threshold) {
+    cornerClass = 'corner-bottom-right'
+  }
+  
+  if (cornerClass) {
+    activeAnimation.value = cornerClass
+    setTimeout(() => {
+      if (activeAnimation.value === cornerClass) {
+        activeAnimation.value = ''
+      }
+    }, 500)
+  }
+}
+</script>

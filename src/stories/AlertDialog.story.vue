@@ -12,6 +12,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const isLoading = ref(false)
 const asyncOpen = ref(false)
@@ -186,27 +195,28 @@ const handleFormSubmit = () => {
             </AlertDialogHeader>
             
             <form @submit.prevent="handleFormSubmit" class="space-y-4">
-              <div>
-                <label for="email" class="text-sm font-medium">Email Address</label>
-                <input
+              <div class="space-y-2">
+                <Label for="email">Email Address</Label>
+                <Input
                   id="email"
                   type="email"
                   placeholder="colleague@company.com"
-                  class="w-full mt-1 px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   required
                 />
               </div>
               
-              <div>
-                <label for="role" class="text-sm font-medium">Role</label>
-                <select
-                  id="role"
-                  class="w-full mt-1 px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  <option value="member">Member</option>
-                  <option value="admin">Admin</option>
-                  <option value="viewer">Viewer</option>
-                </select>
+              <div class="space-y-2">
+                <Label for="role">Role</Label>
+                <Select default-value="member">
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="member">Member</SelectItem>
+                    <SelectItem value="admin">Admin</SelectItem>
+                    <SelectItem value="viewer">Viewer</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <AlertDialogFooter class="mt-6">

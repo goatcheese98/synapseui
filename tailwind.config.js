@@ -32,10 +32,10 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))'
         },
         background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        foreground: 'var(--adaptive-foreground)',
         muted: {
           DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
+          foreground: 'var(--adaptive-muted-foreground)'
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
@@ -43,7 +43,11 @@ module.exports = {
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))'
+        ring: 'hsl(var(--ring))',
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        }
       },
       borderRadius: {
         lg: 'var(--radius)',

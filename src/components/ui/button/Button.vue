@@ -1,13 +1,17 @@
 <template>
   <Primitive
+    ref="buttonRef"
     :as="as"
     :asChild="asChild"
-    :class="cn(buttonVariants({ variant, size }), $attrs.class)"
+    :class="cn(buttonVariants({ variant, size }), $attrs.class, 'edge-morph-button', pulseClass)"
     :data-state="loading ? 'loading' : 'idle'"
     :disabled="disabled || loading"
     :type="type"
     v-bind="$attrs"
     @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
   >
     <span
       v-if="loading"
@@ -22,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { buttonVariants } from './variants'
 import { cn } from '@/lib/utils'
@@ -50,6 +55,10 @@ const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
 
+// Animation state
+const buttonRef = ref<HTMLElement>()
+const pulseClass = ref('')
+
 const getSpinnerSize = () => {
   const sizeMap = {
     xs: 12,
@@ -71,6 +80,62 @@ const handleClick = (event: MouseEvent) => {
     return
   }
   emit('click', event)
+}
+
+const handleMouseEnter = (event: MouseEvent) => {
+  if (props.disabled || props.loading) return
+  detectEntryCorner(event)
+}
+
+const handleMouseMove = (event: MouseEvent) => {
+  // No action needed during mouse move
+}
+
+const handleMouseLeave = () => {
+  // Clear any active pulse animation
+  pulseClass.value = ''
+}
+
+const detectEntryCorner = (event: MouseEvent) => {
+  if (!buttonRef.value) return
+  
+  // Get the actual DOM element from the Primitive component
+  const element = buttonRef.value.$el || buttonRef.value
+  if (!element || typeof element.getBoundingClientRect !== 'function') return
+  
+  const rect = element.getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+  
+  const threshold = 15 // pixels from corner to consider as corner entry
+  
+  // Clear any existing animation
+  pulseClass.value = ''
+  
+  // Determine which corner cursor entered from and apply pulse
+  let cornerClass = ''
+  
+  // Check corners first (more specific)
+  if (x <= threshold && y <= threshold) {
+    cornerClass = 'pulse-top-left'
+  } else if (x >= rect.width - threshold && y <= threshold) {
+    cornerClass = 'pulse-top-right'
+  } else if (x <= threshold && y >= rect.height - threshold) {
+    cornerClass = 'pulse-bottom-left'
+  } else if (x >= rect.width - threshold && y >= rect.height - threshold) {
+    cornerClass = 'pulse-bottom-right'
+  }
+  
+  if (cornerClass) {
+    // Small delay for class change to register
+    setTimeout(() => {
+      pulseClass.value = cornerClass
+      // Remove class after animation completes
+      setTimeout(() => {
+        pulseClass.value = ''
+      }, 500)
+    }, 10)
+  }
 }
 </script>
 
@@ -101,18 +166,66 @@ const handleClick = (event: MouseEvent) => {
   }
 }
 
-/* Rekha UI data-state animations */
+/* Edge Pulse Animation System */
+.edge-morph-button {
+  position: relative;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base hover state */
+[data-state="idle"].edge-morph-button:hover {
+  transform: scale(1.02);
+}
+
+[data-state="idle"].edge-morph-button:active {
+  transform: scale(0.98);
+  transition: transform 100ms ease-out;
+}
+
+/* Corner pulse animations */
+.pulse-top-left {
+  animation: pulseTopLeftCorner 0.5s ease-out;
+}
+
+.pulse-top-right {
+  animation: pulseTopRightCorner 0.5s ease-out;
+}
+
+.pulse-bottom-left {
+  animation: pulseBottomLeftCorner 0.5s ease-out;
+}
+
+.pulse-bottom-right {
+  animation: pulseBottomRightCorner 0.5s ease-out;
+}
+
+/* Keyframe animations for each corner */
+@keyframes pulseTopLeftCorner {
+  0% { border-radius: 6px; }
+  50% { border-radius: 18px 6px 6px 6px; }
+  100% { border-radius: 6px; }
+}
+
+@keyframes pulseTopRightCorner {
+  0% { border-radius: 6px; }
+  50% { border-radius: 6px 18px 6px 6px; }
+  100% { border-radius: 6px; }
+}
+
+@keyframes pulseBottomLeftCorner {
+  0% { border-radius: 6px; }
+  50% { border-radius: 6px 6px 6px 18px; }
+  100% { border-radius: 6px; }
+}
+
+@keyframes pulseBottomRightCorner {
+  0% { border-radius: 6px; }
+  50% { border-radius: 6px 6px 18px 6px; }
+  100% { border-radius: 6px; }
+}
+
+/* Loading state */
 [data-state="loading"] {
   cursor: wait;
-}
-
-[data-state="idle"]:hover {
-  transform: translateY(-1px);
-  transition: transform 150ms ease-out;
-}
-
-[data-state="idle"]:active {
-  transform: translateY(0px);
-  transition: transform 100ms ease-in;
 }
 </style>

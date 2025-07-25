@@ -1,40 +1,155 @@
-<template>
+
+<style scoped>
+.dialog-cancel-button {
+  position: relative;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+  transition: opacity 200ms ease-out;
+}
+
+/* Corner detection animations */
+.corner-top-left {
+  border-radius: 18px 6px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-top-right {
+  border-radius: 6px 18px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-left {
+  border-radius: 6px 6px 6px 18px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-right {
+  border-radius: 6px 6px 18px 6px;
+  transform: scale(1.02);
+}
+
+/* Hover states */
+[data-state="idle"].dialog-cancel-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-state="idle"].dialog-cancel-button:active {
+  transform: translateY(0px);
+  transition: transform 100ms ease-out;
+}
+
+/* Disabled state */
+[data-state="disabled"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+[data-state="disabled"]:hover {
+  transform: none;
+  box-shadow: none;
+}
+</style><template>
   <AlertDialogCancel
-:class="cn(
-      'btn',
-      'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-      'btn-md h-10 px-4 py-2',
-      'mt-2 sm:mt-0',
-      variant === 'neutral' && 'btn-neutral bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      variant === 'primary' && 'btn-primary bg-primary text-primary-foreground hover:bg-primary/90',
-      variant === 'secondary' && 'btn-secondary bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      variant === 'accent' && 'btn-accent bg-accent text-accent-foreground hover:bg-accent/90',
-      variant === 'info' && 'btn-info bg-info text-info-foreground hover:bg-info/90',
-      variant === 'success' && 'btn-success bg-success text-success-foreground hover:bg-success/90',
-      variant === 'warning' && 'btn-warning bg-warning text-warning-foreground hover:bg-warning/90',
-      variant === 'error' && 'btn-error bg-destructive text-destructive-foreground hover:bg-destructive/90',
-      style === 'outline' && 'btn-outline border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-      style === 'ghost' && 'btn-ghost hover:bg-accent hover:text-accent-foreground',
-      style === 'link' && 'btn-link text-primary underline-offset-4 hover:underline',
-      !variant && !style && 'btn-outline border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-      $attrs.class
+    ref="buttonRef"
+    :class="cn(
+      dialogButtonVariants({ 
+        variant: 'dialog-cancel', 
+        size,
+        withIcon: hasIcon 
+      }), 
+      $attrs.class,
+      'dialog-cancel-button mt-2 sm:mt-0',
+      activeAnimation
     )"
+    :data-state="disabled ? 'disabled' : 'idle'"
+    :disabled="disabled"
     v-bind="$attrs"
+    @mouseenter="handleMouseEnter"
+    @mousemove="handleMouseMove" 
+    @mouseleave="handleMouseLeave"
   >
-    <slot />
+    <span :class="cn('button-content')">
+      <slot />
+    </span>
   </AlertDialogCancel>
 </template>
 
 <script setup lang="ts">
+import { ref, computed, useSlots } from 'vue'
 import { AlertDialogCancel } from 'reka-ui'
 import { cn } from '@/lib/utils'
+import { dialogButtonVariants } from './dialogVariants'
 
 interface Props {
-  variant?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
-  style?: 'outline' | 'dash' | 'soft' | 'ghost' | 'link'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  disabled?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
-  style: 'outline'
+const props = withDefaults(defineProps<Props>(), {
+  size: 'md',
+  disabled: false
 })
+
+const slots = useSlots()
+const buttonRef = ref<HTMLElement>()
+const activeAnimation = ref('')
+
+const hasIcon = computed(() => {
+  const defaultSlot = slots.default?.()
+  return defaultSlot?.some(vnode => 
+    vnode.type?.name === 'Icon' || 
+    (typeof vnode.children === 'string' && vnode.children.includes('icon'))
+  ) || false
+})
+
+const handleMouseEnter = (event: MouseEvent) => {
+  if (props.disabled) return
+  detectCornerEntry(event)
+}
+
+const handleMouseMove = (event: MouseEvent) => {
+  // Preserve for future enhancements
+}
+
+const handleMouseLeave = () => {
+  activeAnimation.value = ''
+}
+
+const detectCornerEntry = (event: MouseEvent) => {
+  if (!buttonRef.value) return
+  
+  const element = buttonRef.value.$el || buttonRef.value
+  if (!element || typeof element.getBoundingClientRect !== 'function') return
+  
+  const rect = element.getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+  const threshold = 15
+  
+  let cornerClass = ''
+  
+  if (x <= threshold && y <= threshold) {
+    cornerClass = 'corner-top-left'
+  } else if (x >= rect.width - threshold && y <= threshold) {
+    cornerClass = 'corner-top-right'
+  } else if (x <= threshold && y >= rect.height - threshold) {
+    cornerClass = 'corner-bottom-left'
+  } else if (x >= rect.width - threshold && y >= rect.height - threshold) {
+    cornerClass = 'corner-bottom-right'
+  }
+  
+  if (cornerClass) {
+    activeAnimation.value = cornerClass
+    setTimeout(() => {
+      if (activeAnimation.value === cornerClass) {
+        activeAnimation.value = ''
+      }
+    }, 500)
+  }
+}
 </script>
