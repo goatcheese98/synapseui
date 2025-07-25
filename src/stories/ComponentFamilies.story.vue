@@ -101,6 +101,34 @@ const handleIconClick = (icon: string) => {
             <Button.Outline :loading="true">Please wait</Button.Outline>
           </HStack>
         </div>
+
+        <!-- Text Warping Effects -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Text Warping Effects</h3>
+          <p class="text-sm text-text-secondary mb-4">Click buttons to see individual letter warping animations!</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium mb-3">Warp Types</h4>
+              <VStack spacing="sm">
+                <Button.Primary>Default (Compress 0.8)</Button.Primary>
+                <Button.Success text-warp-type="wave">Wave Effect</Button.Success>
+                <Button.Warning text-warp-type="bend">Bend Effect</Button.Warning>
+                <Button.Secondary text-warp-type="ripple">Ripple Effect</Button.Secondary>
+              </VStack>
+            </div>
+            
+            <div>
+              <h4 class="font-medium mb-3">Intensity Levels</h4>
+              <VStack spacing="sm">
+                <Button.Primary :text-warp-intensity="0.5">Subtle (0.5)</Button.Primary>
+                <Button.Primary>Default (0.8)</Button.Primary>
+                <Button.Primary :text-warp-intensity="1.2">Strong (1.2)</Button.Primary>
+                <Button.Outline :enable-text-warp="false">No Warp</Button.Outline>
+              </VStack>
+            </div>
+          </div>
+        </div>
       </div>
     </Variant>
 

@@ -41,18 +41,14 @@ module.exports = {
         },
         
         // Background semantic colors
-        background: {
-          primary: 'var(--bg-primary)',
-          secondary: 'var(--bg-secondary)',
-          muted: 'var(--bg-muted)',
-        },
+        'background-primary': 'var(--bg-primary)',
+        'background-secondary': 'var(--bg-secondary)',
+        'background-muted': 'var(--bg-muted)',
         
         // Text semantic colors
-        text: {
-          primary: 'var(--text-primary)',
-          secondary: 'var(--text-secondary)',
-          muted: 'var(--text-muted)',
-        },
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-muted': 'var(--text-muted)',
         
         // UI semantic colors
         border: {

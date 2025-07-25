@@ -20,16 +20,24 @@
     />
     
     <span :class="cn('button-content', loading && 'button-content-loading')">
-      <slot />
+      <WarpedText 
+        v-if="enableTextWarp && $slots.default" 
+        :text="getSlotText()" 
+        :is-pressed="isPressed"
+        :warp-type="textWarpType"
+        :warp-intensity="textWarpIntensity"
+      />
+      <slot v-else />
     </span>
   </Primitive>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, useSlots } from 'vue'
 import { Primitive } from 'reka-ui'
 import { buttonVariants } from './button-variants'
 import { cn } from '@/lib/utils'
+import WarpedText from '@/components/ui/text/WarpedText.vue'
 
 interface Props {
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'outline' | 'ghost' | 'link'
@@ -39,6 +47,10 @@ interface Props {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
+  // Text warping props
+  enableTextWarp?: boolean
+  textWarpType?: 'wave' | 'compress' | 'bend' | 'ripple'
+  textWarpIntensity?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -48,7 +60,10 @@ const props = withDefaults(defineProps<Props>(), {
   asChild: false,
   type: 'button',
   disabled: false,
-  loading: false
+  loading: false,
+  enableTextWarp: true,
+  textWarpType: 'compress',
+  textWarpIntensity: 0.8
 })
 
 const emit = defineEmits<{
@@ -58,6 +73,8 @@ const emit = defineEmits<{
 // Animation state
 const buttonRef = ref<HTMLElement>()
 const pulseClass = ref('')
+const isPressed = ref(false)
+const slots = useSlots()
 
 const getSpinnerSize = () => {
   const sizeMap = {
@@ -75,10 +92,38 @@ const getSpinnerSize = () => {
   return sizeMap[props.size] || 16
 }
 
+// Extract text from slot for warping
+const getSlotText = () => {
+  if (!slots.default) return ''
+  
+  try {
+    const vnodes = slots.default()
+    if (vnodes && vnodes[0] && typeof vnodes[0].children === 'string') {
+      return vnodes[0].children
+    }
+    // Fallback: try to extract text content
+    return vnodes?.map(vnode => {
+      if (typeof vnode.children === 'string') return vnode.children
+      return ''
+    }).join('') || ''
+  } catch {
+    return ''
+  }
+}
+
 const handleClick = (event: MouseEvent) => {
   if (props.disabled || props.loading) {
     return
   }
+  
+  // Trigger press animation for text warp
+  if (props.enableTextWarp) {
+    isPressed.value = true
+    setTimeout(() => {
+      isPressed.value = false
+    }, 150)
+  }
+  
   emit('click', event)
 }
 
@@ -180,6 +225,17 @@ const detectEntryCorner = (event: MouseEvent) => {
 [data-state="idle"].edge-morph-button:active {
   transform: scale(0.98);
   transition: transform 100ms ease-out;
+  /* Paper press effect - creates depth illusion */
+  box-shadow: 
+    inset 0 4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+[data-state="idle"].edge-morph-button:active .button-content {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.95);
+  transition: all 100ms ease-out;
 }
 
 /* Corner pulse animations */
