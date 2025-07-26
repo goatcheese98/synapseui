@@ -1,0 +1,1 @@
+export { default as SmartPage } from './SmartPage.vue'

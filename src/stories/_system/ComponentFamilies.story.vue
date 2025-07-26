@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Button, Card, Form } from '@/components/families'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Form } from '@/components/ui/form'
 import VStack from '@/components/ui/stack/VStack.vue'
 import HStack from '@/components/ui/stack/HStack.vue'
 
