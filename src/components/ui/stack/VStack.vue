@@ -5,7 +5,7 @@
     :align="align"
     :justify="justify"
     :wrap="wrap"
-    :class="$attrs.class"
+    :class="($attrs.class as string | undefined)"
   >
     <slot />
   </Stack>

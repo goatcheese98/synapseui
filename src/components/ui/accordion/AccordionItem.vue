@@ -1,7 +1,8 @@
 <template>
   <AccordionItem
-    :class="cn('border-b', $attrs.class)"
+    :class="cn('border-b', ($attrs.class as string | undefined) as string)"
     v-bind="$attrs"
+    :value="$attrs.value as string?? ''"
   >
     <slot />
   </AccordionItem>

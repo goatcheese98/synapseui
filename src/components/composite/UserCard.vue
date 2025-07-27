@@ -100,7 +100,6 @@ import CardFooter from '@/components/ui/card/CardFooter.vue'
 import Badge from '@/components/ui/badge/Badge.vue'
 import Button from '@/components/ui/button/Button.vue'
 import VStack from '@/components/ui/stack/VStack.vue'
-import HStack from '@/components/ui/stack/HStack.vue'
 import Icon from '@/components/ui/icon/Icon.vue'
 
 interface User {
@@ -130,11 +129,12 @@ const props = withDefaults(defineProps<Props>(), {
   interactive: true
 })
 
-const emit = defineEmits<{
-  'view-profile': [user: User]
-  'send-message': [user: User]
-  'edit-user': [user: User]
-}>()
+// Commenting out unused emit
+// const emit = defineEmits<{
+//   'view-profile': [user: User]
+//   'send-message': [user: User]
+//   'edit-user': [user: User]
+// }>()
 
 // Generate initials from name
 const initials = computed(() => {
@@ -171,7 +171,7 @@ const statusVariant = computed(() => {
     active: 'success',
     inactive: 'secondary',
     pending: 'warning',
-    banned: 'error'
+    banned: 'destructive' // Changed from 'error' to 'destructive' to match Badge variants
   } as const
   
   return variants[props.user.status] || 'secondary'

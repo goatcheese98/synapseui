@@ -20,7 +20,7 @@
       :class="cn(
         'max-w-sm p-0 border-0 shadow-lg',
         themeClass,
-        $attrs.class
+        ($attrs.class as string | undefined)
       )"
     >
       <div :class="cn('rounded-lg overflow-hidden', backgroundClass)">

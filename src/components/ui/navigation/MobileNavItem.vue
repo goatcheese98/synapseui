@@ -14,7 +14,7 @@
         ? 'bg-primary text-primary-text shadow-sm' 
         : 'text-text-secondary hover:text-text-primary',
       disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     :disabled="disabled"
     @click="$emit('click', $event)"

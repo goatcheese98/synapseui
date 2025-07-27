@@ -62,7 +62,7 @@
         size,
         withIcon: hasIcon 
       }), 
-      $attrs.class,
+      ($attrs.class as string | undefined),
       'dialog-cancel-button mt-2 sm:mt-0',
       activeAnimation
     )"

@@ -2,7 +2,7 @@
   <Label
     :class="cn(
       'text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

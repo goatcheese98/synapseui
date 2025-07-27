@@ -6,7 +6,7 @@
       'disabled:cursor-not-allowed disabled:opacity-50',
       'data-[state=checked]:border-primary',
       'hover:border-primary/80 hover:shadow-sm',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

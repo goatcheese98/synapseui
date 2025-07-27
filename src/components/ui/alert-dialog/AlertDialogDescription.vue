@@ -2,7 +2,7 @@
   <AlertDialogDescription
     :class="cn(
       'text-sm text-muted-foreground',
-      $attrs.class
+      ($attrs.class as string | undefined) as string
     )"
     v-bind="$attrs"
   >

@@ -2,7 +2,7 @@
   <ToastDescription
     :class="cn(
       'text-sm opacity-90',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

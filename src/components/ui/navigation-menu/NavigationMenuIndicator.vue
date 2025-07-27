@@ -2,7 +2,7 @@
   <NavigationMenuIndicator
     :class="cn(
       'top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

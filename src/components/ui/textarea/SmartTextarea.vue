@@ -6,7 +6,7 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :rows="computedRows"
-    :class="cn(computedTextareaClasses, $attrs.class, activeAnimation)"
+    :class="cn(computedTextareaClasses, ($attrs.class as string | undefined), activeAnimation)"
     @input="handleInput"
     @change="handleChange"
     @blur="handleBlur"

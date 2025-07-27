@@ -35,7 +35,7 @@
         'flex-wrap': wrap,
         'flex-nowrap': !wrap
       },
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
   >
     <slot />

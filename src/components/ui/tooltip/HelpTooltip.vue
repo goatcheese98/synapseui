@@ -27,7 +27,7 @@
       :sideOffset="sideOffset"
       :class="cn(
         'max-w-sm p-0 border shadow-lg bg-popover text-popover-foreground',
-        $attrs.class
+        ($attrs.class as string | undefined)
       )"
     >
       <div class="rounded-lg overflow-hidden">

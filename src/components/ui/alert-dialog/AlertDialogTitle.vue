@@ -2,7 +2,7 @@
   <AlertDialogTitle
     :class="cn(
       'text-lg font-semibold',
-      $attrs.class
+      ($attrs.class as string | undefined) as string
     )"
     v-bind="$attrs"
   >

@@ -29,7 +29,7 @@
       'hover:border-slate-700 hover:shadow-sm hover:bg-accent/50 dark:hover:border-slate-300',
       'disabled:cursor-not-allowed disabled:opacity-50',
       'data-[state=open]:border-ring data-[state=open]:ring-2 data-[state=open]:ring-ring data-[state=open]:ring-offset-2',
-      $attrs.class,
+      ($attrs.class as string | undefined),
       activeAnimation
     )"
     :data-state="isOpen ? 'open' : 'closed'"

@@ -2,7 +2,7 @@
   <div
     :class="cn(
       cardClasses,
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
   >
     <slot />

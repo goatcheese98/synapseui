@@ -125,7 +125,6 @@ export function useFormProvider() {
 
   const setValue = (name: string, value: any) => {
     if (fields[name]) {
-      const wasEmpty = !fields[name].value
       fields[name].value = value
       fields[name].dirty = true
       

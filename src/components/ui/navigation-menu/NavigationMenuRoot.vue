@@ -2,7 +2,7 @@
   <NavigationMenuRoot
     :class="cn(
       'relative z-10 flex max-w-max flex-1 items-center justify-center',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

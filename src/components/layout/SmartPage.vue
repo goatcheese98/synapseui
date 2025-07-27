@@ -1,6 +1,6 @@
 <template>
   <LayoutProvider :pattern="pattern">
-    <div :class="cn(pageClasses, $attrs.class)" v-bind="$attrs">
+    <div :class="cn(pageClasses, ($attrs.class as string | undefined) as string)" v-bind="$attrs">
       
       <!-- Header -->
       <header v-if="showHeader || $slots.header" :class="headerClasses">
@@ -79,7 +79,8 @@ const props = withDefaults(defineProps<SmartPageProps>(), {
 const layoutContext = createLayoutContext(props.pattern)
 provide(LAYOUT_CONTEXT_KEY, layoutContext)
 
-const { density, spacing } = layoutContext.value.components
+const { spacing } = layoutContext.value.components
+const density = layoutContext.value.density
 
 // Page structure classes
 const pageClasses = computed(() => {

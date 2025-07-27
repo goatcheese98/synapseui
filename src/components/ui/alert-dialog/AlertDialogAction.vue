@@ -80,7 +80,7 @@
         size, 
         withIcon: hasIcon 
       }), 
-      $attrs.class,
+      ($attrs.class as string | undefined) as string,
       'dialog-action-button',
       activeAnimation
     )"
@@ -130,17 +130,21 @@ const activeAnimation = ref('')
 const hasIcon = computed(() => {
   const defaultSlot = slots.default?.()
   return defaultSlot?.some(vnode => 
-    vnode.type?.name === 'Icon' || 
+    (typeof vnode.type === 'object' && vnode.type !== null && 'name' in vnode.type && vnode.type.name === 'Icon') || 
     (typeof vnode.children === 'string' && vnode.children.includes('icon'))
   ) || false
 })
 
 const getDialogVariant = () => {
-  const variantMap = {
+  const variantMap: Record<string, string> = {
     neutral: 'dialog-cancel',
     primary: 'dialog-primary', 
     secondary: 'dialog-secondary',
+    accent: 'dialog-primary',
+    info: 'dialog-primary',
     success: 'dialog-success',
+    warning: 'dialog-primary',
+    error: 'dialog-destructive',
     destructive: 'dialog-destructive'
   }
   return variantMap[props.variant] || 'dialog-primary'
@@ -158,7 +162,7 @@ const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = () => {
   // Preserve for future enhancements
 }
 
@@ -169,7 +173,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!buttonRef.value) return
   
-  const element = buttonRef.value.$el || buttonRef.value
+  const element = (buttonRef.value as any)?.$el || buttonRef.value
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

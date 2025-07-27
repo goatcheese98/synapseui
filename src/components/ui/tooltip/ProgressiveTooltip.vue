@@ -23,7 +23,7 @@
           isExpanded ? 'min-w-[280px] max-w-[320px]' : 'min-w-[120px] max-w-[200px]',
           // Animation classes
           isExpanded ? 'animate-expand-width' : 'animate-fade-in',
-          $attrs.class
+          ($attrs.class as string | undefined)
         )"
         :side="side"
         :side-offset="sideOffset"

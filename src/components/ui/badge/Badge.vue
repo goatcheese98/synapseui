@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="cn(badgeVariants({ variant, size }), $attrs.class)"
+    :class="cn(badgeVariants({ variant, size }), ($attrs.class as string | undefined))"
   >
     <slot />
   </div>

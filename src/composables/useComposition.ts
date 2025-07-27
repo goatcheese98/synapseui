@@ -2,7 +2,7 @@
  * Composition Patterns - Higher-level component relationships
  */
 
-import { provide, inject, computed, ref, type ComputedRef, type Ref } from 'vue'
+import { inject, computed, type ComputedRef } from 'vue'
 
 // Form composition context
 export interface FormContext {
@@ -29,7 +29,8 @@ export function createFormContext(
 }
 
 export function useFormContext(): FormContext | null {
-  return inject(FORM_CONTEXT_KEY, null)?.value || null
+  const context = inject<ComputedRef<FormContext> | null>(FORM_CONTEXT_KEY, null)
+  return context?.value || null
 }
 
 // Navigation composition context
@@ -56,7 +57,8 @@ export function createNavContext(
 }
 
 export function useNavContext(): NavContext | null {
-  return inject(NAV_CONTEXT_KEY, null)?.value || null
+  const context = inject<ComputedRef<NavContext> | null>(NAV_CONTEXT_KEY, null)
+  return context?.value || null
 }
 
 // Layout composition patterns
@@ -131,7 +133,8 @@ export function createLayoutContext(pattern: LayoutComposition['pattern']): Comp
 }
 
 export function useLayoutContext(): LayoutComposition | null {
-  return inject(LAYOUT_CONTEXT_KEY, null)?.value || null
+  const context = inject<ComputedRef<LayoutComposition> | null>(LAYOUT_CONTEXT_KEY, null)
+  return context?.value || null
 }
 
 
@@ -160,7 +163,8 @@ export function createDialogContext(
 }
 
 export function useDialogContext(): DialogContext | null {
-  return inject(DIALOG_CONTEXT_KEY, null)?.value || null
+  const context = inject<ComputedRef<DialogContext> | null>(DIALOG_CONTEXT_KEY, null)
+  return context?.value || null
 }
 
 // Table composition context
@@ -189,17 +193,18 @@ export function createTableContext(
 }
 
 export function useTableContext(): TableContext | null {
-  return inject(TABLE_CONTEXT_KEY, null)?.value || null
+  const context = inject<ComputedRef<TableContext> | null>(TABLE_CONTEXT_KEY, null)
+  return context?.value || null
 }
 
 // Multi-level composition - components can inherit from multiple contexts
 export function useMultiContext() {
-  const card = inject(CARD_CONTEXT_KEY, null)
-  const form = inject(FORM_CONTEXT_KEY, null) 
-  const nav = inject(NAV_CONTEXT_KEY, null)
-  const layout = inject(LAYOUT_CONTEXT_KEY, null)
-  const dialog = inject(DIALOG_CONTEXT_KEY, null)
-  const table = inject(TABLE_CONTEXT_KEY, null)
+  const card = inject<ComputedRef<any> | null>(CARD_CONTEXT_KEY, null)
+  const form = inject<ComputedRef<FormContext> | null>(FORM_CONTEXT_KEY, null) 
+  const nav = inject<ComputedRef<NavContext> | null>(NAV_CONTEXT_KEY, null)
+  const layout = inject<ComputedRef<LayoutComposition> | null>(LAYOUT_CONTEXT_KEY, null)
+  const dialog = inject<ComputedRef<DialogContext> | null>(DIALOG_CONTEXT_KEY, null)
+  const table = inject<ComputedRef<TableContext> | null>(TABLE_CONTEXT_KEY, null)
 
   return computed(() => ({
     card: card?.value || null,
@@ -222,7 +227,8 @@ export function useMultiContext() {
 
     // Smart variant selection based on all available contexts
     getSmartVariant(componentType: 'button' | 'input' | 'card'): string {
-      const contexts = [dialog?.value, form?.value, table?.value, card?.value, nav?.value, layout?.value].filter(Boolean)
+      // Remove unused contexts variable
+      // const contexts = [dialog?.value, form?.value, table?.value, card?.value, nav?.value, layout?.value].filter(Boolean)
       
       // Dialog context takes highest priority
       if (dialog?.value && componentType === 'button') {

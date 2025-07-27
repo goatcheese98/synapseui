@@ -4,7 +4,7 @@
 -->
 
 <template>
-  <div class="form-field space-y-2" :class="$attrs.class">
+  <div class="form-field space-y-2" :class="($attrs.class as string | undefined)">
     <!-- Label -->
     <Label
       v-if="label || $slots.label"
@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useId } from 'vue'
+import { useId } from 'vue'
 import { useFormField, type ValidationRule } from '@/composables/useForm'
 import Label from '@/components/ui/label/Label.vue'
 import Icon from '@/components/ui/icon/Icon.vue'
@@ -135,9 +135,6 @@ const handleBlur = (event: FocusEvent) => {
   emit('blur', event)
 }
 
-const handleFocus = (event: FocusEvent) => {
-  emit('focus', event)
-}
 
 // Expose field methods
 defineExpose({

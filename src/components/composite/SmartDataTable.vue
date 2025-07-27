@@ -16,7 +16,7 @@
               <SmartCheckbox 
                 :checked="allSelected"
                 :indeterminate="someSelected"
-                @update:checked="handleSelectAll"
+                @update:checked="(value) => handleSelectAll(value === true)"
               />
             </th>
             <th 
@@ -63,7 +63,7 @@
             <td v-if="selectable" :class="cn('text-center', cellClasses)">
               <SmartCheckbox 
                 :checked="selectedRows.includes(getRowKey(row, index))"
-                @update:checked="(checked) => handleRowSelect(getRowKey(row, index), checked)"
+                @update:checked="(value) => handleRowSelect(getRowKey(row, index), value === true)"
               />
             </td>
 
@@ -161,7 +161,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref, watch } from 'vue'
+import { computed, provide, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { cn } from '@/lib/utils'
 import { 

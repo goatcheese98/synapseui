@@ -20,7 +20,7 @@
       isValid && touched 
         ? 'border-success focus-visible:ring-success focus-visible:border-success' 
         : '',
-      $attrs.class,
+      ($attrs.class as string | undefined),
       activeAnimation
     )"
     @input="handleInput"

@@ -1,7 +1,7 @@
 <template>
   <component
     :is="as"
-    :class="cn(titleClasses, $attrs.class)"
+    :class="cn(titleClasses, ($attrs.class as string | undefined))"
   >
     <slot />
   </component>

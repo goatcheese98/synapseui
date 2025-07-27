@@ -1,6 +1,6 @@
 <template>
   <RadioGroupRoot
-    :class="cn('grid gap-2', $attrs.class)"
+    :class="cn('grid gap-2', ($attrs.class as string | undefined))"
     v-bind="$attrs"
   >
     <slot />

@@ -28,7 +28,7 @@
       'focus:bg-accent focus:text-accent-foreground hover:bg-accent/50',
       'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      $attrs.class,
+      ($attrs.class as string | undefined),
       activeAnimation
     )"
     v-bind="$attrs"

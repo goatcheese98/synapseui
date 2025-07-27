@@ -3,7 +3,7 @@
     ref="buttonRef"
     :as="as"
     :asChild="asChild"
-    :class="cn(buttonVariants({ variant, size }), $attrs.class, 'edge-morph-button', pulseClass)"
+    :class="cn(buttonVariants({ variant, size }), ($attrs.class as string | undefined), 'edge-morph-button', pulseClass)"
     :data-state="loading ? 'loading' : 'idle'"
     :disabled="disabled || loading"
     :type="type"
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, useSlots } from 'vue'
+import { ref, useSlots } from 'vue'
 import { Primitive } from 'reka-ui'
 import { buttonVariants } from './button-variants'
 import { cn } from '@/lib/utils'

@@ -3,7 +3,7 @@
     ref="buttonRef"
     :as="as"
     :asChild="asChild"
-    :class="cn(computedButtonClasses, $attrs.class)"
+    :class="cn(computedButtonClasses, ($attrs.class as string | undefined))"
     :disabled="disabled || loading"
     :type="type"
     v-bind="$attrs"

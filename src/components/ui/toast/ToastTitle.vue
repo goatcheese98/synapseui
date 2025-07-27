@@ -2,7 +2,7 @@
   <ToastTitle
     :class="cn(
       'text-sm font-semibold',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

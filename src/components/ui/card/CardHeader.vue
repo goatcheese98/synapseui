@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="cn(headerClasses, $attrs.class)"
+    :class="cn(headerClasses, ($attrs.class as string | undefined))"
   >
     <slot />
   </div>

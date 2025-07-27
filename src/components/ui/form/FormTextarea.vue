@@ -12,7 +12,7 @@
     :rules="rules"
     :show-validation="showValidation"
     :show-errors="showErrors"
-    :class="$attrs.class"
+    :class="($attrs.class as string | undefined)"
   >
     <template #label v-if="$slots.label">
       <slot name="label" />

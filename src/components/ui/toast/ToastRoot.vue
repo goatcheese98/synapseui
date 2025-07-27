@@ -52,7 +52,7 @@
       'data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--reka-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--reka-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full',
       // Variant styles
       variants[variant] || variants.default,
-      $attrs.class,
+      ($attrs.class as string | undefined),
       activeAnimation
     )"
     v-bind="$attrs"
@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { ToastRoot } from 'reka-ui'
 import { cn } from '@/lib/utils'
 

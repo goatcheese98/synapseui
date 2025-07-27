@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref, watch } from 'vue'
+import { computed, provide } from 'vue'
 import { cn } from '@/lib/utils'
 import { 
   createDialogContext, 
@@ -69,13 +69,13 @@ import {
 } from '@/composables/useComposition'
 import UltraSmartButton from '@/components/ui/button/UltraSmartButton.vue'
 
-// Mock Dialog components - replace with your actual dialog components
-import Dialog from '@/components/ui/dialog/Dialog.vue'
-import DialogContent from '@/components/ui/dialog/DialogContent.vue'
-import DialogHeader from '@/components/ui/dialog/DialogHeader.vue'
-import DialogTitle from '@/components/ui/dialog/DialogTitle.vue'
-import DialogDescription from '@/components/ui/dialog/DialogDescription.vue'
-import DialogFooter from '@/components/ui/dialog/DialogFooter.vue'
+// Using AlertDialog components as Dialog components
+import Dialog from '@/components/ui/alert-dialog/AlertDialog.vue'
+import DialogContent from '@/components/ui/alert-dialog/AlertDialogContent.vue'
+import DialogHeader from '@/components/ui/alert-dialog/AlertDialogHeader.vue'
+import DialogTitle from '@/components/ui/alert-dialog/AlertDialogTitle.vue'
+import DialogDescription from '@/components/ui/alert-dialog/AlertDialogDescription.vue'
+import DialogFooter from '@/components/ui/alert-dialog/AlertDialogFooter.vue'
 
 export interface SmartDialogProps {
   open?: boolean

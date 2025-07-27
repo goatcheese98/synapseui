@@ -3,7 +3,7 @@
     ref="buttonRef"
     :as="as"
     :asChild="asChild"
-    :class="cn(buttonVariants({ variant, size }), $attrs.class, 'experimental-button', activeAnimation)"
+    :class="cn(buttonVariants({ variant, size }), (($attrs.class as string | undefined) as string), 'experimental-button', activeAnimation)"
     :data-state="loading ? 'loading' : 'idle'"
     :disabled="disabled || loading"
     :type="type"
@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { Primitive } from 'reka-ui'
-import { buttonVariants } from './variants'
+import { buttonVariants } from '@/components/ui/button/variants'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -141,7 +141,7 @@ const handleMouseUp = () => {
 
 const updateHoverPosition = (event: MouseEvent) => {
   if (!buttonRef.value) return
-  const element = buttonRef.value.$el || buttonRef.value
+  const element = (buttonRef.value as any)?.$el || buttonRef.value
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()
@@ -163,7 +163,7 @@ const createRippleEffect = (event: MouseEvent) => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!buttonRef.value) return
   
-  const element = buttonRef.value.$el || buttonRef.value
+  const element = (buttonRef.value as any)?.$el || buttonRef.value
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

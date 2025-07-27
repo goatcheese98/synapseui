@@ -80,7 +80,7 @@
         size, 
         withIcon: hasIcon 
       }), 
-      $attrs.class,
+      ($attrs.class as string | undefined),
       'dialog-trigger-button',
       activeAnimation
     )"

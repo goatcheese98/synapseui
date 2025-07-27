@@ -15,7 +15,7 @@
         'px-6': padding && (size === 'lg' || size === 'xl' || size === '2xl'),
         'px-8': padding && size === '2xl'
       },
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
   >
     <slot />

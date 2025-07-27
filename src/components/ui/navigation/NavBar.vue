@@ -10,7 +10,7 @@
       'transition-all duration-300',
       scrolled ? 'shadow-lg border-border-muted' : 'border-transparent',
       variant === 'floating' ? 'mx-4 mt-4 rounded-lg border' : '',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
   >
     <div :class="cn('flex h-16 items-center', containerClass)">
@@ -125,7 +125,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/button/Button.vue'
 import Icon from '@/components/ui/icon/Icon.vue'

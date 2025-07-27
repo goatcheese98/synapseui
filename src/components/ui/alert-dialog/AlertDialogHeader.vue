@@ -2,7 +2,7 @@
   <div
     :class="cn(
       'flex flex-col space-y-2 text-center sm:text-left',
-      $attrs.class
+      ($attrs.class as string | undefined) as string
     )"
     v-bind="$attrs"
   >

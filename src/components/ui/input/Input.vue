@@ -39,7 +39,7 @@
       isValid && touched 
         ? 'border-success focus-visible:ring-success focus-visible:border-success' 
         : '',
-      $attrs.class,
+      ($attrs.class as string | undefined),
       activeAnimation
     )"
     :disabled="disabled"
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { cn } from '@/lib/utils'
 
 interface Props {

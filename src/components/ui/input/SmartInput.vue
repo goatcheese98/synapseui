@@ -3,7 +3,7 @@
     :id="fieldId"
     ref="inputRef"
     :value="modelValue"
-    :class="cn(computedInputClasses, $attrs.class, activeAnimation)"
+    :class="cn(computedInputClasses, ($attrs.class as string | undefined), activeAnimation)"
     :disabled="disabled"
     :placeholder="placeholder"
     :type="type"

@@ -2,7 +2,7 @@
   <SelectItem
     :value="value"
     :disabled="disabled"
-    :class="cn(computedItemClasses, $attrs.class)"
+    :class="cn(computedItemClasses, ($attrs.class as string | undefined))"
     v-bind="$attrs"
   >
     <slot />

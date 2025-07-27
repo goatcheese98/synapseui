@@ -106,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, watch } from 'vue'
 import Card from '@/components/ui/card/Card.vue'
 import CardHeader from '@/components/ui/card/CardHeader.vue'
 import CardTitle from '@/components/ui/card/CardTitle.vue'
@@ -193,7 +193,6 @@ const handleSubmit = () => {
 }
 
 // Watch for form changes to clear errors
-import { watch } from 'vue'
 watch(() => formData.email, () => {
   if (errors.email) {
     errors.email = validateEmail(formData.email)

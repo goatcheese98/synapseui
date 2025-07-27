@@ -4,7 +4,7 @@
     :size="size"
   >
     <form 
-      :class="cn(formClasses, $attrs.class)"
+      :class="cn(formClasses, ($attrs.class as string | undefined) as string)"
       @submit="handleSubmit"
       v-bind="$attrs"
     >

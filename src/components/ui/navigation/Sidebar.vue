@@ -10,7 +10,7 @@
       'h-screen sticky top-0 z-40',
       collapsed ? 'w-16' : 'w-64',
       variant === 'overlay' && mobileOpen ? 'fixed inset-y-0 left-0 z-50' : '',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
   >
     <!-- Header -->
@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/button/Button.vue'
 import Icon from '@/components/ui/icon/Icon.vue'

@@ -2,7 +2,7 @@
   <NavigationMenuList
     :class="cn(
       'group relative flex flex-1 list-none items-center justify-center space-x-1',
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     v-bind="$attrs"
   >

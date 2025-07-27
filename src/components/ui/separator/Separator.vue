@@ -6,7 +6,7 @@
         'h-px w-full': orientation === 'horizontal',
         'w-px h-full': orientation === 'vertical'
       },
-      $attrs.class
+      ($attrs.class as string | undefined)
     )"
     :orientation="orientation"
     v-bind="$attrs"
