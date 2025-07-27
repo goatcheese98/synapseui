@@ -5,9 +5,9 @@
 
 <template>
   <Tooltip
-    :delayDuration="delayDuration"
-    :disabled="disabled"
     v-model:open="open"
+    :delay-duration="delayDuration"
+    :disabled="disabled"
   >
     <TooltipTrigger as-child>
       <slot name="trigger">
@@ -32,7 +32,7 @@
     <TooltipContent 
       :side="side"
       :align="align"
-      :sideOffset="sideOffset"
+      :side-offset="sideOffset"
       :class="cn(
         'max-w-sm p-0 border shadow-lg bg-popover text-popover-foreground',
         ($attrs.class as string | undefined)
@@ -50,9 +50,14 @@
                   statusDotClasses[status]
                 )"
               />
-              <h4 class="font-semibold text-sm">{{ title || statusLabels[status] }}</h4>
+              <h4 class="font-semibold text-sm">
+                {{ title || statusLabels[status] }}
+              </h4>
             </div>
-            <div v-if="lastUpdated" class="text-xs opacity-75">
+            <div
+              v-if="lastUpdated"
+              class="text-xs opacity-75"
+            >
               {{ formatLastUpdated(lastUpdated) }}
             </div>
           </div>
@@ -61,12 +66,18 @@
         <!-- Content -->
         <div class="p-4 space-y-3">
           <!-- Status Description -->
-          <div v-if="description" class="text-sm text-muted-foreground">
+          <div
+            v-if="description"
+            class="text-sm text-muted-foreground"
+          >
             {{ description }}
           </div>
 
           <!-- Metrics -->
-          <div v-if="metrics?.length" class="space-y-2">
+          <div
+            v-if="metrics?.length"
+            class="space-y-2"
+          >
             <div 
               v-for="metric in metrics" 
               :key="metric.label"
@@ -81,7 +92,10 @@
               </div>
               <div class="text-sm font-medium">
                 {{ metric.value }}
-                <span v-if="metric.unit" class="text-xs text-muted-foreground ml-1">
+                <span
+                  v-if="metric.unit"
+                  class="text-xs text-muted-foreground ml-1"
+                >
                   {{ metric.unit }}
                 </span>
               </div>
@@ -89,8 +103,13 @@
           </div>
 
           <!-- Health Checks -->
-          <div v-if="healthChecks?.length" class="space-y-2">
-            <div class="text-xs font-medium text-foreground">Health Checks:</div>
+          <div
+            v-if="healthChecks?.length"
+            class="space-y-2"
+          >
+            <div class="text-xs font-medium text-foreground">
+              Health Checks:
+            </div>
             <div class="space-y-1">
               <div 
                 v-for="check in healthChecks" 
@@ -109,8 +128,13 @@
           </div>
 
           <!-- Recent Events -->
-          <div v-if="events?.length" class="space-y-2">
-            <div class="text-xs font-medium text-foreground">Recent Events:</div>
+          <div
+            v-if="events?.length"
+            class="space-y-2"
+          >
+            <div class="text-xs font-medium text-foreground">
+              Recent Events:
+            </div>
             <div class="space-y-1 max-h-24 overflow-y-auto">
               <div 
                 v-for="event in events.slice(0, 5)" 
@@ -119,15 +143,22 @@
               >
                 <div :class="cn('w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0', statusDotClasses[event.level])" />
                 <div class="flex-1 min-w-0">
-                  <div class="font-medium truncate">{{ event.message }}</div>
-                  <div class="text-muted-foreground">{{ formatEventTime(event.timestamp) }}</div>
+                  <div class="font-medium truncate">
+                    {{ event.message }}
+                  </div>
+                  <div class="text-muted-foreground">
+                    {{ formatEventTime(event.timestamp) }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Actions -->
-          <div v-if="actions?.length" class="pt-2 border-t border-border/50">
+          <div
+            v-if="actions?.length"
+            class="pt-2 border-t border-border/50"
+          >
             <div class="flex items-center gap-2">
               <Button
                 v-for="action in actions"
@@ -137,7 +168,11 @@
                 :disabled="action.disabled"
                 @click="handleAction(action)"
               >
-                <Icon v-if="action.icon" :name="action.icon" class="w-3 h-3 mr-1" />
+                <Icon
+                  v-if="action.icon"
+                  :name="action.icon"
+                  class="w-3 h-3 mr-1"
+                />
                 {{ action.label }}
               </Button>
             </div>
@@ -151,10 +186,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
-import Tooltip from './Tooltip.vue'
+import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from "./BaseButton.vue"
 import Icon from '@/components/ui/icon/Icon.vue'
 
 type StatusType = 'healthy' | 'warning' | 'error' | 'offline' | 'loading'
@@ -212,12 +247,21 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  description: '',
+  metrics: () => [],
+  healthChecks: () => [],
+  events: () => [],
+  actions: () => [],
+  lastUpdated: undefined,
   showLabel: true,
   pulseAnimation: false,
   side: 'top',
   align: 'center',
   sideOffset: 8,
-  delayDuration: 300
+  delayDuration: 300,
+  disabled: false,
+  open: undefined
 })
 
 const emit = defineEmits<Emits>()

@@ -41,15 +41,23 @@ const state = reactive({
           <HoverCardContent>
             <div class="flex space-x-4">
               <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                <Icon icon="lucide:user" class="h-6 w-6 text-blue-600" />
+                <Icon
+                  icon="lucide:user"
+                  class="h-6 w-6 text-blue-600"
+                />
               </div>
               <div class="space-y-1">
-                <h4 class="text-sm font-semibold">@rekaui</h4>
+                <h4 class="text-sm font-semibold">
+                  @rekaui
+                </h4>
                 <p class="text-sm text-muted-foreground">
                   Unstyled, accessible components for Vue.
                 </p>
                 <div class="flex items-center pt-2">
-                  <Icon icon="lucide:calendar-days" class="mr-2 h-4 w-4 opacity-70" />
+                  <Icon
+                    icon="lucide:calendar-days"
+                    class="mr-2 h-4 w-4 opacity-70"
+                  />
                   <span class="text-xs text-muted-foreground">
                     Joined December 2023
                   </span>
@@ -66,7 +74,10 @@ const state = reactive({
         <div class="max-w-md space-y-4">
           <p class="text-sm text-gray-600">
             Follow 
-            <HoverCard :open-delay="300" :close-delay="200">
+            <HoverCard
+              :open-delay="300"
+              :close-delay="200"
+            >
               <HoverCardTrigger>
                 <span class="font-medium text-blue-600 hover:text-blue-800 cursor-pointer">
                   @johndoe
@@ -79,8 +90,12 @@ const state = reactive({
                       JD
                     </div>
                     <div>
-                      <div class="font-medium">John Doe</div>
-                      <div class="text-sm text-muted-foreground">@johndoe</div>
+                      <div class="font-medium">
+                        John Doe
+                      </div>
+                      <div class="text-sm text-muted-foreground">
+                        @johndoe
+                      </div>
                     </div>
                   </div>
                   <p class="text-sm">
@@ -88,12 +103,18 @@ const state = reactive({
                   </p>
                   <div class="flex space-x-4 text-sm">
                     <div class="flex items-center">
-                      <Icon icon="lucide:users" class="mr-1 h-3 w-3" />
+                      <Icon
+                        icon="lucide:users"
+                        class="mr-1 h-3 w-3"
+                      />
                       <span class="font-medium">1.2k</span>
                       <span class="text-muted-foreground ml-1">followers</span>
                     </div>
                     <div class="flex items-center">
-                      <Icon icon="lucide:user-plus" class="mr-1 h-3 w-3" />
+                      <Icon
+                        icon="lucide:user-plus"
+                        class="mr-1 h-3 w-3"
+                      />
                       <span class="font-medium">324</span>
                       <span class="text-muted-foreground ml-1">following</span>
                     </div>
@@ -122,10 +143,15 @@ const state = reactive({
                 <div class="space-y-3">
                   <div class="flex items-start space-x-3">
                     <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-green-400 to-blue-500">
-                      <Icon icon="lucide:layers" class="h-6 w-6 text-white" />
+                      <Icon
+                        icon="lucide:layers"
+                        class="h-6 w-6 text-white"
+                      />
                     </div>
                     <div class="flex-1">
-                      <h4 class="font-semibold">Synapse UI</h4>
+                      <h4 class="font-semibold">
+                        Synapse UI
+                      </h4>
                       <p class="text-sm text-muted-foreground">
                         A comprehensive component library for Vue 3 applications
                       </p>
@@ -142,7 +168,10 @@ const state = reactive({
                     </div>
                     <div class="flex items-center justify-between text-sm">
                       <span class="text-muted-foreground">TypeScript</span>
-                      <Icon icon="lucide:check" class="h-4 w-4 text-green-500" />
+                      <Icon
+                        icon="lucide:check"
+                        class="h-4 w-4 text-green-500"
+                      />
                     </div>
                   </div>
                 </div>
@@ -166,12 +195,17 @@ const state = reactive({
               </HoverCardTrigger>
               <HoverCardContent>
                 <div class="space-y-2">
-                  <h4 class="font-medium">Action Button</h4>
+                  <h4 class="font-medium">
+                    Action Button
+                  </h4>
                   <p class="text-sm text-muted-foreground">
                     This button triggers a primary action in the interface.
                   </p>
                   <div class="flex items-center space-x-2 text-xs text-muted-foreground">
-                    <Icon icon="lucide:info" class="h-3 w-3" />
+                    <Icon
+                      icon="lucide:info"
+                      class="h-3 w-3"
+                    />
                     <span>Click to proceed</span>
                   </div>
                 </div>
@@ -181,23 +215,31 @@ const state = reactive({
             <HoverCard>
               <HoverCardTrigger>
                 <div class="inline-flex items-center space-x-2 px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-gray-200 transition-colors cursor-pointer">
-                  <Icon icon="lucide:tag" class="h-3 w-3" />
+                  <Icon
+                    icon="lucide:tag"
+                    class="h-3 w-3"
+                  />
                   <span>Vue.js</span>
                 </div>
               </HoverCardTrigger>
               <HoverCardContent>
                 <div class="space-y-2">
-                  <h4 class="font-medium">Vue.js Framework</h4>
+                  <h4 class="font-medium">
+                    Vue.js Framework
+                  </h4>
                   <p class="text-sm text-muted-foreground">
                     The Progressive JavaScript Framework for building user interfaces.
                   </p>
                   <div class="flex items-center space-x-4 text-xs">
                     <div class="flex items-center space-x-1">
-                      <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div class="w-2 h-2 bg-green-500 rounded-full" />
                       <span>v3.4.0</span>
                     </div>
                     <div class="flex items-center space-x-1">
-                      <Icon icon="lucide:star" class="h-3 w-3" />
+                      <Icon
+                        icon="lucide:star"
+                        class="h-3 w-3"
+                      />
                       <span>200k+ stars</span>
                     </div>
                   </div>

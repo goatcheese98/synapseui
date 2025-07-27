@@ -4,10 +4,12 @@
 -->
 
 <template>
-  <Story title="Navigation/Navigation System" :layout="{ type: 'fullscreen', iframe: false }">
+  <Story
+    title="Navigation/Navigation System"
+    :layout="{ type: 'fullscreen', iframe: false }"
+  >
     <Variant title="Navigation Components">
       <div class="min-h-screen bg-background">
-        
         <!-- Navigation Bar -->
         <NavBar
           :items="navItems"
@@ -17,11 +19,20 @@
           @theme-toggle="toggleTheme"
         >
           <template #actions>
-            <Button variant="ghost" size="sm">
-              <Icon name="search" class="w-4 h-4 mr-2" />
+            <Button
+              variant="ghost"
+              size="sm"
+            >
+              <Icon
+                name="search"
+                class="w-4 h-4 mr-2"
+              />
               Search
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+            >
               Sign In
             </Button>
           </template>
@@ -35,12 +46,26 @@
           </template>
 
           <template #mobile-actions>
-            <Button variant="ghost" size="sm" class="w-full justify-start">
-              <Icon name="search" class="w-4 h-4 mr-3" />
+            <Button
+              variant="ghost"
+              size="sm"
+              class="w-full justify-start"
+            >
+              <Icon
+                name="search"
+                class="w-4 h-4 mr-3"
+              />
               Search
             </Button>
-            <Button variant="ghost" size="sm" class="w-full justify-start">
-              <Icon name="user" class="w-4 h-4 mr-3" />
+            <Button
+              variant="ghost"
+              size="sm"
+              class="w-full justify-start"
+            >
+              <Icon
+                name="user"
+                class="w-4 h-4 mr-3"
+              />
               Profile
             </Button>
           </template>
@@ -56,8 +81,15 @@
           >
             <template #footer>
               <div class="text-center">
-                <Button variant="outline" size="sm" class="w-full">
-                  <Icon name="help-circle" class="w-4 h-4 mr-2" />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  class="w-full"
+                >
+                  <Icon
+                    name="help-circle"
+                    class="w-4 h-4 mr-2"
+                  />
                   Help & Support
                 </Button>
               </div>
@@ -73,9 +105,16 @@
                 <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center">
                   <span class="text-success-text text-sm font-medium">A</span>
                 </div>
-                <div v-if="!collapsed" class="flex-1 min-w-0">
-                  <p class="text-sm font-medium truncate">John Doe</p>
-                  <p class="text-xs text-text-muted truncate">john@example.com</p>
+                <div
+                  v-if="!collapsed"
+                  class="flex-1 min-w-0"
+                >
+                  <p class="text-sm font-medium truncate">
+                    John Doe
+                  </p>
+                  <p class="text-xs text-text-muted truncate">
+                    john@example.com
+                  </p>
                 </div>
               </div>
             </template>
@@ -84,7 +123,6 @@
           <!-- Main Content -->
           <main class="flex-1 p-8">
             <div class="max-w-4xl mx-auto space-y-8">
-              
               <!-- Header -->
               <div class="text-center space-y-4">
                 <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -104,27 +142,40 @@
 
               <!-- Feature Showcase -->
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <!-- Responsive Design -->
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="smartphone" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Responsive Design</h3>
+                      <Icon
+                        name="smartphone"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Responsive Design
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Navigation adapts seamlessly across all device sizes with mobile-first approach.
                     </p>
                     <div class="flex items-center space-x-2 text-xs text-success">
-                      <Icon name="check" class="w-3 h-3" />
+                      <Icon
+                        name="check"
+                        class="w-3 h-3"
+                      />
                       <span>Mobile menu</span>
                     </div>
                     <div class="flex items-center space-x-2 text-xs text-success">
-                      <Icon name="check" class="w-3 h-3" />
+                      <Icon
+                        name="check"
+                        class="w-3 h-3"
+                      />
                       <span>Touch-friendly</span>
                     </div>
                     <div class="flex items-center space-x-2 text-xs text-success">
-                      <Icon name="check" class="w-3 h-3" />
+                      <Icon
+                        name="check"
+                        class="w-3 h-3"
+                      />
                       <span>Collapsible sidebar</span>
                     </div>
                   </div>
@@ -134,8 +185,13 @@
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="target" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Active States</h3>
+                      <Icon
+                        name="target"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Active States
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Clear visual feedback for active navigation items with smooth transitions.
@@ -146,10 +202,14 @@
                         :key="item.href"
                         :variant="activeNavItem === item.href ? 'default' : 'ghost'"
                         size="sm"
-                        @click="activeNavItem = item.href"
                         class="w-full justify-start"
+                        @click="activeNavItem = item.href"
                       >
-                        <Icon v-if="item.icon" :name="item.icon" class="w-4 h-4 mr-2" />
+                        <Icon
+                          v-if="item.icon"
+                          :name="item.icon"
+                          class="w-4 h-4 mr-2"
+                        />
                         {{ item.label }}
                       </Button>
                     </div>
@@ -160,8 +220,13 @@
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="folder-tree" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Nested Menus</h3>
+                      <Icon
+                        name="folder-tree"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Nested Menus
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Multi-level navigation with expandable sections and proper indentation.
@@ -179,8 +244,13 @@
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="palette" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Theme System</h3>
+                      <Icon
+                        name="palette"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Theme System
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Seamless integration with the Synapse UI theme system.
@@ -188,10 +258,13 @@
                     <Button
                       variant="outline"
                       size="sm"
-                      @click="toggleTheme"
                       class="w-full"
+                      @click="toggleTheme"
                     >
-                      <Icon :name="isDark ? 'sun' : 'moon'" class="w-4 h-4 mr-2" />
+                      <Icon
+                        :name="isDark ? 'sun' : 'moon'"
+                        class="w-4 h-4 mr-2"
+                      />
                       Toggle {{ isDark ? 'Light' : 'Dark' }} Mode
                     </Button>
                   </div>
@@ -201,27 +274,44 @@
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="accessibility" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Accessibility</h3>
+                      <Icon
+                        name="accessibility"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Accessibility
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Full keyboard navigation and screen reader support.
                     </p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
                       <div class="flex items-center space-x-1 text-success">
-                        <Icon name="check" class="w-3 h-3" />
+                        <Icon
+                          name="check"
+                          class="w-3 h-3"
+                        />
                         <span>ARIA labels</span>
                       </div>
                       <div class="flex items-center space-x-1 text-success">
-                        <Icon name="check" class="w-3 h-3" />
+                        <Icon
+                          name="check"
+                          class="w-3 h-3"
+                        />
                         <span>Keyboard nav</span>
                       </div>
                       <div class="flex items-center space-x-1 text-success">
-                        <Icon name="check" class="w-3 h-3" />
+                        <Icon
+                          name="check"
+                          class="w-3 h-3"
+                        />
                         <span>Focus states</span>
                       </div>
                       <div class="flex items-center space-x-1 text-success">
-                        <Icon name="check" class="w-3 h-3" />
+                        <Icon
+                          name="check"
+                          class="w-3 h-3"
+                        />
                         <span>Color contrast</span>
                       </div>
                     </div>
@@ -232,8 +322,13 @@
                 <Card class="p-6">
                   <div class="space-y-4">
                     <div class="flex items-center space-x-2">
-                      <Icon name="zap" class="w-5 h-5 text-primary" />
-                      <h3 class="font-semibold">Performance</h3>
+                      <Icon
+                        name="zap"
+                        class="w-5 h-5 text-primary"
+                      />
+                      <h3 class="font-semibold">
+                        Performance
+                      </h3>
                     </div>
                     <p class="text-sm text-text-secondary">
                       Optimized animations and efficient state management.
@@ -258,22 +353,29 @@
 
               <!-- Live Demo Controls -->
               <Card class="p-6">
-                <h3 class="text-xl font-semibold mb-6 text-center">🎮 Interactive Demo Controls</h3>
+                <h3 class="text-xl font-semibold mb-6 text-center">
+                  🎮 Interactive Demo Controls
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
                   <!-- NavBar Controls -->
                   <div class="space-y-4">
-                    <h4 class="font-medium">Navigation Bar</h4>
+                    <h4 class="font-medium">
+                      Navigation Bar
+                    </h4>
                     <div class="space-y-2">
                       <Button
                         v-for="item in navItems"
                         :key="item.href"
                         :variant="activeNavItem === item.href ? 'default' : 'outline'"
                         size="sm"
-                        @click="activeNavItem = item.href"
                         class="w-full justify-start"
+                        @click="activeNavItem = item.href"
                       >
-                        <Icon v-if="item.icon" :name="item.icon" class="w-4 h-4 mr-2" />
+                        <Icon
+                          v-if="item.icon"
+                          :name="item.icon"
+                          class="w-4 h-4 mr-2"
+                        />
                         Set {{ item.label }} Active
                       </Button>
                     </div>
@@ -281,17 +383,23 @@
 
                   <!-- Sidebar Controls -->
                   <div class="space-y-4">
-                    <h4 class="font-medium">Sidebar</h4>
+                    <h4 class="font-medium">
+                      Sidebar
+                    </h4>
                     <div class="space-y-2">
                       <Button
                         v-for="item in flatSidebarItems"
                         :key="item.id"
                         :variant="activeSidebarItem === item.id ? 'default' : 'outline'"
                         size="sm"
-                        @click="activeSidebarItem = item.id"
                         class="w-full justify-start"
+                        @click="activeSidebarItem = item.id"
                       >
-                        <Icon v-if="item.icon" :name="item.icon" class="w-4 h-4 mr-2" />
+                        <Icon
+                          v-if="item.icon"
+                          :name="item.icon"
+                          class="w-4 h-4 mr-2"
+                        />
                         Set {{ item.label }} Active
                       </Button>
                     </div>
@@ -310,10 +418,10 @@
 import { ref, computed } from 'vue'
 import { cn } from '@/lib/utils'
 import NavBar from '@/components/ui/navigation/NavBar.vue'
-import Sidebar, { type SidebarItem } from '@/components/ui/navigation/Sidebar.vue'
-import Button from '@/components/ui/button/Button.vue'
-import Card from '@/components/ui/card/Card.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Sidebar, { type SidebarItem } from '@/components/ui/navigation/NavigationSidebar.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
+import Card from '@/components/ui/card/BaseCard.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 // State
 const isDark = ref(false)

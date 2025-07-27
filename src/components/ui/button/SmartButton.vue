@@ -2,14 +2,17 @@
   <Primitive
     ref="buttonRef"
     :as="as"
-    :asChild="asChild"
+    :as-child="asChild"
     :class="cn(computedButtonClasses, ($attrs.class as string | undefined))"
     :disabled="disabled || loading"
     :type="type"
     v-bind="$attrs"
     @click="handleClick"
   >
-    <span v-if="loading" class="loading-spinner" />
+    <span
+      v-if="loading"
+      class="loading-spinner"
+    />
     <span :class="cn('button-content', loading && 'button-content-loading')">
       <slot />
     </span>
@@ -38,6 +41,7 @@ export interface SmartButtonProps {
 const props = withDefaults(defineProps<SmartButtonProps>(), {
   variant: 'neutral',
   size: 'md',
+  context: undefined,
   as: 'button',
   asChild: false,
   type: 'button',

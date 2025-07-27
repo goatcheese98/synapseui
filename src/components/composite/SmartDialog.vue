@@ -6,16 +6,25 @@
     <Dialog v-model:open="isOpen">
       <DialogContent 
         :class="cn(dialogClasses, contentClass)"
-        @escapeKeyDown="handleEscape"
-        @pointerDownOutside="handleOutsideClick"
+        @escape-key-down="handleEscape"
+        @pointer-down-outside="handleOutsideClick"
       >
         <!-- Header -->
-        <DialogHeader v-if="title || description || $slots.header" :class="headerClasses">
+        <DialogHeader
+          v-if="title || description || $slots.header"
+          :class="headerClasses"
+        >
           <slot name="header">
-            <DialogTitle v-if="title" :class="titleClasses">
+            <DialogTitle
+              v-if="title"
+              :class="titleClasses"
+            >
               {{ title }}
             </DialogTitle>
-            <DialogDescription v-if="description" :class="descriptionClasses">
+            <DialogDescription
+              v-if="description"
+              :class="descriptionClasses"
+            >
               {{ description }}
             </DialogDescription>
           </slot>
@@ -25,29 +34,32 @@
         <div :class="cn('flex-1', bodyClasses)">
           <slot 
             :close="close"
-            :isOpen="isOpen"
+            :is-open="isOpen"
             :variant="variant"
             :size="size"
           />
         </div>
 
         <!-- Footer -->
-        <DialogFooter v-if="showFooter || $slots.footer" :class="footerClasses">
+        <DialogFooter
+          v-if="showFooter || $slots.footer"
+          :class="footerClasses"
+        >
           <slot name="footer">
             <div class="flex gap-2 justify-end">
               <UltraSmartButton 
                 v-if="showCancel"
                 variant="outline" 
-                @click="handleCancel"
                 :disabled="loading"
+                @click="handleCancel"
               >
                 {{ cancelText }}
               </UltraSmartButton>
               <UltraSmartButton 
                 v-if="showConfirm"
-                @click="handleConfirm"
                 :loading="loading"
                 :disabled="confirmDisabled"
+                @click="handleConfirm"
               >
                 {{ confirmText }}
               </UltraSmartButton>
@@ -67,7 +79,7 @@ import {
   DIALOG_CONTEXT_KEY,
   type DialogContext 
 } from '@/composables/useComposition'
-import UltraSmartButton from '@/components/ui/button/UltraSmartButton.vue'
+import UltraSmartButton from "@/components/ui/button/BaseButton.vue"
 
 // Using AlertDialog components as Dialog components
 import Dialog from '@/components/ui/alert-dialog/AlertDialog.vue'
@@ -111,6 +123,8 @@ const props = withDefaults(defineProps<SmartDialogProps>(), {
   open: false,
   variant: 'default',
   size: 'md',
+  title: '',
+  description: '',
   closeOnEscape: true,
   closeOnOutsideClick: true,
   showFooter: true,
@@ -119,7 +133,11 @@ const props = withDefaults(defineProps<SmartDialogProps>(), {
   confirmText: 'Confirm',
   cancelText: 'Cancel',
   confirmDisabled: false,
-  loading: false
+  loading: false,
+  contentClass: '',
+  headerClass: '',
+  bodyClass: '',
+  footerClass: ''
 })
 
 const emit = defineEmits<Emits>()

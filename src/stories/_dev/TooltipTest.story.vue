@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { TooltipRoot, TooltipTrigger, TooltipContent, TooltipPortal, TooltipProvider } from 'reka-ui'
-import Button from '@/components/ui/button/Button.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
 import { cn } from '@/lib/utils'
 </script>
 
 <template>
-  <Story title="Test/TooltipDirect" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Test/TooltipDirect"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Direct Reka UI">
       <TooltipProvider>
         <div class="flex justify-center p-8">

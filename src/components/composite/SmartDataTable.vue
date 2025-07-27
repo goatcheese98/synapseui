@@ -7,7 +7,10 @@
     <div :class="cn('rounded-md border', wrapperClasses)">
       <table :class="cn('w-full caption-bottom text-sm', tableClasses)">
         <!-- Header -->
-        <thead v-if="showHeader" :class="headerClasses">
+        <thead
+          v-if="showHeader"
+          :class="headerClasses"
+        >
           <tr>
             <th 
               v-if="selectable"
@@ -40,7 +43,10 @@
                 />
               </div>
             </th>
-            <th v-if="hasActions" :class="cn('w-20 text-center', cellClasses)">
+            <th
+              v-if="hasActions"
+              :class="cn('w-20 text-center', cellClasses)"
+            >
               Actions
             </th>
           </tr>
@@ -60,7 +66,10 @@
             @click="interactive && handleRowClick(row, index)"
           >
             <!-- Selection checkbox -->
-            <td v-if="selectable" :class="cn('text-center', cellClasses)">
+            <td
+              v-if="selectable"
+              :class="cn('text-center', cellClasses)"
+            >
               <SmartCheckbox 
                 :checked="selectedRows.includes(getRowKey(row, index))"
                 @update:checked="(value) => handleRowSelect(getRowKey(row, index), value === true)"
@@ -90,7 +99,10 @@
             </td>
 
             <!-- Actions -->
-            <td v-if="hasActions" :class="cn('text-center', cellClasses)">
+            <td
+              v-if="hasActions"
+              :class="cn('text-center', cellClasses)"
+            >
               <slot 
                 name="actions" 
                 :row="row" 
@@ -104,14 +116,20 @@
                     variant="ghost"
                     @click.stop="handleEdit(row, index)"
                   >
-                    <Icon icon="lucide:edit" class="h-3 w-3" />
+                    <Icon
+                      icon="lucide:edit"
+                      class="h-3 w-3"
+                    />
                   </UltraSmartButton>
                   <UltraSmartButton 
                     size="icon-xs" 
                     variant="ghost"
                     @click.stop="handleDelete(row, index)"
                   >
-                    <Icon icon="lucide:trash" class="h-3 w-3" />
+                    <Icon
+                      icon="lucide:trash"
+                      class="h-3 w-3"
+                    />
                   </UltraSmartButton>
                 </div>
               </slot>
@@ -120,10 +138,16 @@
 
           <!-- Empty state -->
           <tr v-if="paginatedData.length === 0">
-            <td :colspan="totalColumns" :class="cn('text-center py-8 text-muted-foreground', cellClasses)">
+            <td
+              :colspan="totalColumns"
+              :class="cn('text-center py-8 text-muted-foreground', cellClasses)"
+            >
               <slot name="empty">
                 <div class="flex flex-col items-center gap-2">
-                  <Icon icon="lucide:inbox" class="h-8 w-8" />
+                  <Icon
+                    icon="lucide:inbox"
+                    class="h-8 w-8"
+                  />
                   <p>No data available</p>
                 </div>
               </slot>
@@ -133,7 +157,10 @@
       </table>
 
       <!-- Pagination -->
-      <div v-if="paginated && totalPages > 1" :class="cn('flex items-center justify-between px-4 py-2 border-t', paginationClasses)">
+      <div
+        v-if="paginated && totalPages > 1"
+        :class="cn('flex items-center justify-between px-4 py-2 border-t', paginationClasses)"
+      >
         <div class="text-sm text-muted-foreground">
           Showing {{ (currentPage - 1) * pageSize + 1 }} to {{ Math.min(currentPage * pageSize, data.length) }} of {{ data.length }} results
         </div>
@@ -169,7 +196,7 @@ import {
   TABLE_CONTEXT_KEY,
   type TableContext 
 } from '@/composables/useComposition'
-import UltraSmartButton from '@/components/ui/button/UltraSmartButton.vue'
+import UltraSmartButton from "@/components/ui/button/BaseButton.vue"
 import SmartCheckbox from '@/components/ui/checkbox/SmartCheckbox.vue'
 
 export interface TableColumn {
@@ -216,6 +243,8 @@ const props = withDefaults(defineProps<SmartDataTableProps>(), {
   showHeader: true,
   paginated: false,
   pageSize: 10,
+  wrapperClass: '',
+  tableClass: '',
   sortable: true,
   hasActions: false,
   rowKey: 'id'

@@ -4,11 +4,13 @@
 -->
 
 <template>
-  <Story title="Advanced/Progressive Tooltips" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Advanced/Progressive Tooltips"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Two-Stage Progressive System">
       <TooltipProvider>
         <div class="max-w-6xl mx-auto p-8 space-y-12">
-          
           <!-- Header -->
           <div class="text-center space-y-4">
             <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -22,38 +24,64 @@
 
           <!-- How It Works -->
           <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
-            <h2 class="text-xl font-semibold mb-4 text-center">⚡ How It Works</h2>
+            <h2 class="text-xl font-semibold mb-4 text-center">
+              ⚡ How It Works
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               <div class="space-y-2">
-                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">1</div>
-                <h3 class="font-medium">Immediate Display</h3>
-                <p class="text-sm text-gray-600">Basic tooltip appears instantly on hover with essential information</p>
+                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">
+                  1
+                </div>
+                <h3 class="font-medium">
+                  Immediate Display
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Basic tooltip appears instantly on hover with essential information
+                </p>
               </div>
               <div class="space-y-2">
-                <div class="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">2</div>
-                <h3 class="font-medium">Progressive Loading</h3>
-                <p class="text-sm text-gray-600">After 2.5s, tooltip expands and loads detailed data from API</p>
+                <div class="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">
+                  2
+                </div>
+                <h3 class="font-medium">
+                  Progressive Loading
+                </h3>
+                <p class="text-sm text-gray-600">
+                  After 2.5s, tooltip expands and loads detailed data from API
+                </p>
               </div>
               <div class="space-y-2">
-                <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">3</div>
-                <h3 class="font-medium">Rich Content</h3>
-                <p class="text-sm text-gray-600">Displays comprehensive data with actions and interactive elements</p>
+                <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto font-bold">
+                  3
+                </div>
+                <h3 class="font-medium">
+                  Rich Content
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Displays comprehensive data with actions and interactive elements
+                </p>
               </div>
             </div>
           </div>
 
           <!-- Live Demo Section -->
           <section>
-            <h2 class="text-2xl font-semibold mb-6 text-center">🎯 Live Demo - Hover and Wait</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-center">
+              🎯 Live Demo - Hover and Wait
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
               <!-- Real-time Metrics -->
               <Card class="p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="activity" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="activity"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">System Metrics</h3>
+                  <h3 class="font-semibold">
+                    System Metrics
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -65,7 +93,10 @@
                 >
                   <template #trigger>
                     <Button class="bg-green-600 hover:bg-green-700 text-white">
-                      <Icon name="server" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="server"
+                        class="w-4 h-4 mr-2"
+                      />
                       Check Status
                     </Button>
                   </template>
@@ -76,9 +107,14 @@
               <Card class="p-6 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="users" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="users"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">User Analytics</h3>
+                  <h3 class="font-semibold">
+                    User Analytics
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -90,7 +126,10 @@
                 >
                   <template #trigger>
                     <Button class="bg-blue-600 hover:bg-blue-700 text-white">
-                      <Icon name="chart" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="chart"
+                        class="w-4 h-4 mr-2"
+                      />
                       View Analytics
                     </Button>
                   </template>
@@ -101,9 +140,14 @@
               <Card class="p-6 text-center bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="zap" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="zap"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">API Performance</h3>
+                  <h3 class="font-semibold">
+                    API Performance
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -115,7 +159,10 @@
                 >
                   <template #trigger>
                     <Button class="bg-purple-600 hover:bg-purple-700 text-white">
-                      <Icon name="activity" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="activity"
+                        class="w-4 h-4 mr-2"
+                      />
                       API Status
                     </Button>
                   </template>
@@ -126,9 +173,14 @@
               <Card class="p-6 text-center bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="database" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="database"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">Database Health</h3>
+                  <h3 class="font-semibold">
+                    Database Health
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -140,7 +192,10 @@
                 >
                   <template #trigger>
                     <Button class="bg-orange-600 hover:bg-orange-700 text-white">
-                      <Icon name="database" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="database"
+                        class="w-4 h-4 mr-2"
+                      />
                       DB Status
                     </Button>
                   </template>
@@ -151,9 +206,14 @@
               <Card class="p-6 text-center bg-gradient-to-br from-red-50 to-pink-50 border-red-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="shield" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="shield"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">Security Monitor</h3>
+                  <h3 class="font-semibold">
+                    Security Monitor
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -165,7 +225,10 @@
                 >
                   <template #trigger>
                     <Button class="bg-red-600 hover:bg-red-700 text-white">
-                      <Icon name="shield" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="shield"
+                        class="w-4 h-4 mr-2"
+                      />
                       Security
                     </Button>
                   </template>
@@ -176,9 +239,14 @@
               <Card class="p-6 text-center bg-gradient-to-br from-teal-50 to-cyan-50 border-teal-200">
                 <div class="mb-4">
                   <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Icon name="code" class="w-8 h-8 text-white" />
+                    <Icon
+                      name="code"
+                      class="w-8 h-8 text-white"
+                    />
                   </div>
-                  <h3 class="font-semibold">Custom Integration</h3>
+                  <h3 class="font-semibold">
+                    Custom Integration
+                  </h3>
                 </div>
                 
                 <ProgressiveTooltip
@@ -190,30 +258,42 @@
                 >
                   <template #trigger>
                     <Button class="bg-teal-600 hover:bg-teal-700 text-white">
-                      <Icon name="code" class="w-4 h-4 mr-2" />
+                      <Icon
+                        name="code"
+                        class="w-4 h-4 mr-2"
+                      />
                       Integrations
                     </Button>
                   </template>
                   <template #detailed="{ data }">
                     <!-- Custom template for integration data -->
                     <div class="space-y-3">
-                      <div class="text-xs font-medium text-current/90">Service Status</div>
+                      <div class="text-xs font-medium text-current/90">
+                        Service Status
+                      </div>
                       <div class="space-y-1">
-                        <div v-for="service in data.services" :key="service.name" 
-                             class="flex items-center justify-between text-xs">
+                        <div
+                          v-for="service in data.services"
+                          :key="service.name" 
+                          class="flex items-center justify-between text-xs"
+                        >
                           <span class="flex items-center">
-                            <div :class="[
-                              'w-2 h-2 rounded-full mr-2',
-                              service.status === 'online' ? 'bg-green-400' :
-                              service.status === 'warning' ? 'bg-yellow-400' : 'bg-red-400'
-                            ]"></div>
+                            <div
+                              :class="[
+                                'w-2 h-2 rounded-full mr-2',
+                                service.status === 'online' ? 'bg-green-400' :
+                                service.status === 'warning' ? 'bg-yellow-400' : 'bg-red-400'
+                              ]"
+                            />
                             {{ service.name }}
                           </span>
                           <span class="font-medium">{{ service.uptime }}</span>
                         </div>
                       </div>
                       <div class="pt-2 border-t border-current/20">
-                        <div class="text-xs text-current/80">{{ data.summary }}</div>
+                        <div class="text-xs text-current/80">
+                          {{ data.summary }}
+                        </div>
                       </div>
                     </div>
                   </template>
@@ -224,12 +304,18 @@
 
           <!-- Material Variations -->
           <section>
-            <h2 class="text-2xl font-semibold mb-6 text-center">🎨 Material Design Variations</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-center">
+              🎨 Material Design Variations
+            </h2>
             <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-              
-              <div v-for="material in materials" :key="material.name">
+              <div
+                v-for="material in materials"
+                :key="material.name"
+              >
                 <Card class="p-4 text-center">
-                  <h3 class="font-medium mb-3 text-sm">{{ material.name }}</h3>
+                  <h3 class="font-medium mb-3 text-sm">
+                    {{ material.name }}
+                  </h3>
                   <ProgressiveTooltip
                     :title="`${material.name} Material`"
                     :description="material.description"
@@ -237,7 +323,10 @@
                     :details-loader="() => loadMaterialDemo(material.name)"
                   >
                     <template #trigger>
-                      <Button variant="outline" size="sm">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                      >
                         Test {{ material.name }}
                       </Button>
                     </template>
@@ -249,11 +338,16 @@
 
           <!-- Technical Benefits -->
           <div class="bg-slate-50 p-8 rounded-xl">
-            <h2 class="text-2xl font-semibold mb-6 text-center">🚀 Technical Benefits</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-center">
+              🚀 Technical Benefits
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div class="space-y-3">
                 <h3 class="font-semibold text-lg flex items-center">
-                  <Icon name="zap" class="w-5 h-5 mr-2 text-yellow-500" />
+                  <Icon
+                    name="zap"
+                    class="w-5 h-5 mr-2 text-yellow-500"
+                  />
                   Performance Optimized
                 </h3>
                 <ul class="space-y-1 text-sm text-gray-600">
@@ -266,7 +360,10 @@
               
               <div class="space-y-3">
                 <h3 class="font-semibold text-lg flex items-center">
-                  <Icon name="users" class="w-5 h-5 mr-2 text-blue-500" />
+                  <Icon
+                    name="users"
+                    class="w-5 h-5 mr-2 text-blue-500"
+                  />
                   User Experience
                 </h3>
                 <ul class="space-y-1 text-sm text-gray-600">
@@ -279,7 +376,10 @@
               
               <div class="space-y-3">
                 <h3 class="font-semibold text-lg flex items-center">
-                  <Icon name="code" class="w-5 h-5 mr-2 text-green-500" />
+                  <Icon
+                    name="code"
+                    class="w-5 h-5 mr-2 text-green-500"
+                  />
                   Developer Friendly
                 </h3>
                 <ul class="space-y-1 text-sm text-gray-600">
@@ -303,9 +403,9 @@ import { ref } from 'vue'
 // Component imports
 import ProgressiveTooltip from '@/components/ui/tooltip/ProgressiveTooltip.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'
-import Button from '@/components/ui/button/Button.vue'
-import Card from '@/components/ui/card/Card.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
+import Card from '@/components/ui/card/BaseCard.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 // Material variations for demo
 const materials = ref([

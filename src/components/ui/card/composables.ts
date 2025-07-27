@@ -1,4 +1,4 @@
-import type { CardProps } from './Card.vue'
+import type { CardProps } from './BaseCard.vue'
 import type { CardHeaderProps } from './CardHeader.vue'
 import type { CardContentProps } from './CardContent.vue'
 import type { CardFooterProps } from './CardFooter.vue'

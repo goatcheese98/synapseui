@@ -49,26 +49,43 @@ const state = reactive({
       <div class="space-y-4 p-4">
         <div class="space-y-2">
           <Label>Choose a fruit</Label>
-          <Select v-model="state.value" :disabled="state.disabled">
+          <Select
+            v-model="state.value"
+            :disabled="state.disabled"
+          >
             <SelectTrigger>
               <SelectValue :placeholder="state.placeholder" />
             </SelectTrigger>
             <SelectContent :position="state.position">
               <SelectItem value="apple">
-                <Icon icon="lucide:apple" class="w-4 h-4 mr-2" />
+                <Icon
+                  icon="lucide:apple"
+                  class="w-4 h-4 mr-2"
+                />
                 Apple
               </SelectItem>
               <SelectItem value="banana">
-                <Icon icon="lucide:banana" class="w-4 h-4 mr-2" />
+                <Icon
+                  icon="lucide:banana"
+                  class="w-4 h-4 mr-2"
+                />
                 Banana
               </SelectItem>
-              <SelectItem value="orange">Orange</SelectItem>
-              <SelectItem value="grape">Grape</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
+              <SelectItem value="orange">
+                Orange
+              </SelectItem>
+              <SelectItem value="grape">
+                Grape
+              </SelectItem>
+              <SelectItem value="pineapple">
+                Pineapple
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
-        <p class="text-sm text-muted-foreground">Selected: {{ state.value || 'None' }}</p>
+        <p class="text-sm text-muted-foreground">
+          Selected: {{ state.value || 'None' }}
+        </p>
       </div>
     </Variant>
 
@@ -84,19 +101,31 @@ const state = reactive({
               <SelectGroup>
                 <SelectLabel>Frontend</SelectLabel>
                 <SelectItem value="javascript">
-                  <Icon icon="logos:javascript" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:javascript"
+                    class="w-4 h-4 mr-2"
+                  />
                   JavaScript
                 </SelectItem>
                 <SelectItem value="typescript">
-                  <Icon icon="logos:typescript-icon" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:typescript-icon"
+                    class="w-4 h-4 mr-2"
+                  />
                   TypeScript
                 </SelectItem>
                 <SelectItem value="vue">
-                  <Icon icon="logos:vue" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:vue"
+                    class="w-4 h-4 mr-2"
+                  />
                   Vue.js
                 </SelectItem>
                 <SelectItem value="react">
-                  <Icon icon="logos:react" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:react"
+                    class="w-4 h-4 mr-2"
+                  />
                   React
                 </SelectItem>
               </SelectGroup>
@@ -104,15 +133,24 @@ const state = reactive({
               <SelectGroup>
                 <SelectLabel>Backend</SelectLabel>
                 <SelectItem value="nodejs">
-                  <Icon icon="logos:nodejs-icon" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:nodejs-icon"
+                    class="w-4 h-4 mr-2"
+                  />
                   Node.js
                 </SelectItem>
                 <SelectItem value="python">
-                  <Icon icon="logos:python" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:python"
+                    class="w-4 h-4 mr-2"
+                  />
                   Python
                 </SelectItem>
                 <SelectItem value="golang">
-                  <Icon icon="logos:go" class="w-4 h-4 mr-2" />
+                  <Icon
+                    icon="logos:go"
+                    class="w-4 h-4 mr-2"
+                  />
                   Go
                 </SelectItem>
               </SelectGroup>
@@ -131,10 +169,18 @@ const state = reactive({
               <SelectValue placeholder="Try hovering near the corners..." />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="corner1">Top-left corner detection</SelectItem>
-              <SelectItem value="corner2">Top-right corner detection</SelectItem>
-              <SelectItem value="corner3">Bottom-left corner detection</SelectItem>
-              <SelectItem value="corner4">Bottom-right corner detection</SelectItem>
+              <SelectItem value="corner1">
+                Top-left corner detection
+              </SelectItem>
+              <SelectItem value="corner2">
+                Top-right corner detection
+              </SelectItem>
+              <SelectItem value="corner3">
+                Bottom-left corner detection
+              </SelectItem>
+              <SelectItem value="corner4">
+                Bottom-right corner detection
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -155,12 +201,24 @@ const state = reactive({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="us">🇺🇸 United States</SelectItem>
-              <SelectItem value="uk">🇬🇧 United Kingdom</SelectItem>
-              <SelectItem value="ca">🇨🇦 Canada</SelectItem>
-              <SelectItem value="au">🇦🇺 Australia</SelectItem>
-              <SelectItem value="de">🇩🇪 Germany</SelectItem>
-              <SelectItem value="fr">🇫🇷 France</SelectItem>
+              <SelectItem value="us">
+                🇺🇸 United States
+              </SelectItem>
+              <SelectItem value="uk">
+                🇬🇧 United Kingdom
+              </SelectItem>
+              <SelectItem value="ca">
+                🇨🇦 Canada
+              </SelectItem>
+              <SelectItem value="au">
+                🇦🇺 Australia
+              </SelectItem>
+              <SelectItem value="de">
+                🇩🇪 Germany
+              </SelectItem>
+              <SelectItem value="fr">
+                🇫🇷 France
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -172,12 +230,24 @@ const state = reactive({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="pst">PST (UTC-8)</SelectItem>
-              <SelectItem value="mst">MST (UTC-7)</SelectItem>
-              <SelectItem value="cst">CST (UTC-6)</SelectItem>
-              <SelectItem value="est">EST (UTC-5)</SelectItem>
-              <SelectItem value="utc">UTC (UTC+0)</SelectItem>
-              <SelectItem value="cet">CET (UTC+1)</SelectItem>
+              <SelectItem value="pst">
+                PST (UTC-8)
+              </SelectItem>
+              <SelectItem value="mst">
+                MST (UTC-7)
+              </SelectItem>
+              <SelectItem value="cst">
+                CST (UTC-6)
+              </SelectItem>
+              <SelectItem value="est">
+                EST (UTC-5)
+              </SelectItem>
+              <SelectItem value="utc">
+                UTC (UTC+0)
+              </SelectItem>
+              <SelectItem value="cet">
+                CET (UTC+1)
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -190,15 +260,24 @@ const state = reactive({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="light">
-                <Icon icon="lucide:sun" class="w-4 h-4 mr-2" />
+                <Icon
+                  icon="lucide:sun"
+                  class="w-4 h-4 mr-2"
+                />
                 Light
               </SelectItem>
               <SelectItem value="dark">
-                <Icon icon="lucide:moon" class="w-4 h-4 mr-2" />
+                <Icon
+                  icon="lucide:moon"
+                  class="w-4 h-4 mr-2"
+                />
                 Dark
               </SelectItem>
               <SelectItem value="system">
-                <Icon icon="lucide:monitor" class="w-4 h-4 mr-2" />
+                <Icon
+                  icon="lucide:monitor"
+                  class="w-4 h-4 mr-2"
+                />
                 System
               </SelectItem>
             </SelectContent>

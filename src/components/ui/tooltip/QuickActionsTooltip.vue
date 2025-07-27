@@ -5,11 +5,11 @@
 
 <template>
   <Tooltip
-    :delayDuration="delayDuration"
-    :skipDelayDuration="0"
-    :disableHoverableContent="false"
-    :disabled="disabled"
     v-model:open="open"
+    :delay-duration="delayDuration"
+    :skip-delay-duration="0"
+    :disable-hoverable-content="false"
+    :disabled="disabled"
   >
     <TooltipTrigger as-child>
       <slot name="trigger" />
@@ -18,7 +18,7 @@
     <TooltipContent 
       :side="side"
       :align="align"
-      :sideOffset="sideOffset"
+      :side-offset="sideOffset"
       :class="cn(
         'max-w-xs p-0 border shadow-lg bg-popover text-popover-foreground',
         ($attrs.class as string | undefined)
@@ -26,11 +26,20 @@
     >
       <div class="rounded-lg overflow-hidden">
         <!-- Header -->
-        <div v-if="title || $slots.header" class="px-3 py-2 border-b bg-muted/30">
+        <div
+          v-if="title || $slots.header"
+          class="px-3 py-2 border-b bg-muted/30"
+        >
           <slot name="header">
             <div class="flex items-center gap-2">
-              <Icon v-if="icon" :name="icon" class="w-3 h-3" />
-              <h4 class="font-medium text-xs">{{ title }}</h4>
+              <Icon
+                v-if="icon"
+                :name="icon"
+                class="w-3 h-3"
+              />
+              <h4 class="font-medium text-xs">
+                {{ title }}
+              </h4>
             </div>
           </slot>
         </div>
@@ -76,18 +85,32 @@
         </div>
 
         <!-- Separator for additional content -->
-        <div v-if="$slots.content || description" class="border-t">
+        <div
+          v-if="$slots.content || description"
+          class="border-t"
+        >
           <div class="p-3 space-y-2">
-            <div v-if="description" class="text-xs text-muted-foreground">
+            <div
+              v-if="description"
+              class="text-xs text-muted-foreground"
+            >
               {{ description }}
             </div>
-            <slot name="content" :close="() => open = false" />
+            <slot
+              name="content"
+              :close="() => open = false"
+            />
           </div>
         </div>
 
         <!-- Footer with global shortcuts -->
-        <div v-if="globalShortcuts?.length" class="border-t bg-muted/20 px-3 py-2">
-          <div class="text-xs text-muted-foreground mb-1">Global shortcuts:</div>
+        <div
+          v-if="globalShortcuts?.length"
+          class="border-t bg-muted/20 px-3 py-2"
+        >
+          <div class="text-xs text-muted-foreground mb-1">
+            Global shortcuts:
+          </div>
           <div class="flex flex-wrap gap-2">
             <div 
               v-for="shortcut in globalShortcuts"
@@ -109,11 +132,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
-import Tooltip from './Tooltip.vue'
+import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
-import Button from '@/components/ui/button/Button.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface QuickAction {
   id: string
@@ -152,11 +175,17 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  icon: '',
+  description: '',
+  actions: () => [],
+  globalShortcuts: () => [],
   side: 'bottom',
   align: 'center',
   sideOffset: 8,
   delayDuration: 200,
-  actions: () => []
+  disabled: false,
+  open: undefined
 })
 
 const emit = defineEmits<Emits>()

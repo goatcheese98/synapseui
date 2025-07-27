@@ -14,7 +14,6 @@
     )"
   >
     <div :class="cn('flex h-16 items-center', containerClass)">
-      
       <!-- Logo/Brand -->
       <div class="flex items-center space-x-4">
         <slot name="logo">
@@ -38,7 +37,11 @@
             :disabled="item.disabled"
             @click="handleItemClick(item)"
           >
-            <Icon v-if="item.icon" :name="item.icon" class="w-4 h-4 mr-2" />
+            <Icon
+              v-if="item.icon"
+              :name="item.icon"
+              class="w-4 h-4 mr-2"
+            />
             {{ item.label }}
           </NavItem>
         </div>
@@ -52,10 +55,13 @@
             v-if="showThemeToggle"
             variant="ghost"
             size="sm"
-            @click="toggleTheme"
             class="w-9 h-9 p-0"
+            @click="toggleTheme"
           >
-            <Icon :name="isDark ? 'sun' : 'moon'" class="w-4 h-4" />
+            <Icon
+              :name="isDark ? 'sun' : 'moon'"
+              class="w-4 h-4"
+            />
           </Button>
 
           <!-- User Menu -->
@@ -68,10 +74,13 @@
         <Button
           variant="ghost"
           size="sm"
-          @click="toggleMobileMenu"
           class="w-9 h-9 p-0"
+          @click="toggleMobileMenu"
         >
-          <Icon :name="mobileMenuOpen ? 'x' : 'menu'" class="w-5 h-5" />
+          <Icon
+            :name="mobileMenuOpen ? 'x' : 'menu'"
+            class="w-5 h-5"
+          />
         </Button>
       </div>
     </div>
@@ -99,7 +108,11 @@
             :disabled="item.disabled"
             @click="handleMobileItemClick(item)"
           >
-            <Icon v-if="item.icon" :name="item.icon" class="w-4 h-4 mr-3" />
+            <Icon
+              v-if="item.icon"
+              :name="item.icon"
+              class="w-4 h-4 mr-3"
+            />
             {{ item.label }}
           </MobileNavItem>
 
@@ -111,10 +124,13 @@
               v-if="showThemeToggle"
               variant="ghost"
               size="sm"
-              @click="toggleTheme"
               class="w-full justify-start"
+              @click="toggleTheme"
             >
-              <Icon :name="isDark ? 'sun' : 'moon'" class="w-4 h-4 mr-3" />
+              <Icon
+                :name="isDark ? 'sun' : 'moon'"
+                class="w-4 h-4 mr-3"
+              />
               {{ isDark ? 'Light Mode' : 'Dark Mode' }}
             </Button>
           </div>
@@ -127,8 +143,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
-import Button from '@/components/ui/button/Button.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 import NavItem from './NavItem.vue'
 import MobileNavItem from './MobileNavItem.vue'
 
@@ -159,10 +175,12 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   brand: 'Synapse UI',
   items: () => [],
+  activeItem: '',
   variant: 'default',
   containerClass: 'container mx-auto px-4',
   showThemeToggle: true,
-  isDark: false
+  isDark: false,
+  class: ''
 })
 
 const emit = defineEmits<Emits>()

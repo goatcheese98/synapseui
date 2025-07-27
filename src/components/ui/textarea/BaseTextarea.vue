@@ -56,7 +56,11 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
+  placeholder: '',
+  disabled: false,
   rows: 3,
+  fieldId: '',
   hasError: false,
   isValid: false,
   touched: false

@@ -37,7 +37,10 @@ const state = reactive({
         <div class="space-y-2">
           <Label for="basic-input">
             {{ state.text }}
-            <span v-if="state.required" class="text-red-500">*</span>
+            <span
+              v-if="state.required"
+              class="text-red-500"
+            >*</span>
           </Label>
           <Input
             id="basic-input"
@@ -78,9 +81,15 @@ const state = reactive({
               <SelectValue placeholder="Select your country" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="us">United States</SelectItem>
-              <SelectItem value="uk">United Kingdom</SelectItem>
-              <SelectItem value="ca">Canada</SelectItem>
+              <SelectItem value="us">
+                United States
+              </SelectItem>
+              <SelectItem value="uk">
+                United Kingdom
+              </SelectItem>
+              <SelectItem value="ca">
+                Canada
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -117,7 +126,10 @@ const state = reactive({
       <div class="space-y-6 p-4">
         <div class="space-y-2">
           <Label class="flex items-center gap-2">
-            <Icon icon="lucide:user" class="h-4 w-4" />
+            <Icon
+              icon="lucide:user"
+              class="h-4 w-4"
+            />
             Username
           </Label>
           <Input placeholder="Enter username..." />
@@ -125,20 +137,35 @@ const state = reactive({
 
         <div class="space-y-2">
           <Label class="flex items-center gap-2">
-            <Icon icon="lucide:mail" class="h-4 w-4" />
+            <Icon
+              icon="lucide:mail"
+              class="h-4 w-4"
+            />
             Email Address
             <span class="text-red-500">*</span>
           </Label>
-          <Input type="email" placeholder="your@email.com" />
+          <Input
+            type="email"
+            placeholder="your@email.com"
+          />
         </div>
 
         <div class="space-y-2">
           <Label class="flex items-center gap-2">
-            <Icon icon="lucide:lock" class="h-4 w-4" />
+            <Icon
+              icon="lucide:lock"
+              class="h-4 w-4"
+            />
             Password
-            <Icon icon="lucide:info" class="h-3 w-3 text-gray-400 ml-auto" />
+            <Icon
+              icon="lucide:info"
+              class="h-3 w-3 text-gray-400 ml-auto"
+            />
           </Label>
-          <Input type="password" placeholder="••••••••" />
+          <Input
+            type="password"
+            placeholder="••••••••"
+          />
         </div>
       </div>
     </Variant>
@@ -190,7 +217,10 @@ const state = reactive({
     <Variant title="Error States">
       <div class="space-y-6 p-4">
         <div class="space-y-2">
-          <Label for="error-email" class="text-red-600">
+          <Label
+            for="error-email"
+            class="text-red-600"
+          >
             Email Address
             <span class="text-red-500">*</span>
           </Label>
@@ -206,7 +236,10 @@ const state = reactive({
         </div>
 
         <div class="space-y-2">
-          <Label for="success-email" class="text-green-600">
+          <Label
+            for="success-email"
+            class="text-green-600"
+          >
             Email Address
             <span class="text-red-500">*</span>
           </Label>
@@ -222,7 +255,10 @@ const state = reactive({
         </div>
 
         <div class="space-y-2">
-          <Label for="disabled-input" class="text-gray-400">
+          <Label
+            for="disabled-input"
+            class="text-gray-400"
+          >
             Disabled Field
           </Label>
           <Input
@@ -248,7 +284,10 @@ const state = reactive({
             placeholder="Properly associated with label"
             aria-describedby="help-text"
           />
-          <p id="help-text" class="text-xs text-gray-500">
+          <p
+            id="help-text"
+            class="text-xs text-gray-500"
+          >
             This help text is properly associated with the input for screen readers.
           </p>
         </div>
@@ -256,7 +295,10 @@ const state = reactive({
         <div class="space-y-2">
           <Label for="required-field">
             Required Field
-            <span class="text-red-500" aria-label="required">*</span>
+            <span
+              class="text-red-500"
+              aria-label="required"
+            >*</span>
           </Label>
           <Input
             id="required-field"
@@ -267,16 +309,25 @@ const state = reactive({
         </div>
 
         <fieldset class="space-y-4 border border-gray-200 p-4 rounded-md">
-          <legend class="text-sm font-medium px-2">Contact Information</legend>
+          <legend class="text-sm font-medium px-2">
+            Contact Information
+          </legend>
           
           <div class="space-y-2">
             <Label for="contact-name">Name</Label>
-            <Input id="contact-name" placeholder="Your name" />
+            <Input
+              id="contact-name"
+              placeholder="Your name"
+            />
           </div>
           
           <div class="space-y-2">
             <Label for="contact-email">Email</Label>
-            <Input id="contact-email" type="email" placeholder="your@email.com" />
+            <Input
+              id="contact-email"
+              type="email"
+              placeholder="your@email.com"
+            />
           </div>
         </fieldset>
       </div>

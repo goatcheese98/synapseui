@@ -4,23 +4,30 @@
 -->
 
 <template>
-  <Story title="Feedback/Basic Tooltip Test" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Feedback/Basic Tooltip Test"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Working Tooltip Test">
       <TooltipProvider>
         <div class="max-w-2xl mx-auto p-8 space-y-8">
-          
           <!-- Header -->
           <div class="text-center space-y-4">
-            <h1 class="text-3xl font-bold">🔧 Tooltip Debugging</h1>
-            <p class="text-text-secondary">Testing basic tooltip functionality</p>
+            <h1 class="text-3xl font-bold">
+              🔧 Tooltip Debugging
+            </h1>
+            <p class="text-text-secondary">
+              Testing basic tooltip functionality
+            </p>
           </div>
 
           <!-- Simple Test Cases -->
           <div class="grid grid-cols-2 gap-6">
-            
             <!-- Test 1: Basic Tooltip -->
             <div class="p-6 border rounded-lg text-center">
-              <h3 class="font-medium mb-4">Basic Tooltip</h3>
+              <h3 class="font-medium mb-4">
+                Basic Tooltip
+              </h3>
               <TooltipRoot>
                 <TooltipTriggerReka as-child>
                   <Button class="bg-primary text-primary-text">
@@ -40,7 +47,9 @@
 
             <!-- Test 2: Using our wrapper -->
             <div class="p-6 border rounded-lg text-center">
-              <h3 class="font-medium mb-4">Wrapper Component</h3>
+              <h3 class="font-medium mb-4">
+                Wrapper Component
+              </h3>
               <Tooltip>
                 <TooltipTrigger as-child>
                   <Button variant="secondary">
@@ -55,11 +64,19 @@
 
             <!-- Test 3: Different positions -->
             <div class="p-6 border rounded-lg text-center">
-              <h3 class="font-medium mb-4">Positioned Tooltips</h3>
+              <h3 class="font-medium mb-4">
+                Positioned Tooltips
+              </h3>
               <div class="grid grid-cols-2 gap-2">
-                <Tooltip v-for="side in ['top', 'right', 'bottom', 'left']" :key="side">
+                <Tooltip
+                  v-for="side in ['top', 'right', 'bottom', 'left']"
+                  :key="side"
+                >
                   <TooltipTrigger as-child>
-                    <Button variant="outline" size="sm">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                    >
                       {{ side }}
                     </Button>
                   </TooltipTrigger>
@@ -72,8 +89,10 @@
 
             <!-- Test 4: Custom delay -->
             <div class="p-6 border rounded-lg text-center">
-              <h3 class="font-medium mb-4">Custom Timing</h3>
-              <Tooltip :delayDuration="100">
+              <h3 class="font-medium mb-4">
+                Custom Timing
+              </h3>
+              <Tooltip :delay-duration="100">
                 <TooltipTrigger as-child>
                   <Button variant="ghost">
                     Fast tooltip (100ms)
@@ -88,7 +107,9 @@
 
           <!-- Debug Info -->
           <div class="bg-muted p-4 rounded-lg">
-            <h4 class="font-medium mb-2">Debug Information</h4>
+            <h4 class="font-medium mb-2">
+              Debug Information
+            </h4>
             <div class="text-sm space-y-1">
               <div>Reka UI components imported: ✓</div>
               <div>TooltipProvider wrapper: ✓</div>
@@ -112,9 +133,9 @@ import {
 } from 'reka-ui'
 
 // Our wrapper components
-import Tooltip from '@/components/ui/tooltip/Tooltip.vue'
+import Tooltip from '@/components/ui/tooltip/BaseTooltip.vue'
 import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
 import TooltipContent from '@/components/ui/tooltip/TooltipContent.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
 </script>

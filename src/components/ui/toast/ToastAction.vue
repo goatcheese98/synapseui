@@ -1,26 +1,3 @@
-<style scoped>
-/* Corner detection animations */
-.corner-top-left {
-  border-radius: 18px 6px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-top-right {
-  border-radius: 6px 18px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-left {
-  border-radius: 6px 6px 6px 18px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-right {
-  border-radius: 6px 6px 18px 6px;
-  transform: scale(1.02);
-}
-</style>
-
 <template>
   <ToastAction
     ref="actionRef"
@@ -94,3 +71,26 @@ const detectCornerEntry = (event: MouseEvent) => {
   }
 }
 </script>
+
+<style scoped>
+/* Corner detection animations */
+.corner-top-left {
+  border-radius: 18px 6px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-top-right {
+  border-radius: 6px 18px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-left {
+  border-radius: 6px 6px 6px 18px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-right {
+  border-radius: 6px 6px 18px 6px;
+  transform: scale(1.02);
+}
+</style>

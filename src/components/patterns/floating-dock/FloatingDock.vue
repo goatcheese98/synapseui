@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<FloatingDockProps>(), {
   variant: 'default',
   size: 'md',
   position: 'bottom',
+  className: ''
 })
 
 const dockClasses = computed(() => cn(

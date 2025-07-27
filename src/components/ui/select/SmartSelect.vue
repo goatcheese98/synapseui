@@ -22,7 +22,7 @@
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 import { useMultiContext } from '@/composables/useComposition'
-import SelectRoot from './Select.vue'
+import SelectRoot from './BaseSelect.vue'
 import SelectTrigger from './SelectTrigger.vue'
 import SelectValue from './SelectValue.vue'
 import SelectContent from './SelectContent.vue'
@@ -49,12 +49,20 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<SmartSelectProps>(), {
+  modelValue: '',
+  placeholder: '',
+  disabled: false,
+  required: false,
   size: 'md',
   variant: 'default',
+  triggerClass: '',
+  contentClass: '',
   autoAdapt: true,
   intelligence: 'full',
   isError: false,
-  isSuccess: false
+  isSuccess: false,
+  errorMessage: '',
+  fieldId: ''
 })
 
 const emit = defineEmits<Emits>()

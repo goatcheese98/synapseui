@@ -24,7 +24,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  size: 20
+  size: 20,
+  class: ''
 })
 
 // Map simple names to Iconify icon names

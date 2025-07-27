@@ -9,7 +9,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
   >
     <Variant title="Default">
       <div class="w-full max-w-md mx-auto">
-        <Accordion type="single" collapsible class="w-full">
+        <Accordion
+          type="single"
+          collapsible
+          class="w-full"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
             <AccordionContent>
@@ -36,7 +40,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
     <Variant title="Multiple">
       <div class="w-full max-w-md mx-auto">
-        <Accordion type="multiple" class="w-full">
+        <Accordion
+          type="multiple"
+          class="w-full"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>Can I open multiple items?</AccordionTrigger>
             <AccordionContent>
@@ -61,7 +68,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
     <Variant title="Expanded by Default">
       <div class="w-full max-w-md mx-auto">
-        <Accordion type="single" default-value="item-2" class="w-full">
+        <Accordion
+          type="single"
+          default-value="item-2"
+          class="w-full"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>First Item</AccordionTrigger>
             <AccordionContent>
@@ -86,8 +97,15 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
     <Variant title="Horizontal Orientation">
       <div class="w-full max-w-2xl mx-auto">
-        <Accordion type="single" orientation="horizontal" class="flex w-full">
-          <AccordionItem value="item-1" class="flex-1">
+        <Accordion
+          type="single"
+          orientation="horizontal"
+          class="flex w-full"
+        >
+          <AccordionItem
+            value="item-1"
+            class="flex-1"
+          >
             <AccordionTrigger class="flex-col h-20">
               <span>Features</span>
             </AccordionTrigger>
@@ -102,7 +120,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
               </div>
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-2" class="flex-1">
+          <AccordionItem
+            value="item-2"
+            class="flex-1"
+          >
             <AccordionTrigger class="flex-col h-20">
               <span>Installation</span>
             </AccordionTrigger>
@@ -112,7 +133,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
               </div>
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-3" class="flex-1">
+          <AccordionItem
+            value="item-3"
+            class="flex-1"
+          >
             <AccordionTrigger class="flex-col h-20">
               <span>Usage</span>
             </AccordionTrigger>
@@ -128,14 +152,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
     <Variant title="Disabled Items">
       <div class="w-full max-w-md mx-auto">
-        <Accordion type="single" class="w-full">
+        <Accordion
+          type="single"
+          class="w-full"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>Enabled Item</AccordionTrigger>
             <AccordionContent>
               This item is fully functional and can be opened.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-2" disabled>
+          <AccordionItem
+            value="item-2"
+            disabled
+          >
             <AccordionTrigger>Disabled Item</AccordionTrigger>
             <AccordionContent>
               This content cannot be accessed because the item is disabled.

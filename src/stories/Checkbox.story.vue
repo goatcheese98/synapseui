@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
-import Label from '@/components/ui/label/Label.vue'
+import Checkbox from '@/components/ui/checkbox/BaseCheckbox.vue'
+import Label from '@/components/ui/label/BaseLabel.vue'
 
 const state = reactive({
   basic: false,
@@ -17,7 +17,10 @@ const state = reactive({
 </script>
 
 <template>
-  <Story title="Forms/Checkbox" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Forms/Checkbox"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Basic">
       <div class="space-y-4">
         <div class="flex items-center space-x-2">
@@ -32,7 +35,9 @@ const state = reactive({
             Basic checkbox
           </label>
         </div>
-        <p class="text-sm text-muted-foreground">Checked: {{ state.basic }}</p>
+        <p class="text-sm text-muted-foreground">
+          Checked: {{ state.basic }}
+        </p>
       </div>
     </Variant>
 
@@ -47,7 +52,9 @@ const state = reactive({
             Accept terms and conditions
           </Label>
         </div>
-        <p class="text-sm text-muted-foreground">Accepted: {{ state.withLabel }}</p>
+        <p class="text-sm text-muted-foreground">
+          Accepted: {{ state.withLabel }}
+        </p>
       </div>
     </Variant>
 
@@ -112,11 +119,19 @@ const state = reactive({
         </div>
         
         <div class="mt-4 p-3 bg-muted rounded-md">
-          <p class="text-sm font-medium mb-2">Selected options:</p>
+          <p class="text-sm font-medium mb-2">
+            Selected options:
+          </p>
           <ul class="text-sm text-muted-foreground space-y-1">
-            <li v-if="state.multiple.option1">✓ Option 1</li>
-            <li v-if="state.multiple.option2">✓ Option 2</li>
-            <li v-if="state.multiple.option3">✓ Option 3</li>
+            <li v-if="state.multiple.option1">
+              ✓ Option 1
+            </li>
+            <li v-if="state.multiple.option2">
+              ✓ Option 2
+            </li>
+            <li v-if="state.multiple.option3">
+              ✓ Option 3
+            </li>
             <li v-if="!state.multiple.option1 && !state.multiple.option2 && !state.multiple.option3">
               No options selected
             </li>
@@ -127,7 +142,9 @@ const state = reactive({
 
     <Variant title="Form Example">
       <div class="space-y-4">
-        <h3 class="text-lg font-semibold">Preferences</h3>
+        <h3 class="text-lg font-semibold">
+          Preferences
+        </h3>
         <div class="space-y-3">
           <div class="flex items-center space-x-2">
             <Checkbox id="newsletter" />
@@ -151,7 +168,10 @@ const state = reactive({
           </div>
           
           <div class="flex items-center space-x-2">
-            <Checkbox id="security" :checked="true" />
+            <Checkbox
+              id="security"
+              :checked="true"
+            />
             <Label for="security">
               Security notifications (recommended)
             </Label>
@@ -167,7 +187,10 @@ const state = reactive({
             id="small"
             class="h-3 w-3"
           />
-          <Label for="small" class="text-xs">
+          <Label
+            for="small"
+            class="text-xs"
+          >
             Small checkbox
           </Label>
         </div>
@@ -176,7 +199,10 @@ const state = reactive({
           <Checkbox
             id="medium"
           />
-          <Label for="medium" class="text-sm">
+          <Label
+            for="medium"
+            class="text-sm"
+          >
             Medium checkbox (default)
           </Label>
         </div>
@@ -186,7 +212,10 @@ const state = reactive({
             id="large"
             class="h-5 w-5"
           />
-          <Label for="large" class="text-base">
+          <Label
+            for="large"
+            class="text-base"
+          >
             Large checkbox
           </Label>
         </div>

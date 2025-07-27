@@ -7,7 +7,10 @@
     v-bind="$attrs"
     @click="handleClick"
   >
-    <slot name="icon-left" v-if="!loading && !isLoading" />
+    <slot
+      v-if="!loading && !isLoading"
+      name="icon-left"
+    />
     
     <LoadingSpinner 
       v-if="loading || isLoading" 
@@ -23,7 +26,10 @@
       <slot />
     </span>
     
-    <slot name="icon-right" v-if="!loading && !isLoading" />
+    <slot
+      v-if="!loading && !isLoading"
+      name="icon-right"
+    />
     
     <div
       v-if="ripple && showRipple"
@@ -58,7 +64,10 @@ const props = withDefaults(defineProps<ToolbarButtonProps>(), {
   shape: 'rounded',
   disabled: false,
   loading: false,
-  ripple: true
+  ripple: true,
+  ariaLabel: '',
+  ariaDescribedBy: '',
+  class: ''
 })
 
 const emit = defineEmits<{

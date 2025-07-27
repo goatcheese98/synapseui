@@ -4,14 +4,18 @@
 -->
 
 <template>
-  <Story title="Debug/Tooltip Debug" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Debug/Tooltip Debug"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Debug Tooltips">
       <div class="p-8 space-y-8">
-        
         <!-- Test with TooltipProvider -->
         <div class="space-y-4">
-          <h2 class="text-xl font-bold">With TooltipProvider</h2>
-          <TooltipProvider :delayDuration="100">
+          <h2 class="text-xl font-bold">
+            With TooltipProvider
+          </h2>
+          <TooltipProvider :delay-duration="100">
             <TooltipRoot>
               <TooltipTrigger>
                 <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
@@ -32,8 +36,10 @@
 
         <!-- Test without provider -->
         <div class="space-y-4">
-          <h2 class="text-xl font-bold">Without Provider</h2>
-          <TooltipRoot :delayDuration="100">
+          <h2 class="text-xl font-bold">
+            Without Provider
+          </h2>
+          <TooltipRoot :delay-duration="100">
             <TooltipTrigger>
               <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
                 Test Button 2
@@ -52,9 +58,11 @@
 
         <!-- Test our wrapper -->
         <div class="space-y-4">
-          <h2 class="text-xl font-bold">Our Wrapper Components</h2>
+          <h2 class="text-xl font-bold">
+            Our Wrapper Components
+          </h2>
           <TooltipProvider>
-            <Tooltip :delayDuration="100">
+            <Tooltip :delay-duration="100">
               <TooltipTrigger as-child>
                 <button class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                   Wrapper Button
@@ -69,7 +77,9 @@
 
         <!-- Debug info -->
         <div class="mt-8 p-4 bg-gray-100 rounded">
-          <h3 class="font-bold mb-2">Debug Info:</h3>
+          <h3 class="font-bold mb-2">
+            Debug Info:
+          </h3>
           <ul class="text-sm space-y-1">
             <li>• Hover over buttons above to test tooltips</li>
             <li>• Check browser console for errors</li>
@@ -90,7 +100,7 @@ import {
   TooltipPortal 
 } from 'reka-ui'
 
-import Tooltip from '@/components/ui/tooltip/Tooltip.vue'
+import Tooltip from '@/components/ui/tooltip/BaseTooltip.vue'
 import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
 import TooltipContent from '@/components/ui/tooltip/TooltipContent.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'

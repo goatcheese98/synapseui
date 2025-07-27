@@ -1,6 +1,6 @@
 <template>
   <AccordionRoot
-    :class="cn('w-full', ($attrs.class as string | undefined))"
+    :class="cn('w-full', $attrs.class as string)"
     v-bind="$attrs"
   >
     <slot />

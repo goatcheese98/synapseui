@@ -5,11 +5,11 @@
 
 <template>
   <Tooltip
-    :delayDuration="delayDuration"
-    :skipDelayDuration="0"
-    :disableHoverableContent="false"
-    :disabled="disabled"
     v-model:open="open"
+    :delay-duration="delayDuration"
+    :skip-delay-duration="0"
+    :disable-hoverable-content="false"
+    :disabled="disabled"
   >
     <TooltipTrigger as-child>
       <slot name="trigger" />
@@ -18,7 +18,7 @@
     <TooltipContent 
       :side="side"
       :align="align"
-      :sideOffset="sideOffset"
+      :side-offset="sideOffset"
       :class="cn(
         'max-w-md p-0 border shadow-lg',
         'bg-popover text-popover-foreground',
@@ -27,11 +27,20 @@
     >
       <div class="rounded-lg overflow-hidden">
         <!-- Header -->
-        <div v-if="title || showClose || $slots.header" class="flex items-center justify-between px-4 py-3 border-b bg-muted/30">
+        <div
+          v-if="title || showClose || $slots.header"
+          class="flex items-center justify-between px-4 py-3 border-b bg-muted/30"
+        >
           <slot name="header">
             <div class="flex items-center gap-2">
-              <Icon v-if="icon" :name="icon" class="w-4 h-4" />
-              <h4 class="font-semibold text-sm">{{ title }}</h4>
+              <Icon
+                v-if="icon"
+                :name="icon"
+                class="w-4 h-4"
+              />
+              <h4 class="font-semibold text-sm">
+                {{ title }}
+              </h4>
             </div>
           </slot>
           
@@ -39,10 +48,13 @@
             v-if="showClose"
             variant="ghost"
             size="sm"
-            @click="open = false"
             class="w-6 h-6 p-0 hover:bg-accent"
+            @click="open = false"
           >
-            <Icon name="x" class="w-3 h-3" />
+            <Icon
+              name="x"
+              class="w-3 h-3"
+            />
           </Button>
         </div>
 
@@ -52,8 +64,14 @@
         </div>
 
         <!-- Actions -->
-        <div v-if="actions?.length || $slots.actions" class="px-4 pb-4">
-          <slot name="actions" :close="() => open = false">
+        <div
+          v-if="actions?.length || $slots.actions"
+          class="px-4 pb-4"
+        >
+          <slot
+            name="actions"
+            :close="() => open = false"
+          >
             <div class="flex items-center gap-2 justify-end">
               <Button
                 v-for="action in actions"
@@ -63,7 +81,11 @@
                 :disabled="action.disabled"
                 @click="handleAction(action)"
               >
-                <Icon v-if="action.icon" :name="action.icon" class="w-3 h-3 mr-1" />
+                <Icon
+                  v-if="action.icon"
+                  :name="action.icon"
+                  class="w-3 h-3 mr-1"
+                />
                 {{ action.label }}
               </Button>
             </div>
@@ -77,10 +99,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
-import Tooltip from './Tooltip.vue'
+import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from "./BaseButton.vue"
 import Icon from '@/components/ui/icon/Icon.vue'
 
 interface Action {
@@ -112,11 +134,16 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  icon: '',
+  actions: () => [],
   showClose: true,
   side: 'top',
   align: 'center',
   sideOffset: 8,
-  delayDuration: 100
+  delayDuration: 100,
+  disabled: false,
+  open: undefined
 })
 
 const emit = defineEmits<Emits>()

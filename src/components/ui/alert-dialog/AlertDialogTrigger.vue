@@ -1,77 +1,5 @@
 
-<style scoped>
-.dialog-trigger-button {
-  position: relative;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.loading-spinner {
-  display: inline-block;
-  border: 2px solid transparent;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 8px;
-}
-
-.button-content {
-  position: relative;
-  z-index: 1;
-  transition: opacity 200ms ease-out;
-}
-
-.button-content-loading {
-  opacity: 0.7;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Corner detection animations */
-.corner-top-left {
-  border-radius: 18px 6px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-top-right {
-  border-radius: 6px 18px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-left {
-  border-radius: 6px 6px 6px 18px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-right {
-  border-radius: 6px 6px 18px 6px;
-  transform: scale(1.02);
-}
-
-/* Hover states */
-[data-state="idle"].dialog-trigger-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-[data-state="idle"].dialog-trigger-button:active {
-  transform: translateY(0px);
-  transition: transform 100ms ease-out;
-}
-
-/* Disabled state */
-[data-state="disabled"] {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-[data-state="disabled"]:hover {
-  transform: none;
-  box-shadow: none;
-}
-</style><template>
+<template>
   <AlertDialogTrigger
     ref="buttonRef"
     :class="cn(
@@ -101,9 +29,7 @@
       <slot />
     </span>
   </AlertDialogTrigger>
-</template>
-
-<script setup lang="ts">
+</template><script setup lang="ts">
 import { ref, computed, useSlots } from 'vue'
 import { AlertDialogTrigger } from 'reka-ui'
 import { cn } from '@/lib/utils'
@@ -203,3 +129,77 @@ const detectCornerEntry = (event: MouseEvent) => {
   }
 }
 </script>
+
+<style scoped>
+.dialog-trigger-button {
+  position: relative;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-spinner {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+  transition: opacity 200ms ease-out;
+}
+
+.button-content-loading {
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Corner detection animations */
+.corner-top-left {
+  border-radius: 18px 6px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-top-right {
+  border-radius: 6px 18px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-left {
+  border-radius: 6px 6px 6px 18px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-right {
+  border-radius: 6px 6px 18px 6px;
+  transform: scale(1.02);
+}
+
+/* Hover states */
+[data-state="idle"].dialog-trigger-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-state="idle"].dialog-trigger-button:active {
+  transform: translateY(0px);
+  transition: transform 100ms ease-out;
+}
+
+/* Disabled state */
+[data-state="disabled"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+[data-state="disabled"]:hover {
+  transform: none;
+  box-shadow: none;
+}
+</style>

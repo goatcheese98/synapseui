@@ -67,7 +67,9 @@ const formData = reactive({
             :disabled="state.disabled"
           />
         </div>
-        <p class="text-sm text-gray-600">Value: {{ state.value || 'Empty' }}</p>
+        <p class="text-sm text-gray-600">
+          Value: {{ state.value || 'Empty' }}
+        </p>
       </div>
     </Variant>
 
@@ -226,7 +228,10 @@ const formData = reactive({
               type="button"
               class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
-              <Icon icon="lucide:eye" class="h-4 w-4" />
+              <Icon
+                icon="lucide:eye"
+                class="h-4 w-4"
+              />
             </button>
           </div>
         </div>
@@ -255,7 +260,9 @@ const formData = reactive({
             value="john@example.com"
             class="border-green-500 focus:ring-green-500"
           />
-          <p class="text-xs text-green-600">✓ Email format is valid</p>
+          <p class="text-xs text-green-600">
+            ✓ Email format is valid
+          </p>
         </div>
 
         <div class="space-y-2">
@@ -264,7 +271,9 @@ const formData = reactive({
             value="invalid-email"
             class="border-red-500 focus:ring-red-500"
           />
-          <p class="text-xs text-red-600">✗ Please enter a valid email address</p>
+          <p class="text-xs text-red-600">
+            ✗ Please enter a valid email address
+          </p>
         </div>
 
         <div class="space-y-2">
@@ -273,7 +282,9 @@ const formData = reactive({
             value="test@gmail.com"
             class="border-amber-500 focus:ring-amber-500"
           />
-          <p class="text-xs text-amber-600">⚠ Consider using a business email</p>
+          <p class="text-xs text-amber-600">
+            ⚠ Consider using a business email
+          </p>
         </div>
       </div>
     </Variant>

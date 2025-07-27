@@ -1,24 +1,29 @@
 <template>
-  <Story title="System/Expanded Smart Components" :layout="{ type: 'single', iframe: false }">
-    
+  <Story
+    title="System/Expanded Smart Components"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Complete Smart Component Ecosystem">
       <div class="p-8 space-y-12">
-        
         <!-- Smart Form Demo -->
         <section>
-          <h2 class="text-2xl font-bold mb-6">🧠 Smart Form with Context Propagation</h2>
+          <h2 class="text-2xl font-bold mb-6">
+            🧠 Smart Form with Context Propagation
+          </h2>
           
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
             <!-- Success Form -->
             <SmartForm 
               size="md" 
               layout="vertical"
-              :autoValidate="true"
+              :auto-validate="true"
               @submit="handleFormSubmit"
               @validate="handleFormValidate"
             >
-              <InterconnectedCard variant="success" size="md">
+              <InterconnectedCard
+                variant="success"
+                size="md"
+              >
                 <CardHeader>
                   <CardTitle>User Registration (Success State)</CardTitle>
                   <CardDescription>All form controls automatically adapt to success context</CardDescription>
@@ -29,7 +34,7 @@
                     <SmartInput 
                       v-model="formData.name"
                       placeholder="Enter your name"
-                      :isValid="!!formData.name"
+                      :is-valid="!!formData.name"
                       :touched="true"
                     />
                   </div>
@@ -39,7 +44,7 @@
                       v-model="formData.email"
                       type="email"
                       placeholder="Enter your email"
-                      :isValid="!!formData.email"
+                      :is-valid="!!formData.email"
                       :touched="true"
                     />
                   </div>
@@ -48,11 +53,17 @@
                     <SmartSelect 
                       v-model="formData.country"
                       placeholder="Select your country"
-                      :isSuccess="!!formData.country"
+                      :is-success="!!formData.country"
                     >
-                      <SmartSelectItem value="us">United States</SmartSelectItem>
-                      <SmartSelectItem value="ca">Canada</SmartSelectItem>
-                      <SmartSelectItem value="uk">United Kingdom</SmartSelectItem>
+                      <SmartSelectItem value="us">
+                        United States
+                      </SmartSelectItem>
+                      <SmartSelectItem value="ca">
+                        Canada
+                      </SmartSelectItem>
+                      <SmartSelectItem value="uk">
+                        United Kingdom
+                      </SmartSelectItem>
                     </SmartSelect>
                   </div>
                   <div>
@@ -60,8 +71,8 @@
                     <SmartTextarea 
                       v-model="formData.bio"
                       placeholder="Tell us about yourself"
-                      :autoResize="true"
-                      :maxRows="6"
+                      :auto-resize="true"
+                      :max-rows="6"
                     />
                   </div>
                   <div>
@@ -72,10 +83,16 @@
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <UltraSmartButton type="submit" intelligence="full">
+                  <UltraSmartButton
+                    type="submit"
+                    intelligence="full"
+                  >
                     Register
                   </UltraSmartButton>
-                  <UltraSmartButton variant="outline" intelligence="full">
+                  <UltraSmartButton
+                    variant="outline"
+                    intelligence="full"
+                  >
                     Cancel
                   </UltraSmartButton>
                 </CardFooter>
@@ -86,9 +103,12 @@
             <SmartForm 
               size="md" 
               layout="vertical"
-              :autoValidate="true"
+              :auto-validate="true"
             >
-              <InterconnectedCard variant="error" size="md">
+              <InterconnectedCard
+                variant="error"
+                size="md"
+              >
                 <CardHeader>
                   <CardTitle>Contact Form (Error State)</CardTitle>
                   <CardDescription>Watch how error states propagate through all components</CardDescription>
@@ -98,39 +118,48 @@
                     <label class="block text-sm font-medium mb-1">Subject</label>
                     <SmartInput 
                       placeholder="Enter subject"
-                      :hasError="true"
-                      errorMessage="Subject is required"
+                      :has-error="true"
+                      error-message="Subject is required"
                     />
                   </div>
                   <div>
                     <label class="block text-sm font-medium mb-1">Priority</label>
                     <SmartSelect 
                       placeholder="Select priority"
-                      :isError="true"
+                      :is-error="true"
                     >
-                      <SmartSelectItem value="low">Low</SmartSelectItem>
-                      <SmartSelectItem value="medium">Medium</SmartSelectItem>
-                      <SmartSelectItem value="high">High</SmartSelectItem>
+                      <SmartSelectItem value="low">
+                        Low
+                      </SmartSelectItem>
+                      <SmartSelectItem value="medium">
+                        Medium
+                      </SmartSelectItem>
+                      <SmartSelectItem value="high">
+                        High
+                      </SmartSelectItem>
                     </SmartSelect>
                   </div>
                   <div>
                     <label class="block text-sm font-medium mb-1">Message</label>
                     <SmartTextarea 
                       placeholder="Describe your issue"
-                      :hasError="true"
-                      errorMessage="Message cannot be empty"
+                      :has-error="true"
+                      error-message="Message cannot be empty"
                     />
                   </div>
                   <div>
                     <SmartCheckbox 
                       label="Send me a copy"
-                      :hasError="true"
-                      errorMessage="Please confirm email preferences"
+                      :has-error="true"
+                      error-message="Please confirm email preferences"
                     />
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <UltraSmartButton type="submit" intelligence="full">
+                  <UltraSmartButton
+                    type="submit"
+                    intelligence="full"
+                  >
                     Send Message
                   </UltraSmartButton>
                 </CardFooter>
@@ -141,19 +170,30 @@
 
         <!-- Smart Dialog Demo -->
         <section>
-          <h2 class="text-2xl font-bold mb-6">💬 Smart Dialogs with Context</h2>
+          <h2 class="text-2xl font-bold mb-6">
+            💬 Smart Dialogs with Context
+          </h2>
           
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <UltraSmartButton @click="showDialog('default')">
               Default Dialog
             </UltraSmartButton>
-            <UltraSmartButton variant="error" @click="showDialog('destructive')">
+            <UltraSmartButton
+              variant="error"
+              @click="showDialog('destructive')"
+            >
               Destructive Dialog
             </UltraSmartButton>
-            <UltraSmartButton variant="warning" @click="showDialog('warning')">
+            <UltraSmartButton
+              variant="warning"
+              @click="showDialog('warning')"
+            >
               Warning Dialog
             </UltraSmartButton>
-            <UltraSmartButton variant="success" @click="showDialog('success')">
+            <UltraSmartButton
+              variant="success"
+              @click="showDialog('success')"
+            >
               Success Dialog
             </UltraSmartButton>
           </div>
@@ -169,8 +209,12 @@
             <div class="space-y-4">
               <SmartInput placeholder="Type something..." />
               <SmartSelect placeholder="Choose option">
-                <SmartSelectItem value="1">Option 1</SmartSelectItem>
-                <SmartSelectItem value="2">Option 2</SmartSelectItem>
+                <SmartSelectItem value="1">
+                  Option 1
+                </SmartSelectItem>
+                <SmartSelectItem value="2">
+                  Option 2
+                </SmartSelectItem>
               </SmartSelect>
             </div>
           </SmartDialog>
@@ -180,7 +224,7 @@
             variant="destructive"
             title="Delete Confirmation"
             description="This action cannot be undone. All components adapt to the destructive context."
-            confirmText="Delete"
+            confirm-text="Delete"
             @confirm="handleDialogConfirm('destructive')"
           >
             <div class="space-y-4">
@@ -204,12 +248,15 @@
             variant="success"
             title="Success!"
             description="Operation completed successfully."
-            confirmText="Continue"
-            :showCancel="false"
+            confirm-text="Continue"
+            :show-cancel="false"
             @confirm="handleDialogConfirm('success')"
           >
             <div class="text-center py-4">
-              <Icon icon="lucide:check-circle" class="h-16 w-16 text-green-500 mx-auto mb-4" />
+              <Icon
+                icon="lucide:check-circle"
+                class="h-16 w-16 text-green-500 mx-auto mb-4"
+              />
               <p>All components inside this dialog are success-themed!</p>
             </div>
           </SmartDialog>
@@ -217,28 +264,59 @@
 
         <!-- Smart Data Table Demo -->
         <section>
-          <h2 class="text-2xl font-bold mb-6">📊 Smart Data Table with Intelligence</h2>
+          <h2 class="text-2xl font-bold mb-6">
+            📊 Smart Data Table with Intelligence
+          </h2>
           
           <div class="space-y-6">
             <!-- Table Controls -->
-            <InterconnectedCard variant="muted" size="sm">
+            <InterconnectedCard
+              variant="muted"
+              size="sm"
+            >
               <CardContent class="flex items-center justify-between py-4">
                 <div class="flex items-center gap-4">
-                  <SmartSelect v-model="tableVariant" placeholder="Table Style">
-                    <SmartSelectItem value="default">Default</SmartSelectItem>
-                    <SmartSelectItem value="striped">Striped</SmartSelectItem>
-                    <SmartSelectItem value="bordered">Bordered</SmartSelectItem>
-                    <SmartSelectItem value="compact">Compact</SmartSelectItem>
+                  <SmartSelect
+                    v-model="tableVariant"
+                    placeholder="Table Style"
+                  >
+                    <SmartSelectItem value="default">
+                      Default
+                    </SmartSelectItem>
+                    <SmartSelectItem value="striped">
+                      Striped
+                    </SmartSelectItem>
+                    <SmartSelectItem value="bordered">
+                      Bordered
+                    </SmartSelectItem>
+                    <SmartSelectItem value="compact">
+                      Compact
+                    </SmartSelectItem>
                   </SmartSelect>
-                  <SmartSelect v-model="tableSize" placeholder="Size">
-                    <SmartSelectItem value="sm">Small</SmartSelectItem>
-                    <SmartSelectItem value="md">Medium</SmartSelectItem>
-                    <SmartSelectItem value="lg">Large</SmartSelectItem>
+                  <SmartSelect
+                    v-model="tableSize"
+                    placeholder="Size"
+                  >
+                    <SmartSelectItem value="sm">
+                      Small
+                    </SmartSelectItem>
+                    <SmartSelectItem value="md">
+                      Medium
+                    </SmartSelectItem>
+                    <SmartSelectItem value="lg">
+                      Large
+                    </SmartSelectItem>
                   </SmartSelect>
                 </div>
                 <div class="flex items-center gap-2">
-                  <SmartCheckbox v-model="tableInteractive" label="Interactive" />
-                  <SmartCheckbox v-model="tableSelectable" label="Selectable" />
+                  <SmartCheckbox
+                    v-model="tableInteractive"
+                    label="Interactive"
+                  />
+                  <SmartCheckbox
+                    v-model="tableSelectable"
+                    label="Selectable"
+                  />
                 </div>
               </CardContent>
             </InterconnectedCard>
@@ -251,20 +329,22 @@
               :size="tableSize"
               :interactive="tableInteractive"
               :selectable="tableSelectable"
-              :hasActions="true"
+              :has-actions="true"
               :paginated="true"
-              :pageSize="5"
-              @rowClick="handleRowClick"
+              :page-size="5"
+              @row-click="handleRowClick"
               @edit="handleEdit"
               @delete="handleDelete"
             >
               <template #cell-status="{ value }">
-                <span :class="cn(
-                  'px-2 py-1 rounded-full text-xs font-medium',
-                  value === 'active' ? 'bg-green-100 text-green-800' :
-                  value === 'inactive' ? 'bg-gray-100 text-gray-800' :
-                  'bg-red-100 text-red-800'
-                )">
+                <span
+                  :class="cn(
+                    'px-2 py-1 rounded-full text-xs font-medium',
+                    value === 'active' ? 'bg-green-100 text-green-800' :
+                    value === 'inactive' ? 'bg-gray-100 text-gray-800' :
+                    'bg-red-100 text-red-800'
+                  )"
+                >
                   {{ value }}
                 </span>
               </template>
@@ -274,24 +354,43 @@
 
         <!-- Intelligence Showcase -->
         <section>
-          <h2 class="text-2xl font-bold mb-6">🎯 Intelligence Level Demonstration</h2>
+          <h2 class="text-2xl font-bold mb-6">
+            🎯 Intelligence Level Demonstration
+          </h2>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InterconnectedCard variant="primary" size="md">
+            <InterconnectedCard
+              variant="primary"
+              size="md"
+            >
               <CardHeader>
                 <CardTitle>No Intelligence</CardTitle>
                 <CardDescription>Manual control, no adaptation</CardDescription>
               </CardHeader>
               <CardContent class="space-y-3">
-                <UltraSmartButton intelligence="none" variant="error">
+                <UltraSmartButton
+                  intelligence="none"
+                  variant="error"
+                >
                   Stays Error (ignores card context)
                 </UltraSmartButton>
-                <SmartInput intelligence="none" variant="warning" placeholder="Stays warning" />
-                <SmartCheckbox intelligence="none" variant="error" label="Stays error" />
+                <SmartInput
+                  intelligence="none"
+                  variant="warning"
+                  placeholder="Stays warning"
+                />
+                <SmartCheckbox
+                  intelligence="none"
+                  variant="error"
+                  label="Stays error"
+                />
               </CardContent>
             </InterconnectedCard>
 
-            <InterconnectedCard variant="primary" size="md">
+            <InterconnectedCard
+              variant="primary"
+              size="md"
+            >
               <CardHeader>
                 <CardTitle>Basic Intelligence</CardTitle>
                 <CardDescription>Adapts to immediate parent only</CardDescription>
@@ -300,12 +399,21 @@
                 <UltraSmartButton intelligence="basic">
                   Becomes Accent (card context)
                 </UltraSmartButton>
-                <SmartInput intelligence="basic" placeholder="Adapts to card" />
-                <SmartCheckbox intelligence="basic" label="Adapts to card" />
+                <SmartInput
+                  intelligence="basic"
+                  placeholder="Adapts to card"
+                />
+                <SmartCheckbox
+                  intelligence="basic"
+                  label="Adapts to card"
+                />
               </CardContent>
             </InterconnectedCard>
 
-            <InterconnectedCard variant="primary" size="md">
+            <InterconnectedCard
+              variant="primary"
+              size="md"
+            >
               <CardHeader>
                 <CardTitle>Full Intelligence</CardTitle>
                 <CardDescription>Multi-context awareness with priority</CardDescription>
@@ -314,16 +422,20 @@
                 <UltraSmartButton intelligence="full">
                   Smart Multi-Context
                 </UltraSmartButton>
-                <SmartInput intelligence="full" placeholder="Full intelligence" />
-                <SmartCheckbox intelligence="full" label="Full intelligence" />
+                <SmartInput
+                  intelligence="full"
+                  placeholder="Full intelligence"
+                />
+                <SmartCheckbox
+                  intelligence="full"
+                  label="Full intelligence"
+                />
               </CardContent>
             </InterconnectedCard>
           </div>
         </section>
-
       </div>
     </Variant>
-
   </Story>
 </template>
 
@@ -342,7 +454,7 @@ import CardContent from '@/components/ui/card/CardContent.vue'
 import CardFooter from '@/components/ui/card/CardFooter.vue'
 import CardTitle from '@/components/ui/card/CardTitle.vue'
 import CardDescription from '@/components/ui/card/CardDescription.vue'
-import UltraSmartButton from '@/components/ui/button/UltraSmartButton.vue'
+import UltraSmartButton from '@/components/ui/button/BaseButton.vue'
 import SmartInput from '@/components/ui/input/SmartInput.vue'
 import SmartSelect from '@/components/ui/select/SmartSelect.vue'
 import SmartSelectItem from '@/components/ui/select/SmartSelectItem.vue'

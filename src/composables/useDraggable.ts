@@ -26,7 +26,7 @@ export function useDraggable(
   const position = ref({ x: 0, y: 0 })
   const velocity = ref({ x: 0, y: 0 })
   
-  let dragState = {
+  const dragState = {
     startX: 0,
     startY: 0,
     lastX: 0,

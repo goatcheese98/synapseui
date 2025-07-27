@@ -61,7 +61,9 @@ const handleFormSubmit = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction variant="destructive">Continue</AlertDialogAction>
+              <AlertDialogAction variant="destructive">
+                Continue
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -72,13 +74,19 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
           <AlertDialogTrigger variant="destructive">
-            <Icon icon="lucide:trash-2" class="w-4 h-4" />
+            <Icon
+              icon="lucide:trash-2"
+              class="w-4 h-4"
+            />
             Delete Account
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle class="flex items-center gap-2 text-destructive">
-                <Icon icon="lucide:alert-triangle" class="w-5 h-5" />
+                <Icon
+                  icon="lucide:alert-triangle"
+                  class="w-5 h-5"
+                />
                 Delete Account
               </AlertDialogTitle>
               <AlertDialogDescription>
@@ -105,13 +113,19 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
           <AlertDialogTrigger variant="outline">
-            <Icon icon="lucide:upload" class="w-4 h-4" />
+            <Icon
+              icon="lucide:upload"
+              class="w-4 h-4"
+            />
             Publish Project
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle class="flex items-center gap-2">
-                <Icon icon="lucide:rocket" class="w-5 h-5 text-primary" />
+                <Icon
+                  icon="lucide:rocket"
+                  class="w-5 h-5 text-primary"
+                />
                 Publish Project
               </AlertDialogTitle>
               <AlertDialogDescription>
@@ -121,7 +135,9 @@ const handleFormSubmit = () => {
             </AlertDialogHeader>
             
             <div class="my-4 p-4 bg-muted rounded-lg">
-              <h4 class="text-sm font-medium mb-2">Project Details:</h4>
+              <h4 class="text-sm font-medium mb-2">
+                Project Details:
+              </h4>
               <ul class="text-sm text-muted-foreground space-y-1">
                 <li>• Name: Synapse UI Component Library</li>
                 <li>• Version: 1.0.0</li>
@@ -143,7 +159,10 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog v-model:open="asyncOpen">
           <AlertDialogTrigger>
-            <Icon icon="lucide:save" class="w-4 h-4" />
+            <Icon
+              icon="lucide:save"
+              class="w-4 h-4"
+            />
             Save Changes
           </AlertDialogTrigger>
           <AlertDialogContent>
@@ -155,7 +174,9 @@ const handleFormSubmit = () => {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel :disabled="isLoading">Cancel</AlertDialogCancel>
+              <AlertDialogCancel :disabled="isLoading">
+                Cancel
+              </AlertDialogCancel>
               <AlertDialogAction 
                 :disabled="isLoading"
                 @click="handleAsyncAction"
@@ -182,7 +203,10 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
           <AlertDialogTrigger variant="secondary">
-            <Icon icon="lucide:user-plus" class="w-4 h-4" />
+            <Icon
+              icon="lucide:user-plus"
+              class="w-4 h-4"
+            />
             Invite User
           </AlertDialogTrigger>
           <AlertDialogContent class="max-w-md">
@@ -194,7 +218,10 @@ const handleFormSubmit = () => {
               </AlertDialogDescription>
             </AlertDialogHeader>
             
-            <form @submit.prevent="handleFormSubmit" class="space-y-4">
+            <form
+              class="space-y-4"
+              @submit.prevent="handleFormSubmit"
+            >
               <div class="space-y-2">
                 <Label for="email">Email Address</Label>
                 <Input
@@ -212,17 +239,28 @@ const handleFormSubmit = () => {
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="member">Member</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="viewer">Viewer</SelectItem>
+                    <SelectItem value="member">
+                      Member
+                    </SelectItem>
+                    <SelectItem value="admin">
+                      Admin
+                    </SelectItem>
+                    <SelectItem value="viewer">
+                      Viewer
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <AlertDialogFooter class="mt-6">
-                <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+                <AlertDialogCancel type="button">
+                  Cancel
+                </AlertDialogCancel>
                 <AlertDialogAction type="submit">
-                  <Icon icon="lucide:send" class="w-4 h-4" />
+                  <Icon
+                    icon="lucide:send"
+                    class="w-4 h-4"
+                  />
                   Send Invitation
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -241,7 +279,10 @@ const handleFormSubmit = () => {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle class="flex items-center gap-2 text-success">
-                <Icon icon="lucide:check-circle" class="w-6 h-6" />
+                <Icon
+                  icon="lucide:check-circle"
+                  class="w-6 h-6"
+                />
                 Setup Complete!
               </AlertDialogTitle>
               <AlertDialogDescription>
@@ -251,7 +292,9 @@ const handleFormSubmit = () => {
             </AlertDialogHeader>
             
             <div class="my-4 p-4 bg-success/10 border border-success/20 rounded-lg">
-              <h4 class="text-sm font-medium text-success mb-2">What's next?</h4>
+              <h4 class="text-sm font-medium text-success mb-2">
+                What's next?
+              </h4>
               <ul class="text-sm text-success/80 space-y-1">
                 <li>✓ Start building components</li>
                 <li>✓ Explore the component gallery</li>
@@ -262,7 +305,10 @@ const handleFormSubmit = () => {
 
             <AlertDialogFooter>
               <AlertDialogAction class="w-full">
-                <Icon icon="lucide:arrow-right" class="w-4 h-4" />
+                <Icon
+                  icon="lucide:arrow-right"
+                  class="w-4 h-4"
+                />
                 Get Started
               </AlertDialogAction>
             </AlertDialogFooter>
@@ -275,13 +321,19 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
           <AlertDialogTrigger variant="outline">
-            <Icon icon="lucide:alert-triangle" class="w-4 h-4" />
+            <Icon
+              icon="lucide:alert-triangle"
+              class="w-4 h-4"
+            />
             Clear Cache
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle class="flex items-center gap-2 text-warning">
-                <Icon icon="lucide:alert-triangle" class="w-5 h-5" />
+                <Icon
+                  icon="lucide:alert-triangle"
+                  class="w-5 h-5"
+                />
                 Clear Application Cache
               </AlertDialogTitle>
               <AlertDialogDescription>
@@ -312,7 +364,10 @@ const handleFormSubmit = () => {
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
           <AlertDialogTrigger variant="outline">
-            <Icon icon="lucide:settings" class="w-4 h-4" />
+            <Icon
+              icon="lucide:settings"
+              class="w-4 h-4"
+            />
             Project Settings
           </AlertDialogTrigger>
           <AlertDialogContent class="max-w-lg">
@@ -325,7 +380,9 @@ const handleFormSubmit = () => {
             
             <div class="my-4 space-y-3">
               <div class="p-3 border rounded-lg">
-                <h4 class="text-sm font-medium">Modified Files:</h4>
+                <h4 class="text-sm font-medium">
+                  Modified Files:
+                </h4>
                 <ul class="mt-2 text-sm text-muted-foreground">
                   <li>• components/Button.vue</li>
                   <li>• components/Input.vue</li>
@@ -336,12 +393,21 @@ const handleFormSubmit = () => {
 
             <AlertDialogFooter class="flex-col gap-2 sm:flex-col">
               <AlertDialogAction class="w-full">
-                <Icon icon="lucide:save" class="w-4 h-4" />
+                <Icon
+                  icon="lucide:save"
+                  class="w-4 h-4"
+                />
                 Save and Continue
               </AlertDialogAction>
               <div class="flex gap-2 w-full">
-                <AlertDialogAction variant="destructive" class="flex-1">
-                  <Icon icon="lucide:trash" class="w-4 h-4" />
+                <AlertDialogAction
+                  variant="destructive"
+                  class="flex-1"
+                >
+                  <Icon
+                    icon="lucide:trash"
+                    class="w-4 h-4"
+                  />
                   Discard
                 </AlertDialogAction>
                 <AlertDialogCancel class="flex-1">

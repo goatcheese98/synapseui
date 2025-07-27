@@ -4,7 +4,10 @@
 -->
 
 <template>
-  <div class="form-field space-y-2" :class="($attrs.class as string | undefined)">
+  <div
+    class="form-field space-y-2"
+    :class="($attrs.class as string | undefined)"
+  >
     <!-- Label -->
     <Label
       v-if="label || $slots.label"
@@ -62,7 +65,10 @@
         v-if="hasError && showErrors"
         class="text-sm text-error flex items-center gap-1 font-medium"
       >
-        <Icon name="alert-triangle" class="w-3 h-3 flex-shrink-0" />
+        <Icon
+          name="alert-triangle"
+          class="w-3 h-3 flex-shrink-0"
+        />
         {{ errorMessage }}
       </p>
     </Transition>
@@ -80,8 +86,8 @@
 <script setup lang="ts">
 import { useId } from 'vue'
 import { useFormField, type ValidationRule } from '@/composables/useForm'
-import Label from '@/components/ui/label/Label.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Label from '@/components/ui/label/BaseLabel.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface Props {
   name: string
@@ -102,9 +108,13 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  label: '',
+  description: '',
+  required: false,
+  rules: () => [],
   showValidation: true,
   showErrors: true,
-  rules: () => []
+  class: ''
 })
 
 const emit = defineEmits<Emits>()

@@ -6,8 +6,8 @@
 <template>
   <TooltipRoot 
     :open="isOpen"
-    @update:open="handleOpenChange"
     :delay-duration="delayDuration"
+    @update:open="handleOpenChange"
   >
     <TooltipTrigger as-child>
       <slot name="trigger" />
@@ -37,7 +37,10 @@
           </div>
           
           <!-- Brief description -->
-          <div v-if="description" class="text-xs text-current/80 mt-1">
+          <div
+            v-if="description"
+            class="text-xs text-current/80 mt-1"
+          >
             {{ description }}
           </div>
         </div>
@@ -52,35 +55,59 @@
           leave-from-class="opacity-100 max-h-32"
           leave-to-class="opacity-0 max-h-0"
         >
-          <div v-if="isExpanded" class="border-t border-current/20 mt-2 pt-2 px-3 pb-2">
+          <div
+            v-if="isExpanded"
+            class="border-t border-current/20 mt-2 pt-2 px-3 pb-2"
+          >
             <!-- Loading state for detailed info -->
-            <div v-if="isLoadingDetails" class="flex items-center space-x-2 py-2">
-              <div class="w-3 h-3 border border-current/30 border-t-current rounded-full animate-spin"></div>
+            <div
+              v-if="isLoadingDetails"
+              class="flex items-center space-x-2 py-2"
+            >
+              <div class="w-3 h-3 border border-current/30 border-t-current rounded-full animate-spin" />
               <span class="text-xs text-current/70">Loading details...</span>
             </div>
             
             <!-- Detailed content -->
-            <div v-else-if="detailedContent" class="space-y-2">
-              <slot name="detailed" :data="detailedContent">
+            <div
+              v-else-if="detailedContent"
+              class="space-y-2"
+            >
+              <slot
+                name="detailed"
+                :data="detailedContent"
+              >
                 <!-- Default detailed content structure -->
-                <div v-if="detailedContent.stats" class="grid grid-cols-2 gap-2 text-xs">
-                  <div v-for="(value, key) in detailedContent.stats" :key="key" 
-                       class="flex justify-between">
+                <div
+                  v-if="detailedContent.stats"
+                  class="grid grid-cols-2 gap-2 text-xs"
+                >
+                  <div
+                    v-for="(value, key) in detailedContent.stats"
+                    :key="key" 
+                    class="flex justify-between"
+                  >
                     <span class="text-current/70 capitalize">{{ key }}:</span>
                     <span class="font-medium">{{ value }}</span>
                   </div>
                 </div>
                 
-                <div v-if="detailedContent.description" class="text-xs text-current/80 pt-1">
+                <div
+                  v-if="detailedContent.description"
+                  class="text-xs text-current/80 pt-1"
+                >
                   {{ detailedContent.description }}
                 </div>
                 
-                <div v-if="detailedContent.actions" class="flex space-x-2 pt-2">
+                <div
+                  v-if="detailedContent.actions"
+                  class="flex space-x-2 pt-2"
+                >
                   <button 
                     v-for="action in detailedContent.actions" 
                     :key="action.label"
-                    @click="action.handler"
                     class="px-2 py-1 text-xs bg-current/10 hover:bg-current/20 rounded transition-colors"
+                    @click="action.handler"
                   >
                     {{ action.label }}
                   </button>
@@ -122,6 +149,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  description: '',
+  detailsLoader: undefined,
   expandDelay: 2500,
   delayDuration: 500,
   material: 'glass',

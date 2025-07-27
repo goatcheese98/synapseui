@@ -13,7 +13,7 @@
     @focus="handleFocus"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-  />
+  >
 </template>
 
 <script setup lang="ts">
@@ -44,7 +44,11 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<SmartInputProps>(), {
+  modelValue: '',
   type: 'text',
+  placeholder: '',
+  disabled: false,
+  fieldId: '',
   hasError: false,
   isValid: false,
   touched: false,

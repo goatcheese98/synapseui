@@ -36,11 +36,18 @@
         enter-from-class="opacity-0 scale-95"
         leave-to-class="opacity-0 scale-95"
       >
-        <div v-if="!collapsed" class="flex items-center justify-between flex-1 min-w-0">
+        <div
+          v-if="!collapsed"
+          class="flex items-center justify-between flex-1 min-w-0"
+        >
           <span class="truncate">{{ item.label }}</span>
           
           <!-- Badge -->
-          <Badge v-if="item.badge" variant="secondary" class="ml-2 shrink-0">
+          <Badge
+            v-if="item.badge"
+            variant="secondary"
+            class="ml-2 shrink-0"
+          >
             {{ item.badge }}
           </Badge>
           
@@ -64,7 +71,10 @@
       enter-to-class="opacity-100 max-h-96"
       leave-from-class="opacity-100 max-h-96"
     >
-      <div v-if="hasChildren && expanded && !collapsed" class="mt-1 space-y-1">
+      <div
+        v-if="hasChildren && expanded && !collapsed"
+        class="mt-1 space-y-1"
+      >
         <SidebarItem
           v-for="child in item.children"
           :key="child.id"
@@ -82,8 +92,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { cn } from '@/lib/utils'
-import Badge from '@/components/ui/badge/Badge.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Badge from '@/components/ui/badge/BaseBadge.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface SidebarItem {
   id: string
@@ -107,6 +117,7 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  activeItem: '',
   level: 0
 })
 

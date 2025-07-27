@@ -5,15 +5,15 @@
   >
     <form 
       :class="cn(formClasses, ($attrs.class as string | undefined) as string)"
-      @submit="handleSubmit"
       v-bind="$attrs"
+      @submit="handleSubmit"
     >
       <slot 
-        :isSubmitting="isSubmitting"
-        :hasErrors="hasErrors"
+        :is-submitting="isSubmitting"
+        :has-errors="hasErrors"
         :errors="errors"
-        :isValid="isValid"
-        :formState="computedFormState"
+        :is-valid="isValid"
+        :form-state="computedFormState"
       />
     </form>
   </FormProvider>

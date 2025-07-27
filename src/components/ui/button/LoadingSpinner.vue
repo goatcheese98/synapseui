@@ -41,7 +41,8 @@ interface LoadingSpinnerProps {
 }
 
 withDefaults(defineProps<LoadingSpinnerProps>(), {
-  size: 16
+  size: 16,
+  class: ''
 })
 
 const className = defineModel<string>('class')

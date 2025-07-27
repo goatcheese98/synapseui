@@ -1,26 +1,5 @@
 
-<style scoped>
-/* Corner detection animations */
-.corner-top-left {
-  border-radius: 18px 6px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-top-right {
-  border-radius: 6px 18px 6px 6px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-left {
-  border-radius: 6px 6px 6px 18px;
-  transform: scale(1.02);
-}
-
-.corner-bottom-right {
-  border-radius: 6px 6px 18px 6px;
-  transform: scale(1.02);
-}
-</style><template>
+<template>
   <input
     :id="fieldId"
     ref="inputRef"
@@ -52,10 +31,8 @@
     @mouseenter="handleMouseEnter"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
-  />
-</template>
-
-<script setup lang="ts">
+  >
+</template><script setup lang="ts">
 import { ref } from 'vue'
 import { cn } from '@/lib/utils'
 
@@ -78,7 +55,11 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
   type: 'text',
+  placeholder: '',
+  disabled: false,
+  fieldId: '',
   hasError: false,
   isValid: false,
   touched: false
@@ -161,3 +142,26 @@ defineExpose({
   blur: () => inputRef.value?.blur()
 })
 </script>
+
+<style scoped>
+/* Corner detection animations */
+.corner-top-left {
+  border-radius: 18px 6px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-top-right {
+  border-radius: 6px 18px 6px 6px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-left {
+  border-radius: 6px 6px 6px 18px;
+  transform: scale(1.02);
+}
+
+.corner-bottom-right {
+  border-radius: 6px 6px 18px 6px;
+  transform: scale(1.02);
+}
+</style>

@@ -14,7 +14,10 @@
     :show-errors="showErrors"
     :class="($attrs.class as string | undefined)"
   >
-    <template #label v-if="$slots.label">
+    <template
+      v-if="$slots.label"
+      #label
+    >
       <slot name="label" />
     </template>
 
@@ -39,7 +42,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import FormField from './FormField.vue'
-import Input from '@/components/ui/input/Input.vue'
+import Input from '@/components/ui/input/BaseInput.vue'
 import { useFormField, type ValidationRule } from '@/composables/useForm'
 
 interface Props {
@@ -62,10 +65,16 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  label: '',
+  description: '',
+  placeholder: '',
   type: 'text',
+  required: false,
+  disabled: false,
+  rules: () => [],
   showValidation: true,
   showErrors: true,
-  rules: () => []
+  modelValue: ''
 })
 
 const emit = defineEmits<Emits>()

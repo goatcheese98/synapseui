@@ -7,8 +7,8 @@
   <form 
     class="space-y-6"
     :class="($attrs.class as string | undefined)"
-    @submit.prevent="handleSubmit"
     novalidate
+    @submit.prevent="handleSubmit"
   >
     <slot 
       :is-valid="isValid"

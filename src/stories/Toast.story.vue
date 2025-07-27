@@ -112,14 +112,14 @@ const getVariantDescription = (variant: string) => {
         <div class="space-y-4 p-8">
           <div class="flex flex-wrap gap-4">
             <button
-              @click="showSingleToast"
               class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="showSingleToast"
             >
               Show Toast
             </button>
             <button
-              @click="showMultipleToasts"
               class="inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="showMultipleToasts"
             >
               Add Multiple Toast
             </button>
@@ -140,15 +140,24 @@ const getVariantDescription = (variant: string) => {
             type="foreground"
           >
             <div class="grid gap-1">
-              <ToastTitle v-if="state.withTitle" class="flex items-center gap-2">
-                <Icon :icon="getVariantIcon(state.variant)" class="h-4 w-4" />
+              <ToastTitle
+                v-if="state.withTitle"
+                class="flex items-center gap-2"
+              >
+                <Icon
+                  :icon="getVariantIcon(state.variant)"
+                  class="h-4 w-4"
+                />
                 {{ getVariantTitle(state.variant) }}
               </ToastTitle>
               <ToastDescription v-if="state.withDescription">
                 {{ getVariantDescription(state.variant) }}
               </ToastDescription>
             </div>
-            <ToastAction v-if="state.withAction" alt-text="Retry action">
+            <ToastAction
+              v-if="state.withAction"
+              alt-text="Retry action"
+            >
               Retry
             </ToastAction>
             <ToastClose />
@@ -163,7 +172,10 @@ const getVariantDescription = (variant: string) => {
           >
             <div class="grid gap-1">
               <ToastTitle class="flex items-center gap-2">
-                <Icon :icon="getVariantIcon(state.variant)" class="h-4 w-4" />
+                <Icon
+                  :icon="getVariantIcon(state.variant)"
+                  class="h-4 w-4"
+                />
                 {{ getVariantTitle(state.variant) }} #{{ index }}
               </ToastTitle>
               <ToastDescription>
@@ -189,26 +201,26 @@ const getVariantDescription = (variant: string) => {
         <div class="space-y-4 p-8">
           <div class="grid gap-4 md:grid-cols-2">
             <button
-              @click="toastCount++"
               class="inline-flex items-center justify-center rounded-md bg-slate-700 px-4 py-2 text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="toastCount++"
             >
               Show Default Toast
             </button>
             <button
-              @click="toastCount++"
               class="inline-flex items-center justify-center rounded-md bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="toastCount++"
             >
               Show Success Toast
             </button>
             <button
-              @click="toastCount++"
               class="inline-flex items-center justify-center rounded-md bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="toastCount++"
             >
               Show Error Toast
             </button>
             <button
-              @click="toastCount++"
               class="inline-flex items-center justify-center rounded-md bg-yellow-700 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="toastCount++"
             >
               Show Warning Toast
             </button>
@@ -223,7 +235,10 @@ const getVariantDescription = (variant: string) => {
           >
             <div class="grid gap-1">
               <ToastTitle class="flex items-center gap-2">
-                <Icon icon="lucide:bell" class="h-4 w-4" />
+                <Icon
+                  icon="lucide:bell"
+                  class="h-4 w-4"
+                />
                 Notification
               </ToastTitle>
               <ToastDescription>
@@ -248,7 +263,9 @@ const getVariantDescription = (variant: string) => {
       <ToastProvider>
         <div class="space-y-4 p-8">
           <div class="text-center space-y-2">
-            <h3 class="text-lg font-medium text-foreground">Corner Detection Features</h3>
+            <h3 class="text-lg font-medium text-foreground">
+              Corner Detection Features
+            </h3>
             <div class="text-sm text-muted-foreground space-y-1">
               <p>• Toast containers have 15px corner detection threshold</p>
               <p>• Toast actions have 12px threshold (smaller buttons)</p>
@@ -260,8 +277,8 @@ const getVariantDescription = (variant: string) => {
           
           <div class="flex justify-center">
             <button
-              @click="toastCount++"
               class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring"
+              @click="toastCount++"
             >
               Test Corner Detection
             </button>
@@ -276,7 +293,10 @@ const getVariantDescription = (variant: string) => {
           >
             <div class="grid gap-1">
               <ToastTitle class="flex items-center gap-2">
-                <Icon :icon="[getVariantIcon('success'), getVariantIcon('warning'), getVariantIcon('info')][index - 1]" class="h-4 w-4" />
+                <Icon
+                  :icon="[getVariantIcon('success'), getVariantIcon('warning'), getVariantIcon('info')][index - 1]"
+                  class="h-4 w-4"
+                />
                 Corner Detection Test {{ index }}
               </ToastTitle>
               <ToastDescription>
@@ -313,8 +333,8 @@ const getVariantDescription = (variant: string) => {
           </div>
           
           <button
-            @click="toastCount++"
             class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring"
+            @click="toastCount++"
           >
             Test Accessibility
           </button>

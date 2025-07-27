@@ -5,9 +5,9 @@
 
 <template>
   <Tooltip
-    :delayDuration="delayDuration"
-    :disabled="disabled"
     v-model:open="open"
+    :delay-duration="delayDuration"
+    :disabled="disabled"
   >
     <TooltipTrigger as-child>
       <slot name="trigger" />
@@ -16,7 +16,7 @@
     <TooltipContent 
       :side="side"
       :align="align"
-      :sideOffset="sideOffset"
+      :side-offset="sideOffset"
       :class="cn(
         'max-w-sm p-0 border-0 shadow-lg',
         themeClass,
@@ -25,11 +25,19 @@
     >
       <div :class="cn('rounded-lg overflow-hidden', backgroundClass)">
         <!-- Header -->
-        <div v-if="title || $slots.header" :class="cn('px-4 py-3 border-b', headerClass)">
+        <div
+          v-if="title || $slots.header"
+          :class="cn('px-4 py-3 border-b', headerClass)"
+        >
           <slot name="header">
             <div class="flex items-center justify-between">
-              <h4 class="font-semibold text-sm">{{ title }}</h4>
-              <div v-if="timestamp" class="text-xs opacity-75">
+              <h4 class="font-semibold text-sm">
+                {{ title }}
+              </h4>
+              <div
+                v-if="timestamp"
+                class="text-xs opacity-75"
+              >
                 {{ formatTimestamp(timestamp) }}
               </div>
             </div>
@@ -39,12 +47,20 @@
         <!-- Content -->
         <div class="p-4 space-y-3">
           <!-- Primary Metric -->
-          <div v-if="primaryMetric" class="text-center">
+          <div
+            v-if="primaryMetric"
+            class="text-center"
+          >
             <div :class="cn('text-2xl font-bold', primaryMetric.color || 'text-foreground')">
               {{ formatValue(primaryMetric.value, primaryMetric.format) }}
             </div>
-            <div class="text-sm opacity-75">{{ primaryMetric.label }}</div>
-            <div v-if="primaryMetric.change" class="flex items-center justify-center gap-1 text-xs mt-1">
+            <div class="text-sm opacity-75">
+              {{ primaryMetric.label }}
+            </div>
+            <div
+              v-if="primaryMetric.change"
+              class="flex items-center justify-center gap-1 text-xs mt-1"
+            >
               <Icon 
                 :name="primaryMetric.change > 0 ? 'trending-up' : 'trending-down'" 
                 :class="cn('w-3 h-3', primaryMetric.change > 0 ? 'text-success' : 'text-error')"
@@ -56,7 +72,10 @@
           </div>
 
           <!-- Secondary Metrics -->
-          <div v-if="metrics?.length" class="space-y-2">
+          <div
+            v-if="metrics?.length"
+            class="space-y-2"
+          >
             <div 
               v-for="metric in metrics" 
               :key="metric.label"
@@ -76,8 +95,13 @@
           </div>
 
           <!-- Chart Data -->
-          <div v-if="chartData?.length" class="space-y-2">
-            <div class="text-xs font-medium opacity-75">{{ chartTitle || 'Trend' }}</div>
+          <div
+            v-if="chartData?.length"
+            class="space-y-2"
+          >
+            <div class="text-xs font-medium opacity-75">
+              {{ chartTitle || 'Trend' }}
+            </div>
             <div class="flex items-end gap-1 h-16">
               <div 
                 v-for="(point, index) in chartData.slice(-12)" 
@@ -93,7 +117,10 @@
           </div>
 
           <!-- Footer -->
-          <div v-if="$slots.footer" class="pt-2 border-t border-border/50">
+          <div
+            v-if="$slots.footer"
+            class="pt-2 border-t border-border/50"
+          >
             <slot name="footer" />
           </div>
         </div>
@@ -105,7 +132,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
-import Tooltip from './Tooltip.vue'
+import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
 import Icon from '@/components/ui/icon/Icon.vue'
@@ -139,11 +166,19 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  primaryMetric: undefined,
+  metrics: () => [],
+  chartData: () => [],
+  chartTitle: '',
+  timestamp: '',
   theme: 'default',
   side: 'top',
   align: 'center',
   sideOffset: 8,
-  delayDuration: 300
+  delayDuration: 300,
+  disabled: false,
+  open: undefined
 })
 
 const emit = defineEmits<Emits>()

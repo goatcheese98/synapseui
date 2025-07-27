@@ -4,7 +4,10 @@
 -->
 
 <template>
-  <VStack :spacing="spacing" class="form-field">
+  <VStack
+    :spacing="spacing"
+    class="form-field"
+  >
     <!-- Label with required indicator -->
     <Label 
       v-if="label"
@@ -12,7 +15,11 @@
       :class="labelClasses"
     >
       {{ label }}
-      <span v-if="required" class="text-error ml-1" aria-label="required">*</span>
+      <span
+        v-if="required"
+        class="text-error ml-1"
+        aria-label="required"
+      >*</span>
     </Label>
 
     <!-- Help text -->
@@ -46,7 +53,10 @@
       role="alert"
       aria-live="polite"
     >
-      <Icon name="alert-circle" size="16" />
+      <Icon
+        name="alert-circle"
+        size="16"
+      />
       {{ error }}
     </p>
 
@@ -56,7 +66,10 @@
       :id="successId"
       class="text-token-sm text-success flex items-center gap-token-xs"
     >
-      <Icon name="check-circle" size="16" />
+      <Icon
+        name="check-circle"
+        size="16"
+      />
       {{ success }}
     </p>
   </VStack>
@@ -66,10 +79,10 @@
 import { ref, computed, useAttrs } from 'vue'
 // Simple ID generator without external deps
 const generateId = () => `form-field-${Math.random().toString(36).substr(2, 9)}`
-import Label from '@/components/ui/label/Label.vue'
-import Input from '@/components/ui/input/Input.vue'
+import Label from '@/components/ui/label/BaseLabel.vue'
+import Input from '@/components/ui/input/BaseInput.vue'
 import VStack from '@/components/ui/stack/VStack.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface Props {
   modelValue?: string
@@ -85,9 +98,14 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
-  spacing: 'xs',
+  label: '',
+  placeholder: '',
+  helpText: '',
+  error: '',
+  success: '',
   required: false,
-  disabled: false
+  disabled: false,
+  spacing: 'xs'
 })
 
 const emit = defineEmits<{

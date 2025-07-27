@@ -25,6 +25,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   theme: 'light',
+  class: ''
 })
 
 // Provide theme context to all child components

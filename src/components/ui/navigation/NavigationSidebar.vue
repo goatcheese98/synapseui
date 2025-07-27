@@ -27,7 +27,10 @@
         enter-from-class="opacity-0 scale-95"
         leave-to-class="opacity-0 scale-95"
       >
-        <div v-if="!collapsed" class="flex items-center space-x-2">
+        <div
+          v-if="!collapsed"
+          class="flex items-center space-x-2"
+        >
           <slot name="logo">
             <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
               <span class="text-primary-text font-bold text-sm">S</span>
@@ -40,8 +43,8 @@
       <Button
         variant="ghost"
         size="sm"
-        @click="toggleCollapsed"
         class="w-8 h-8 p-0 shrink-0"
+        @click="toggleCollapsed"
       >
         <Icon 
           :name="collapsed ? 'chevron-right' : 'chevron-left'" 
@@ -66,7 +69,10 @@
     </div>
 
     <!-- Footer -->
-    <div v-if="!collapsed" class="border-t p-4">
+    <div
+      v-if="!collapsed"
+      class="border-t p-4"
+    >
       <slot name="footer" />
     </div>
 
@@ -77,7 +83,10 @@
         collapsed ? 'px-2' : 'px-4'
       )"
     >
-      <slot name="user" :collapsed="collapsed" />
+      <slot
+        name="user"
+        :collapsed="collapsed"
+      />
     </div>
   </aside>
 
@@ -100,8 +109,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { cn } from '@/lib/utils'
-import Button from '@/components/ui/button/Button.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 import SidebarItem from './SidebarItem.vue'
 
 export interface SidebarItem {
@@ -133,9 +142,11 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   brand: 'Synapse UI',
   items: () => [],
+  activeItem: '',
   defaultCollapsed: false,
   variant: 'default',
-  mobileOpen: false
+  mobileOpen: false,
+  class: ''
 })
 
 const emit = defineEmits<Emits>()

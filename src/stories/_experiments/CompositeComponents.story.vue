@@ -75,10 +75,15 @@ const handleLogin = async (credentials: any) => {
 </script>
 
 <template>
-  <Story title="Composite Components" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Composite Components"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="FormField Component">
       <div class="max-w-md space-y-8 p-8">
-        <h3 class="text-xl font-semibold mb-4">Interactive Form Fields</h3>
+        <h3 class="text-xl font-semibold mb-4">
+          Interactive Form Fields
+        </h3>
         
         <!-- Basic Form Field -->
         <FormField
@@ -122,7 +127,9 @@ const handleLogin = async (credentials: any) => {
 
     <Variant title="UserCard Component">
       <div class="space-y-8 p-8">
-        <h3 class="text-xl font-semibold mb-4">User Profile Cards</h3>
+        <h3 class="text-xl font-semibold mb-4">
+          User Profile Cards
+        </h3>
         
         <!-- Grid of User Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -137,8 +144,13 @@ const handleLogin = async (credentials: any) => {
 
         <!-- Compact Variant -->
         <div class="mt-8">
-          <h4 class="text-lg font-medium mb-4">Compact Variant</h4>
-          <HStack spacing="md" class="flex-wrap">
+          <h4 class="text-lg font-medium mb-4">
+            Compact Variant
+          </h4>
+          <HStack
+            spacing="md"
+            class="flex-wrap"
+          >
             <UserCard
               v-for="user in sampleUsers.slice(0, 2)"
               :key="`compact-${user.email}`"
@@ -153,7 +165,9 @@ const handleLogin = async (credentials: any) => {
     <Variant title="LoginForm Component">
       <div class="min-h-screen bg-background-secondary flex items-center justify-center p-4">
         <div class="w-full max-w-md">
-          <h3 class="text-xl font-semibold mb-8 text-center">Interactive Login Form</h3>
+          <h3 class="text-xl font-semibold mb-8 text-center">
+            Interactive Login Form
+          </h3>
           
           <LoginForm
             :is-loading="isLoginLoading"
@@ -174,13 +188,21 @@ const handleLogin = async (credentials: any) => {
 
     <Variant title="Design Token Demo">
       <div class="p-8">
-        <h2 class="text-2xl font-bold mb-4">Design Token Integration</h2>
-        <p class="text-lg text-text-secondary mb-8">All components use consistent design tokens</p>
+        <h2 class="text-2xl font-bold mb-4">
+          Design Token Integration
+        </h2>
+        <p class="text-lg text-text-secondary mb-8">
+          All components use consistent design tokens
+        </p>
         
         <VStack spacing="md">
           <div class="p-4 bg-primary text-primary-text rounded-token-md">
-            <h3 class="font-semibold">Primary Theme</h3>
-            <p class="text-sm opacity-90">Using bg-primary and text-primary-text tokens</p>
+            <h3 class="font-semibold">
+              Primary Theme
+            </h3>
+            <p class="text-sm opacity-90">
+              Using bg-primary and text-primary-text tokens
+            </p>
           </div>
           
           <HStack spacing="sm">

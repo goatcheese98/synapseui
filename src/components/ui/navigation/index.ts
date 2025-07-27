@@ -1,5 +1,5 @@
 export { default as NavBar } from './NavBar.vue'
 export { default as NavItem } from './NavItem.vue'
-export { default as Sidebar } from './Sidebar.vue'
+export { default as Sidebar } from './NavigationSidebar.vue'
 export { default as SidebarItem } from './SidebarItem.vue'
 export { default as MobileNavItem } from './MobileNavItem.vue'

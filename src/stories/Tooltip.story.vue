@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import Tooltip from '@/components/ui/tooltip/Tooltip.vue'
+import Tooltip from '@/components/ui/tooltip/BaseTooltip.vue'
 import TooltipContent from '@/components/ui/tooltip/TooltipContent.vue'
 import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
 import HStack from '@/components/ui/stack/HStack.vue'
 import VStack from '@/components/ui/stack/VStack.vue'
 import { Icon } from '@iconify/vue'
 </script>
 
 <template>
-  <Story title="Feedback/Tooltip" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Feedback/Tooltip"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Basic Tooltip">
       <TooltipProvider>
         <div class="space-y-6">
@@ -34,7 +37,9 @@ import { Icon } from '@iconify/vue'
           <div class="grid grid-cols-2 gap-8 place-items-center">
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="outline">Top</Button>
+                <Button variant="outline">
+                  Top
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="top">
                 Tooltip on top
@@ -43,7 +48,9 @@ import { Icon } from '@iconify/vue'
 
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="outline">Bottom</Button>
+                <Button variant="outline">
+                  Bottom
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom">
                 Tooltip on bottom
@@ -52,7 +59,9 @@ import { Icon } from '@iconify/vue'
 
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="outline">Left</Button>
+                <Button variant="outline">
+                  Left
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="left">
                 Tooltip on left
@@ -61,7 +70,9 @@ import { Icon } from '@iconify/vue'
 
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="outline">Right</Button>
+                <Button variant="outline">
+                  Right
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="right">
                 Tooltip on right
@@ -75,11 +86,20 @@ import { Icon } from '@iconify/vue'
     <Variant title="With Icons">
       <TooltipProvider>
         <div class="space-y-6">
-          <HStack justify="center" spacing="lg">
+          <HStack
+            justify="center"
+            spacing="lg"
+          >
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="ghost" size="icon">
-                  <Icon icon="lucide:heart" class="h-4 w-4" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Icon
+                    icon="lucide:heart"
+                    class="h-4 w-4"
+                  />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -89,8 +109,14 @@ import { Icon } from '@iconify/vue'
 
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="ghost" size="icon">
-                  <Icon icon="lucide:share" class="h-4 w-4" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Icon
+                    icon="lucide:share"
+                    class="h-4 w-4"
+                  />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -100,8 +126,14 @@ import { Icon } from '@iconify/vue'
 
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="ghost" size="icon">
-                  <Icon icon="lucide:bookmark" class="h-4 w-4" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Icon
+                    icon="lucide:bookmark"
+                    class="h-4 w-4"
+                  />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>

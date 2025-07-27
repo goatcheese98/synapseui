@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import Stack from './Stack.vue'
+import Stack from './BaseStack.vue'
 
 interface Props {
   spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'

@@ -1,17 +1,35 @@
 <template>
   <LayoutProvider :pattern="pattern">
-    <div :class="cn(pageClasses, ($attrs.class as string | undefined) as string)" v-bind="$attrs">
-      
+    <div
+      :class="cn(pageClasses, ($attrs.class as string | undefined) as string)"
+      v-bind="$attrs"
+    >
       <!-- Header -->
-      <header v-if="showHeader || $slots.header" :class="headerClasses">
+      <header
+        v-if="showHeader || $slots.header"
+        :class="headerClasses"
+      >
         <slot name="header">
           <div class="container mx-auto px-4 py-6">
             <div class="flex items-center justify-between">
               <div>
-                <h1 v-if="title" :class="titleClasses">{{ title }}</h1>
-                <p v-if="subtitle" :class="subtitleClasses">{{ subtitle }}</p>
+                <h1
+                  v-if="title"
+                  :class="titleClasses"
+                >
+                  {{ title }}
+                </h1>
+                <p
+                  v-if="subtitle"
+                  :class="subtitleClasses"
+                >
+                  {{ subtitle }}
+                </p>
               </div>
-              <div v-if="$slots.headerActions" class="flex gap-2">
+              <div
+                v-if="$slots.headerActions"
+                class="flex gap-2"
+              >
                 <slot name="headerActions" />
               </div>
             </div>
@@ -31,14 +49,16 @@
       </main>
 
       <!-- Footer -->
-      <footer v-if="showFooter || $slots.footer" :class="footerClasses">
+      <footer
+        v-if="showFooter || $slots.footer"
+        :class="footerClasses"
+      >
         <slot name="footer">
           <div class="container mx-auto px-4 py-6 text-center text-muted-foreground">
             <p>&copy; {{ new Date().getFullYear() }} Your App. All rights reserved.</p>
           </div>
         </slot>
       </footer>
-
     </div>
   </LayoutProvider>
 </template>
@@ -53,7 +73,7 @@ import {
 } from '@/composables/useComposition'
 
 export interface SmartPageProps {
-  pattern: LayoutComposition['pattern']
+  pattern?: LayoutComposition['pattern']
   title?: string
   subtitle?: string
   showHeader?: boolean
@@ -69,10 +89,16 @@ export interface SmartPageProps {
 
 const props = withDefaults(defineProps<SmartPageProps>(), {
   pattern: 'article',
+  title: '',
+  subtitle: '',
   showHeader: true,
   showFooter: false,
   fullWidth: false,
-  centered: false
+  centered: false,
+  headerClass: '',
+  mainClass: '',
+  footerClass: '',
+  containerClass: ''
 })
 
 // Get layout configuration

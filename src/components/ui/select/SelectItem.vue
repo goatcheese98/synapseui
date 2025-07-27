@@ -1,26 +1,5 @@
 
-<style scoped>
-/* Corner detection animations for menu items */
-.corner-top-left {
-  border-radius: 12px 4px 4px 4px;
-  transform: scale(1.01);
-}
-
-.corner-top-right {
-  border-radius: 4px 12px 4px 4px;
-  transform: scale(1.01);
-}
-
-.corner-bottom-left {
-  border-radius: 4px 4px 4px 12px;
-  transform: scale(1.01);
-}
-
-.corner-bottom-right {
-  border-radius: 4px 4px 12px 4px;
-  transform: scale(1.01);
-}
-</style><template>
+<template>
   <SelectItem
     ref="itemRef"
     :class="cn(
@@ -38,7 +17,10 @@
   >
     <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectItemIndicator>
-        <Icon icon="lucide:check" class="h-4 w-4" />
+        <Icon
+          icon="lucide:check"
+          class="h-4 w-4"
+        />
       </SelectItemIndicator>
     </span>
 
@@ -46,9 +28,7 @@
       <slot />
     </SelectItemText>
   </SelectItem>
-</template>
-
-<script setup lang="ts">
+</template><script setup lang="ts">
 import { ref } from 'vue'
 import { SelectItem, SelectItemIndicator, SelectItemText } from 'reka-ui'
 import { Icon } from '@iconify/vue'
@@ -102,3 +82,26 @@ const detectCornerEntry = (event: MouseEvent) => {
   }
 }
 </script>
+
+<style scoped>
+/* Corner detection animations for menu items */
+.corner-top-left {
+  border-radius: 12px 4px 4px 4px;
+  transform: scale(1.01);
+}
+
+.corner-top-right {
+  border-radius: 4px 12px 4px 4px;
+  transform: scale(1.01);
+}
+
+.corner-bottom-left {
+  border-radius: 4px 4px 4px 12px;
+  transform: scale(1.01);
+}
+
+.corner-bottom-right {
+  border-radius: 4px 4px 12px 4px;
+  transform: scale(1.01);
+}
+</style>

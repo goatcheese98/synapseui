@@ -1,10 +1,10 @@
 <template>
   <TooltipRoot 
-    :delayDuration="delayDuration"
-    :skipDelayDuration="skipDelayDuration"
-    :disableHoverableContent="disableHoverableContent"
-    :disabled="disabled"
     v-model:open="open"
+    :delay-duration="delayDuration"
+    :skip-delay-duration="skipDelayDuration"
+    :disable-hoverable-content="disableHoverableContent"
+    :disabled="disabled"
   >
     <slot />
   </TooltipRoot>

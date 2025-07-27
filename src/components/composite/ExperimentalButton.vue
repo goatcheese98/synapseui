@@ -2,7 +2,7 @@
   <Primitive
     ref="buttonRef"
     :as="as"
-    :asChild="asChild"
+    :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), (($attrs.class as string | undefined) as string), 'experimental-button', activeAnimation)"
     :data-state="loading ? 'loading' : 'idle'"
     :disabled="disabled || loading"
@@ -15,7 +15,10 @@
     @mousedown="handleMouseDown"
     @mouseup="handleMouseUp"
   >
-    <div class="button-background" :class="rippleClass"></div>
+    <div
+      class="button-background"
+      :class="rippleClass"
+    />
     
     <span
       v-if="loading"

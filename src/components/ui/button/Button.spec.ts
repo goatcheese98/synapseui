@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from './Button.vue'
+import Button from "./BaseButton.vue"
 
 describe('Button (Reka UI)', () => {
   it('renders with default props', () => {

@@ -13,7 +13,10 @@
     <CheckboxIndicator
       :class="cn('flex items-center justify-center text-current')"
     >
-      <Icon icon="lucide:check" class="h-3 w-3" />
+      <Icon
+        icon="lucide:check"
+        class="h-3 w-3"
+      />
     </CheckboxIndicator>
   </CheckboxRoot>
 </template>

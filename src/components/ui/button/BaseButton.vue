@@ -2,7 +2,7 @@
   <Primitive
     ref="buttonRef"
     :as="as"
-    :asChild="asChild"
+    :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), ($attrs.class as string | undefined), 'edge-morph-button', pulseClass)"
     :data-state="loading ? 'loading' : 'idle'"
     :disabled="disabled || loading"

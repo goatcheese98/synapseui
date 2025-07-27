@@ -4,10 +4,12 @@
 -->
 
 <template>
-  <Story title="Forms/Form System" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Forms/Form System"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Form Validation System">
       <div class="max-w-4xl mx-auto p-8 space-y-12">
-        
         <!-- Header -->
         <div class="text-center space-y-4">
           <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -25,16 +27,22 @@
 
         <!-- Form Examples -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
           <!-- Basic Contact Form -->
           <div class="space-y-6">
             <div class="text-center">
-              <h2 class="text-2xl font-semibold mb-2">📝 Contact Form</h2>
-              <p class="text-text-secondary">Basic validation with built-in rules</p>
+              <h2 class="text-2xl font-semibold mb-2">
+                📝 Contact Form
+              </h2>
+              <p class="text-text-secondary">
+                Basic validation with built-in rules
+              </p>
             </div>
             
             <div class="bg-background-secondary p-6 rounded-lg border">
-              <Form @submit="handleContactSubmit" @error="handleFormError">
+              <Form
+                @submit="handleContactSubmit"
+                @error="handleFormError"
+              >
                 <template #default="{ isValid, isSubmitting, errors }">
                   <div class="space-y-4">
                     <FormInput
@@ -94,12 +102,19 @@
           <!-- User Registration Form -->
           <div class="space-y-6">
             <div class="text-center">
-              <h2 class="text-2xl font-semibold mb-2">👤 User Registration</h2>
-              <p class="text-text-secondary">Advanced validation with custom rules</p>
+              <h2 class="text-2xl font-semibold mb-2">
+                👤 User Registration
+              </h2>
+              <p class="text-text-secondary">
+                Advanced validation with custom rules
+              </p>
             </div>
             
             <div class="bg-background-secondary p-6 rounded-lg border">
-              <Form @submit="handleRegistrationSubmit" @error="handleFormError">
+              <Form
+                @submit="handleRegistrationSubmit"
+                @error="handleFormError"
+              >
                 <template #default="{ isValid, isSubmitting, errors }">
                   <div class="space-y-4">
                     <FormInput
@@ -184,10 +199,11 @@
 
         <!-- Advanced Form Features -->
         <section>
-          <h2 class="text-3xl font-semibold text-center mb-8">🚀 Advanced Features</h2>
+          <h2 class="text-3xl font-semibold text-center mb-8">
+            🚀 Advanced Features
+          </h2>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
             <!-- Real-time Validation -->
             <div class="bg-background-secondary p-6 rounded-lg border">
               <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -258,27 +274,57 @@
 
         <!-- Form State Display -->
         <section class="bg-background-muted p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4">📊 Form Development Tools</h3>
+          <h3 class="text-xl font-semibold mb-4">
+            📊 Form Development Tools
+          </h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <h4 class="font-medium text-text-primary mb-2">Submission Stats</h4>
-              <p class="text-text-secondary">Contact Forms: {{ contactSubmissions }}</p>
-              <p class="text-text-secondary">Registrations: {{ registrationSubmissions }}</p>
-              <p class="text-text-secondary">Total Validations: {{ validationEvents }}</p>
+              <h4 class="font-medium text-text-primary mb-2">
+                Submission Stats
+              </h4>
+              <p class="text-text-secondary">
+                Contact Forms: {{ contactSubmissions }}
+              </p>
+              <p class="text-text-secondary">
+                Registrations: {{ registrationSubmissions }}
+              </p>
+              <p class="text-text-secondary">
+                Total Validations: {{ validationEvents }}
+              </p>
             </div>
             <div>
-              <h4 class="font-medium text-text-primary mb-2">Performance</h4>
-              <p class="text-text-secondary">Avg Validation Time: ~2ms</p>
-              <p class="text-text-secondary">Forms Rendered: {{ formsRendered }}</p>
-              <p class="text-text-secondary">Memory Usage: Optimized</p>
+              <h4 class="font-medium text-text-primary mb-2">
+                Performance
+              </h4>
+              <p class="text-text-secondary">
+                Avg Validation Time: ~2ms
+              </p>
+              <p class="text-text-secondary">
+                Forms Rendered: {{ formsRendered }}
+              </p>
+              <p class="text-text-secondary">
+                Memory Usage: Optimized
+              </p>
             </div>
             <div>
-              <h4 class="font-medium text-text-primary mb-2">Features</h4>
-              <p class="text-success text-xs">✓ Real-time validation</p>
-              <p class="text-success text-xs">✓ Custom validation rules</p>
-              <p class="text-success text-xs">✓ Form composition</p>
-              <p class="text-success text-xs">✓ Error state styling</p>
-              <p class="text-success text-xs">✓ Synapse UI integration</p>
+              <h4 class="font-medium text-text-primary mb-2">
+                Features
+              </h4>
+              <p class="text-success text-xs">
+                ✓ Real-time validation
+              </p>
+              <p class="text-success text-xs">
+                ✓ Custom validation rules
+              </p>
+              <p class="text-success text-xs">
+                ✓ Form composition
+              </p>
+              <p class="text-success text-xs">
+                ✓ Error state styling
+              </p>
+              <p class="text-success text-xs">
+                ✓ Synapse UI integration
+              </p>
             </div>
           </div>
         </section>
@@ -289,11 +335,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Form from '@/components/ui/form/Form.vue'
+import Form from '@/components/ui/form/BaseForm.vue'
 import FormField from '@/components/ui/form/FormField.vue'
 import FormInput from '@/components/ui/form/FormInput.vue'
 import FormTextarea from '@/components/ui/form/FormTextarea.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
 import { rules } from '@/composables/useForm'
 
 // Stats tracking

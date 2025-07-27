@@ -38,12 +38,16 @@ const handleIconClick = (icon: string) => {
 </script>
 
 <template>
-  <Story title="Component Families" :layout="{ type: 'single', iframe: false }">
-    
+  <Story
+    title="Component Families"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Button Family">
       <div class="space-y-12 p-8">
         <div class="text-center">
-          <h2 class="text-2xl font-bold mb-4">Button Family</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Button Family
+          </h2>
           <p class="text-lg text-text-secondary mb-8">
             Elegant API: <code class="bg-background-muted px-2 py-1 rounded text-sm">Button.Primary</code>, 
             <code class="bg-background-muted px-2 py-1 rounded text-sm">Button.Ghost</code>, 
@@ -53,8 +57,13 @@ const handleIconClick = (icon: string) => {
 
         <!-- Semantic Variants -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Semantic Variants</h3>
-          <HStack spacing="md" class="flex-wrap">
+          <h3 class="text-lg font-semibold mb-4">
+            Semantic Variants
+          </h3>
+          <HStack
+            spacing="md"
+            class="flex-wrap"
+          >
             <Button.Primary>Primary Action</Button.Primary>
             <Button.Secondary>Secondary</Button.Secondary>
             <Button.Success>Success</Button.Success>
@@ -65,8 +74,13 @@ const handleIconClick = (icon: string) => {
 
         <!-- Style Variants -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Style Variants</h3>
-          <HStack spacing="md" class="flex-wrap">
+          <h3 class="text-lg font-semibold mb-4">
+            Style Variants
+          </h3>
+          <HStack
+            spacing="md"
+            class="flex-wrap"
+          >
             <Button.Outline>Outlined</Button.Outline>
             <Button.Ghost>Ghost Button</Button.Ghost>
             <Button.Link>Link Style</Button.Link>
@@ -75,8 +89,14 @@ const handleIconClick = (icon: string) => {
 
         <!-- Size Variants -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Size Variants</h3>
-          <HStack spacing="md" align="center" class="flex-wrap">
+          <h3 class="text-lg font-semibold mb-4">
+            Size Variants
+          </h3>
+          <HStack
+            spacing="md"
+            align="center"
+            class="flex-wrap"
+          >
             <Button.Small>Small</Button.Small>
             <Button.Primary>Default</Button.Primary>
             <Button.Large>Large Button</Button.Large>
@@ -85,48 +105,100 @@ const handleIconClick = (icon: string) => {
 
         <!-- Icon Buttons -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Icon Buttons</h3>
-          <HStack spacing="md" class="flex-wrap">
-            <Button.Icon icon="settings" @click="() => handleIconClick('settings')" />
-            <Button.Icon icon="user" variant="primary" @click="() => handleIconClick('user')" />
-            <Button.Icon icon="trash" variant="error" @click="() => handleIconClick('trash')" />
-            <Button.Icon icon="edit" variant="success" size="lg" @click="() => handleIconClick('edit')" />
+          <h3 class="text-lg font-semibold mb-4">
+            Icon Buttons
+          </h3>
+          <HStack
+            spacing="md"
+            class="flex-wrap"
+          >
+            <Button.Icon
+              icon="settings"
+              @click="() => handleIconClick('settings')"
+            />
+            <Button.Icon
+              icon="user"
+              variant="primary"
+              @click="() => handleIconClick('user')"
+            />
+            <Button.Icon
+              icon="trash"
+              variant="error"
+              @click="() => handleIconClick('trash')"
+            />
+            <Button.Icon
+              icon="edit"
+              variant="success"
+              size="lg"
+              @click="() => handleIconClick('edit')"
+            />
           </HStack>
         </div>
 
         <!-- Loading States -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Loading States</h3>
-          <HStack spacing="md" class="flex-wrap">
-            <Button.Primary :loading="true">Processing...</Button.Primary>
-            <Button.Secondary :loading="true">Loading</Button.Secondary>
-            <Button.Outline :loading="true">Please wait</Button.Outline>
+          <h3 class="text-lg font-semibold mb-4">
+            Loading States
+          </h3>
+          <HStack
+            spacing="md"
+            class="flex-wrap"
+          >
+            <Button.Primary :loading="true">
+              Processing...
+            </Button.Primary>
+            <Button.Secondary :loading="true">
+              Loading
+            </Button.Secondary>
+            <Button.Outline :loading="true">
+              Please wait
+            </Button.Outline>
           </HStack>
         </div>
 
         <!-- Text Warping Effects -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Text Warping Effects</h3>
-          <p class="text-sm text-text-secondary mb-4">Click buttons to see individual letter warping animations!</p>
+          <h3 class="text-lg font-semibold mb-4">
+            Text Warping Effects
+          </h3>
+          <p class="text-sm text-text-secondary mb-4">
+            Click buttons to see individual letter warping animations!
+          </p>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 class="font-medium mb-3">Warp Types</h4>
+              <h4 class="font-medium mb-3">
+                Warp Types
+              </h4>
               <VStack spacing="sm">
                 <Button.Primary>Default (Compress 0.8)</Button.Primary>
-                <Button.Success text-warp-type="wave">Wave Effect</Button.Success>
-                <Button.Warning text-warp-type="bend">Bend Effect</Button.Warning>
-                <Button.Secondary text-warp-type="ripple">Ripple Effect</Button.Secondary>
+                <Button.Success text-warp-type="wave">
+                  Wave Effect
+                </Button.Success>
+                <Button.Warning text-warp-type="bend">
+                  Bend Effect
+                </Button.Warning>
+                <Button.Secondary text-warp-type="ripple">
+                  Ripple Effect
+                </Button.Secondary>
               </VStack>
             </div>
             
             <div>
-              <h4 class="font-medium mb-3">Intensity Levels</h4>
+              <h4 class="font-medium mb-3">
+                Intensity Levels
+              </h4>
               <VStack spacing="sm">
-                <Button.Primary :text-warp-intensity="0.5">Subtle (0.5)</Button.Primary>
+                <Button.Primary :text-warp-intensity="0.5">
+                  Subtle (0.5)
+                </Button.Primary>
                 <Button.Primary>Default (0.8)</Button.Primary>
-                <Button.Primary :text-warp-intensity="1.2">Strong (1.2)</Button.Primary>
-                <Button.Outline :enable-text-warp="false">No Warp</Button.Outline>
+                <Button.Primary :text-warp-intensity="1.2">
+                  Strong (1.2)
+                </Button.Primary>
+                <Button.Outline :enable-text-warp="false">
+                  No Warp
+                </Button.Outline>
               </VStack>
             </div>
           </div>
@@ -137,7 +209,9 @@ const handleIconClick = (icon: string) => {
     <Variant title="Card Family">
       <div class="space-y-12 p-8">
         <div class="text-center">
-          <h2 class="text-2xl font-bold mb-4">Card Family</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Card Family
+          </h2>
           <p class="text-lg text-text-secondary mb-8">
             Elegant API: <code class="bg-background-muted px-2 py-1 rounded text-sm">Card.User</code>, 
             <code class="bg-background-muted px-2 py-1 rounded text-sm">Card.Interactive</code>, 
@@ -150,31 +224,45 @@ const handleIconClick = (icon: string) => {
           <!-- Default Card -->
           <Card.Default>
             <div class="p-6">
-              <h3 class="font-semibold mb-2">Default Card</h3>
-              <p class="text-text-secondary">Standard card with basic styling and no special behaviors.</p>
+              <h3 class="font-semibold mb-2">
+                Default Card
+              </h3>
+              <p class="text-text-secondary">
+                Standard card with basic styling and no special behaviors.
+              </p>
             </div>
           </Card.Default>
 
           <!-- Interactive Card -->
           <Card.Interactive>
             <div class="p-6">
-              <h3 class="font-semibold mb-2">Interactive Card</h3>
-              <p class="text-text-secondary">Hover me! This card has interactive animations and hover effects.</p>
+              <h3 class="font-semibold mb-2">
+                Interactive Card
+              </h3>
+              <p class="text-text-secondary">
+                Hover me! This card has interactive animations and hover effects.
+              </p>
             </div>
           </Card.Interactive>
 
           <!-- Elevated Card -->
           <Card.Elevated>
             <div class="p-6">
-              <h3 class="font-semibold mb-2">Elevated Card</h3>
-              <p class="text-text-secondary">Elevated with stronger shadow and no border for floating effect.</p>
+              <h3 class="font-semibold mb-2">
+                Elevated Card
+              </h3>
+              <p class="text-text-secondary">
+                Elevated with stronger shadow and no border for floating effect.
+              </p>
             </div>
           </Card.Elevated>
         </div>
 
         <!-- Specialized Cards -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Specialized Cards</h3>
+          <h3 class="text-lg font-semibold mb-4">
+            Specialized Cards
+          </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
             <!-- User Card -->
             <Card.User 
@@ -195,26 +283,40 @@ const handleIconClick = (icon: string) => {
 
         <!-- Card Sizes -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Card Sizes</h3>
+          <h3 class="text-lg font-semibold mb-4">
+            Card Sizes
+          </h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card.Compact>
               <div class="p-4">
-                <h4 class="font-medium">Compact</h4>
-                <p class="text-sm text-text-secondary">Small card for tight spaces</p>
+                <h4 class="font-medium">
+                  Compact
+                </h4>
+                <p class="text-sm text-text-secondary">
+                  Small card for tight spaces
+                </p>
               </div>
             </Card.Compact>
 
             <Card.Default>
               <div class="p-6">
-                <h4 class="font-medium">Default</h4>
-                <p class="text-sm text-text-secondary">Standard card size for most use cases</p>
+                <h4 class="font-medium">
+                  Default
+                </h4>
+                <p class="text-sm text-text-secondary">
+                  Standard card size for most use cases
+                </p>
               </div>
             </Card.Default>
 
             <Card.Wide>
               <div class="p-6">
-                <h4 class="font-medium">Wide Card</h4>
-                <p class="text-sm text-text-secondary">Extra wide card for dashboards and detailed content display</p>
+                <h4 class="font-medium">
+                  Wide Card
+                </h4>
+                <p class="text-sm text-text-secondary">
+                  Extra wide card for dashboards and detailed content display
+                </p>
               </div>
             </Card.Wide>
           </div>
@@ -225,7 +327,9 @@ const handleIconClick = (icon: string) => {
     <Variant title="Form Family">
       <div class="space-y-12 p-8">
         <div class="text-center">
-          <h2 class="text-2xl font-bold mb-4">Form Family</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Form Family
+          </h2>
           <p class="text-lg text-text-secondary mb-8">
             Elegant API: <code class="bg-background-muted px-2 py-1 rounded text-sm">Form.Field</code>, 
             <code class="bg-background-muted px-2 py-1 rounded text-sm">Form.Section</code>, 
@@ -237,7 +341,9 @@ const handleIconClick = (icon: string) => {
         <div class="max-w-2xl mx-auto">
           <Card.Default>
             <div class="p-8">
-              <h3 class="text-xl font-semibold mb-6">Profile Form Example</h3>
+              <h3 class="text-xl font-semibold mb-6">
+                Profile Form Example
+              </h3>
               
               <form @submit.prevent="handleFormSubmit">
                 <VStack spacing="xl">
@@ -246,7 +352,10 @@ const handleIconClick = (icon: string) => {
                     title="Personal Information"
                     description="Update your basic profile information"
                   >
-                    <HStack spacing="md" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <HStack
+                      spacing="md"
+                      class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    >
                       <Form.Field
                         v-model="profileData.firstName"
                         label="First Name"
@@ -299,12 +408,16 @@ const handleIconClick = (icon: string) => {
 
         <!-- Pre-built Form Examples -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Pre-built Forms</h3>
+          <h3 class="text-lg font-semibold mb-4">
+            Pre-built Forms
+          </h3>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <!-- Contact Form -->
             <Card.Default>
               <div class="p-6">
-                <h4 class="font-semibold mb-4">Contact Form</h4>
+                <h4 class="font-semibold mb-4">
+                  Contact Form
+                </h4>
                 <Form.Contact 
                   :loading="false"
                   @submit="() => alert('Contact form submitted!')"
@@ -315,7 +428,9 @@ const handleIconClick = (icon: string) => {
             <!-- Login Form -->
             <Card.Default>
               <div class="p-6">
-                <h4 class="font-semibold mb-4">Login Form</h4>
+                <h4 class="font-semibold mb-4">
+                  Login Form
+                </h4>
                 <Form.Login 
                   :is-loading="false"
                   @submit="() => alert('Login attempted!')"
@@ -332,7 +447,9 @@ const handleIconClick = (icon: string) => {
     <Variant title="Family Showcase">
       <div class="space-y-16 p-8">
         <div class="text-center">
-          <h2 class="text-3xl font-bold mb-4">Component Families Showcase</h2>
+          <h2 class="text-3xl font-bold mb-4">
+            Component Families Showcase
+          </h2>
           <p class="text-xl text-text-secondary max-w-3xl mx-auto">
             Beautiful, intuitive APIs that make your components feel like a cohesive design system.
             Each family provides specialized variants while maintaining perfect design token consistency.
@@ -364,15 +481,21 @@ const handleIconClick = (icon: string) => {
         <div class="max-w-4xl mx-auto">
           <Card.Default>
             <div class="p-8">
-              <h3 class="text-xl font-semibold mb-4">Usage Example</h3>
+              <h3 class="text-xl font-semibold mb-4">
+                Usage Example
+              </h3>
               <div class="bg-background-muted p-6 rounded-lg font-mono text-sm overflow-x-auto">
-                <div class="text-text-secondary"># Before (verbose)</div>
+                <div class="text-text-secondary">
+                  # Before (verbose)
+                </div>
                 <div class="mb-4">
                   &lt;Button variant="primary" size="lg" loading="true"&gt;Submit&lt;/Button&gt;<br>
                   &lt;Card class="hover:shadow-lg cursor-pointer"&gt;...&lt;/Card&gt;
                 </div>
                 
-                <div class="text-text-secondary"># After (elegant)</div>
+                <div class="text-text-secondary">
+                  # After (elegant)
+                </div>
                 <div>
                   &lt;Button.Primary size="lg" loading="true"&gt;Submit&lt;/Button.Primary&gt;<br>
                   &lt;Card.Interactive&gt;...&lt;/Card.Interactive&gt;

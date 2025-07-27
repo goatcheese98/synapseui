@@ -24,9 +24,15 @@
           </div>
           
           <div class="flex flex-col gap-token-xs min-w-0 flex-1">
-            <CardTitle class="mb-0 text-left truncate">{{ user.name }}</CardTitle>
+            <CardTitle class="mb-0 text-left truncate">
+              {{ user.name }}
+            </CardTitle>
             <CardDescription class="flex items-center gap-token-xs text-left truncate">
-              <Icon name="mail" size="14" class="flex-shrink-0" />
+              <Icon
+                name="mail"
+                size="14"
+                class="flex-shrink-0"
+              />
               <span class="truncate">{{ user.email }}</span>
             </CardDescription>
           </div>
@@ -34,7 +40,10 @@
 
         <!-- Status Badge -->
         <div class="flex-shrink-0">
-          <Badge :variant="statusVariant" class="whitespace-nowrap">
+          <Badge
+            :variant="statusVariant"
+            class="whitespace-nowrap"
+          >
             {{ user.status }}
           </Badge>
         </div>
@@ -45,19 +54,33 @@
       <VStack spacing="md">
         <!-- User Stats -->
         <div class="grid grid-cols-3 gap-4 text-center">
-          <div v-for="stat in stats" :key="stat.label" class="flex flex-col">
-            <div class="text-token-lg font-semibold text-text-primary">{{ stat.value }}</div>
-            <div class="text-token-sm text-text-secondary">{{ stat.label }}</div>
+          <div
+            v-for="stat in stats"
+            :key="stat.label"
+            class="flex flex-col"
+          >
+            <div class="text-token-lg font-semibold text-text-primary">
+              {{ stat.value }}
+            </div>
+            <div class="text-token-sm text-text-secondary">
+              {{ stat.label }}
+            </div>
           </div>
         </div>
 
         <!-- User Bio -->
-        <p v-if="user.bio" class="text-token-sm text-text-secondary leading-relaxed">
+        <p
+          v-if="user.bio"
+          class="text-token-sm text-text-secondary leading-relaxed"
+        >
           {{ user.bio }}
         </p>
 
         <!-- Skills/Tags -->
-        <div v-if="user.skills?.length" class="flex flex-wrap gap-token-xs">
+        <div
+          v-if="user.skills?.length"
+          class="flex flex-wrap gap-token-xs"
+        >
           <Badge 
             v-for="skill in user.skills" 
             :key="skill"
@@ -73,16 +96,39 @@
 
     <CardFooter>
       <div class="flex gap-token-sm w-full">
-        <Button variant="primary" size="sm" class="flex-1 justify-center">
-          <Icon name="user" size="16" class="mr-2" />
+        <Button
+          variant="primary"
+          size="sm"
+          class="flex-1 justify-center"
+        >
+          <Icon
+            name="user"
+            size="16"
+            class="mr-2"
+          />
           View Profile
         </Button>
-        <Button variant="outline" size="sm" class="flex-1 justify-center">
-          <Icon name="mail" size="16" class="mr-2" />
+        <Button
+          variant="outline"
+          size="sm"
+          class="flex-1 justify-center"
+        >
+          <Icon
+            name="mail"
+            size="16"
+            class="mr-2"
+          />
           Message
         </Button>
-        <Button variant="ghost" size="sm" class="w-10 h-8 p-0 justify-center">
-          <Icon name="settings" size="16" />
+        <Button
+          variant="ghost"
+          size="sm"
+          class="w-10 h-8 p-0 justify-center"
+        >
+          <Icon
+            name="settings"
+            size="16"
+          />
         </Button>
       </div>
     </CardFooter>
@@ -91,16 +137,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Card from '@/components/ui/card/Card.vue'
+import Card from '@/components/ui/card/BaseCard.vue'
 import CardHeader from '@/components/ui/card/CardHeader.vue'
 import CardTitle from '@/components/ui/card/CardTitle.vue'
 import CardDescription from '@/components/ui/card/CardDescription.vue'
 import CardContent from '@/components/ui/card/CardContent.vue'
 import CardFooter from '@/components/ui/card/CardFooter.vue'
-import Badge from '@/components/ui/badge/Badge.vue'
-import Button from '@/components/ui/button/Button.vue'
+import Badge from '@/components/ui/badge/BaseBadge.vue'
+import Button from "@/components/ui/button/BaseButton.vue"
 import VStack from '@/components/ui/stack/VStack.vue'
-import Icon from '@/components/ui/icon/Icon.vue'
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface User {
   name: string

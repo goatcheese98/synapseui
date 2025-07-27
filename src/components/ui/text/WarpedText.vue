@@ -4,7 +4,10 @@
 -->
 
 <template>
-  <span class="warped-text" :class="{ 'is-pressed': isPressed }">
+  <span
+    class="warped-text"
+    :class="{ 'is-pressed': isPressed }"
+  >
     <span
       v-for="(letter, i) in letters"
       :key="`${letter}-${i}`"

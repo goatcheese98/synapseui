@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from '@/components/ui/button/Button.vue'
+import Button from "@/components/ui/button/BaseButton.vue"
 import VStack from '@/components/ui/stack/VStack.vue'
 import HStack from '@/components/ui/stack/HStack.vue'
 
@@ -188,12 +188,17 @@ const resetNeuralResponse = () => {
 </script>
 
 <template>
-  <Story title="Experimental/Button Effects Lab" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Experimental/Button Effects Lab"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Advanced Button Effects Laboratory">
       <div class="space-y-16 p-8 max-w-7xl mx-auto btn-effects-lab">
         <!-- Header -->
         <div class="text-center">
-          <h1 class="text-3xl font-bold mb-4">✨ Advanced Button Effects Laboratory</h1>
+          <h1 class="text-3xl font-bold mb-4">
+            ✨ Advanced Button Effects Laboratory
+          </h1>
           <p class="text-lg text-text-secondary mb-2">
             Explore shimmer, ripple, glow, cursor detection, and other modern button effects for Synapse-based UI
           </p>
@@ -204,33 +209,56 @@ const resetNeuralResponse = () => {
 
         <!-- Text Warping (Our Default) -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🔤 Text Warping (Our Default)</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            🔤 Text Warping (Our Default)
+          </h2>
           <div class="bg-background-muted p-6 rounded-lg">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Button variant="primary" @click="handleClick('compress-default')">
+              <Button
+                variant="primary"
+                @click="handleClick('compress-default')"
+              >
                 Default Compress
               </Button>
-              <Button variant="success" text-warp-type="wave" @click="handleClick('wave')">
+              <Button
+                variant="success"
+                text-warp-type="wave"
+                @click="handleClick('wave')"
+              >
                 Wave Effect
               </Button>
-              <Button variant="warning" text-warp-type="bend" @click="handleClick('bend')">
+              <Button
+                variant="warning"
+                text-warp-type="bend"
+                @click="handleClick('bend')"
+              >
                 Bend Effect
               </Button>
-              <Button variant="secondary" text-warp-type="ripple" @click="handleClick('ripple')">
+              <Button
+                variant="secondary"
+                text-warp-type="ripple"
+                @click="handleClick('ripple')"
+              >
                 Ripple Effect
               </Button>
             </div>
-            <p class="text-sm text-text-secondary mt-3">✓ Our perfected text warping with compress (0.8) as default</p>
+            <p class="text-sm text-text-secondary mt-3">
+              ✓ Our perfected text warping with compress (0.8) as default
+            </p>
           </div>
         </section>
 
         <!-- Shimmer Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">✨ Shimmer Effects</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            ✨ Shimmer Effects
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Basic Shimmer -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Basic Shimmer</h3>
+              <h3 class="font-medium mb-3">
+                Basic Shimmer
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-primary text-primary-text rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit]
@@ -242,12 +270,16 @@ const resetNeuralResponse = () => {
               >
                 Shimmer Button
               </button>
-              <p class="text-xs text-text-secondary mt-2">Light sweep on hover</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Light sweep on hover
+              </p>
             </div>
 
             <!-- Continuous Shimmer -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Continuous Shimmer</h3>
+              <h3 class="font-medium mb-3">
+                Continuous Shimmer
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-success text-success-text rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit]
@@ -258,12 +290,16 @@ const resetNeuralResponse = () => {
               >
                 Always Shimmering
               </button>
-              <p class="text-xs text-text-secondary mt-2">Continuous animation</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Continuous animation
+              </p>
             </div>
 
             <!-- Gradient Shimmer -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Gradient Shimmer</h3>
+              <h3 class="font-medium mb-3">
+                Gradient Shimmer
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit]
@@ -275,18 +311,24 @@ const resetNeuralResponse = () => {
               >
                 Gradient Shimmer  
               </button>
-              <p class="text-xs text-text-secondary mt-2">Gradient with shimmer</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Gradient with shimmer
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Glow Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🌟 Glow Effects</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            🌟 Glow Effects
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Basic Glow -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Basic Glow</h3>
+              <h3 class="font-medium mb-3">
+                Basic Glow
+              </h3>
               <button 
                 class="px-6 py-3 bg-primary text-primary-text rounded-token-md font-medium
                        shadow-[0_0_20px_rgba(59,130,246,0.3)]
@@ -296,12 +338,16 @@ const resetNeuralResponse = () => {
               >
                 Glowing Button
               </button>
-              <p class="text-xs text-text-secondary mt-2">Soft glow shadow</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Soft glow shadow
+              </p>
             </div>
 
             <!-- Neon Glow -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Neon Glow</h3>
+              <h3 class="font-medium mb-3">
+                Neon Glow
+              </h3>
               <button 
                 class="px-6 py-3 bg-gray-900 text-cyan-400 border-2 border-cyan-400 rounded-token-md font-medium
                        shadow-[0_0_10px_#22d3ee,inset_0_0_10px_rgba(34,211,238,0.1)]
@@ -311,12 +357,16 @@ const resetNeuralResponse = () => {
               >
                 Neon Effect
               </button>
-              <p class="text-xs text-text-secondary mt-2">Cyberpunk neon style</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Cyberpunk neon style
+              </p>
             </div>
 
             <!-- Pulse Glow -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Pulse Glow</h3>
+              <h3 class="font-medium mb-3">
+                Pulse Glow
+              </h3>
               <button 
                 class="px-6 py-3 bg-success text-success-text rounded-token-md font-medium
                        shadow-[0_0_15px_rgba(34,197,94,0.4)]
@@ -326,18 +376,24 @@ const resetNeuralResponse = () => {
               >
                 Pulsing Glow
               </button>
-              <p class="text-xs text-text-secondary mt-2">Breathing glow effect</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Breathing glow effect
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Border Animations -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🔥 Border Animations</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            🔥 Border Animations
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Border Beam -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Border Beam</h3>
+              <h3 class="font-medium mb-3">
+                Border Beam
+              </h3>
               <div class="relative">
                 <button 
                   class="relative px-6 py-3 bg-primary text-primary-text rounded-token-md font-medium border-2 border-transparent
@@ -351,12 +407,16 @@ const resetNeuralResponse = () => {
                   Border Beam
                 </button>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Traveling light beam</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Traveling light beam
+              </p>
             </div>
 
             <!-- Gradient Border -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Gradient Border</h3>
+              <h3 class="font-medium mb-3">
+                Gradient Border
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-background-primary text-text-primary rounded-token-md font-medium
                        border-2 border-transparent bg-clip-padding
@@ -368,18 +428,24 @@ const resetNeuralResponse = () => {
               >
                 Gradient Border
               </button>
-              <p class="text-xs text-text-secondary mt-2">Static gradient border</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Static gradient border
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Ripple Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">💧 Ripple Effects</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            💧 Ripple Effects
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Click Ripple -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Click Ripple</h3>
+              <h3 class="font-medium mb-3">
+                Click Ripple
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-primary text-primary-text rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit] before:bg-white before:opacity-0
@@ -390,12 +456,16 @@ const resetNeuralResponse = () => {
               >
                 Click Ripple
               </button>
-              <p class="text-xs text-text-secondary mt-2">Ripple on click</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Ripple on click
+              </p>
             </div>
 
             <!-- Hover Ripple -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Hover Ripple</h3>
+              <h3 class="font-medium mb-3">
+                Hover Ripple
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-success text-success-text rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit] before:bg-white before:opacity-0
@@ -406,12 +476,16 @@ const resetNeuralResponse = () => {
               >
                 Hover Ripple
               </button>
-              <p class="text-xs text-text-secondary mt-2">Ripple on hover</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Ripple on hover
+              </p>
             </div>
 
             <!-- Pulse Ripple -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Pulse Ripple</h3>
+              <h3 class="font-medium mb-3">
+                Pulse Ripple
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-warning text-warning-text rounded-token-md font-medium
                        before:absolute before:inset-0 before:rounded-[inherit] before:bg-white
@@ -421,104 +495,132 @@ const resetNeuralResponse = () => {
               >
                 Pulse Ripple
               </button>
-              <p class="text-xs text-text-secondary mt-2">Continuous pulse</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Continuous pulse
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Cursor Detection & Synapse Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🤖 Cursor Detection & Synapse Effects</h2>
-          <p class="text-text-secondary mb-6">Advanced cursor-responsive animations crucial for Synapse-based UI systems</p>
+          <h2 class="text-2xl font-semibold mb-6">
+            🤖 Cursor Detection & Synapse Effects
+          </h2>
+          <p class="text-text-secondary mb-6">
+            Advanced cursor-responsive animations crucial for Synapse-based UI systems
+          </p>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Cursor Tracking -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Cursor Tracking</h3>
+              <h3 class="font-medium mb-3">
+                Cursor Tracking
+              </h3>
               <div 
+                ref="cursorTracker"
                 class="relative inline-block px-6 py-3 bg-gray-800 text-white rounded-token-md font-medium overflow-hidden
                        hover:shadow-lg transition-all duration-200 cursor-tracking-btn cursor-pointer"
                 @mousemove="trackCursor"
                 @mouseleave="resetCursorTracking"
                 @click="handleClick('cursor-tracking')"
-                ref="cursorTracker"
               >
-                <span class="cursor-light"></span>
+                <span class="cursor-light" />
                 <span class="relative z-10">Cursor Tracker</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Light follows cursor position</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Light follows cursor position
+              </p>
             </div>
 
             <!-- Cursor Tracking Shimmer -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Cursor Tracking Shimmer</h3>
+              <h3 class="font-medium mb-3">
+                Cursor Tracking Shimmer
+              </h3>
               <div 
+                ref="cursorShimmer"
                 class="relative inline-block px-6 py-3 bg-gray-900 text-white rounded-token-md font-medium overflow-hidden
                        hover:shadow-lg transition-all duration-200 cursor-shimmer-btn cursor-pointer"
                 @mousemove="trackCursorShimmer"
                 @mouseleave="resetCursorShimmer"
                 @click="handleClick('cursor-shimmer')"
-                ref="cursorShimmer"
               >
-                <span class="cursor-shimmer-effect"></span>
+                <span class="cursor-shimmer-effect" />
                 <span class="relative z-10">Shimmer Track</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Shimmer follows cursor with trail</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Shimmer follows cursor with trail
+              </p>
             </div>
 
             <!-- Directional Ripple -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Directional Ripple</h3>
+              <h3 class="font-medium mb-3">
+                Directional Ripple
+              </h3>
               <div 
+                ref="directionalRipple"
                 class="relative inline-block px-6 py-3 bg-green-600 text-white rounded-token-md font-medium overflow-hidden
                        hover:shadow-lg transition-all duration-200 directional-ripple-btn cursor-pointer"
                 @mousemove="handleDirectionalRipple"
                 @mouseleave="resetRipple"
                 @click="handleClick('directional-ripple')"
-                ref="directionalRipple"
               >
-                <span class="ripple-effect"></span>
+                <span class="ripple-effect" />
                 <span class="relative z-10">Directional Ripple</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Ripple from cursor position</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Ripple from cursor position
+              </p>
             </div>
 
             <!-- Proximity Glow -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Proximity Glow</h3>
+              <h3 class="font-medium mb-3">
+                Proximity Glow
+              </h3>
               <div 
+                ref="proximityGlow"
                 class="relative inline-block px-6 py-3 bg-indigo-700 text-white rounded-token-md font-medium
                        hover:shadow-lg transition-all duration-200 proximity-glow-btn cursor-pointer"
                 @mousemove="handleProximityGlow"
                 @mouseleave="resetProximityGlow"
                 @click="handleClick('proximity-glow')"
-                ref="proximityGlow"
               >
-                <span class="glow-overlay"></span>
+                <span class="glow-overlay" />
                 <span class="relative z-10">Proximity Glow</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Glow intensity based on distance</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Glow intensity based on distance
+              </p>
             </div>
 
             <!-- Neural Response -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Neural Response</h3>
+              <h3 class="font-medium mb-3">
+                Neural Response
+              </h3>
               <div 
+                ref="neuralResponse"
                 class="relative inline-block px-6 py-3 bg-red-600 text-white rounded-token-md font-medium overflow-hidden
                        hover:shadow-lg transition-all duration-200 neural-response-btn cursor-pointer"
                 @mousemove="handleNeuralResponse"
                 @mouseleave="resetNeuralResponse"
                 @click="handleClick('neural-response')"
-                ref="neuralResponse"
               >
-                <span class="neural-pulse"></span>
+                <span class="neural-pulse" />
                 <span class="relative z-10">Neural Pulse</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Synapse-like neural activation</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Synapse-like neural activation
+              </p>
             </div>
 
             <!-- Morphing Button -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Morphing Button</h3>
+              <h3 class="font-medium mb-3">
+                Morphing Button
+              </h3>
               <div 
                 class="relative inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-token-md font-medium
                        hover:rounded-full hover:px-10 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)]
@@ -531,18 +633,24 @@ const resetNeuralResponse = () => {
               >
                 <span class="relative z-10">Morph Shape</span>
               </div>
-              <p class="text-xs text-text-secondary mt-2">Shape changes on interaction</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Shape changes on interaction
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Magnetic Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🧲 Magnetic Effects</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            🧲 Magnetic Effects
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Magnetic Hover -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Magnetic Hover</h3>
+              <h3 class="font-medium mb-3">
+                Magnetic Hover
+              </h3>
               <button 
                 class="px-6 py-3 bg-primary text-primary-text rounded-token-md font-medium
                        hover:scale-110 hover:-translate-y-1 hover:shadow-lg
@@ -551,12 +659,16 @@ const resetNeuralResponse = () => {
               >
                 Magnetic Button
               </button>
-              <p class="text-xs text-text-secondary mt-2">Attracts cursor</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Attracts cursor
+              </p>
             </div>
 
             <!-- Tilt Effect -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Tilt Effect</h3>
+              <h3 class="font-medium mb-3">
+                Tilt Effect
+              </h3>
               <button 
                 class="px-6 py-3 bg-success text-success-text rounded-token-md font-medium
                        hover:rotate-3 hover:scale-105 hover:shadow-lg
@@ -565,12 +677,16 @@ const resetNeuralResponse = () => {
               >
                 Tilt Button
               </button>
-              <p class="text-xs text-text-secondary mt-2">Subtle tilt on hover</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Subtle tilt on hover
+              </p>
             </div>
 
             <!-- Bounce Effect -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Bounce Effect</h3>
+              <h3 class="font-medium mb-3">
+                Bounce Effect
+              </h3>
               <button 
                 class="px-6 py-3 bg-warning text-warning-text rounded-token-md font-medium
                        hover:animate-bounce hover:shadow-lg
@@ -579,18 +695,24 @@ const resetNeuralResponse = () => {
               >
                 Bouncy Button
               </button>
-              <p class="text-xs text-text-secondary mt-2">Bounce animation</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Bounce animation
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Combination Effects -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">🎨 Combination Effects</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            🎨 Combination Effects
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Shimmer + Glow -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Shimmer + Glow</h3>
+              <h3 class="font-medium mb-3">
+                Shimmer + Glow
+              </h3>
               <button 
                 class="relative px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-token-md font-medium overflow-hidden
                        shadow-[0_0_20px_rgba(59,130,246,0.4)]
@@ -604,12 +726,16 @@ const resetNeuralResponse = () => {
               >
                 Shimmer Glow
               </button>
-              <p class="text-xs text-text-secondary mt-2">Best of both worlds</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Best of both worlds
+              </p>
             </div>
 
             <!-- Neon + Text Warp -->
             <div class="text-center p-4 border rounded-lg">
-              <h3 class="font-medium mb-3">Neon + Text Warp</h3>
+              <h3 class="font-medium mb-3">
+                Neon + Text Warp
+              </h3>
               <Button
                 variant="outline"
                 class="bg-gray-900 border-cyan-400 text-cyan-400
@@ -622,14 +748,18 @@ const resetNeuralResponse = () => {
               >
                 Cyber Warp
               </Button>
-              <p class="text-xs text-text-secondary mt-2">Futuristic combo</p>
+              <p class="text-xs text-text-secondary mt-2">
+                Futuristic combo
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Performance Test -->
         <section>
-          <h2 class="text-2xl font-semibold mb-6">⚡ Performance Test</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            ⚡ Performance Test
+          </h2>
           <div class="bg-background-muted p-6 rounded-lg">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               <button 
@@ -655,15 +785,24 @@ const resetNeuralResponse = () => {
 
         <!-- Design Recommendations -->
         <section class="bg-background-secondary p-8 rounded-lg">
-          <h2 class="text-2xl font-semibold mb-6">💡 Effect Usage Recommendations</h2>
+          <h2 class="text-2xl font-semibold mb-6">
+            💡 Effect Usage Recommendations
+          </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="text-center">
               <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-primary-text text-2xl">🎯</span>
               </div>
-              <h3 class="font-semibold mb-2">Primary Actions</h3>
-              <p class="text-sm text-text-secondary mb-3">Text warp + subtle glow</p>
-              <Button variant="primary" class="shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              <h3 class="font-semibold mb-2">
+                Primary Actions
+              </h3>
+              <p class="text-sm text-text-secondary mb-3">
+                Text warp + subtle glow
+              </p>
+              <Button
+                variant="primary"
+                class="shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+              >
                 Default + Glow
               </Button>
             </div>
@@ -672,8 +811,12 @@ const resetNeuralResponse = () => {
               <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-success-text text-2xl">✨</span>
               </div>
-              <h3 class="font-semibold mb-2">Call-to-Action</h3>
-              <p class="text-sm text-text-secondary mb-3">Shimmer for attention</p>
+              <h3 class="font-semibold mb-2">
+                Call-to-Action
+              </h3>
+              <p class="text-sm text-text-secondary mb-3">
+                Shimmer for attention
+              </p>
               <button 
                 class="relative px-4 py-2 bg-success text-success-text rounded-token-md font-medium overflow-hidden
                        before:absolute before:inset-0 before:rounded-[inherit]
@@ -689,8 +832,12 @@ const resetNeuralResponse = () => {
               <div class="w-16 h-16 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-warning-text text-2xl">🔥</span>
               </div>
-              <h3 class="font-semibold mb-2">Gaming/Creative</h3>
-              <p class="text-sm text-text-secondary mb-3">Neon + effects</p>
+              <h3 class="font-semibold mb-2">
+                Gaming/Creative
+              </h3>
+              <p class="text-sm text-text-secondary mb-3">
+                Neon + effects
+              </p>
               <button 
                 class="px-4 py-2 bg-gray-900 text-cyan-400 border border-cyan-400 rounded-token-md font-medium
                        shadow-[0_0_10px_#22d3ee] hover:shadow-[0_0_20px_#22d3ee] transition-all duration-300"
@@ -703,9 +850,17 @@ const resetNeuralResponse = () => {
               <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-secondary-text text-2xl">💼</span>
               </div>
-              <h3 class="font-semibold mb-2">Professional</h3>
-              <p class="text-sm text-text-secondary mb-3">Minimal effects only</p>
-              <Button variant="outline" :enable-text-warp="true" :text-warp-intensity="0.5">
+              <h3 class="font-semibold mb-2">
+                Professional
+              </h3>
+              <p class="text-sm text-text-secondary mb-3">
+                Minimal effects only
+              </p>
+              <Button
+                variant="outline"
+                :enable-text-warp="true"
+                :text-warp-intensity="0.5"
+              >
                 Subtle Only
               </Button>
             </div>

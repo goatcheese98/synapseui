@@ -6,13 +6,16 @@
       :checked="checked"
       :disabled="disabled"
       :required="required"
-      @update:checked="handleCheckedChange"
       v-bind="$attrs"
+      @update:checked="handleCheckedChange"
     >
       <CheckboxIndicator
         :class="cn('flex items-center justify-center text-current', indicatorClass)"
       >
-        <Icon :icon="computedIcon" :class="computedIconSize" />
+        <Icon
+          :icon="computedIcon"
+          :class="computedIconSize"
+        />
       </CheckboxIndicator>
     </CheckboxRoot>
     
@@ -26,7 +29,10 @@
   </div>
   
   <!-- Error message -->
-  <div v-if="hasError && errorMessage" :class="cn('mt-1 text-xs', computedErrorClasses)">
+  <div
+    v-if="hasError && errorMessage"
+    :class="cn('mt-1 text-xs', computedErrorClasses)"
+  >
     {{ errorMessage }}
   </div>
 </template>
@@ -70,11 +76,18 @@ const props = withDefaults(defineProps<SmartCheckboxProps>(), {
   checked: false,
   disabled: false,
   required: false,
+  fieldId: '',
+  label: '',
   size: 'md',
   variant: 'default',
   autoAdapt: true,
   intelligence: 'full',
+  checkboxClass: '',
+  labelClass: '',
+  indicatorClass: '',
+  wrapperClass: '',
   hasError: false,
+  errorMessage: '',
   checkedIcon: 'lucide:check',
   indeterminateIcon: 'lucide:minus'
 })

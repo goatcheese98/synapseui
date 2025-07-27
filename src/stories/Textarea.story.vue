@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import Textarea from '@/components/ui/textarea/Textarea.vue'
+import Textarea from '@/components/ui/textarea/BaseTextarea.vue'
 
 const state = reactive({
   basic: '',
@@ -11,11 +11,17 @@ const state = reactive({
 </script>
 
 <template>
-  <Story title="Forms/Textarea" :layout="{ type: 'single', iframe: false }">
+  <Story
+    title="Forms/Textarea"
+    :layout="{ type: 'single', iframe: false }"
+  >
     <Variant title="Basic">
       <div class="space-y-4">
         <div>
-          <label for="basic-textarea" class="block text-sm font-medium text-foreground mb-2">
+          <label
+            for="basic-textarea"
+            class="block text-sm font-medium text-foreground mb-2"
+          >
             Basic Textarea
           </label>
           <Textarea
@@ -24,14 +30,19 @@ const state = reactive({
             placeholder="Type your message here..."
           />
         </div>
-        <p class="text-sm text-muted-foreground">Value: {{ state.basic }}</p>
+        <p class="text-sm text-muted-foreground">
+          Value: {{ state.basic }}
+        </p>
       </div>
     </Variant>
 
     <Variant title="With Placeholder">
       <div class="space-y-4">
         <div>
-          <label for="placeholder-textarea" class="block text-sm font-medium text-foreground mb-2">
+          <label
+            for="placeholder-textarea"
+            class="block text-sm font-medium text-foreground mb-2"
+          >
             With Placeholder
           </label>
           <Textarea
@@ -46,7 +57,10 @@ const state = reactive({
     <Variant title="Disabled">
       <div class="space-y-4">
         <div>
-          <label for="disabled-textarea" class="block text-sm font-medium text-foreground mb-2">
+          <label
+            for="disabled-textarea"
+            class="block text-sm font-medium text-foreground mb-2"
+          >
             Disabled Textarea
           </label>
           <Textarea
@@ -95,7 +109,10 @@ const state = reactive({
     <Variant title="Resizable">
       <div class="space-y-4">
         <div>
-          <label for="resizable-textarea" class="block text-sm font-medium text-foreground mb-2">
+          <label
+            for="resizable-textarea"
+            class="block text-sm font-medium text-foreground mb-2"
+          >
             Resizable Textarea
           </label>
           <Textarea
