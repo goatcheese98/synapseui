@@ -2,23 +2,41 @@
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/rohanjasani"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
     },
     "context7-mcp": {
       "command": "npx",
-      "args": ["-y", "@smithery/cli@latest", "run", "@upstash/context7-mcp", "--key", "4135ce6e-e5a5-45f1-a6bb-8023fd91210e", "--profile", "financial-reptile-WGz0ut"]
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@upstash/context7-mcp"
+      ]
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@smithery/cli@latest", "run", "@smithery-ai/github", "--key", "4135ce6e-e5a5-45f1-a6bb-8023fd91210e", "--profile", "financial-reptile-WGz0ut"]
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/github"
+      ]
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest"]
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     },
     "browsermcp": {
       "command": "npx",
-      "args": ["@browsermcp/mcp@latest"]
+      "args": [
+        "@browsermcp/mcp@latest"
+      ]
     }
   }
 }

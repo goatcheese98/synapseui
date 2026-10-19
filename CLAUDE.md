@@ -6,17 +6,17 @@ The following MCP servers are configured for this project:
 
 ### filesystem
 - **Purpose**: File system operations and navigation
-- **Command**: `npx -y @modelcontextprotocol/server-filesystem /Users/rohanjasani`
+- **Command**: `npx -y @modelcontextprotocol/server-filesystem .`
 - **Usage**: Read, write, and navigate project files
 
 ### context7-mcp
 - **Purpose**: Context management and memory
-- **Command**: `npx -y @smithery/cli@latest run @upstash/context7-mcp --key 4135ce6e-e5a5-45f1-a6bb-8023fd91210e --profile financial-reptile-WGz0ut`
+- **Command**: `npx -y @smithery/cli@latest run @upstash/context7-mcp (configure authentication outside the repository)
 - **Usage**: Maintain context across sessions
 
 ### github
 - **Purpose**: GitHub integration and repository management
-- **Command**: `npx -y @smithery/cli@latest run @smithery-ai/github --key 4135ce6e-e5a5-45f1-a6bb-8023fd91210e --profile financial-reptile-WGz0ut`
+- **Command**: `npx -y @smithery/cli@latest run @smithery-ai/github (configure authentication outside the repository)
 - **Usage**: GitHub operations, PR management, issue tracking
 
 ### playwright
