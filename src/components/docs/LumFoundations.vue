@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Button, Input } from '../../index'
+const fontLicenseUrl = new URL('../../assets/fonts/OFL.txt', import.meta.url).href
 defineProps<{ theme: 'light' | 'dark' | 'system' }>()
 const saving = ref(false)
 const count = ref(0)
@@ -116,7 +117,11 @@ async function copyExample() {
         {{ copyState }}
       </p>
     </section>
-    <section><h2>Keyboard first</h2><p>Enter and Space activate native buttons once. Loading prevents duplicate actions. Motion stays optional.</p></section>
+    <section>
+      <h2>Keyboard first</h2>
+      <p>Enter and Space activate native buttons once. Loading prevents duplicate actions. Motion stays optional.</p>
+      <p>Self-hosted Geist and Geist Mono. <a :href="fontLicenseUrl">Font license (SIL OFL 1.1)</a></p>
+    </section>
     <section aria-labelledby="input-heading">
       <h2 id="input-heading">
         Input
@@ -155,6 +160,9 @@ p { color:var(--mut); } .subtitle { font-size:16px; } section { min-width:0; }
 .samples { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin:16px 0; } .states { gap:24px; } .states p { margin-bottom:12px; }
 .lum-foundations :deep(.synapse-button) { min-height:44px; height:auto; padding-block:10px; }
 .usage { background:var(--panel2); border-radius:var(--r-md); } .usage-heading { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; } .usage-heading h2 { margin:0; }
+code { font-family:var(--font-mono); }
+a { color:var(--fg); text-decoration:underline; text-underline-offset:3px; }
+a:focus-visible { outline:2px solid var(--fg); outline-offset:3px; }
 pre { overflow-x:auto; max-width:100%; margin-top:16px; padding:4px; color:var(--fg); font:13px/22px var(--font-mono); white-space:pre; }
 label { display:block; margin:12px 0 6px; color:var(--fg); }
 @media(max-width:767px) { .lum-foundations { padding:16px; font-size:16px; } h2 { font-size:16px; } .surface { padding:16px; } .lum-foundations :deep(input) { font-size:16px; min-height:44px; } }

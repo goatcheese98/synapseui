@@ -73,7 +73,8 @@
       "require": "./dist/synapse-ui.umd.cjs"
     },
     "./style.css": "./dist/synapseui.css",
-    "./lum.css": "./dist/lum.css"
+    "./lum.css": "./dist/lum.css",
+    "./fonts.css": "./dist/fonts.css"
   },
   "peerDependencies": {
     "vue": "^3.5.18"

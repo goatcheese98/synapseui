@@ -1,0 +1,41 @@
+{
+  "package": "geist",
+  "version": "1.4.2",
+  "source": "https://registry.npmjs.org/geist/-/geist-1.4.2.tgz",
+  "license": "SIL Open Font License 1.1",
+  "files": [
+    {
+      "file": "Geist-Variable.woff2",
+      "bytes": 58512,
+      "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+      "upstreamFontNames": [
+        "Geist",
+        "Geist-Regular"
+      ],
+      "axes": [
+        {
+          "tag": "wght",
+          "min": 100.0,
+          "max": 900.0
+        }
+      ]
+    },
+    {
+      "file": "GeistMono-Variable.woff2",
+      "bytes": 58092,
+      "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+      "upstreamFontNames": [
+        "Geist Mono",
+        "GeistMono-Regular"
+      ],
+      "axes": [
+        {
+          "tag": "wght",
+          "min": 100.0,
+          "max": 900.0
+        }
+      ]
+    }
+  ],
+  "archiveIntegrity": "sha512-OQUga/KUc8ueijck6EbtT07L4tZ5+TZgjw8PyWfxo16sL5FWk7gNViPNU8hgCFjy6bJi9yuTP+CRpywzaGN8zw=="
+}

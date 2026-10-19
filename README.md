@@ -20,9 +20,11 @@ corepack pnpm run story:build
 import { Button, Input } from 'synapseui'
 import 'synapseui/style.css'
 import 'synapseui/lum.css'
+// Optional: register the bundled self-hosted Geist and Geist Mono faces.
+import 'synapseui/fonts.css'
 ```
 
-Apply `data-synapse-theme="light"`, `"dark"` or `"system"` on a host element to opt in to LUM styling. Theme persistence and font delivery remain host responsibilities. See [design adoption](docs/design/lum-foundations.md).
+Apply `data-synapse-theme="light"`, `"dark"` or `"system"` on a host element to opt in to LUM styling. Font registration is opt-in for library consumers; core styles do not import fonts or impose a global font family. The demo imports bundled Geist/Geist Mono WOFF2 assets under SIL OFL 1.1. Theme persistence remains a host responsibility. See [font licensing and verified loading](docs/design/typography.md). See [design adoption](docs/design/lum-foundations.md).
 
 Start `corepack pnpm dev` in one cloud terminal. Run the focused real browser checks from another:
 

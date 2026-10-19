@@ -1,6 +1,8 @@
 import { chromium } from 'playwright'
+import { observeFonts } from './font-probe.ts'
 import assert from 'node:assert/strict'
 import { mkdirSync,writeFileSync } from 'node:fs'
+const baseURL=process.env.FOUNDATIONS_BASE_URL || 'http://localhost:6006'
 const screenshots=process.env.BROWSER_ARTIFACT_DIR || 'test-results/foundations';mkdirSync(screenshots,{recursive:true})
 const browser=await chromium.launch({...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH} : {}),args:['--no-sandbox']})
 const results: unknown[]=[]
@@ -8,9 +10,13 @@ try {
 for (const width of [320,768,1440]) for (const theme of ['light','dark']) {
  const page=await browser.newPage({viewport:{width,height:1100},reducedMotion:'reduce'})
  page.setDefaultTimeout(15000);const errors: string[]=[];page.on('pageerror',e=>errors.push(e.message))
+ const verifyFonts=observeFonts(page)
  const id=`src-stories-lumfoundations-story-vue-${theme==='light'?0:1}`
- await page.goto(`http://localhost:6006/story/src-stories-lumfoundations-story-vue?variantId=${id}`,{waitUntil:'networkidle'})
+ await page.goto(`${baseURL}/story/src-stories-lumfoundations-story-vue?variantId=${id}`,{waitUntil:'networkidle'})
  const main=page.locator(`main[data-synapse-theme="${theme}"]`);await main.waitFor()
+ const typography=await verifyFonts(`main[data-synapse-theme="${theme}"] h1`, `main[data-synapse-theme="${theme}"] pre code`)
+ const license=await page.request.get(await main.getByRole('link',{name:'Font license (SIL OFL 1.1)'}).getAttribute('href') || '')
+ assert(license.ok());assert((await license.text()).includes('SIL OPEN FONT LICENSE Version 1.1'))
  const keyboard=main.getByRole('button',{name:'Try Enter or Space'})
  await keyboard.focus();assert(await keyboard.evaluate(e=>e===document.activeElement))
  await page.keyboard.press('Enter');await page.keyboard.press('Space')
@@ -46,12 +52,12 @@ for (const width of [320,768,1440]) for (const theme of ['light','dark']) {
   await main.getByRole('textbox',{name:'Disabled example'}).scrollIntoViewIfNeeded();
   await page.screenshot({path:`${screenshots}/inputs-${width}-${theme}.png`,fullPage:true})
  }
- results.push({width,theme,keyboard:'Enter + Space exactly once',input:'passed',clipboard:'reject + resolve passed',overflow,minimumContrast:Math.min(...contrast),motion:'none',errors})
+ results.push({width,theme,keyboard:'Enter + Space exactly once',input:'passed',clipboard:'reject + resolve passed',overflow,minimumContrast:Math.min(...contrast),typography,motion:'none',errors})
  await page.close()
 }
 for (const colorScheme of ['light','dark'] as const) {
  const page=await browser.newPage({colorScheme});
- await page.goto('http://localhost:6006/story/src-stories-lumfoundations-story-vue?variantId=src-stories-lumfoundations-story-vue-2',{waitUntil:'networkidle'});
+ await page.goto(`${baseURL}/story/src-stories-lumfoundations-story-vue?variantId=src-stories-lumfoundations-story-vue-2`,{waitUntil:'networkidle'});
  const main=page.locator('main[data-synapse-theme="system"]');await main.waitFor();
  assert.equal(await main.evaluate(e=>getComputedStyle(e).getPropertyValue('--acc').trim()),colorScheme==='dark'?'#d6a828':'#18181b');
  results.push({systemTheme:colorScheme,passed:true});await page.close();
