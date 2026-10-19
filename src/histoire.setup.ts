@@ -1,4 +1,5 @@
 import './style.css'
+import './styles/lum.css'
 import { createPinia } from 'pinia'
 import { defineSetupVue3 } from '@histoire/plugin-vue'
 

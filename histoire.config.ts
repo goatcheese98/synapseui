@@ -2,6 +2,11 @@ import { defineConfig } from 'histoire'
 import { HstVue } from '@histoire/plugin-vue'
 
 export default defineConfig({
+  theme: {
+    title: 'Synapse UI',
+    logo: { light: '/src/assets/synapse-light.svg', dark: '/src/assets/synapse-dark.svg' },
+    colors: { primary: { 50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#52525b', 600: '#52525b', 700: '#3f3f46', 800: '#27272a', 900: '#18181b' } }
+  },
   plugins: [
     HstVue(),
     // Override built-in plugins to disable tailwind-tokens

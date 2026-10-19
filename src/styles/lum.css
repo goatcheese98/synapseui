@@ -1,0 +1,50 @@
+/* Opt-in LUM contract. Import after style.css; put data-synapse-theme on a host. */
+[data-synapse-theme] {
+  --bg:#fff; --panel:#fff; --panel2:#fafafa; --sidebar:#fbfbfb;
+  --line:#e4e4e7; --line2:#efeff1; --fg:#18181b; --mut:#66666f; --mut2:#a1a1aa;
+  --acc:#18181b; --on-acc:#fff; --ok:#16845d; --okbg:#edf8f3; --danger:#d33b3b;
+  --font-sans:Geist,system-ui,sans-serif; --font-ui:var(--font-sans); --font-mono:'Geist Mono',monospace;
+  --r-xs:6px; --r-sm:8px; --r-md:10px; --r-lg:12px; --r-xl:16px;
+  --bg-primary:var(--bg); --bg-secondary:var(--panel); --bg-muted:var(--panel2);
+  --text-primary:var(--fg); --text-secondary:var(--mut); --text-muted:var(--mut);
+  --primary-bg:var(--acc); --primary-text:var(--on-acc); --primary-border:var(--acc);
+  --secondary-bg:var(--panel2); --secondary-text:var(--fg); --secondary-border:var(--line);
+  --border-primary:var(--line); --border-secondary:var(--line2);
+  color:var(--fg); background:var(--bg); font-family:var(--font-sans); color-scheme:light;
+}
+[data-synapse-theme='dark'] {
+  --bg:#0a0a0b; --panel:#121214; --panel2:#0e0e10; --sidebar:#0c0c0e;
+  --line:#242428; --line2:#1a1a1d; --fg:#ececee; --mut:#92929b; --mut2:#8b8b94;
+  --acc:#d6a828; --on-acc:#141210; --ok:#2f9c70; --okbg:#0e201a; --danger:#d6635e;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark) {
+  [data-synapse-theme='system'] {
+    --bg:#0a0a0b; --panel:#121214; --panel2:#0e0e10; --sidebar:#0c0c0e;
+    --line:#242428; --line2:#1a1a1d; --fg:#ececee; --mut:#92929b; --mut2:#8b8b94;
+    --acc:#d6a828; --on-acc:#141210; --ok:#2f9c70; --okbg:#0e201a; --danger:#d6635e;
+    color-scheme:dark;
+  }
+}
+[data-synapse-theme] .synapse-button {
+  border:1px solid transparent; border-radius:var(--r-sm); background:var(--acc); color:var(--on-acc);
+  font-family:var(--font-sans); font-weight:500; max-width:100%; white-space:normal; line-height:1.4;
+  transition:background-color .15s;
+}
+[data-synapse-theme] .synapse-button:is(.synapse-secondary,.synapse-outline,.synapse-outline-primary) {
+  background:var(--panel); color:var(--fg); border-color:var(--line);
+}
+[data-synapse-theme] .synapse-button:is(.synapse-ghost,.synapse-ghost-primary,.synapse-link) { background:transparent; color:var(--fg); }
+[data-synapse-theme] .synapse-link { text-decoration:underline; text-underline-offset:4px; }
+[data-synapse-theme] .synapse-button:is(.synapse-success,.synapse-outline-success) { background:var(--okbg); color:var(--ok); border-color:var(--ok); }
+[data-synapse-theme] .synapse-button:is(.synapse-error,.synapse-outline-error) { background:var(--panel); color:var(--danger); border-color:var(--danger); }
+[data-synapse-theme] .synapse-warning { background:#fff1d6; color:#754700; border-color:#a66a12; }
+[data-synapse-theme] .synapse-info { background:var(--panel); color:var(--fg); border-color:var(--line); }
+[data-synapse-theme] .synapse-button:hover:not([aria-disabled='true']) { filter:brightness(.94); }
+[data-synapse-theme] .synapse-button:focus-visible, [data-synapse-theme] .synapse-input:focus-visible {
+  outline:2px solid var(--fg); outline-offset:3px; box-shadow:none;
+}
+[data-synapse-theme] .synapse-button[aria-disabled='true'] { cursor:not-allowed; opacity:.65; }
+[data-synapse-theme] .synapse-input { background:var(--panel); color:var(--fg); border:1px solid var(--line); border-radius:var(--r-sm); font-family:var(--font-sans); box-shadow:none; }
+[data-synapse-theme] .synapse-input::placeholder { color:var(--mut); }
+[data-synapse-theme] .synapse-input[aria-invalid='true'] { border-color:var(--danger); }

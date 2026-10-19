@@ -1,0 +1,24 @@
+name: Library foundations
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: corepack pnpm install --frozen-lockfile
+      - run: corepack pnpm run test:unit
+      - run: corepack pnpm run typecheck
+      - run: corepack pnpm run lint
+      - run: corepack pnpm run build
+      - run: node scripts/verify-package.ts
+      - run: corepack pnpm run story:build

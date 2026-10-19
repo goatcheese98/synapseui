@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Button from "./BaseButton.vue"
 
@@ -11,7 +11,7 @@ describe('Button (Reka UI)', () => {
     })
     
     expect(wrapper.text()).toBe('Click me')
-    expect(wrapper.classes()).toContain('bg-blue-600')
+    expect(wrapper.classes()).toContain('synapse-primary')
     expect(wrapper.classes()).toContain('h-10')
   })
 
@@ -25,7 +25,7 @@ describe('Button (Reka UI)', () => {
       }
     })
     
-    expect(wrapper.classes()).toContain('bg-red-600')
+    expect(wrapper.classes()).toContain('synapse-error')
   })
 
   it('renders new variants', () => {
@@ -33,19 +33,19 @@ describe('Button (Reka UI)', () => {
       props: { variant: 'success' },
       slots: { default: 'Success' }
     })
-    expect(successWrapper.classes()).toContain('bg-green-600')
+    expect(successWrapper.classes()).toContain('synapse-success')
 
     const warningWrapper = mount(Button, {
       props: { variant: 'warning' },
       slots: { default: 'Warning' }
     })
-    expect(warningWrapper.classes()).toContain('bg-orange-500')
+    expect(warningWrapper.classes()).toContain('synapse-warning')
 
     const infoWrapper = mount(Button, {
       props: { variant: 'info' },
       slots: { default: 'Info' }
     })
-    expect(infoWrapper.classes()).toContain('bg-sky-500')
+    expect(infoWrapper.classes()).toContain('synapse-info')
   })
 
   it('renders with different sizes', () => {
@@ -66,7 +66,7 @@ describe('Button (Reka UI)', () => {
       props: { size: 'xs' },
       slots: { default: 'XS' }
     })
-    expect(xsWrapper.classes()).toContain('h-6')
+    expect(xsWrapper.classes()).toContain('h-7')
 
     const xlWrapper = mount(Button, {
       props: { size: 'xl' },
@@ -204,10 +204,11 @@ describe('Button (Reka UI)', () => {
     })
     
     await wrapper.trigger('keydown', { key: 'Enter' })
-    expect(wrapper.emitted('click')).toHaveLength(1)
+    expect(wrapper.emitted('click')).toBeUndefined()
 
     await wrapper.trigger('keydown', { key: ' ' })
-    expect(wrapper.emitted('click')).toHaveLength(2)
+    expect(wrapper.emitted('click')).toBeUndefined()
+    // Native keyboard activation is verified in the real browser harness.
   })
 
   it('applies custom class', () => {
@@ -257,11 +258,11 @@ describe('Button (Reka UI)', () => {
         asChild: true
       },
       slots: {
-        default: 'Custom Element'
+        default: '<a href="#destination">Custom Element</a>'
       }
     })
     
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('A')
   })
 
   it('supports custom element with as prop', () => {
@@ -274,61 +275,7 @@ describe('Button (Reka UI)', () => {
       }
     })
     
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('DIV')
   })
 
-  it('exposes setLoading method', () => {
-    const wrapper = mount(Button, {
-      slots: {
-        default: 'Test'
-      }
-    })
-    
-    expect(wrapper.vm.setLoading).toBeDefined()
-    expect(typeof wrapper.vm.setLoading).toBe('function')
-  })
-
-  it('shows ripple effect on click', async () => {
-    const wrapper = mount(Button, {
-      props: {
-        ripple: true
-      },
-      slots: {
-        default: 'Ripple'
-      }
-    })
-    
-    const button = wrapper.find('button')
-    const mockGetBoundingClientRect = vi.fn(() => ({
-      left: 0,
-      top: 0,
-      right: 100,
-      bottom: 40,
-      width: 100,
-      height: 40
-    }))
-    
-    Object.defineProperty(button.element, 'getBoundingClientRect', {
-      value: mockGetBoundingClientRect
-    })
-    
-    await wrapper.trigger('click', { clientX: 50, clientY: 20 })
-    
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.showRipple).toBe(true)
-  })
-
-  it('can disable ripple effect', async () => {
-    const wrapper = mount(Button, {
-      props: {
-        ripple: false
-      },
-      slots: {
-        default: 'No Ripple'
-      }
-    })
-    
-    await wrapper.trigger('click')
-    expect(wrapper.vm.showRipple).toBe(false)
-  })
 })

@@ -1,6 +1,6 @@
 <template>
   <svg
-    :class="cn('animate-spin', className)"
+    :class="cn('animate-spin', $props.class)"
     :width="size"
     :height="size"
     viewBox="0 0 24 24"
@@ -45,5 +45,5 @@ withDefaults(defineProps<LoadingSpinnerProps>(), {
   class: ''
 })
 
-const className = defineModel<string>('class')
+
 </script>

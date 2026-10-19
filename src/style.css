@@ -204,3 +204,11 @@
     @apply bg-background text-foreground;
   }
 }
+.synapse-button { background:var(--primary-bg); color:var(--primary-text); }
+.synapse-secondary { background:var(--secondary-bg); color:var(--secondary-text); }
+.synapse-success { background:var(--success-bg); color:var(--success-text); }
+.synapse-warning { background:var(--warning-bg); color:var(--warning-text); }
+.synapse-error { background:var(--error-bg); color:var(--error-text); }
+.synapse-outline, .synapse-outline-primary, .synapse-outline-success, .synapse-outline-error { background:transparent; color:var(--text-primary); border:1px solid currentColor; }
+.synapse-ghost, .synapse-ghost-primary, .synapse-link { background:transparent; color:var(--text-primary); }
+.synapse-button:focus-visible { outline:2px solid currentColor; outline-offset:3px; }

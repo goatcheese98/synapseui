@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/stories/LumFoundations.story.vue",
+    "src/components/docs/LumFoundations.vue"
+  ],
+  "references": []
+}

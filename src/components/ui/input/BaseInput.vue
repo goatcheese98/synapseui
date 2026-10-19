@@ -5,22 +5,23 @@
     ref="inputRef"
     :value="modelValue"
     :class="cn(
-      'flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1)',
+      'synapse-input flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background transition-all duration-200 cubic-bezier(0.4, 0, 0.2, 1)',
       'file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-ring',
       'hover:border-slate-700 hover:shadow-sm hover:bg-accent/50 dark:hover:border-slate-300',
       'disabled:cursor-not-allowed disabled:opacity-50',
       // Error state styling
-      hasError 
-        ? 'border-error focus-visible:ring-error focus-visible:border-error' 
+      hasError
+        ? 'border-error focus-visible:ring-error focus-visible:border-error'
         : 'border-input',
       // Success state styling
-      isValid && touched 
-        ? 'border-success focus-visible:ring-success focus-visible:border-success' 
+      isValid && touched
+        ? 'border-success focus-visible:ring-success focus-visible:border-success'
         : '',
       ($attrs.class as string | undefined),
       activeAnimation
     )"
+    :aria-invalid="hasError || undefined"
     :disabled="disabled"
     :placeholder="placeholder"
     :type="type"
@@ -33,7 +34,7 @@
     @mouseleave="handleMouseLeave"
   >
 </template><script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -45,6 +46,7 @@ interface Props {
   hasError?: boolean
   isValid?: boolean
   touched?: boolean
+  enableCornerPulse?: boolean
 }
 
 interface Emits {
@@ -69,15 +71,19 @@ const emit = defineEmits<Emits>()
 
 const inputRef = ref<HTMLInputElement>()
 const activeAnimation = ref('')
+let timer: ReturnType<typeof setTimeout> | undefined
+onBeforeUnmount(() => clearTimeout(timer))
 
 // Event handlers
 const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
+  const target = event.target
+  if (!(target instanceof HTMLInputElement)) return
   emit('update:modelValue', target.value)
 }
 
 const handleChange = (event: Event) => {
-  const target = event.target as HTMLInputElement
+  const target = event.target
+  if (!(target instanceof HTMLInputElement)) return
   emit('change', target.value)
 }
 
@@ -91,10 +97,11 @@ const handleFocus = (event: FocusEvent) => {
 
 // Synapse corner detection
 const handleMouseEnter = (event: MouseEvent) => {
+  if (!props.enableCornerPulse || props.disabled || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = () => {
   // Future enhancements for cursor tracking
 }
 
@@ -104,17 +111,17 @@ const handleMouseLeave = () => {
 
 const detectCornerEntry = (event: MouseEvent) => {
   if (!inputRef.value) return
-  
+
   const element = inputRef.value
   if (!element || typeof element.getBoundingClientRect !== 'function') return
-  
+
   const rect = element.getBoundingClientRect()
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
   const threshold = 15
-  
+
   let cornerClass = ''
-  
+
   if (x <= threshold && y <= threshold) {
     cornerClass = 'corner-top-left'
   } else if (x >= rect.width - threshold && y <= threshold) {
@@ -124,10 +131,11 @@ const detectCornerEntry = (event: MouseEvent) => {
   } else if (x >= rect.width - threshold && y >= rect.height - threshold) {
     cornerClass = 'corner-bottom-right'
   }
-  
+
   if (cornerClass) {
     activeAnimation.value = cornerClass
-    setTimeout(() => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
       if (activeAnimation.value === cornerClass) {
         activeAnimation.value = ''
       }
@@ -164,4 +172,5 @@ defineExpose({
   border-radius: 6px 6px 18px 6px;
   transform: scale(1.02);
 }
+@media (prefers-reduced-motion: reduce) { input { transform: none !important; transition: none !important; } }
 </style>

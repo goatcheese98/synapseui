@@ -1,6 +1,7 @@
 const pluginVue = require("eslint-plugin-vue");
 
 module.exports = [
+  { files: ["**/*.ts"], languageOptions: { parser: require("@typescript-eslint/parser"), parserOptions: { sourceType: "module" } } },
   ...pluginVue.configs["flat/recommended"],
   {
     ignores: [
