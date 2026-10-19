@@ -4,13 +4,20 @@ import { readFileSync } from 'node:fs'
 import type { Page } from 'playwright'
 
 const expectedFonts = [
-  { family: 'Geist', file: 'Geist-Variable.woff2', weight: '600', sample: 'Button' },
-  { family: 'Geist Mono', file: 'GeistMono-Variable.woff2', weight: '400', sample: '<Button variant="primary">' },
+  { family: 'Geist', file: 'Geist-Variable.woff2', postScriptName: 'Geist-Regular', weight: '600', sample: 'Button' },
+  { family: 'Geist Mono', file: 'GeistMono-Variable.woff2', postScriptName: 'GeistMono-Regular', weight: '400', sample: '<Button variant="primary">' },
 ].map(font => ({
   ...font,
   sha256: createHash('sha256').update(readFileSync(`src/assets/fonts/${font.file}`)).digest('hex'),
 }))
 type FontResource = { path: string; origin: string; status: number; bytes: number; signature: string; sha256: string }
+
+/** CDP family labels may include a backend suffix such as "(Fontations)".
+ * PostScript identity comes from the font itself and is stable across those renderers.
+ */
+export function isExpectedWebFont(font: { postScriptName: string; isCustomFont: boolean; glyphCount: number }, postScriptName: string) {
+  return font.isCustomFont && font.glyphCount > 0 && font.postScriptName === postScriptName
+}
 
 /** Attach before navigation, so a loaded local font cannot masquerade as a webfont. */
 export function observeFonts(page: Page) {
@@ -59,8 +66,7 @@ export function observeFonts(page: Page) {
         const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector })
         assert(nodeId, `Missing font sample: ${selector}`)
         const { fonts } = await session.send('CSS.getPlatformFontsForNode', { nodeId })
-        const expected = expectedFonts[index].family.replace(/\s/g, '')
-        assert(fonts.some(font => font.isCustomFont && font.glyphCount > 0 && font.familyName.replace(/\s/g, '') === expected),
+        assert(fonts.some(font => isExpectedWebFont(font, expectedFonts[index].postScriptName)),
           `Glyphs are not rendered with ${expectedFonts[index].family}: ${JSON.stringify(fonts)}`)
         rendered.push({ selector, fonts })
       }
