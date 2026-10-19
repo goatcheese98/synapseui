@@ -1,123 +1,61 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test'
+
+async function openButtons(page: Page) {
+  await page.goto('/story/src-stories-button-story-vue?variantId=src-stories-button-story-vue-1')
+  await expect(page.locator('button.synapse-button:visible').filter({ hasText: /^\s*Primary\s*$/ })).toBeVisible()
+}
+async function openFoundations(page: Page) {
+  await page.goto('/story/src-stories-lumfoundations-story-vue?variantId=src-stories-lumfoundations-story-vue-0')
+  const content = page.locator('main[data-synapse-theme="light"]')
+  await expect(content).toBeVisible()
+  return content
+}
 
 test.describe('Button Component', () => {
-  test.beforeEach(async ({ page }) => {
-    // Navigate to Histoire and wait for it to load
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    
-    // Navigate to the Button story using Histoire's structure
-    const componentsFolder = page.locator('.histoire-story-list-folder').filter({ hasText: 'Components' });
-    await componentsFolder.click();
-    await page.waitForTimeout(500);
-    
-    const buttonStory = page.locator('.histoire-story-list-item').filter({ hasText: 'Button' });
-    await buttonStory.click();
-    await page.waitForLoadState('networkidle');
-  });
-
   test('should display all button variants', async ({ page }) => {
-    // Wait for the story content to load
-    await page.waitForTimeout(1000);
-    
-    // Look for the story content area
-    const storyContent = page.locator('.histoire-story, [class*="story"], main, .story-render-area').first();
-    await expect(storyContent).toBeVisible();
-
-    // Check for different button variants
-    const defaultButton = page.getByRole('button', { name: 'Default' }).first();
-    const secondaryButton = page.getByRole('button', { name: 'Secondary' }).first();
-    const destructiveButton = page.getByRole('button', { name: 'Destructive' }).first();
-    const outlineButton = page.getByRole('button', { name: 'Outline' }).first();
-    const ghostButton = page.getByRole('button', { name: 'Ghost' }).first();
-    const linkButton = page.getByRole('button', { name: 'Link' }).first();
-
-    await expect(defaultButton).toBeVisible();
-    await expect(secondaryButton).toBeVisible();
-    await expect(destructiveButton).toBeVisible();
-    await expect(outlineButton).toBeVisible();
-    await expect(ghostButton).toBeVisible();
-    await expect(linkButton).toBeVisible();
-  });
-
+    await openButtons(page)
+    for (const name of ['Neutral', 'Primary', 'Secondary', 'Accent', 'Success', 'Warning', 'Error', 'Info', 'Neutral Outline', 'Primary Outline', 'Success Outline', 'Error Outline', 'Ghost', 'Ghost Primary', 'Link']) {
+      await expect(page.locator('button.synapse-button:visible').getByText(name, { exact: true })).toBeVisible()
+    }
+  })
   test('should display different button sizes', async ({ page }) => {
-    // Check for different button sizes
-    const smallButton = page.getByRole('button', { name: 'Small' }).first();
-    const defaultSizeButton = page.getByRole('button', { name: 'Default' }).nth(1); // Second default button in sizes section
-    const largeButton = page.getByRole('button', { name: 'Large' }).first();
-
-    await expect(smallButton).toBeVisible();
-    await expect(defaultSizeButton).toBeVisible();
-    await expect(largeButton).toBeVisible();
-
-    // Check that buttons have different sizes by comparing bounding boxes
-    const smallBox = await smallButton.boundingBox();
-    const largeBox = await largeButton.boundingBox();
-    
-    if (smallBox && largeBox) {
-      expect(largeBox.height).toBeGreaterThan(smallBox.height);
-    }
-  });
-
+    await openButtons(page)
+    const small = await page.locator('button.synapse-button:visible').filter({ hasText: /^\s*Small\s*$/ }).boundingBox()
+    const medium = await page.locator('button.synapse-button:visible').filter({ hasText: /^\s*Medium\s*$/ }).boundingBox()
+    const large = await page.locator('button.synapse-button:visible').filter({ hasText: /^\s*Large\s*$/ }).boundingBox()
+    expect(small).not.toBeNull(); expect(medium).not.toBeNull(); expect(large).not.toBeNull()
+    expect(medium!.height).toBeGreaterThan(small!.height)
+    expect(large!.height).toBeGreaterThan(medium!.height)
+  })
   test('should handle button interactions', async ({ page }) => {
-    // Look for interactive button in the Interactive variant or story
-    const interactiveButton = page.getByRole('button').filter({ hasText: /clicked|interactive/i }).first();
-    
-    // If interactive button not found, look for any clickable button
-    const testButton = await interactiveButton.count() > 0 
-      ? interactiveButton 
-      : page.getByRole('button').first();
-
-    await expect(testButton).toBeVisible();
-    await expect(testButton).toBeEnabled();
-
-    // Test hover effect
-    await testButton.hover();
-    
-    // Test click
-    await testButton.click();
-    
-    // Button should still be visible after click
-    await expect(testButton).toBeVisible();
-  });
-
+    const content = await openFoundations(page)
+    const start = content.getByRole('button', { name: 'Start loading', exact: true })
+    await start.click()
+    await expect(start).toBeDisabled()
+    await expect(start).toHaveAttribute('aria-busy', 'true')
+    await content.getByRole('button', { name: 'Reset loading', exact: true }).click()
+    await expect(start).toBeEnabled()
+  })
   test('should apply correct CSS classes for variants', async ({ page }) => {
-    const defaultButton = page.getByRole('button', { name: 'Default' }).first();
-    const destructiveButton = page.getByRole('button', { name: 'Destructive' }).first();
-    const outlineButton = page.getByRole('button', { name: 'Outline' }).first();
-
-    // Check that buttons have the expected classes
-    await expect(defaultButton).toHaveClass(/bg-primary/);
-    await expect(destructiveButton).toHaveClass(/bg-destructive/);
-    await expect(outlineButton).toHaveClass(/border/);
-  });
-
-  test('should be accessible', async ({ page }) => {
-    // Check that buttons are keyboard accessible
-    const firstButton = page.getByRole('button').first();
-    
-    await firstButton.focus();
-    await expect(firstButton).toBeFocused();
-    
-    // Test keyboard interaction
-    await firstButton.press('Enter');
-    await expect(firstButton).toBeVisible();
-    
-    // Test tab navigation
-    await page.keyboard.press('Tab');
-    const secondButton = page.getByRole('button').nth(1);
-    await expect(secondButton).toBeFocused();
-  });
-
-  test('should render correctly on mobile', async ({ page, isMobile }) => {
-    if (isMobile) {
-      // On mobile, buttons should still be visible and clickable
-      const firstButton = page.getByRole('button').first();
-      await expect(firstButton).toBeVisible();
-      
-      // Test touch interaction
-      await firstButton.tap();
-      await expect(firstButton).toBeVisible();
+    await openButtons(page)
+    for (const [name, className] of [['Primary', 'synapse-primary'], ['Error', 'synapse-error'], ['Neutral Outline', 'synapse-outline']]) {
+      await expect(page.locator('button.synapse-button:visible').filter({ hasText: new RegExp(`^\\s*${name}\\s*$`) })).toHaveClass(new RegExp(className))
     }
-  });
-});
+  })
+  test('should be accessible', async ({ page }) => {
+    const content = await openFoundations(page)
+    const action = content.getByRole('button', { name: 'Save changes', exact: true }).first()
+    await action.focus(); await action.press('Enter'); await action.press('Space')
+    await expect(content.getByText('Activations: 2', { exact: true })).toBeVisible()
+    await page.keyboard.press('Tab')
+    await expect(content.getByRole('button', { name: 'Cancel', exact: true })).toBeFocused()
+  })
+  test('should render correctly on mobile', async ({ page, isMobile }) => {
+    const content = await openFoundations(page)
+    const action = content.getByRole('button', { name: 'Save changes', exact: true }).first()
+    if (isMobile) await action.tap()
+    else await action.click()
+    await expect(content.getByText('Activations: 1', { exact: true })).toBeVisible()
+    expect(await content.evaluate(e => e.scrollWidth <= e.clientWidth)).toBe(true)
+  })
+})

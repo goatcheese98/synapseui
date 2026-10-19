@@ -1,20 +1,20 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Synapse UI E2E Tests', () => {
-  test('should load Histoire successfully', async ({ page }) => {
+  test('should load Histoire successfully', async ({ page, isMobile }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     
-    // Check that Histoire loads
-    await expect(page).toHaveTitle(/Histoire/i);
-    
-    // Should see the story navigation
-    const storyList = page.locator('.histoire-story-list');
-    await expect(storyList).toBeVisible();
-    
-    // Should see Components and Patterns sections
-    await expect(page.locator('text=Components')).toBeVisible();
-    await expect(page.locator('text=Patterns')).toBeVisible();
+    await expect(page).toHaveTitle('Synapse UI');
+    await expect(page.getByAltText('Synapse UI logo')).toBeVisible();
+    if (isMobile) {
+      await expect(page.getByText('Select a story...', { exact: true })).toBeVisible();
+    } else {
+      await expect(page.getByRole('button', { name: 'Components', exact: true })).toBeVisible();
+      await expect(page.getByRole('button', { name: 'Foundations', exact: true })).toBeVisible();
+    }
+    await page.goto('/story/src-stories-lumfoundations-story-vue?variantId=src-stories-lumfoundations-story-vue-0');
+    await expect(page.locator('main[data-synapse-theme="light"]')).toBeVisible();
   });
 
   test('should navigate to Simple Demo and interact with buttons', async ({ page }) => {

@@ -11,6 +11,9 @@
     ]
   },
   "include": [
-    "scripts/**/*.ts"
+    "scripts/**/*.ts",
+    "playwright.config.ts",
+    "tests/e2e/button.spec.ts",
+    "tests/e2e/working-tests.spec.ts"
   ]
 }

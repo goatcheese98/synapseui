@@ -1,0 +1,67 @@
+{
+  "originalHead": "0959f17aa5387946fdf7a573a07c032256a6c08c",
+  "originalHostedRun": 39336101744,
+  "originalHostedJob": 118345861963,
+  "originalHostedLogStatus": "404 BlobNotFound while job still in progress",
+  "originalFoundationsHostedStatus": "success",
+  "baselineHead": "a8d93f2211f1ff38d1827bf022ed68bcbc4f31aa",
+  "registeredCases": 210,
+  "projects": 5,
+  "cloudBrowser": "system Chromium 154.0.8037.57",
+  "focused": {
+    "exit": 0,
+    "stats": {
+      "startTime": "2026-10-19T23:01:17.871Z",
+      "duration": 35223.049,
+      "expected": 14,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "foundationsCiShell": {
+    "exit": 0,
+    "scenarios": 8
+  },
+  "legacyFinal": {
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T23:02:23.346Z",
+      "duration": 72915.76599999999,
+      "expected": 6,
+      "skipped": 33,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "notRunAfterFailureCutoff": 33,
+    "failures": [
+      {
+        "test": "drag-drop.spec.ts / Drag and Drop Functionality / should allow dragging the floating dock",
+        "project": "chromium",
+        "message": "\u001b[31mTest timeout of 15000ms exceeded while running \"beforeEach\" hook.\u001b[39m"
+      },
+      {
+        "test": "drag-drop.spec.ts / Drag and Drop Functionality / should show visual feedback during drag",
+        "project": "chromium",
+        "message": "\u001b[31mTest timeout of 15000ms exceeded while running \"beforeEach\" hook.\u001b[39m"
+      },
+      {
+        "test": "drag-drop.spec.ts / Drag and Drop Functionality / should handle drag boundaries and constraints",
+        "project": "chromium",
+        "message": "\u001b[31mTest timeout of 15000ms exceeded while running \"beforeEach\" hook.\u001b[39m"
+      }
+    ],
+    "globalTimeoutMs": 240000,
+    "testTimeoutMs": 15000,
+    "retries": 0,
+    "maxFailures": 3,
+    "onlyDiagnosticOverride": "video recording off; project selected Chromium"
+  },
+  "snapshotChangesAccepted": false,
+  "unitTests": {
+    "exit": 0,
+    "passed": 78
+  },
+  "typecheckExit": 0,
+  "lintExit": 0
+}

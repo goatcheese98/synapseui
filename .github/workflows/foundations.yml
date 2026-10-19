@@ -22,3 +22,24 @@ jobs:
       - run: corepack pnpm run build
       - run: node scripts/verify-package.ts
       - run: corepack pnpm run story:build
+      - run: corepack pnpm exec playwright install --with-deps chromium
+      - name: Verify foundations in Chromium
+        timeout-minutes: 4
+        run: |
+          corepack pnpm dev --port 6006 > /tmp/synapse-histoire.log 2>&1 &
+          story_pid=$!
+          trap 'kill "$story_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --max-time 1 http://localhost:6006/ > /dev/null; then ready=true; break; fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then cat /tmp/synapse-histoire.log; exit 1; fi
+          timeout 180s node scripts/browser-foundations.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundations-browser-evidence
+          path: |
+            test-results/foundations/
+            /tmp/synapse-histoire.log
