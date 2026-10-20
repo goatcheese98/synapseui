@@ -48,3 +48,4 @@
 [data-synapse-theme] .synapse-input { background:var(--panel); color:var(--fg); border:1px solid var(--line); border-radius:var(--r-sm); font-family:var(--font-sans); box-shadow:none; }
 [data-synapse-theme] .synapse-input::placeholder { color:var(--mut); }
 [data-synapse-theme] .synapse-input[aria-invalid='true'] { border-color:var(--danger); }
+[data-synapse-theme] .floating-dock { background:var(--panel); color:var(--fg); border-color:var(--line); border-radius:var(--r-lg); }
