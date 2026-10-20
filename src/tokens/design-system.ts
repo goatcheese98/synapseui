@@ -136,7 +136,7 @@ export const interactionStates = {
   default: 'transition-all duration-200 ease-out',
   hover: 'hover:scale-105 hover:shadow-md',
   active: 'active:scale-95',
-  focus: 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+  focus: 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(100_116_139)] focus-visible:ring-offset-2',
   disabled: 'disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed'
 } as const
 

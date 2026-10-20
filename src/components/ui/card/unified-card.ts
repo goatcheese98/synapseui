@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
-import { interactionStates, colorIntents, variantRelationships } from '@/tokens/design-system'
-import { computed, inject, type ComputedRef, type InjectionKey } from 'vue'
+import { interactionStates, variantRelationships } from '@/tokens/design-system'
+import { computed, inject, toValue, type MaybeRefOrGetter, type ComputedRef, type InjectionKey } from 'vue'
 
 export const cardVariants = tv({
   base: [
@@ -9,19 +9,19 @@ export const cardVariants = tv({
   ],
   variants: {
     variant: {
-      default: `border bg-white text-[${colorIntents.neutral[900]}] shadow-sm`,
-      outline: `border-2 bg-transparent text-[${colorIntents.neutral[900]}]`,
-      filled: `border-0 bg-[${colorIntents.primary[700]}] text-white shadow-md`,
-      ghost: `border-0 bg-transparent text-[${colorIntents.neutral[900]}] hover:bg-[${colorIntents.neutral[50]}]`,
+      default: 'border bg-white text-[rgb(15_23_42)] shadow-sm',
+      outline: 'border-2 bg-transparent text-[rgb(15_23_42)]',
+      filled: 'border-0 bg-[rgb(51_65_85)] text-white shadow-md',
+      ghost: 'border-0 bg-transparent text-[rgb(15_23_42)] hover:bg-[rgb(248_250_252)]',
       
       // Intent-based variants
-      primary: `border border-[${colorIntents.primary[200]}] bg-[${colorIntents.primary[50]}] text-[${colorIntents.primary[900]}]`,
-      secondary: `border border-[${colorIntents.secondary[200]}] bg-[${colorIntents.secondary[50]}] text-[${colorIntents.secondary[900]}]`,
-      accent: `border border-[${colorIntents.accent[200]}] bg-[${colorIntents.accent[50]}] text-[${colorIntents.accent[900]}]`,
-      success: `border border-[${colorIntents.success[200]}] bg-[${colorIntents.success[50]}] text-[${colorIntents.success[700]}]`,
-      warning: `border border-[${colorIntents.warning[200]}] bg-[${colorIntents.warning[50]}] text-[${colorIntents.warning[700]}]`,
-      error: `border border-[${colorIntents.error[200]}] bg-[${colorIntents.error[50]}] text-[${colorIntents.error[700]}]`,
-      muted: `border border-[${colorIntents.neutral[200]}] bg-[${colorIntents.neutral[100]}] text-[${colorIntents.neutral[600]}]`
+      primary: 'border border-[rgb(226_232_240)] bg-[rgb(248_250_252)] text-[rgb(15_23_42)]',
+      secondary: 'border border-[rgb(199_210_254)] bg-[rgb(238_242_255)] text-[rgb(49_46_129)]',
+      accent: 'border border-[rgb(254_215_170)] bg-[rgb(255_247_237)] text-[rgb(124_45_18)]',
+      success: 'border border-[rgb(187_247_208)] bg-[rgb(240_253_244)] text-[rgb(21_128_61)]',
+      warning: 'border border-[rgb(253_230_138)] bg-[rgb(255_251_235)] text-[rgb(180_83_9)]',
+      error: 'border border-[rgb(254_202_202)] bg-[rgb(254_242_242)] text-[rgb(185_28_28)]',
+      muted: 'border border-[rgb(226_232_240)] bg-[rgb(241_245_249)] text-[rgb(71_85_105)]'
     },
     size: {
       xs: 'text-xs max-w-xs',
@@ -56,14 +56,16 @@ export interface CardContext {
 export const CARD_CONTEXT_KEY: InjectionKey<ComputedRef<CardContext>> = Symbol('card-context')
 
 // Helper to create card context that child components can use
-export function createCardContext(variant: CardVariants['variant'] = 'default', size: CardVariants['size'] = 'md'): ComputedRef<CardContext> {
+export function createCardContext(variant: MaybeRefOrGetter<CardVariants['variant']> = 'default', size: MaybeRefOrGetter<CardVariants['size']> = 'md'): ComputedRef<CardContext> {
   return computed(() => {
+    const currentVariant = toValue(variant)
+    const currentSize = toValue(size)
     // Get preferred child variants based on card variant
-    const relationships = variantRelationships.card[variant as keyof typeof variantRelationships.card] || variantRelationships.card.default
+    const relationships = variantRelationships.card[currentVariant as keyof typeof variantRelationships.card] || variantRelationships.card.default
     
     return {
-      variant,
-      size,
+      variant: currentVariant,
+      size: currentSize,
       preferredButtonVariant: relationships.preferredButton,
       preferredInputVariant: 'default' // Could extend this
     }

@@ -43,6 +43,7 @@ jobs:
           timeout 180s node scripts/browser-foundations.ts
           timeout 90s node scripts/browser-dock.ts
           timeout 90s node scripts/browser-dock-font-geometry.ts
+          timeout 120s node scripts/browser-semantic-components.ts
           PACKAGE_BROWSER_FONTS=1 timeout 120s node scripts/verify-package.ts
       - uses: actions/upload-artifact@v4
         if: always()
@@ -50,4 +51,5 @@ jobs:
           name: foundations-browser-evidence
           path: |
             test-results/foundations/
+            test-results/semantic/
             /tmp/synapse-histoire.log
