@@ -19,8 +19,14 @@ export function isExpectedWebFont(font: { postScriptName: string; isCustomFont: 
   return font.isCustomFont && font.glyphCount > 0 && font.postScriptName === postScriptName
 }
 
+type FontObservation = {
+  faces: { family: string; status: FontFaceLoadStatus; weight: string }[]
+  resources: (Omit<FontResource, 'origin'> & { selfHosted: boolean })[]
+  rendered: { selector: string; fonts: { familyName: string; postScriptName: string; isCustomFont: boolean; glyphCount: number }[] }[]
+}
+
 /** Attach before navigation, so a loaded local font cannot masquerade as a webfont. */
-export function observeFonts(page: Page) {
+export function observeFonts(page: Page): (sansSelector: string, monoSelector: string) => Promise<FontObservation> {
   const downloads: Promise<FontResource>[] = []
   page.on('response', response => {
     if (!new URL(response.url()).pathname.endsWith('.woff2')) return

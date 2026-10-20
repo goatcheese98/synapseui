@@ -6,7 +6,7 @@ import { inject, computed, type ComputedRef } from 'vue'
 
 // Form composition context
 export interface FormContext {
-  state: 'default' | 'loading' | 'success' | 'error'
+  state: 'default' | 'loading' | 'success' | 'error' | 'warning'
   size: 'sm' | 'md' | 'lg'
   spacing: 'tight' | 'normal' | 'loose'
   preferredButtonVariant: string
@@ -199,7 +199,7 @@ export function useTableContext(): TableContext | null {
 
 // Multi-level composition - components can inherit from multiple contexts
 export function useMultiContext() {
-  const card = inject<ComputedRef<any> | null>(CARD_CONTEXT_KEY, null)
+  const card = inject(CARD_CONTEXT_KEY, null)
   const form = inject<ComputedRef<FormContext> | null>(FORM_CONTEXT_KEY, null) 
   const nav = inject<ComputedRef<NavContext> | null>(NAV_CONTEXT_KEY, null)
   const layout = inject<ComputedRef<LayoutComposition> | null>(LAYOUT_CONTEXT_KEY, null)

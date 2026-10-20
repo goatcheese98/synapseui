@@ -69,7 +69,7 @@
               </h3>
               <div class="grid grid-cols-2 gap-2">
                 <Tooltip
-                  v-for="side in ['top', 'right', 'bottom', 'left']"
+                  v-for="side in (['top', 'right', 'bottom', 'left'] as const)"
                   :key="side"
                 >
                   <TooltipTrigger as-child>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Button, ToolbarButton } from '@/components/ui/button'
-import { ToolbarRoot, ToolbarSeparator } from 'reka-ui'
+import { ToolbarRoot } from 'reka-ui'
 
 const isLoading = ref(false)
 

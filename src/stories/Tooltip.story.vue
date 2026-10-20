@@ -5,7 +5,6 @@ import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'
 import Button from '@/components/ui/button/BaseButton.vue'
 import HStack from '@/components/ui/stack/HStack.vue'
-import VStack from '@/components/ui/stack/VStack.vue'
 import { Icon } from '@iconify/vue'
 </script>
 
@@ -94,7 +93,7 @@ import { Icon } from '@iconify/vue'
               <TooltipTrigger>
                 <Button
                   variant="ghost"
-                  size="icon"
+                  size="icon-md"
                 >
                   <Icon
                     icon="lucide:heart"
@@ -111,7 +110,7 @@ import { Icon } from '@iconify/vue'
               <TooltipTrigger>
                 <Button
                   variant="ghost"
-                  size="icon"
+                  size="icon-md"
                 >
                   <Icon
                     icon="lucide:share"
@@ -128,7 +127,7 @@ import { Icon } from '@iconify/vue'
               <TooltipTrigger>
                 <Button
                   variant="ghost"
-                  size="icon"
+                  size="icon-md"
                 >
                   <Icon
                     icon="lucide:bookmark"

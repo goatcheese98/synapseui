@@ -144,7 +144,7 @@ interface Props {
   globalError?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   isLoading: false,
   globalError: ''
 })

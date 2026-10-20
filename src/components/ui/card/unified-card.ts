@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
-import { getComponentSize, interactionStates, colorIntents, variantRelationships } from '@/tokens/design-system'
-import { provide, computed, inject, type ComputedRef } from 'vue'
+import { interactionStates, colorIntents, variantRelationships } from '@/tokens/design-system'
+import { computed, inject, type ComputedRef, type InjectionKey } from 'vue'
 
 export const cardVariants = tv({
   base: [
@@ -24,6 +24,7 @@ export const cardVariants = tv({
       muted: `border border-[${colorIntents.neutral[200]}] bg-[${colorIntents.neutral[100]}] text-[${colorIntents.neutral[600]}]`
     },
     size: {
+      xs: 'text-xs max-w-xs',
       sm: 'text-sm max-w-sm',
       md: 'text-base max-w-md', 
       lg: 'text-lg max-w-lg',
@@ -42,7 +43,7 @@ export const cardVariants = tv({
   }
 })
 
-export type CardVariants = Parameters<typeof cardVariants>[0]
+export type CardVariants = NonNullable<Parameters<typeof cardVariants>[0]>
 
 // Card Context Provider - this is the magic!
 export interface CardContext {
@@ -52,7 +53,7 @@ export interface CardContext {
   preferredInputVariant: string
 }
 
-export const CARD_CONTEXT_KEY = Symbol('card-context')
+export const CARD_CONTEXT_KEY: InjectionKey<ComputedRef<CardContext>> = Symbol('card-context')
 
 // Helper to create card context that child components can use
 export function createCardContext(variant: CardVariants['variant'] = 'default', size: CardVariants['size'] = 'md'): ComputedRef<CardContext> {

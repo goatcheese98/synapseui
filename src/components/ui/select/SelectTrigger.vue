@@ -20,11 +20,11 @@
     <slot />
   </SelectTrigger>
 </template><script setup lang="ts">
-import { ref, inject } from 'vue'
+import { type ComponentPublicInstance, ref, inject } from 'vue'
 import { SelectTrigger } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
-const triggerRef = ref<HTMLElement>()
+const triggerRef = ref<HTMLElement | ComponentPublicInstance>()
 const activeAnimation = ref('')
 const isOpen = inject('isSelectOpen', ref(false))
 
@@ -32,7 +32,7 @@ const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements
 }
 
@@ -43,7 +43,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!triggerRef.value) return
   
-  const element = triggerRef.value.$el || triggerRef.value
+  const element = ('$el' in triggerRef.value ? triggerRef.value.$el : triggerRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

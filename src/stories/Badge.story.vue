@@ -201,7 +201,7 @@ import { Icon } from '@iconify/vue'
           <div class="relative">
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-md"
             >
               <Icon
                 icon="lucide:bell"
@@ -216,7 +216,7 @@ import { Icon } from '@iconify/vue'
           <div class="relative">
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-md"
             >
               <Icon
                 icon="lucide:mail"
@@ -234,7 +234,7 @@ import { Icon } from '@iconify/vue'
           <div class="relative">
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-md"
             >
               <Icon
                 icon="lucide:shopping-cart"

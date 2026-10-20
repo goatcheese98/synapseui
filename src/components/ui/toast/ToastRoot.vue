@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { type ComponentPublicInstance, ref } from 'vue'
 import { ToastRoot } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
@@ -27,11 +27,11 @@ interface Props {
   variant?: 'default' | 'destructive' | 'success' | 'warning' | 'info'
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   variant: 'default'
 })
 
-const toastRef = ref<HTMLElement>()
+const toastRef = ref<HTMLElement | ComponentPublicInstance>()
 const activeAnimation = ref('')
 
 const variants = {
@@ -46,7 +46,7 @@ const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements
 }
 
@@ -57,7 +57,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!toastRef.value) return
   
-  const element = toastRef.value.$el || toastRef.value
+  const element = ('$el' in toastRef.value ? toastRef.value.$el : toastRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

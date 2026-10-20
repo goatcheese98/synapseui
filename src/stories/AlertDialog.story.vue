@@ -112,7 +112,7 @@ const handleFormSubmit = () => {
     <Variant title="Confirmation with Details">
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
-          <AlertDialogTrigger variant="outline">
+          <AlertDialogTrigger variant="neutral">
             <Icon
               icon="lucide:upload"
               class="w-4 h-4"
@@ -273,7 +273,7 @@ const handleFormSubmit = () => {
     <Variant title="Success Confirmation">
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
-          <AlertDialogTrigger variant="default">
+          <AlertDialogTrigger variant="primary">
             Complete Setup
           </AlertDialogTrigger>
           <AlertDialogContent>
@@ -320,7 +320,7 @@ const handleFormSubmit = () => {
     <Variant title="Warning Dialog">
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
-          <AlertDialogTrigger variant="outline">
+          <AlertDialogTrigger variant="neutral">
             <Icon
               icon="lucide:alert-triangle"
               class="w-4 h-4"
@@ -363,7 +363,7 @@ const handleFormSubmit = () => {
     <Variant title="Multiple Actions">
       <div class="flex items-center justify-center p-8">
         <AlertDialog>
-          <AlertDialogTrigger variant="outline">
+          <AlertDialogTrigger variant="neutral">
             <Icon
               icon="lucide:settings"
               class="w-4 h-4"

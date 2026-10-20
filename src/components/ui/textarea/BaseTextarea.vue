@@ -55,7 +55,7 @@ interface Emits {
   (e: 'focus', event: FocusEvent): void
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   modelValue: '',
   placeholder: '',
   disabled: false,
@@ -95,7 +95,7 @@ const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements for cursor tracking
 }
 

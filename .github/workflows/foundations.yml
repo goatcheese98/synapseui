@@ -21,9 +21,12 @@ jobs:
       - run: corepack pnpm install --frozen-lockfile
       - run: corepack pnpm run test:unit
       - run: corepack pnpm run typecheck
+      - run: corepack pnpm run typecheck:all
       - run: corepack pnpm run lint
+      - run: corepack pnpm run lint:all
       - run: corepack pnpm run build
       - run: node scripts/verify-package.ts
+      - run: node scripts/test-collection-animation.ts
       - run: corepack pnpm run story:build
       - name: Verify foundations in Chromium
         timeout-minutes: 4

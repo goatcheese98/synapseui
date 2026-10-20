@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 
 export interface CardTitleProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   colorScheme?: 'default' | 'primary' | 'secondary' | 'accent' | 'muted'
 }
 
@@ -27,6 +27,7 @@ const titleClasses = computed(() => {
   const baseClasses = 'font-semibold leading-tight tracking-tight'
   
   const sizeClasses = {
+    xs: 'text-sm',
     sm: 'text-base',
     md: 'text-xl',
     lg: 'text-2xl',

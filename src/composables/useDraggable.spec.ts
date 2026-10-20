@@ -57,9 +57,10 @@ describe('useDraggable pointer lifecycle', () => {
     pointer(f.handle, 'pointerdown', 120, 90)
     pointer(f.el, 'pointermove', 5000, 5000)
     pointer(f.el, 'pointerup', 5000, 5000)
-    const vars = tween.mock.calls.at(-1)![1] as gsap.TweenVars
-    expect(vars.x).toBe(window.innerWidth - 300)
-    expect(vars.y).toBe(window.innerHeight - 180)
+    expect(tween).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({
+      x: window.innerWidth - 300,
+      y: window.innerHeight - 180,
+    }))
     f.wrapper.unmount()
     vi.unstubAllGlobals()
   })

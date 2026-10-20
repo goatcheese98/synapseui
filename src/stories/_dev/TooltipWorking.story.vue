@@ -57,7 +57,7 @@
                 </h3>
                 <div class="grid grid-cols-2 gap-2">
                   <TooltipRoot
-                    v-for="side in ['top', 'right', 'bottom', 'left']"
+                    v-for="side in (['top', 'right', 'bottom', 'left'] as const)"
                     :key="side"
                   >
                     <TooltipTriggerReka as-child>

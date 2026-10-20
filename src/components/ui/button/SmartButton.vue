@@ -21,8 +21,8 @@
 
 <script setup lang="ts">
 import { ref, computed, inject } from 'vue'
-import { Primitive } from 'reka-ui'
-import { buttonVariants, getButtonContext, type ButtonVariants } from './unified-variants'
+import { Primitive, type PrimitiveProps } from 'reka-ui'
+import { buttonVariants, type ButtonVariants } from './unified-variants'
 import { cn } from '@/lib/utils'
 import { CARD_CONTEXT_KEY } from '@/components/ui/card/unified-card'
 
@@ -30,7 +30,7 @@ export interface SmartButtonProps {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
   context?: ButtonVariants['context']
-  as?: string | object
+  as?: PrimitiveProps['as']
   asChild?: boolean
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean

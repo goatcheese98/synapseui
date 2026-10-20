@@ -1,5 +1,5 @@
 import { tv } from 'tailwind-variants'
-import { getComponentSize, interactionStates, colorIntents } from '@/tokens/design-system'
+import { interactionStates, colorIntents } from '@/tokens/design-system'
 
 export const buttonVariants = tv({
   base: [
@@ -80,10 +80,10 @@ export const buttonVariants = tv({
   ]
 })
 
-export type ButtonVariants = Parameters<typeof buttonVariants>[0]
+export type ButtonVariants = NonNullable<Parameters<typeof buttonVariants>[0]>
 
 // Helper to determine context automatically
-export function getButtonContext(parentComponent?: string, parentVariant?: string): ButtonVariants['context'] {
+export function getButtonContext(parentComponent?: string, _parentVariant?: string): ButtonVariants['context'] {
   if (!parentComponent) return undefined
   
   const contextMap: Record<string, ButtonVariants['context']> = {

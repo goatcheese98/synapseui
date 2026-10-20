@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // Provide theme context to all child components
-const { currentTheme, theme, setTheme } = provideTheme(props.theme)
+const { currentTheme, setTheme } = provideTheme(props.theme)
 
 // Dynamic classes based on current theme
 const themeClasses = computed(() => [

@@ -11,7 +11,7 @@ import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
 export interface CardContentProps {
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   noPadding?: boolean
 }
 
@@ -24,6 +24,7 @@ const contentClasses = computed(() => {
   if (props.noPadding) return ''
   
   const sizeClasses = {
+    xs: 'px-2 pb-2 pt-1',
     sm: 'px-3 pb-3 pt-2',
     md: 'px-6 pb-6 pt-0',
     lg: 'px-8 pb-8 pt-2'

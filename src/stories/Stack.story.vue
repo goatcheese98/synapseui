@@ -148,7 +148,7 @@ const sampleItems = [
               Left
             </Button>
             <Button>Center</Button>
-            <Button variant="destructive">
+            <Button variant="error">
               Right
             </Button>
           </HStack>

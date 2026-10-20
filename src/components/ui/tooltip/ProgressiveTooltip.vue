@@ -122,11 +122,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted, watch } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 import { TooltipRoot, TooltipTrigger, TooltipContent as TooltipContentPrimitive, TooltipPortal } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
 interface DetailedContent {
+  services?: { name: string; status: string; uptime: string }[]
+  summary?: string
+  highlights?: Record<string, string | number>
   stats?: Record<string, string | number>
   description?: string
   actions?: Array<{

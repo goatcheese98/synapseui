@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 // Simple ID generator without external deps
 const generateId = () => `form-field-${Math.random().toString(36).substr(2, 9)}`
 import Label from '@/components/ui/label/BaseLabel.vue'
