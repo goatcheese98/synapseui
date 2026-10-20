@@ -1,5 +1,6 @@
 import { defineConfig } from 'histoire'
 import { HstVue } from '@histoire/plugin-vue'
+import { histoireCssCompatibility } from './scripts/histoire-css-compat'
 
 export default defineConfig({
   theme: {
@@ -56,13 +57,16 @@ export default defineConfig({
   autoApplyContrastColor: true,
   // Vite configuration with GSAP/JSDOM compatibility fixes
   vite: {
+    plugins: [histoireCssCompatibility()],
     define: {
       __VUE_PROD_DEVTOOLS__: false,
       // Polyfill for GSAP in Node.js environment
       global: 'globalThis',
     },
     optimizeDeps: {
-      include: ['gsap', 'gsap/Draggable']
+      // Retained stories import these at collection/mount time. Prebundle them
+      // before navigation so Vite does not reload a cold preview mid-mount.
+      include: ['vue', 'pinia', 'reka-ui', '@iconify/vue', 'class-variance-authority', 'tailwind-variants', 'clsx', 'tailwind-merge', 'gsap', 'gsap/Draggable']
     },
     ssr: {
       noExternal: ['gsap']

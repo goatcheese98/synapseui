@@ -14,6 +14,8 @@ try {
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))
   await page.goto(base + route)
+  await page.locator('.histoire-generic-render-story > [data-v-app]').waitFor({state:'attached'})
+  await expect(page.locator('.histoire-base-split-pane').first()).toHaveCSS('display','flex')
   const heading = page.getByRole('heading', { name: 'Primary Card', exact: true })
   await expect(heading).toBeVisible()
   const storyCard = heading.locator('xpath=ancestor::div[contains(@class,"max-w-md")]')
@@ -46,6 +48,13 @@ try {
     api.mount()
     return api.tokens as Record<string, Record<number, string>>
   }, moduleURL)
+  const isolation = await page.evaluate(() => {
+    const probe=document.createElement('div');probe.className='htw-flex'
+    document.body.append(probe);const shell=getComputedStyle(probe).display
+    document.querySelector('#semantic-probe')!.append(probe);const story=getComputedStyle(probe).display
+    probe.remove();return {shell,story}
+  })
+  assert.deepEqual(isolation,{shell:'flex',story:'block'},'Shell utilities must work without crossing the preview scope boundary')
   const update = (patch: Record<string, unknown>) => page.evaluate(async ({ url, patch }) => {
     await (await import(url)).setState(patch)
   }, { url: moduleURL, patch })
@@ -141,6 +150,6 @@ try {
   await expect(button).toBeDisabled()
   await expect(button.locator('.loading-spinner')).toBeVisible()
   assert.deepEqual(errors,[])
-  await writeFile(`${out}/computed-states.json`,JSON.stringify({route,tokens,results,sizes:10,reactiveContext:true,manualOverride:true,errors},null,2))
-  console.log('SEMANTIC_COMPONENTS',JSON.stringify({buttonVariants:cases.length,cardVariants:11,sizes:10,states:['normal','hover','focus','disabled'],reactiveContext:true,errors}))
+  await writeFile(`${out}/computed-states.json`,JSON.stringify({route,tokens,isolation,results,sizes:10,reactiveContext:true,manualOverride:true,errors},null,2))
+  console.log('SEMANTIC_COMPONENTS',JSON.stringify({buttonVariants:cases.length,cardVariants:11,sizes:10,states:['normal','hover','focus','disabled'],backdrops:2,contrast:results.filter((item): item is {variant:string;backdrop:string;observed:Record<string,{contrast:number}>} => typeof item==='object' && item!==null && 'variant' in item).map(item=>({variant:item.variant,backdrop:item.backdrop,ratios:Object.fromEntries(Object.entries(item.observed).filter(([state])=>state!=='disabled').map(([state,value])=>[state,value.contrast]))})),reactiveContext:true,errors}))
 } finally { await browser.close() }

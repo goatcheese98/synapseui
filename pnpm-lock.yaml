@@ -121,6 +121,12 @@ importers:
       playwright:
         specifier: 1.54.1
         version: 1.54.1
+      postcss:
+        specifier: ^8.5.31
+        version: 8.5.31
+      postcss-selector-parser:
+        specifier: ^7.1.6
+        version: 7.1.6
       tailwindcss:
         specifier: ^3.2.7
         version: 3.2.7(postcss@8.5.31)

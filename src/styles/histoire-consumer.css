@@ -1,5 +1,6 @@
 /* Histoire beta changes its shell to Noto Sans Display. Preserve the retained
-   component consumer's pre-beta Tailwind default, without styling library users. */
+   shell and component consumer's pre-beta Tailwind default, without styling library users. */
+:root,
 .histoire-generic-render-story {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }

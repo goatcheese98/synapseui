@@ -48,11 +48,12 @@
     }
   },
   "allLockedCoverage": {
-    "lockSha256": "68e48cf36ee6f2c5cd61b0e34e077db854e14dc6f925d137238dd406f9e2e23d",
+    "lockSha256": "436d4e44c66806842c07b8da20033f777478a8e394431e53ed6bf6c061e10c4b",
     "packageVersions": 678,
     "packageNames": 611,
     "platformConstrainedVersions": 64,
-    "optionalSnapshots": 67
+    "optionalSnapshots": 67,
+    "compatibilityImporterNote": "PostCSS 8.5.31 and selector-parser 7.1.6 are now explicit internal tooling dependencies. The complete 678-version packages and snapshots maps are byte-equivalent as parsed to df1ce741; all/prod/dev audits repeated with the same four residual advisories."
   },
   "allLockedMatches": [
     {

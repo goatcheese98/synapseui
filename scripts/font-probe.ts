@@ -65,7 +65,6 @@ export function observeFonts(page: Page): (sansSelector: string, monoSelector: s
       const failures = settled.filter(item => 'error' in item)
       // Preserve request diagnostics; Histoire also downloads shell fonts, which are
       // not evidence for Geist. Required font body failures remain hard failures.
-      if (failures.length) console.log('FONT_RESPONSE_FAILURES', JSON.stringify(failures))
       const requiredFailures = failures.filter(item => /Geist(?:Mono)?-Variable(?:-[^/]*)?\.woff2$/.test(item.path))
       assert.deepEqual(requiredFailures, [], 'Required Geist response body unavailable')
       const resources = settled.flatMap(item => 'resource' in item ? [item.resource] : [])
@@ -93,6 +92,10 @@ export function observeFonts(page: Page): (sansSelector: string, monoSelector: s
         }
       } finally { await session.detach() }
       return { faces, resources: resources.filter(item => expectedFonts.some(font => font.sha256 === item.sha256)).map(({ path, status, bytes, signature, sha256 }) => ({ path, status, bytes, signature, sha256, selfHosted: true })), rendered }
-    } finally { page.off('response', onResponse); await Promise.all(downloads) }
+    } finally {
+      page.off('response', onResponse)
+      const failures = (await Promise.all(downloads)).filter(item => 'error' in item)
+      if (failures.length) console.log('FONT_RESPONSE_FAILURES', JSON.stringify(failures))
+    }
   }
 }

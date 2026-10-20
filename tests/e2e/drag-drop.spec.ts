@@ -7,7 +7,10 @@ async function box(locator: Locator) {
   return result!
 }
 async function start(page: Page, main: Locator) {
-  const handle = await box(main.getByRole('button', { name: 'Drag dock', exact: true }))
+  const target = main.getByRole('button', { name: 'Drag dock', exact: true })
+  await target.scrollIntoViewIfNeeded()
+  await expect(target).toBeInViewport()
+  const handle = await box(target)
   const point = { x: handle.x + handle.width / 2, y: handle.y + handle.height / 2 }
   console.log('DOCK_INPUT_GEOMETRY', JSON.stringify(await main.evaluate((el, point) => {
     const rect = (node: Element | null) => node?.getBoundingClientRect().toJSON()
@@ -63,12 +66,12 @@ test.describe('Drag and Drop Functionality', () => {
 
   test('should allow dragging the floating dock', async ({ page }) => {
     const main = await openDock(page)
+    const p = await start(page, main)
     const initial = await box(main.locator('.floating-dock'))
     const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
     const dx = Math.min(70, stage.x + stage.width - initial.x - initial.width)
     const dy = Math.min(35, stage.y + stage.height - initial.y - initial.height)
     expect(dx).toBeGreaterThan(10)
-    const p = await start(page, main)
     await page.mouse.move(p.x + 70, p.y + 35, { steps: 5 })
     await expect.poll(async () => Math.abs((await box(main.locator('.floating-dock'))).x - initial.x - dx)).toBeLessThanOrEqual(1)
     await expect.poll(async () => Math.abs((await box(main.locator('.floating-dock'))).y - initial.y - dy)).toBeLessThanOrEqual(1)
@@ -144,8 +147,8 @@ test.describe('Drag and Drop Functionality', () => {
 
   test('should handle rapid drag movements', async ({ page }) => {
     const main = await openDock(page)
-    const initial = await box(main.locator('.floating-dock'))
     const p = await start(page, main)
+    const initial = await box(main.locator('.floating-dock'))
     const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
     const dx = Math.min(80, stage.x + stage.width - initial.x - initial.width)
     expect(dx).toBeGreaterThan(10)
