@@ -48,8 +48,8 @@
     }
   },
   "allLockedCoverage": {
-    "lockSha256": "f00a3229c2d097d26dfb48a531811156f41d565fdd34be9cd8298efc9f1eeb8d",
-    "packageVersions": 685,
+    "lockSha256": "53a7deef3c153d1abf60de094f0b05e16fac53a880e6983112463dac1890c6be",
+    "packageVersions": 686,
     "packageNames": 612,
     "platformConstrainedVersions": 87,
     "optionalSnapshots": 90
@@ -260,7 +260,7 @@
         {
           "version": "6.1.5",
           "paths": [
-            ".>eslint-plugin-vue>postcss-selector-parser"
+            ".>tailwindcss>postcss-selector-parser"
           ]
         }
       ]
@@ -589,5 +589,8 @@
     "Advisory matching is a known-vulnerability database scan, not a source security audit or proof of absence of vulnerabilities.",
     "Linux installs do not execute non-Linux optional binaries; their locked package versions were included in the platform-independent scan.",
     "pnpm 10 audit metadata reports dev/optional counts as zero; use the explicit all-lock coverage instead of those misleading metadata fields."
-  ]
+  ],
+  "compatibleParentUpdates": {
+    "eslint-plugin-vue": "10.3.0 \u2192 10.11.1 adopts postcss-selector-parser 7.1.6 through its supported ^7.1.4 dependency; vue-eslint-parser 10.4.1 is now explicitly declared to satisfy the plugin peer and existing config import. No parser-major override is forced into Tailwind 3."
+  }
 }
