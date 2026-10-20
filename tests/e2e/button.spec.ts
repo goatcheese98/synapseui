@@ -1,14 +1,14 @@
 import { test, expect, type Page } from '@playwright/test'
 
 async function openButtons(page: Page) {
-  await page.goto('/story/src-stories-button-story-vue?variantId=src-stories-button-story-vue-1')
+  await test.step('Navigate directly to the retained Button story', () => page.goto('/story/src-stories-button-story-vue?variantId=src-stories-button-story-vue-1',{waitUntil:'domcontentloaded'}))
   // Navigation completes before Histoire mounts its separate Vue preview apps.
   // Wait for the named fixture's actual mount, not a product assertion's deadline.
   const grid = page.locator('.histoire-story-variant-grid')
   const mainVariants = grid.locator('.histoire-story-variant-grid-item').filter({
     has: page.getByRole('link', { name: 'Main Variants', exact: true }),
   })
-  await mainVariants.locator('.histoire-generic-render-story > [data-v-app]').waitFor({ state: 'attached' })
+  await test.step('Wait for the actual Main Variants Vue app mount', () => mainVariants.locator('.histoire-generic-render-story > [data-v-app]').waitFor({ state: 'attached' }))
   await expect(mainVariants.getByRole('button', { name: 'Primary', exact: true })).toBeVisible()
   return grid
 }
@@ -21,6 +21,20 @@ async function openFoundations(page: Page) {
 }
 
 test.describe('Button Component', () => {
+  const diagnostics = new WeakMap<Page,string[]>()
+  test.beforeEach(async ({page}) => {
+    const events:string[]=[];diagnostics.set(page,events)
+    page.on('pageerror',error=>events.push(`pageerror: ${error.message}`))
+    page.on('console',message=>{if(message.type()==='error')events.push(`console: ${message.text()}`)})
+    page.on('requestfailed',request=>events.push(`request: ${request.url()} ${request.failure()?.errorText}`))
+  })
+  test.afterEach(async ({page},info) => {
+    if(info.status===info.expectedStatus)return
+    console.log('BUTTON_MOUNT_DIAGNOSTIC',JSON.stringify({events:diagnostics.get(page),dom:await page.evaluate(()=>({
+      url:location.href,ready:document.readyState,text:document.body.innerText.slice(0,1500),
+      previews:[...document.querySelectorAll('.histoire-story-variant-grid-item')].slice(0,6).map(item=>({title:item.querySelector('a')?.textContent,mounted:!!item.querySelector('[data-v-app]'),buttons:item.querySelectorAll('button').length,markup:item.querySelector('.histoire-generic-render-story')?.innerHTML.slice(0,1000)})),
+    }))}))
+  })
   test('should display all button variants', async ({ page }) => {
     const grid = await openButtons(page)
     for (const name of ['Neutral', 'Primary', 'Secondary', 'Accent', 'Success', 'Warning', 'Error', 'Info', 'Neutral Outline', 'Primary Outline', 'Success Outline', 'Error Outline', 'Ghost', 'Ghost Primary', 'Link']) {

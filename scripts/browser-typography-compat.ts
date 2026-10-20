@@ -13,7 +13,7 @@ for (const [engine,type] of Object.entries({chromium,firefox,webkit})) {
       const pair=[]
       for (const [name,base] of [['480a904',reference],['current',current]]) {
         const page=await browser.newPage({viewport:{width:1280,height:720},reducedMotion:'reduce'})
-        await page.goto(`${base}/story/src-stories-button-story-vue?variantId=src-stories-button-story-vue-${index}`)
+        await page.goto(`${base}/story/src-stories-button-story-vue?variantId=src-stories-button-story-vue-${index}`,{waitUntil:'domcontentloaded'})
         const item=page.locator('.histoire-story-variant-grid-item').filter({has:page.getByRole('link',{name:title,exact:true})})
         await item.getByRole('button').first().waitFor()
         await page.evaluate(()=>document.fonts.ready)

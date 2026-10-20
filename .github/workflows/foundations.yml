@@ -50,8 +50,8 @@ jobs:
       - name: Compare exact 480a904 typography on the same pinned browsers
         timeout-minutes: 4
         run: |
-          git fetch --no-tags --depth=1 origin 480a904ac9b8782953744416c266abd54ca18dc6
-          git worktree add --detach /tmp/synapse-typography-480 FETCH_HEAD
+          git -c safe.directory="$GITHUB_WORKSPACE" fetch --no-tags --depth=1 origin 480a904ac9b8782953744416c266abd54ca18dc6
+          git -c safe.directory="$GITHUB_WORKSPACE" worktree add --detach /tmp/synapse-typography-480 FETCH_HEAD
           (cd /tmp/synapse-typography-480 && corepack pnpm install --frozen-lockfile)
           (cd /tmp/synapse-typography-480 && corepack pnpm dev --port 6007) > /tmp/synapse-typography-480.log 2>&1 &
           reference_pid=$!

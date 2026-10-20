@@ -25,8 +25,8 @@ export async function openButtonVariant(page: Page, title: 'Main Variants' | 'Al
 export async function navigateStory(page: Page, group: string, id: string, variant: string) {
   await page.goto('/')
   await expect(page).toHaveTitle('Synapse UI')
-  await expect(page.locator('.histoire-base-split-pane').first()).toHaveCSS('display','flex')
   const mobile = await page.evaluate(() => matchMedia('(max-width: 640px)').matches)
+  if (!mobile) await expect(page.locator('.histoire-base-split-pane').first()).toHaveCSS('display','flex')
   if (mobile) await page.getByText('Select a story...', { exact: true }).click()
   const link = page.locator(`a[href="/story/${id}"]`)
   if (!await link.isVisible()) await page.getByRole('button', { name: group, exact: true }).click()
