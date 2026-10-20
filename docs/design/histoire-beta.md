@@ -48,3 +48,44 @@ why CDP lost those response bodies or whether its cache was involved. Immediate
 owned settling handles that failure normally without treating shell font responses
 as Geist evidence. A real-browser redirected-required-font negative control
 continues to reject invalid evidence without an unhandled promise rejection.
+
+
+### Imported component CSS coverage (follow-up to 7464c173)
+
+The official beta `dist/bundle-main.js` imports **both** `./style.css` and
+`./bundled/app.css`; dev and static build consume that entry. The latter contains
+15 additional scopes with the same root/preview boundary, covering 24 component
+rules and one keyframe definition. It was not covered by the first allowlist.
+
+A cloud reproduction using the 7464c173 runtime configuration observed zero
+native scopes in the served shell CSS but one in the served component CSS
+(Vite merged its 15 same-boundary source blocks). A fresh static build also
+retained one native component scope in the stylesheet linked by index.html.
+The linked file was `assets/style-DGI41zsJ.css`, SHA256
+`ff1c1c7a7f4f4df0f88dad768804974e76de5b4289046dd0706f40b8a43ba5c6`.
+These were consumed rules, not unused files; pinned Firefox 140 would ignore
+the remaining scope. [Raw before trace and official source hashes](histoire-scope-evidence.json).
+
+The adapter now allowlists exactly those two distribution paths and verifies
+their reviewed source counts (1 shell + 15 component blocks). It rejects changed
+boundaries/counts and leaves consumer files with the same basename untouched.
+The focused source regression exercises all 594 actual style rules, 21
+pseudo-element selectors and the actual component animation. It also exposed
+and fixes newline formatting between an inserted guard and a leading
+`::before`/`::after`, which could otherwise become a descendant combinator.
+
+The hosted browser probe runs Chromium, Firefox and WebKit against **both**
+the real dev app and the freshly emitted static app. It records served stylesheet
+identities, linked static CSS hashes and remaining native-scope counts; checks
+actual component tree margins and split-pane dragger width/offset; verifies
+ordinary preview exclusion, the custom-controls exception and a nested ordinary
+preview enclosing custom controls; exercises pseudo-elements; and reads the
+actual component animation's keyframes. No story, public component or golden is
+added. Results are archived under `test-results/histoire-scope/served-emitted.json`.
+
+**Compatibility limit:** this is an ordinary-selector conversion for the known
+Histoire beta rules, not a general CSS `@scope` polyfill. Selector specificity
+and the tested boundary/custom-controls behavior are preserved, but general
+**scope-proximity cascade tie-breaking is not reproduced**. Differently nested
+scopes or competing rules relying on that tie-break require separate review;
+this adapter must not be applied to arbitrary consumer CSS.
