@@ -24,7 +24,9 @@ export async function setState(patch: Partial<typeof state>) {
 export function mount() {
   const host = document.createElement('div')
   host.id = 'semantic-probe'
-  document.body.append(host)
+  const story = document.querySelector('.histoire-generic-render-story')
+  if (!story) throw new Error('The retained Histoire consumer must be mounted first')
+  story.append(host)
   createApp({ render: () => h('div', [
     h(SmartButton, { 'data-testid': 'direct-button', variant: state.variant, size: state.size, disabled: state.disabled, loading: state.loading }, () => 'Button'),
     h(InterconnectedCard, { 'data-testid': 'context-card', variant: state.cardVariant, size: state.cardSize, interactive: state.cardInteractive }, () =>
