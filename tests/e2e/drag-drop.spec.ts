@@ -61,11 +61,21 @@ test.describe('Drag and Drop Functionality', () => {
 
   test('should handle drag boundaries and constraints', async ({ page }) => {
     const main = await openDock(page)
-    const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
-    await start(page, main)
-    await page.mouse.move(stage.x - 100, stage.y - 100, { steps: 5 })
+    const workspace = main.getByRole('region', { name: 'Dock workspace' })
+    await workspace.scrollIntoViewIfNeeded()
+    const stage = await box(workspace)
+    const initial = await box(main.locator('.floating-dock'))
+    const point = await start(page, main)
+    const offset = { x: point.x - initial.x, y: point.y - initial.y }
+    // Exceed the dock's legal translation, while keeping input inside the browser viewport.
+    // Sending the pointer below the browser window is not delivered consistently by Firefox.
+    await page.mouse.move(stage.x + offset.x - 40, stage.y + offset.y - 40, { steps: 5 })
     await withinWorkspace(main)
-    await page.mouse.move(stage.x + stage.width + 100, stage.y + stage.height + 100, { steps: 5 })
+    const topLeft = await box(main.locator('.floating-dock'))
+    expect(Math.abs(topLeft.x - stage.x)).toBeLessThan(2)
+    expect(Math.abs(topLeft.y - stage.y)).toBeLessThan(2)
+    await page.mouse.move(stage.x + stage.width - initial.width + offset.x + 40,
+      stage.y + stage.height - initial.height + offset.y + 40, { steps: 5 })
     await withinWorkspace(main)
     await page.mouse.up()
     await withinWorkspace(main)
@@ -79,6 +89,8 @@ test.describe('Drag and Drop Functionality', () => {
     const transform = await main.locator('.floating-dock').evaluate(el => getComputedStyle(el).transform)
     await main.getByRole('button', { name: 'Drag dock' }).click({ button: 'right' })
     await expect(main.locator('.floating-dock')).toHaveAttribute('data-dragging', 'false')
+    // A real right-click opens WebKit's native context menu; dismiss it before clicking a control.
+    await page.keyboard.press('Escape')
     await main.getByRole('button', { name: 'Run action' }).click()
     await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
     const final = await box(main.locator('.floating-dock'))
