@@ -1,5 +1,5 @@
 diff --git a/dist/node/dom/env.js b/dist/node/dom/env.js
-index 2a50cb070eb698e555363efb879a637ae824b94a..b8f4f6c1d0847739e6ccd3b2abe96e531d8f26e1 100644
+index 9914184be1b5fe1416f0943943fe0578b0ae7c1e..d10a3cbb42c41c68db5aba23600e65e399d8027e 100644
 --- a/dist/node/dom/env.js
 +++ b/dist/node/dom/env.js
 @@ -11,6 +11,8 @@ export function createDomEnv() {

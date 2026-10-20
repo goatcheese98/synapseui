@@ -28,8 +28,8 @@
     "all": {
       "info": 0,
       "low": 0,
-      "moderate": 5,
-      "high": 3,
+      "moderate": 2,
+      "high": 2,
       "critical": 0
     },
     "production": {
@@ -42,17 +42,17 @@
     "development": {
       "info": 0,
       "low": 0,
-      "moderate": 5,
-      "high": 3,
+      "moderate": 2,
+      "high": 2,
       "critical": 0
     }
   },
   "allLockedCoverage": {
-    "lockSha256": "53a7deef3c153d1abf60de094f0b05e16fac53a880e6983112463dac1890c6be",
-    "packageVersions": 686,
-    "packageNames": 612,
-    "platformConstrainedVersions": 87,
-    "optionalSnapshots": 90
+    "lockSha256": "68e48cf36ee6f2c5cd61b0e34e077db854e14dc6f925d137238dd406f9e2e23d",
+    "packageVersions": 678,
+    "packageNames": 611,
+    "platformConstrainedVersions": 64,
+    "optionalSnapshots": 67
   },
   "allLockedMatches": [
     {
@@ -63,16 +63,6 @@
       "range": "<=3.0.3",
       "versions": [
         "3.0.3"
-      ]
-    },
-    {
-      "name": "esbuild",
-      "id": 1102341,
-      "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99",
-      "severity": "moderate",
-      "range": "<=0.24.2",
-      "versions": [
-        "0.21.5"
       ]
     },
     {
@@ -104,55 +94,9 @@
       "versions": [
         "1.0.3"
       ]
-    },
-    {
-      "name": "vite",
-      "id": 1120784,
-      "url": "https://github.com/advisories/GHSA-v6wh-96g9-6wx3",
-      "severity": "moderate",
-      "range": "<=6.4.2",
-      "versions": [
-        "5.4.21"
-      ]
-    },
-    {
-      "name": "vite",
-      "id": 1116229,
-      "url": "https://github.com/advisories/GHSA-4w7w-66w2-5vf9",
-      "severity": "moderate",
-      "range": "<=6.4.1",
-      "versions": [
-        "5.4.21"
-      ]
-    },
-    {
-      "name": "vite",
-      "id": 1123525,
-      "url": "https://github.com/advisories/GHSA-fx2h-pf6j-xcff",
-      "severity": "high",
-      "range": "<=6.4.2",
-      "versions": [
-        "5.4.21"
-      ]
     }
   ],
   "remainingFindings": [
-    {
-      "module_name": "esbuild",
-      "github_advisory_id": "GHSA-67mh-4wv8-2f99",
-      "severity": "moderate",
-      "vulnerable_versions": "<=0.24.2",
-      "patched_versions": ">=0.25.0",
-      "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99",
-      "findings": [
-        {
-          "version": "0.21.5",
-          "paths": [
-            ".>histoire>vite-node>vite>esbuild"
-          ]
-        }
-      ]
-    },
     {
       "module_name": "playwright",
       "github_advisory_id": "GHSA-7mvr-c777-76hp",
@@ -165,54 +109,6 @@
           "version": "1.54.1",
           "paths": [
             ".>playwright"
-          ]
-        }
-      ]
-    },
-    {
-      "module_name": "vite",
-      "github_advisory_id": "GHSA-4w7w-66w2-5vf9",
-      "severity": "moderate",
-      "vulnerable_versions": "<=6.4.1",
-      "patched_versions": ">=6.4.2",
-      "url": "https://github.com/advisories/GHSA-4w7w-66w2-5vf9",
-      "findings": [
-        {
-          "version": "5.4.21",
-          "paths": [
-            ".>histoire>vite-node>vite"
-          ]
-        }
-      ]
-    },
-    {
-      "module_name": "vite",
-      "github_advisory_id": "GHSA-v6wh-96g9-6wx3",
-      "severity": "moderate",
-      "vulnerable_versions": "<=6.4.2",
-      "patched_versions": ">=6.4.3",
-      "url": "https://github.com/advisories/GHSA-v6wh-96g9-6wx3",
-      "findings": [
-        {
-          "version": "5.4.21",
-          "paths": [
-            ".>histoire>vite-node>vite"
-          ]
-        }
-      ]
-    },
-    {
-      "module_name": "vite",
-      "github_advisory_id": "GHSA-fx2h-pf6j-xcff",
-      "severity": "high",
-      "vulnerable_versions": "<=6.4.2",
-      "patched_versions": ">=6.4.3",
-      "url": "https://github.com/advisories/GHSA-fx2h-pf6j-xcff",
-      "findings": [
-        {
-          "version": "5.4.21",
-          "paths": [
-            ".>histoire>vite-node>vite"
           ]
         }
       ]
@@ -591,6 +487,40 @@
     "pnpm 10 audit metadata reports dev/optional counts as zero; use the explicit all-lock coverage instead of those misleading metadata fields."
   ],
   "compatibleParentUpdates": {
-    "eslint-plugin-vue": "10.3.0 \u2192 10.11.1 adopts postcss-selector-parser 7.1.6 through its supported ^7.1.4 dependency; vue-eslint-parser 10.4.1 is now explicitly declared to satisfy the plugin peer and existing config import. No parser-major override is forced into Tailwind 3."
+    "eslint-plugin-vue": "10.3.0 \u2192 10.11.1 adopts postcss-selector-parser 7.1.6 through its supported ^7.1.4 dependency; vue-eslint-parser 10.4.1 is now explicitly declared to satisfy the plugin peer and existing config import. No parser-major override is forced into Tailwind 3.",
+    "histoire": "Coordinated histoire/app/controls/plugin-vue/shared/vendors 1.0.0-beta.1, supported Vite 7.3.7 and Vue plugin 6.0.10 on Node 24 / dev Vue 3.5.44. Public Vue peer remains ^3.5.18. No Vite 5 or esbuild 0.21 packages remain in the complete lock; no blind vite-node/esbuild override. Ported real JSDOM lifecycle patch."
+  },
+  "previousCheckpoint": {
+    "head": "480a904ac9b8782953744416c266abd54ca18dc6",
+    "after": {
+      "all": {
+        "info": 0,
+        "low": 0,
+        "moderate": 5,
+        "high": 3,
+        "critical": 0
+      },
+      "production": {
+        "info": 0,
+        "low": 0,
+        "moderate": 1,
+        "high": 1,
+        "critical": 0
+      },
+      "development": {
+        "info": 0,
+        "low": 0,
+        "moderate": 5,
+        "high": 3,
+        "critical": 0
+      }
+    },
+    "allLockedCoverage": {
+      "lockSha256": "53a7deef3c153d1abf60de094f0b05e16fac53a880e6983112463dac1890c6be",
+      "packageVersions": 686,
+      "packageNames": 612,
+      "platformConstrainedVersions": 87,
+      "optionalSnapshots": 90
+    }
   }
 }
