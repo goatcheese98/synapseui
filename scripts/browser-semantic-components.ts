@@ -57,20 +57,33 @@ try {
     await expect(node).toHaveCSS('background-color', background)
     await expect(node).toHaveCSS('color', color)
     await expect(node).toHaveCSS('border-top-color', border ?? defaultBorder)
-    return node.evaluate(el => {
+    const observed = await node.evaluate(el => {
       const s = getComputedStyle(el)
-      return { background:s.backgroundColor, text:s.color, border:s.borderTopColor, borderWidth:s.borderTopWidth, opacity:s.opacity, shadow:s.boxShadow }
+      const parse = (value: string) => { const n = value.match(/[\d.]+/g)!.map(Number); return [n[0],n[1],n[2],n[3] ?? 1] }
+      const over = (fg: number[], bg: number[]) => [...fg.slice(0,3).map((v,i) => v*fg[3]+bg[i]*(1-fg[3])),1]
+      let background = [255,255,255,1]
+      const ancestors: Element[] = []
+      for (let parent: Element | null = el; parent; parent = parent.parentElement) ancestors.unshift(parent)
+      for (const parent of ancestors) background = over(parse(getComputedStyle(parent).backgroundColor),background)
+      const foreground = over(parse(s.color),background)
+      const luminance = (rgb: number[]) => rgb.slice(0,3).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0)
+      const a=luminance(foreground), b=luminance(background)
+      return { contrast:(Math.max(a,b)+.05)/(Math.min(a,b)+.05), compositedBackground:background.slice(0,3), background:s.backgroundColor, text:s.color, border:s.borderTopColor, borderWidth:s.borderTopWidth, opacity:s.opacity, shadow:s.boxShadow }
     })
+    if (await node.evaluate(el => el instanceof HTMLButtonElement && !el.disabled)) assert(observed.contrast >= 4.5, `Enabled label contrast ${observed.contrast}: ${JSON.stringify(observed)}`)
+    return observed
   }
-  const solids = [['neutral','neutral',900,950],['primary','primary',700,800],['secondary','secondary',700,800],['accent','accent',500,600],['success','success',600,700],['warning','warning',500,600],['error','error',600,700]] as const
-  const outlines = [['outline','neutral',500,700],['outline-primary','primary',700,700],['outline-success','success',600,600],['outline-error','error',600,600]] as const
+  const solids = [['neutral','neutral',900,950],['primary','primary',700,800],['secondary','secondary',700,800],['accent','accent',500,600],['success','success',700,800],['warning','warning',500,600],['error','error',600,700]] as const
+  const outlines = [['outline','neutral',500,700],['outline-primary','primary',700,700],['outline-success','success',600,700],['outline-error','error',600,700]] as const
   const cases = [
-    ...solids.map(([variant,intent,normal,hover]) => ({ variant, normal:rgb(intent,normal), hover:rgb(intent,hover), text:white, border:undefined as string|undefined })),
+    ...solids.map(([variant,intent,normal,hover]) => ({ variant, normal:rgb(intent,normal), hover:rgb(intent,hover), text:['accent','warning'].includes(variant)?rgb('neutral',900):white, border:undefined as string|undefined })),
     ...outlines.map(([variant,intent,border,text]) => ({ variant, normal:transparent, hover:rgb(intent,50), text:rgb(intent,text), border:rgb(intent,border) })),
     {variant:'ghost',normal:transparent,hover:rgb('neutral',100),text:rgb('neutral',700),border:transparent},
     {variant:'ghost-primary',normal:transparent,hover:rgb('primary',50),text:rgb('primary',700),border:transparent},
     {variant:'link',normal:transparent,hover:transparent,text:rgb('primary',700),border:undefined},
   ]
+  for (const backdrop of [white,rgb('neutral',100)]) {
+  await page.locator('#semantic-probe').evaluate((el, background) => { el.style.backgroundColor=background },backdrop)
   for (const item of cases) {
     await page.mouse.move(0,0)
     await update({variant:item.variant,disabled:false,loading:false})
@@ -90,7 +103,8 @@ try {
     await expect(button).toHaveCSS('pointer-events','none')
     await expect(button).toBeDisabled()
     const disabled = await colors(button,item.normal,item.text,item.border)
-    results.push({...item,observed:{normal,hover,focus,disabled}})
+    results.push({...item,backdrop,observed:{normal,hover,focus,disabled}})
+  }
   }
   for (const variant of ['default','outline','filled','ghost','primary','secondary','accent','success','warning','error','muted']) {
     await page.mouse.move(0,0)
@@ -110,7 +124,7 @@ try {
   await expect(card).toHaveCSS('transform','matrix(1, 0, 0, 1, 0, -4)')
   await page.mouse.move(0,0)
   await update({cardInteractive:false,cardVariant:'primary',cardSize:'lg',variant:'error',autoAdapt:true})
-  await colors(inherited,rgb('accent',500),white)
+  await colors(inherited,rgb('accent',500),rgb('neutral',900))
   await expect(inherited).toHaveCSS('height','48px')
   await update({cardVariant:'secondary',cardSize:'sm'})
   await colors(inherited,rgb('primary',700),white)

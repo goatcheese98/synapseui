@@ -9,6 +9,13 @@ async function box(locator: Locator) {
 async function start(page: Page, main: Locator) {
   const handle = await box(main.getByRole('button', { name: 'Drag dock', exact: true }))
   const point = { x: handle.x + handle.width / 2, y: handle.y + handle.height / 2 }
+  console.log('DOCK_INPUT_GEOMETRY', JSON.stringify(await main.evaluate((el, point) => {
+    const rect = (node: Element | null) => node?.getBoundingClientRect().toJSON()
+    return { point, viewport:{width:innerWidth,height:innerHeight}, main:rect(el),
+      workspace:rect(el.querySelector('[data-dock-stage]')),dock:rect(el.querySelector('.floating-dock')),
+      handle:rect(el.querySelector('.dock-drag-handle')),hit:document.elementsFromPoint(point.x,point.y).map(node=>({tag:node.tagName,class:node.className})),
+      fonts:[...document.fonts].map(font=>({family:font.family,status:font.status})) }
+  },point)))
   await page.mouse.move(point.x, point.y)
   await page.mouse.down()
   return point

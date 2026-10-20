@@ -27,3 +27,34 @@ The hosted quality job runs this probe with a 120-second process bound inside it
 
 [Before](semantic-evidence/before-chromium154.png) and [after](semantic-evidence/after-chromium154.png) are supplemental cloud Chromium 154 engineering evidence, not Playwright 1.54.1 golden files. The implementation owner opened both actual images and explicitly compared the missing labels/fills, restored semantic colors and containment of existing action labels. An initial repaired capture exposed overflow of the existing long labels; the final capture and bounds assertion verify that correction. These new images are presented for engineering review, with no independent/human acceptance claimed. No new screenshot baseline is established or any of the reviewed 90 replaced. Paper approval remains unavailable.
 
+
+
+### Enabled-label accessibility follow-up
+
+The real computed probe exposed white-on-accent500 (2.803:1), warning500
+(2.148:1), and success600 (3.296:1) failures at ordinary label sizes. Accent
+and warning now use existing neutral900 text; success uses white on existing
+success700/800. Outlined success and error use their existing 700 foreground
+shades (error600 on error50 was only 4.415:1). No palette or public API changes.
+
+The enabled normal/hover/focus matrix composites actual ancestor backgrounds,
+checks all 14 variants on white and existing neutral100 surfaces, and requires
+4.5:1. Disabled controls retain their tested disabled attribute, 0.5 opacity and
+pointer exemption; their opacity is not misrepresented as accessible enabled text.
+Cloud Chromium 154 measured accent 6.369/5.015, warning 8.313/5.604, success
+5.016/7.130 (normal/hover). The lowest outlined success result is 4.578 on the
+neutral100 backdrop. Pinned hosted results remain required.
+
+Histoire beta also changed its shell font inheritance to Noto Sans Display.
+The story-only stylesheet restores the retained consumer's original Tailwind
+font stack, leaving the LUM Geist scope and published consumer CSS untouched.
+Same-cloud-browser alpha/beta computed Button styles and actual CDP NotoSans-Regular
+glyph identity, and the Main Variants supplemental PNG bytes, match after this
+repair. All 90 engineering-approved goldens remain unchanged.
+
+The font observer now owns response-body rejection immediately and detaches at
+FontFace readiness (also on failure/close). It logs URL/status/cancellation/redirect
+metadata for unreadable responses, fails required Geist body errors, and retains
+original byte hashes, wOF2 signatures, registered loaded faces and actual rendered
+PostScript glyph assertions. Exact pinned request diagnosis is pending the hosted
+run; the previous log omitted the failing request URL, so its cause is not assumed.
