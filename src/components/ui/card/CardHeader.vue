@@ -11,7 +11,7 @@ import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
 export interface CardHeaderProps {
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   align?: 'left' | 'center' | 'right'
   spacing?: 'tight' | 'normal' | 'loose'
 }
@@ -26,6 +26,7 @@ const headerClasses = computed(() => {
   const baseClasses = 'flex flex-col'
   
   const sizeClasses = {
+    xs: 'p-2 pb-1',
     sm: 'p-3 pb-2',
     md: 'p-6 pb-0',
     lg: 'p-8 pb-2'

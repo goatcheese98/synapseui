@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const open = computed({
+const open = computed<boolean | undefined, boolean>({
   get: () => props.open,
   set: (value) => emit('update:open', value)
 })

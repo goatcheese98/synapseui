@@ -9,7 +9,7 @@
       ($attrs.class as string | undefined),
       activeAnimation
     )"
-    v-bind="$attrs"
+    v-bind="{ ...$attrs, ...props }"
     @mouseenter="handleMouseEnter"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
@@ -19,18 +19,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ToastAction } from 'reka-ui'
+import { type ComponentPublicInstance, ref } from 'vue'
+import { type ToastActionProps, ToastAction } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
-const actionRef = ref<HTMLElement>()
+const actionRef = ref<HTMLElement | ComponentPublicInstance>()
+const props = defineProps<ToastActionProps>()
 const activeAnimation = ref('')
 
 const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements
 }
 
@@ -41,7 +42,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!actionRef.value) return
   
-  const element = actionRef.value.$el || actionRef.value
+  const element = ('$el' in actionRef.value ? actionRef.value.$el : actionRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

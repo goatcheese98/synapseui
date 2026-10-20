@@ -886,8 +886,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { cn } from '@/lib/utils'
 
 // Direct Reka UI imports for basic tooltips
 import { 
@@ -898,51 +896,15 @@ import {
 } from 'reka-ui'
 
 // Our wrapper components
-import Tooltip from '@/components/ui/tooltip/BaseTooltip.vue'
-import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
-import TooltipContent from '@/components/ui/tooltip/TooltipContent.vue'
 import TooltipProvider from '@/components/ui/tooltip/TooltipProvider.vue'
 
 // Specialized tooltip components
-import DataTooltip from '@/components/ui/tooltip/DataTooltip.vue'
-import InteractiveTooltip from '@/components/ui/tooltip/InteractiveTooltip.vue'
-import HelpTooltip from '@/components/ui/tooltip/HelpTooltip.vue'
-import StatusTooltip from '@/components/ui/tooltip/StatusTooltip.vue'
-import QuickActionsTooltip from '@/components/ui/tooltip/QuickActionsTooltip.vue'
 import ProgressiveTooltip from '@/components/ui/tooltip/ProgressiveTooltip.vue'
 
 // UI components
 import Button from '@/components/ui/button/BaseButton.vue'
 import Card from '@/components/ui/card/BaseCard.vue'
-import Badge from '@/components/ui/badge/BaseBadge.vue'
-import Input from '@/components/ui/input/BaseInput.vue'
-import Label from '@/components/ui/label/BaseLabel.vue'
 import Icon from '@/components/ui/icon/BaseIcon.vue'
-
-// State
-const tooltipInteractions = ref(0)
-const activeTooltipType = ref('')
-const tooltipTypes = ref({})
-
-// Track tooltip interactions
-const trackTooltip = (type: string) => {
-  tooltipInteractions.value++
-  activeTooltipType.value = type
-  tooltipTypes.value[type] = (tooltipTypes.value[type] || 0) + 1
-  
-  // Reset active type after a delay
-  setTimeout(() => {
-    if (activeTooltipType.value === type) {
-      activeTooltipType.value = ''
-    }
-  }, 2000)
-}
-
-// Handle actions
-const handleAction = (action: string) => {
-  console.log('Action triggered:', action)
-  // Add visual feedback or actual functionality here
-}
 
 // Progressive tooltip data loaders (simulate API calls)
 const loadUserDetails = async () => {

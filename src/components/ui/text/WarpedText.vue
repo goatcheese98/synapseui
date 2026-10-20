@@ -24,7 +24,7 @@
 import { computed } from 'vue'
 
 interface Props {
-  text: string
+  text?: string
   isPressed?: boolean
   warpIntensity?: number
   warpType?: 'wave' | 'compress' | 'bend' | 'ripple'

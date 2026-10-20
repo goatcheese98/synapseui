@@ -479,8 +479,8 @@ const dialogs = ref({
 })
 
 // Table data and configuration
-const tableVariant = ref('default')
-const tableSize = ref('md')
+const tableVariant = ref<'default' | 'compact' | 'bordered' | 'striped'>('default')
+const tableSize = ref<'sm' | 'md' | 'lg'>('md')
 const tableInteractive = ref(true)
 const tableSelectable = ref(true)
 
@@ -488,7 +488,7 @@ const tableColumns = [
   { key: 'name', title: 'Name', sortable: true },
   { key: 'email', title: 'Email', sortable: true },
   { key: 'role', title: 'Role', sortable: true },
-  { key: 'status', title: 'Status', sortable: true, align: 'center' }
+  { key: 'status', title: 'Status', sortable: true, align: 'center' as const }
 ]
 
 const tableData = ref([
@@ -502,7 +502,7 @@ const tableData = ref([
 ])
 
 // Event handlers
-const handleFormSubmit = (event: Event, formData: FormData) => {
+const handleFormSubmit = (_event: Event, formData: FormData) => {
   console.log('Form submitted:', Object.fromEntries(formData))
 }
 
@@ -519,15 +519,15 @@ const handleDialogConfirm = (type: string) => {
   dialogs.value[type as keyof typeof dialogs.value] = false
 }
 
-const handleRowClick = (row: any, index: number) => {
+const handleRowClick = (row: any, _index: number) => {
   console.log('Row clicked:', row)
 }
 
-const handleEdit = (row: any, index: number) => {
+const handleEdit = (row: any, _index: number) => {
   console.log('Edit:', row)
 }
 
-const handleDelete = (row: any, index: number) => {
+const handleDelete = (row: any, _index: number) => {
   console.log('Delete:', row)
 }
 </script>

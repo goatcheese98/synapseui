@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const showAlert = (message: string) => window.alert(message)
+
 import { ref } from 'vue'
 import FormField from '@/components/composite/FormField.vue'
 import UserCard from '@/components/composite/UserCard.vue'
@@ -173,8 +175,8 @@ const handleLogin = async (credentials: any) => {
             :is-loading="isLoginLoading"
             :global-error="loginError"
             @submit="handleLogin"
-            @forgot-password="() => alert('Forgot password clicked')"
-            @sign-up="() => alert('Sign up clicked')"
+            @forgot-password="() => showAlert('Forgot password clicked')"
+            @sign-up="() => showAlert('Sign up clicked')"
           />
           
           <div class="mt-6 p-4 bg-background-muted rounded-lg text-sm text-text-secondary">

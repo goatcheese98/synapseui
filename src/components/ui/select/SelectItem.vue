@@ -10,7 +10,7 @@
       ($attrs.class as string | undefined),
       activeAnimation
     )"
-    v-bind="$attrs"
+    v-bind="{ ...$attrs, ...props }"
     @mouseenter="handleMouseEnter"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
@@ -29,19 +29,20 @@
     </SelectItemText>
   </SelectItem>
 </template><script setup lang="ts">
-import { ref } from 'vue'
-import { SelectItem, SelectItemIndicator, SelectItemText } from 'reka-ui'
+import { type ComponentPublicInstance, ref } from 'vue'
+import { type SelectItemProps, SelectItem, SelectItemIndicator, SelectItemText } from 'reka-ui'
 import { Icon } from '@iconify/vue'
 import { cn } from '@/lib/utils'
 
-const itemRef = ref<HTMLElement>()
+const itemRef = ref<HTMLElement | ComponentPublicInstance>()
+const props = defineProps<SelectItemProps>()
 const activeAnimation = ref('')
 
 const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements
 }
 
@@ -52,7 +53,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!itemRef.value) return
   
-  const element = itemRef.value.$el || itemRef.value
+  const element = ('$el' in itemRef.value ? itemRef.value.$el : itemRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

@@ -200,7 +200,7 @@
                       <Button 
                         v-for="item in navItems" 
                         :key="item.href"
-                        :variant="activeNavItem === item.href ? 'default' : 'ghost'"
+                        :variant="activeNavItem === item.href ? 'neutral' : 'ghost'"
                         size="sm"
                         class="w-full justify-start"
                         @click="activeNavItem = item.href"
@@ -366,7 +366,7 @@
                       <Button
                         v-for="item in navItems"
                         :key="item.href"
-                        :variant="activeNavItem === item.href ? 'default' : 'outline'"
+                        :variant="activeNavItem === item.href ? 'neutral' : 'outline'"
                         size="sm"
                         class="w-full justify-start"
                         @click="activeNavItem = item.href"
@@ -390,7 +390,7 @@
                       <Button
                         v-for="item in flatSidebarItems"
                         :key="item.id"
-                        :variant="activeSidebarItem === item.id ? 'default' : 'outline'"
+                        :variant="activeSidebarItem === item.id ? 'neutral' : 'outline'"
                         size="sm"
                         class="w-full justify-start"
                         @click="activeSidebarItem = item.id"

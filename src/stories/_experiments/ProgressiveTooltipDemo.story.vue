@@ -409,11 +409,11 @@ import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 // Material variations for demo
 const materials = ref([
-  { name: 'Glass', key: 'glass', description: 'Glassmorphism effect' },
-  { name: 'Paper', key: 'paper', description: 'Clean material design' },
-  { name: 'Textured', key: 'textured', description: 'Subtle texture' },
-  { name: 'Elevated', key: 'elevated', description: 'High shadow' },
-  { name: 'Frosted', key: 'frosted', description: 'Frosted glass' }
+  { name: 'Glass', key: 'glass' as const, description: 'Glassmorphism effect' },
+  { name: 'Paper', key: 'paper' as const, description: 'Clean material design' },
+  { name: 'Textured', key: 'textured' as const, description: 'Subtle texture' },
+  { name: 'Elevated', key: 'elevated' as const, description: 'High shadow' },
+  { name: 'Frosted', key: 'frosted' as const, description: 'Frosted glass' }
 ])
 
 // Progressive tooltip data loaders with realistic delays

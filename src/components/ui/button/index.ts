@@ -6,7 +6,7 @@ export { default as LoadingSpinner } from './LoadingSpinner.vue'
 export { default as SmartButton } from "./SmartButton.vue"
 export { default as UltraSmartButton } from "./UltraSmartButton.vue"
 
-export { buttonVariants, type ButtonVariants } from './variants'
+export { buttonVariants, type ButtonVariants } from './button-variants'
 
 // New unified variants system
 export { 

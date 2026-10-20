@@ -180,8 +180,8 @@ import { cn } from '@/lib/utils'
 import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
-import Button from "./BaseButton.vue"
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from "../button/BaseButton.vue"
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface Shortcut {
   description: string
@@ -231,7 +231,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const open = computed({
+const open = computed<boolean | undefined, boolean>({
   get: () => props.open,
   set: (value) => emit('update:open', value)
 })

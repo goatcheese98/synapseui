@@ -1,52 +1,96 @@
 <template>
   <Primitive
+    v-if="asChild"
+    v-bind="$attrs"
     ref="buttonRef"
     :as="as"
     :as-child="asChild"
-    :class="cn(buttonVariants({ variant, size }), ($attrs.class as string | undefined), 'edge-morph-button', pulseClass)"
+    :class="cn(buttonVariants({ variant, size }), ($attrs.class as string | undefined), 'edge-morph-button', pulseClass, fullWidth && 'w-full', loading && 'cursor-wait')"
+    :data-motion="enableCornerPulse || enableTextWarp ? 'on' : 'off'"
     :data-state="loading ? 'loading' : 'idle'"
-    :disabled="disabled || loading"
+    :disabled="blocked || undefined"
+    :aria-disabled="blocked || undefined"
+    :aria-busy="loading || undefined"
+    :aria-label="ariaLabel || ($attrs['aria-label'] as string | undefined)"
+    :aria-describedby="ariaDescribedBy || ($attrs['aria-describedby'] as string | undefined)"
+    :tabindex="blocked && (as !== 'button' || asChild) ? -1 : ($attrs.tabindex as number | undefined)"
     :type="type"
-    v-bind="$attrs"
+    @click.capture="guardBlocked"
     @click="handleClick"
     @mouseenter="handleMouseEnter"
-    @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
-    <span
-      v-if="loading"
-      class="loading-spinner"
-      :style="{ width: `${getSpinnerSize()}px`, height: `${getSpinnerSize()}px` }"
+    <slot />
+  </Primitive>
+  <Primitive
+    v-else
+    v-bind="$attrs"
+    ref="buttonRef"
+    :as="as"
+    :as-child="asChild"
+    :class="cn(buttonVariants({ variant, size }), ($attrs.class as string | undefined), 'edge-morph-button', pulseClass, fullWidth && 'w-full', loading && 'cursor-wait')"
+    :data-motion="enableCornerPulse || enableTextWarp ? 'on' : 'off'"
+    :data-state="loading ? 'loading' : 'idle'"
+    :disabled="blocked || undefined"
+    :aria-disabled="blocked || undefined"
+    :aria-busy="loading || undefined"
+    :aria-label="ariaLabel || ($attrs['aria-label'] as string | undefined)"
+    :aria-describedby="ariaDescribedBy || ($attrs['aria-describedby'] as string | undefined)"
+    :tabindex="blocked && (as !== 'button' || asChild) ? -1 : ($attrs.tabindex as number | undefined)"
+    :type="type"
+    @click.capture="guardBlocked"
+    @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+    <LoadingSpinner
+      v-if="loading && !asChild"
+      class="button-spinner"
+      :size="getSpinnerSize()"
+      aria-hidden="true"
     />
-    
+    <slot
+      v-if="!loading && !asChild"
+      name="icon-left"
+    />
+
     <span :class="cn('button-content', loading && 'button-content-loading')">
-      <WarpedText 
-        v-if="enableTextWarp && $slots.default" 
-        :text="getSlotText()" 
+      <WarpedText
+        v-if="enableTextWarp && motionAllowed() && $slots.default"
+        :text="getSlotText()"
         :is-pressed="isPressed"
         :warp-type="textWarpType"
         :warp-intensity="textWarpIntensity"
       />
       <slot v-else />
     </span>
+    <slot
+      v-if="!loading && !asChild"
+      name="icon-right"
+    />
   </Primitive>
 </template>
 
 <script setup lang="ts">
-import { ref, useSlots } from 'vue'
+import { computed, ref, useSlots, onBeforeUnmount, type ComponentPublicInstance } from 'vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 import { Primitive } from 'reka-ui'
-import { buttonVariants } from './button-variants'
+import { buttonVariants, type ButtonVariants } from './button-variants'
 import { cn } from '@/lib/utils'
 import WarpedText from '@/components/ui/text/WarpedText.vue'
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'outline' | 'ghost' | 'link'
+  variant?: ButtonVariants['variant']
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon-xs' | 'icon-sm' | 'icon-md' | 'icon-lg' | 'icon-xl'
   as?: string | object
   asChild?: boolean
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
+  fullWidth?: boolean
+  enableCornerPulse?: boolean
+  ariaLabel?: string
+  ariaDescribedBy?: string
   // Text warping props
   enableTextWarp?: boolean
   textWarpType?: 'wave' | 'compress' | 'bend' | 'ripple'
@@ -61,7 +105,10 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'button',
   disabled: false,
   loading: false,
-  enableTextWarp: true,
+  ariaLabel: '',
+  ariaDescribedBy: '',
+  enableTextWarp: false,
+  enableCornerPulse: false,
   textWarpType: 'compress',
   textWarpIntensity: 0.8
 })
@@ -71,7 +118,16 @@ const emit = defineEmits<{
 }>()
 
 // Animation state
-const buttonRef = ref<HTMLElement>()
+defineOptions({ inheritAttrs: false })
+const buttonRef = ref<ComponentPublicInstance | HTMLElement>()
+const blocked = computed(() => props.disabled || props.loading)
+const timers = new Set<ReturnType<typeof setTimeout>>()
+const later = (callback: () => void, delay: number) => {
+  const timer = setTimeout(() => { timers.delete(timer); callback() }, delay)
+  timers.add(timer)
+}
+onBeforeUnmount(() => timers.forEach(clearTimeout))
+const motionAllowed = () => typeof window !== 'undefined' && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 const pulseClass = ref('')
 const isPressed = ref(false)
 const slots = useSlots()
@@ -95,7 +151,7 @@ const getSpinnerSize = () => {
 // Extract text from slot for warping
 const getSlotText = () => {
   if (!slots.default) return ''
-  
+
   try {
     const vnodes = slots.default()
     if (vnodes && vnodes[0] && typeof vnodes[0].children === 'string') {
@@ -111,29 +167,31 @@ const getSlotText = () => {
   }
 }
 
+const guardBlocked = (event: MouseEvent) => {
+  if (blocked.value) { event.preventDefault(); event.stopImmediatePropagation() }
+}
+
 const handleClick = (event: MouseEvent) => {
   if (props.disabled || props.loading) {
+    event.preventDefault()
+    event.stopImmediatePropagation()
     return
   }
-  
+
   // Trigger press animation for text warp
-  if (props.enableTextWarp) {
+  if (props.enableTextWarp && motionAllowed()) {
     isPressed.value = true
-    setTimeout(() => {
+    later(() => {
       isPressed.value = false
     }, 150)
   }
-  
+
   emit('click', event)
 }
 
 const handleMouseEnter = (event: MouseEvent) => {
-  if (props.disabled || props.loading) return
+  if (blocked.value || !props.enableCornerPulse || !motionAllowed()) return
   detectEntryCorner(event)
-}
-
-const handleMouseMove = (event: MouseEvent) => {
-  // No action needed during mouse move
 }
 
 const handleMouseLeave = () => {
@@ -143,23 +201,23 @@ const handleMouseLeave = () => {
 
 const detectEntryCorner = (event: MouseEvent) => {
   if (!buttonRef.value) return
-  
+
   // Get the actual DOM element from the Primitive component
-  const element = buttonRef.value.$el || buttonRef.value
+  const element = ('$el' in buttonRef.value ? buttonRef.value.$el : buttonRef.value) as HTMLElement
   if (!element || typeof element.getBoundingClientRect !== 'function') return
-  
+
   const rect = element.getBoundingClientRect()
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
-  
+
   const threshold = 15 // pixels from corner to consider as corner entry
-  
+
   // Clear any existing animation
   pulseClass.value = ''
-  
+
   // Determine which corner cursor entered from and apply pulse
   let cornerClass = ''
-  
+
   // Check corners first (more specific)
   if (x <= threshold && y <= threshold) {
     cornerClass = 'pulse-top-left'
@@ -170,13 +228,13 @@ const detectEntryCorner = (event: MouseEvent) => {
   } else if (x >= rect.width - threshold && y >= rect.height - threshold) {
     cornerClass = 'pulse-bottom-right'
   }
-  
+
   if (cornerClass) {
     // Small delay for class change to register
-    setTimeout(() => {
+    later(() => {
       pulseClass.value = cornerClass
       // Remove class after animation completes
-      setTimeout(() => {
+      later(() => {
         pulseClass.value = ''
       }, 500)
     }, 10)
@@ -195,6 +253,7 @@ const detectEntryCorner = (event: MouseEvent) => {
 }
 
 .button-content {
+  padding-inline: 8px;
   transition: opacity 200ms ease-out;
 }
 
@@ -222,17 +281,18 @@ const detectEntryCorner = (event: MouseEvent) => {
   /* No transform - only corner pulse animations will play */
 }
 
-[data-state="idle"].edge-morph-button:active {
+[data-state="idle"].edge-morph-button[data-motion="on"]:active {
   transform: scale(0.98);
   transition: transform 100ms ease-out;
   /* Paper press effect - creates depth illusion */
-  box-shadow: 
+  box-shadow:
     inset 0 4px 8px rgba(0, 0, 0, 0.15),
     inset 0 2px 4px rgba(0, 0, 0, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-[data-state="idle"].edge-morph-button:active .button-content {
+[data-state="idle"].edge-morph-button[data-motion="on"]:active .button-content {
+  padding-inline: 8px;
   transform: translateY(1px) scale(0.98);
   filter: brightness(0.95);
   transition: all 100ms ease-out;
@@ -283,5 +343,11 @@ const detectEntryCorner = (event: MouseEvent) => {
 /* Loading state */
 [data-state="loading"] {
   cursor: wait;
+}
+/* Spinner is positioned so entering loading does not shift the label. */
+.edge-morph-button { position: relative; }
+.button-spinner { position: absolute; left: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .edge-morph-button, .edge-morph-button :deep(*) { animation: none !important; transition: none !important; transform: none !important; }
 }
 </style>

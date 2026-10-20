@@ -1,0 +1,81 @@
+name: Library foundations
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match ephemeral home ownership to the container user
+        run: chown "$(id -u):$(id -g)" "$HOME"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: corepack pnpm install --frozen-lockfile
+      - run: corepack pnpm run test:unit
+      - run: corepack pnpm run typecheck
+      - run: corepack pnpm run typecheck:all
+      - run: corepack pnpm run lint
+      - run: corepack pnpm run lint:all
+      - run: corepack pnpm run build
+      - run: node scripts/verify-package.ts
+      - run: node scripts/test-collection-animation.ts
+      - run: node scripts/test-histoire-css-compat.ts
+      - run: corepack pnpm run story:build
+      - name: Verify foundations in Chromium
+        timeout-minutes: 4
+        run: |
+          corepack pnpm dev --port 6006 > /tmp/synapse-histoire.log 2>&1 &
+          story_pid=$!
+          trap 'kill "$story_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --max-time 1 http://localhost:6006/ > /dev/null; then ready=true; break; fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then cat /tmp/synapse-histoire.log; exit 1; fi
+          timeout 60s node scripts/test-font-observation.ts
+          timeout 180s node scripts/browser-foundations.ts
+          timeout 90s node scripts/browser-dock.ts
+          timeout 90s node scripts/browser-dock-font-geometry.ts
+          timeout 120s node scripts/browser-semantic-components.ts
+          PACKAGE_BROWSER_FONTS=1 timeout 120s node scripts/verify-package.ts
+          timeout 120s node scripts/browser-histoire-scope.ts
+      - name: Compare exact 480a904 typography on the same pinned browsers
+        timeout-minutes: 4
+        run: |
+          git -c safe.directory="$GITHUB_WORKSPACE" fetch --no-tags --depth=1 origin 480a904ac9b8782953744416c266abd54ca18dc6
+          git -c safe.directory="$GITHUB_WORKSPACE" worktree add --detach /tmp/synapse-typography-480 FETCH_HEAD
+          (cd /tmp/synapse-typography-480 && corepack pnpm install --frozen-lockfile)
+          (cd /tmp/synapse-typography-480 && corepack pnpm dev --port 6007) > /tmp/synapse-typography-480.log 2>&1 &
+          reference_pid=$!
+          corepack pnpm dev --port 6006 > /tmp/synapse-typography-current.log 2>&1 &
+          current_pid=$!
+          trap 'kill "$reference_pid" "$current_pid" 2>/dev/null || true' EXIT
+          for port in 6006 6007; do
+            ready=false
+            for attempt in $(seq 1 30); do
+              if curl --fail --silent --max-time 1 "http://localhost:$port/" > /dev/null; then ready=true; break; fi
+              sleep 1
+            done
+            if [ "$ready" != true ]; then cat /tmp/synapse-typography-*.log; exit 1; fi
+          done
+          timeout 120s node scripts/browser-typography-compat.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundations-browser-evidence
+          path: |
+            test-results/foundations/
+            test-results/semantic/
+            test-results/typography/
+            test-results/histoire-scope/
+            /tmp/synapse-typography-*.log
+            /tmp/synapse-histoire.log

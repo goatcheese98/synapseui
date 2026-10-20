@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const showAlert = (message: string) => window.alert(message)
+
 import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -268,8 +270,8 @@ const handleIconClick = (icon: string) => {
             <Card.User 
               :user="sampleUser" 
               :is-online="true"
-              @view-profile="() => alert('View profile clicked')"
-              @send-message="() => alert('Send message clicked')"
+              @view-profile="() => showAlert('View profile clicked')"
+              @send-message="() => showAlert('Send message clicked')"
             />
 
             <!-- Feature Card -->
@@ -420,7 +422,7 @@ const handleIconClick = (icon: string) => {
                 </h4>
                 <Form.Contact 
                   :loading="false"
-                  @submit="() => alert('Contact form submitted!')"
+                  @submit="() => showAlert('Contact form submitted!')"
                 />
               </div>
             </Card.Default>
@@ -433,9 +435,9 @@ const handleIconClick = (icon: string) => {
                 </h4>
                 <Form.Login 
                   :is-loading="false"
-                  @submit="() => alert('Login attempted!')"
-                  @forgot-password="() => alert('Forgot password clicked!')"
-                  @sign-up="() => alert('Sign up clicked!')"
+                  @submit="() => showAlert('Login attempted!')"
+                  @forgot-password="() => showAlert('Forgot password clicked!')"
+                  @sign-up="() => showAlert('Sign up clicked!')"
                 />
               </div>
             </Card.Default>

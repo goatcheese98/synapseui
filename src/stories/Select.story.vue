@@ -17,7 +17,7 @@ const state = reactive({
   value: 'apple',
   placeholder: 'Select a fruit...',
   disabled: false,
-  position: 'popper'
+  position: 'popper' as 'popper' | 'item-aligned'
 })
 </script>
 

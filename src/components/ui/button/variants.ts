@@ -51,4 +51,4 @@ export const buttonVariants = tv({
   }
 })
 
-export type ButtonVariants = Parameters<typeof buttonVariants>[0]
+export type ButtonVariants = NonNullable<Parameters<typeof buttonVariants>[0]>

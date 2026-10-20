@@ -1,0 +1,527 @@
+{
+  "baselineHead": "042749a2d9699b740439d07fe3598e1166c78938",
+  "method": "pnpm 10.13.1 audit --json, --prod --json, --dev --json; no --no-optional, ignore or severity filtering. Also submitted all lock package versions to npm bulk advisory endpoint and matched returned semver ranges.",
+  "before": {
+    "all": {
+      "info": 0,
+      "low": 5,
+      "moderate": 35,
+      "high": 53,
+      "critical": 4
+    },
+    "production": {
+      "info": 0,
+      "low": 1,
+      "moderate": 5,
+      "high": 10,
+      "critical": 0
+    },
+    "development": {
+      "info": 0,
+      "low": 5,
+      "moderate": 34,
+      "high": 53,
+      "critical": 4
+    }
+  },
+  "after": {
+    "all": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 2,
+      "critical": 0
+    },
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 1,
+      "high": 1,
+      "critical": 0
+    },
+    "development": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 2,
+      "critical": 0
+    }
+  },
+  "allLockedCoverage": {
+    "lockSha256": "436d4e44c66806842c07b8da20033f777478a8e394431e53ed6bf6c061e10c4b",
+    "packageVersions": 678,
+    "packageNames": 611,
+    "platformConstrainedVersions": 64,
+    "optionalSnapshots": 67,
+    "compatibilityImporterNote": "PostCSS 8.5.31 and selector-parser 7.1.6 are now explicit internal tooling dependencies. The complete 678-version packages and snapshots maps are byte-equivalent as parsed to df1ce741; all/prod/dev audits repeated with the same four residual advisories."
+  },
+  "allLockedMatches": [
+    {
+      "name": "braces",
+      "id": 1240992,
+      "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+      "severity": "high",
+      "range": "<=3.0.3",
+      "versions": [
+        "3.0.3"
+      ]
+    },
+    {
+      "name": "playwright",
+      "id": 1109208,
+      "url": "https://github.com/advisories/GHSA-7mvr-c777-76hp",
+      "severity": "high",
+      "range": "<1.55.1",
+      "versions": [
+        "1.54.1"
+      ]
+    },
+    {
+      "name": "postcss-selector-parser",
+      "id": 1241232,
+      "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+      "severity": "moderate",
+      "range": "<7.1.6",
+      "versions": [
+        "6.1.5"
+      ]
+    },
+    {
+      "name": "sprintf-js",
+      "id": 1241202,
+      "url": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+      "severity": "moderate",
+      "range": "<=1.1.3",
+      "versions": [
+        "1.0.3"
+      ]
+    }
+  ],
+  "remainingFindings": [
+    {
+      "module_name": "playwright",
+      "github_advisory_id": "GHSA-7mvr-c777-76hp",
+      "severity": "high",
+      "vulnerable_versions": "<1.55.1",
+      "patched_versions": ">=1.55.1",
+      "url": "https://github.com/advisories/GHSA-7mvr-c777-76hp",
+      "findings": [
+        {
+          "version": "1.54.1",
+          "paths": [
+            ".>playwright"
+          ]
+        }
+      ]
+    },
+    {
+      "module_name": "braces",
+      "github_advisory_id": "GHSA-vfj7-8cjw-p6xm",
+      "severity": "high",
+      "vulnerable_versions": "<=3.0.3",
+      "patched_versions": "<0.0.0",
+      "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+      "findings": [
+        {
+          "version": "3.0.3",
+          "paths": [
+            ".>@histoire/plugin-vue>globby>fast-glob>micromatch>braces"
+          ]
+        }
+      ]
+    },
+    {
+      "module_name": "sprintf-js",
+      "github_advisory_id": "GHSA-hp3w-g68c-fv3c",
+      "severity": "moderate",
+      "vulnerable_versions": "<=1.1.3",
+      "patched_versions": "<0.0.0",
+      "url": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+      "findings": [
+        {
+          "version": "1.0.3",
+          "paths": [
+            ".>histoire>gray-matter>js-yaml>argparse>sprintf-js"
+          ]
+        }
+      ]
+    },
+    {
+      "module_name": "postcss-selector-parser",
+      "github_advisory_id": "GHSA-rj75-hqrm-r3gf",
+      "severity": "moderate",
+      "vulnerable_versions": "<7.1.6",
+      "patched_versions": ">=7.1.6",
+      "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+      "findings": [
+        {
+          "version": "6.1.5",
+          "paths": [
+            ".>tailwindcss>postcss-selector-parser"
+          ]
+        }
+      ]
+    }
+  ],
+  "targetedOverrides": [
+    {
+      "selector": "glob@>=10 <10.5.0",
+      "replacement": "^10.5.0",
+      "baselineAdvisories": [
+        "GHSA-5j98-mcp5-4vw2"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "js-yaml@>=3 <4",
+      "replacement": "^3.15.2",
+      "baselineAdvisories": [
+        "GHSA-mh29-5h37-fv8m",
+        "GHSA-mh29-5h37-fv8m",
+        "GHSA-h67p-54hq-rp68",
+        "GHSA-h67p-54hq-rp68",
+        "GHSA-52cp-r559-cp3m",
+        "GHSA-52cp-r559-cp3m",
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-2883-xcg3-v3hh",
+        "GHSA-2883-xcg3-v3hh"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "js-yaml@>=4 <5",
+      "replacement": "^4.3.2",
+      "baselineAdvisories": [
+        "GHSA-mh29-5h37-fv8m",
+        "GHSA-mh29-5h37-fv8m",
+        "GHSA-h67p-54hq-rp68",
+        "GHSA-h67p-54hq-rp68",
+        "GHSA-52cp-r559-cp3m",
+        "GHSA-52cp-r559-cp3m",
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-2883-xcg3-v3hh",
+        "GHSA-2883-xcg3-v3hh"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "mdast-util-to-hast@>=13 <13.2.1",
+      "replacement": "^13.2.1",
+      "baselineAdvisories": [
+        "GHSA-4fh9-h7wg-q85m"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "markdown-it@>=14 <14.3.1",
+      "replacement": "^14.3.1",
+      "baselineAdvisories": [
+        "GHSA-38c4-r59v-3vqw",
+        "GHSA-6v5v-wf23-fmfq",
+        "GHSA-253c-mchw-3w2r"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "minimatch@>=3 <3.1.4",
+      "replacement": "^3.1.4",
+      "baselineAdvisories": [
+        "GHSA-3ppc-4f35-3m26",
+        "GHSA-3ppc-4f35-3m26",
+        "GHSA-7r86-cg39-jmmj",
+        "GHSA-7r86-cg39-jmmj",
+        "GHSA-23c5-xmqv-rm74",
+        "GHSA-23c5-xmqv-rm74"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "minimatch@>=9 <9.0.7",
+      "replacement": "^9.0.7",
+      "baselineAdvisories": [
+        "GHSA-3ppc-4f35-3m26",
+        "GHSA-3ppc-4f35-3m26",
+        "GHSA-7r86-cg39-jmmj",
+        "GHSA-7r86-cg39-jmmj",
+        "GHSA-23c5-xmqv-rm74",
+        "GHSA-23c5-xmqv-rm74"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "rollup@>=4 <4.59.0",
+      "replacement": "^4.59.0",
+      "baselineAdvisories": [
+        "GHSA-mw96-cpmx-2vgc"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "ajv@>=6 <6.14.0",
+      "replacement": "^6.14.0",
+      "baselineAdvisories": [
+        "GHSA-2g4f-4pwh-qvx6"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "flatted@>=3 <3.4.2",
+      "replacement": "^3.4.2",
+      "baselineAdvisories": [
+        "GHSA-25h7-pfq9-p65f",
+        "GHSA-rf6f-7fwh-wjgh"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "brace-expansion@>=1 <2",
+      "replacement": "^1.1.21",
+      "baselineAdvisories": [
+        "GHSA-f886-m6hf-6m8v",
+        "GHSA-f886-m6hf-6m8v",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-q2hr-2g5m-vwhr",
+        "GHSA-q2hr-2g5m-vwhr",
+        "GHSA-qhr7-859c-m2p7",
+        "GHSA-qhr7-859c-m2p7",
+        "GHSA-6j4f-fj2g-mc7p",
+        "GHSA-6j4f-fj2g-mc7p"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "brace-expansion@>=2 <3",
+      "replacement": "^2.1.7",
+      "baselineAdvisories": [
+        "GHSA-f886-m6hf-6m8v",
+        "GHSA-f886-m6hf-6m8v",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-q2hr-2g5m-vwhr",
+        "GHSA-q2hr-2g5m-vwhr",
+        "GHSA-qhr7-859c-m2p7",
+        "GHSA-qhr7-859c-m2p7",
+        "GHSA-6j4f-fj2g-mc7p",
+        "GHSA-6j4f-fj2g-mc7p"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "picomatch@>=2 <2.3.2",
+      "replacement": "^2.3.2",
+      "baselineAdvisories": [
+        "GHSA-3v7f-55p6-f55p",
+        "GHSA-3v7f-55p6-f55p",
+        "GHSA-c2c7-rcm5-vvqj",
+        "GHSA-c2c7-rcm5-vvqj"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "picomatch@>=4 <4.0.4",
+      "replacement": "^4.0.4",
+      "baselineAdvisories": [
+        "GHSA-3v7f-55p6-f55p",
+        "GHSA-3v7f-55p6-f55p",
+        "GHSA-c2c7-rcm5-vvqj",
+        "GHSA-c2c7-rcm5-vvqj"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "yaml@>=1 <1.10.3",
+      "replacement": "^1.10.3",
+      "baselineAdvisories": [
+        "GHSA-48c2-rrv3-qjmp",
+        "GHSA-48c2-rrv3-qjmp"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "yaml@>=2 <2.8.3",
+      "replacement": "^2.8.3",
+      "baselineAdvisories": [
+        "GHSA-48c2-rrv3-qjmp",
+        "GHSA-48c2-rrv3-qjmp"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "lodash@>=4 <4.18.0",
+      "replacement": "^4.18.0",
+      "baselineAdvisories": [
+        "GHSA-r5fr-rjxr-66jc",
+        "GHSA-f23m-r3pf-42rh",
+        "GHSA-xxjr-mmjv-4gpg"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "defu@>=6 <6.1.5",
+      "replacement": "^6.1.5",
+      "baselineAdvisories": [
+        "GHSA-737v-mqg7-c878"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "postcss@>=8 <8.5.23",
+      "replacement": "^8.5.23",
+      "baselineAdvisories": [
+        "GHSA-qx2v-qp2m-jg93",
+        "GHSA-6g55-p6wh-862q",
+        "GHSA-fxqj-rqcc-2cmp",
+        "GHSA-r28c-9q8g-f849"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "ws@>=8 <8.21.0",
+      "replacement": "^8.21.0",
+      "baselineAdvisories": [
+        "GHSA-58qx-3vcg-4xpx",
+        "GHSA-96hv-2xvq-fx4p"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "nanoid@>=3 <3.3.18",
+      "replacement": "^3.3.18",
+      "baselineAdvisories": [
+        "GHSA-28wg-ghj8-5hjv",
+        "GHSA-2v37-7h3g-55p8",
+        "GHSA-xwg4-73v4-xw9w"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "shell-quote@>=1 <1.9.0",
+      "replacement": "^1.9.0",
+      "baselineAdvisories": [
+        "GHSA-w7jw-789q-3m8p",
+        "GHSA-395f-4hp3-45gv"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "js-cookie@>=3 <3.0.7",
+      "replacement": "^3.0.7",
+      "baselineAdvisories": [
+        "GHSA-qjx8-664m-686j"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "form-data@>=4 <4.0.6",
+      "replacement": "^4.0.6",
+      "baselineAdvisories": [
+        "GHSA-hmw2-7cc7-3qxx"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "launch-editor@>=2 <2.14.1",
+      "replacement": "^2.14.1",
+      "baselineAdvisories": [
+        "GHSA-v6wh-96g9-6wx3"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "linkify-it@>=5 <5.0.2",
+      "replacement": "^5.0.2",
+      "baselineAdvisories": [
+        "GHSA-22p9-wv53-3rq4",
+        "GHSA-v245-v573-v5vm"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "browserslist@>=4 <4.28.7",
+      "replacement": "^4.28.7",
+      "baselineAdvisories": [
+        "GHSA-c83g-rgw3-j3cx",
+        "GHSA-73wf-gq98-2v4g"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "@humanfs/node@>=0.16 <0.16.8",
+      "replacement": "^0.16.8",
+      "baselineAdvisories": [
+        "GHSA-p498-v437-472g"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "source-map-js@>=1 <1.2.2",
+      "replacement": "^1.2.2",
+      "baselineAdvisories": [
+        "GHSA-68fv-2mgg-jv7q"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    },
+    {
+      "selector": "postcss-selector-parser@>=6 <6.1.3",
+      "replacement": "^6.1.3",
+      "baselineAdvisories": [
+        "GHSA-w9m9-85wc-3x92",
+        "GHSA-rj75-hqrm-r3gf"
+      ],
+      "compatibility": "Same major line; @humanfs/node stays within 0.16. No Vite 5 or esbuild 0.21 override."
+    }
+  ],
+  "limitations": [
+    "Advisory matching is a known-vulnerability database scan, not a source security audit or proof of absence of vulnerabilities.",
+    "Linux installs do not execute non-Linux optional binaries; their locked package versions were included in the platform-independent scan.",
+    "pnpm 10 audit metadata reports dev/optional counts as zero; use the explicit all-lock coverage instead of those misleading metadata fields."
+  ],
+  "compatibleParentUpdates": {
+    "eslint-plugin-vue": "10.3.0 \u2192 10.11.1 adopts postcss-selector-parser 7.1.6 through its supported ^7.1.4 dependency; vue-eslint-parser 10.4.1 is now explicitly declared to satisfy the plugin peer and existing config import. No parser-major override is forced into Tailwind 3.",
+    "histoire": "Coordinated histoire/app/controls/plugin-vue/shared/vendors 1.0.0-beta.1, supported Vite 7.3.7 and Vue plugin 6.0.10 on Node 24 / dev Vue 3.5.44. Public Vue peer remains ^3.5.18. No Vite 5 or esbuild 0.21 packages remain in the complete lock; no blind vite-node/esbuild override. Ported real JSDOM lifecycle patch."
+  },
+  "previousCheckpoint": {
+    "head": "480a904ac9b8782953744416c266abd54ca18dc6",
+    "after": {
+      "all": {
+        "info": 0,
+        "low": 0,
+        "moderate": 5,
+        "high": 3,
+        "critical": 0
+      },
+      "production": {
+        "info": 0,
+        "low": 0,
+        "moderate": 1,
+        "high": 1,
+        "critical": 0
+      },
+      "development": {
+        "info": 0,
+        "low": 0,
+        "moderate": 5,
+        "high": 3,
+        "critical": 0
+      }
+    },
+    "allLockedCoverage": {
+      "lockSha256": "53a7deef3c153d1abf60de094f0b05e16fac53a880e6983112463dac1890c6be",
+      "packageVersions": 686,
+      "packageNames": 612,
+      "platformConstrainedVersions": 87,
+      "optionalSnapshots": 90
+    }
+  }
+}

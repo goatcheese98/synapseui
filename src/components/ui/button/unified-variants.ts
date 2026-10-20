@@ -1,5 +1,5 @@
 import { tv } from 'tailwind-variants'
-import { getComponentSize, interactionStates, colorIntents } from '@/tokens/design-system'
+import { interactionStates } from '@/tokens/design-system'
 
 export const buttonVariants = tv({
   base: [
@@ -11,24 +11,24 @@ export const buttonVariants = tv({
   variants: {
     variant: {
       // Solid variants using unified color system
-      neutral: `bg-[${colorIntents.neutral[900]}] text-white hover:bg-[${colorIntents.neutral[950]}]`,
-      primary: `bg-[${colorIntents.primary[700]}] text-white hover:bg-[${colorIntents.primary[800]}]`,
-      secondary: `bg-[${colorIntents.secondary[700]}] text-white hover:bg-[${colorIntents.secondary[800]}]`,
-      accent: `bg-[${colorIntents.accent[500]}] text-white hover:bg-[${colorIntents.accent[600]}]`,
-      success: `bg-[${colorIntents.success[600]}] text-white hover:bg-[${colorIntents.success[700]}]`,
-      warning: `bg-[${colorIntents.warning[500]}] text-white hover:bg-[${colorIntents.warning[600]}]`,
-      error: `bg-[${colorIntents.error[600]}] text-white hover:bg-[${colorIntents.error[700]}]`,
+      neutral: 'bg-[rgb(15_23_42)] text-white hover:bg-[rgb(2_6_23)]',
+      primary: 'bg-[rgb(51_65_85)] text-white hover:bg-[rgb(30_41_59)]',
+      secondary: 'bg-[rgb(67_56_202)] text-white hover:bg-[rgb(55_48_163)]',
+      accent: 'bg-[rgb(249_115_22)] text-[rgb(15_23_42)] hover:bg-[rgb(234_88_12)]',
+      success: 'bg-[rgb(21_128_61)] text-white hover:bg-[rgb(22_101_52)]',
+      warning: 'bg-[rgb(245_158_11)] text-[rgb(15_23_42)] hover:bg-[rgb(217_119_6)]',
+      error: 'bg-[rgb(220_38_38)] text-white hover:bg-[rgb(185_28_28)]',
       
       // Outline variants
-      outline: `border border-[${colorIntents.neutral[500]}] bg-transparent hover:bg-[${colorIntents.neutral[50]}] text-[${colorIntents.neutral[700]}]`,
-      'outline-primary': `border border-[${colorIntents.primary[700]}] bg-transparent hover:bg-[${colorIntents.primary[50]}] text-[${colorIntents.primary[700]}]`,
-      'outline-success': `border border-[${colorIntents.success[600]}] bg-transparent hover:bg-[${colorIntents.success[50]}] text-[${colorIntents.success[600]}]`,
-      'outline-error': `border border-[${colorIntents.error[600]}] bg-transparent hover:bg-[${colorIntents.error[50]}] text-[${colorIntents.error[600]}]`,
+      outline: 'border border-[rgb(100_116_139)] bg-transparent hover:bg-[rgb(248_250_252)] text-[rgb(51_65_85)]',
+      'outline-primary': 'border border-[rgb(51_65_85)] bg-transparent hover:bg-[rgb(248_250_252)] text-[rgb(51_65_85)]',
+      'outline-success': 'border border-[rgb(22_163_74)] bg-transparent hover:bg-[rgb(240_253_244)] text-[rgb(21_128_61)]',
+      'outline-error': 'border border-[rgb(220_38_38)] bg-transparent hover:bg-[rgb(254_242_242)] text-[rgb(185_28_28)]',
       
       // Ghost variants
-      ghost: `bg-transparent hover:bg-[${colorIntents.neutral[100]}] text-[${colorIntents.neutral[700]}] border border-transparent hover:border-[${colorIntents.neutral[100]}]`,
-      'ghost-primary': `bg-transparent hover:bg-[${colorIntents.primary[50]}] text-[${colorIntents.primary[700]}] border border-transparent hover:border-[${colorIntents.primary[100]}]`,
-      link: `bg-transparent hover:underline text-[${colorIntents.primary[700]}] underline-offset-4 border-none shadow-none h-auto p-2`
+      ghost: 'bg-transparent hover:bg-[rgb(241_245_249)] text-[rgb(51_65_85)] border border-transparent hover:border-[rgb(241_245_249)]',
+      'ghost-primary': 'bg-transparent hover:bg-[rgb(248_250_252)] text-[rgb(51_65_85)] border border-transparent hover:border-[rgb(241_245_249)]',
+      link: 'bg-transparent hover:underline text-[rgb(51_65_85)] underline-offset-4 border-none shadow-none h-auto p-2'
     },
     size: {
       xs: 'h-7 text-xs rounded-sm px-2',
@@ -80,10 +80,10 @@ export const buttonVariants = tv({
   ]
 })
 
-export type ButtonVariants = Parameters<typeof buttonVariants>[0]
+export type ButtonVariants = NonNullable<Parameters<typeof buttonVariants>[0]>
 
 // Helper to determine context automatically
-export function getButtonContext(parentComponent?: string, parentVariant?: string): ButtonVariants['context'] {
+export function getButtonContext(parentComponent?: string, _parentVariant?: string): ButtonVariants['context'] {
   if (!parentComponent) return undefined
   
   const contextMap: Record<string, ButtonVariants['context']> = {

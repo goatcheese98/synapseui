@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from "@/components/ui/button/BaseButton.vue"
-import VStack from '@/components/ui/stack/VStack.vue'
-import HStack from '@/components/ui/stack/HStack.vue'
 
 const clickCount = ref(0)
 const lastEffect = ref('')

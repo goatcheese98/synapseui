@@ -1,6 +1,6 @@
 <template>
   <ToolbarButton
-    :class="buttonVariants({ variant, size, loading: loading || isLoading, shape, class: className })"
+    :class="buttonVariants({ variant, size, class: [className, shape === 'circle' ? 'rounded-full' : shape === 'square' ? 'rounded-none' : 'rounded-md'] })"
     :disabled="disabled || loading || isLoading"
     :aria-label="ariaLabel"
     :aria-describedby="ariaDescribedBy"

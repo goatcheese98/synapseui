@@ -1,0 +1,1214 @@
+{
+  "head": "6f7f4d0e480a75bb6698c1e9c7a6098482ac80a8",
+  "run": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921",
+  "note": "Complete first hosted five-project baseline. All 210 cases executed; no skips. Three in-slice cross-browser issues were corrected afterward, preserving this evidence.",
+  "projects": [
+    {
+      "project": "chromium",
+      "job": 118494729045,
+      "url": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921/job/118494729045",
+      "stats": {
+        "startTime": "2026-10-20T06:49:40.465Z",
+        "duration": 136904.037,
+        "expected": 27,
+        "skipped": 0,
+        "unexpected": 15,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "file": "button.spec.ts",
+          "title": "should display all button variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should display different button sizes",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should handle button interactions",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should apply correct CSS classes for variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should be accessible",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should render correctly on mobile",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should allow dragging the floating dock",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should show visual feedback during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle drag boundaries and constraints",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should keep controls interactive and ignore secondary pointer buttons",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle rapid drag movements",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should preserve dock state during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should settle bounded inertia and cancel a captured drag safely",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should render the retained dock with its handle and slotted content",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display selectable panel tabs",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should switch between panels when tabs are clicked",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should reset position while preserving panel and action state",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should show a real hover effect without changing geometry",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display actual slotted content for each panel",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should fit its workspace and retain controls at every viewport",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should retain fixed positioning and scoped LUM surfaces",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should load Histoire and show components",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should identify available stories",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button variants visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button sizes visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button hover states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match basic floating dock visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-chromium-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock hover state",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-chromium-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock with different panel content",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-chromium-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match keyboard drag handle focus visual",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-chromium-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match mobile layout",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match tablet layout",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dark mode appearance",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture loading states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture focus states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should load Histoire successfully",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to Simple Demo and interact with buttons",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to FloatingDock pattern",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should test basic interactivity",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should display different button variants",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should be responsive on mobile viewport",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should take visual snapshots for regression testing",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-chromium-linux.png, writing actual."
+        }
+      ]
+    },
+    {
+      "project": "Mobile Chrome",
+      "job": 118494728818,
+      "url": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921/job/118494728818",
+      "stats": {
+        "startTime": "2026-10-20T06:49:42.513Z",
+        "duration": 175902.125,
+        "expected": 26,
+        "skipped": 0,
+        "unexpected": 16,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "file": "button.spec.ts",
+          "title": "should display all button variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should display different button sizes",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should handle button interactions",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should apply correct CSS classes for variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should be accessible",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should render correctly on mobile",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should allow dragging the floating dock",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should show visual feedback during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle drag boundaries and constraints",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should keep controls interactive and ignore secondary pointer buttons",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle rapid drag movements",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should preserve dock state during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should settle bounded inertia and cancel a captured drag safely",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should render the retained dock with its handle and slotted content",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display selectable panel tabs",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should switch between panels when tabs are clicked",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should reset position while preserving panel and action state",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should show a real hover effect without changing geometry",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display actual slotted content for each panel",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should fit its workspace and retain controls at every viewport",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should retain fixed positioning and scoped LUM surfaces",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should load Histoire and show components",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should identify available stories",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button variants visual snapshot",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button sizes visual snapshot",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button hover states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match basic floating dock visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-Mobile-Chrome-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock hover state",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-Mobile-Chrome-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock with different panel content",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-Mobile-Chrome-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match keyboard drag handle focus visual",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-Mobile-Chrome-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match mobile layout",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match tablet layout",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dark mode appearance",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture loading states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture focus states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should load Histoire successfully",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to Simple Demo and interact with buttons",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to FloatingDock pattern",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should test basic interactivity",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should display different button variants",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should be responsive on mobile viewport",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should take visual snapshots for regression testing",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-Mobile-Chrome-linux.png, writing actual."
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "job": 118494729040,
+      "url": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921/job/118494729040",
+      "stats": {
+        "startTime": "2026-10-20T06:49:36.922Z",
+        "duration": 177068.179,
+        "expected": 25,
+        "skipped": 0,
+        "unexpected": 17,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "file": "button.spec.ts",
+          "title": "should display all button variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should display different button sizes",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should handle button interactions",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should apply correct CSS classes for variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should be accessible",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should render correctly on mobile",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should allow dragging the floating dock",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should show visual feedback during drag",
+          "status": "unexpected",
+          "reason": "Error: expect(received).not.toBe(expected) // Object.is equality\n\nExpected: not \"rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px\"\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle drag boundaries and constraints",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should keep controls interactive and ignore secondary pointer buttons",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('main.dock-demo[data-synapse-theme=\"light\"]').getByText('Actions: 1', { exact: true })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('main.dock-demo[data-synapse-theme=\"light\"]').getByText('Actions: 1', { exact: true })\n"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle rapid drag movements",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should preserve dock state during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should settle bounded inertia and cancel a captured drag safely",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should render the retained dock with its handle and slotted content",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display selectable panel tabs",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should switch between panels when tabs are clicked",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should reset position while preserving panel and action state",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should show a real hover effect without changing geometry",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display actual slotted content for each panel",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should fit its workspace and retain controls at every viewport",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should retain fixed positioning and scoped LUM surfaces",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should load Histoire and show components",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should identify available stories",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button variants visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button sizes visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button hover states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match basic floating dock visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-webkit-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock hover state",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-webkit-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock with different panel content",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-webkit-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match keyboard drag handle focus visual",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-webkit-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match mobile layout",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match tablet layout",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dark mode appearance",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture loading states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture focus states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should load Histoire successfully",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to Simple Demo and interact with buttons",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to FloatingDock pattern",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should test basic interactivity",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should display different button variants",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should be responsive on mobile viewport",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should take visual snapshots for regression testing",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-webkit-linux.png, writing actual."
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "job": 118494729112,
+      "url": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921/job/118494729112",
+      "stats": {
+        "startTime": "2026-10-20T06:49:38.558Z",
+        "duration": 177416.541,
+        "expected": 26,
+        "skipped": 0,
+        "unexpected": 16,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "file": "button.spec.ts",
+          "title": "should display all button variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should display different button sizes",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should handle button interactions",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should apply correct CSS classes for variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should be accessible",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should render correctly on mobile",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should allow dragging the floating dock",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should show visual feedback during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle drag boundaries and constraints",
+          "status": "unexpected",
+          "reason": "Error: expect(received).toBeLessThan(expected)\n\nExpected: < 2\nReceived:   242.45001220703125"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should keep controls interactive and ignore secondary pointer buttons",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle rapid drag movements",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should preserve dock state during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should settle bounded inertia and cancel a captured drag safely",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should render the retained dock with its handle and slotted content",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display selectable panel tabs",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should switch between panels when tabs are clicked",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should reset position while preserving panel and action state",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should show a real hover effect without changing geometry",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display actual slotted content for each panel",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should fit its workspace and retain controls at every viewport",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should retain fixed positioning and scoped LUM surfaces",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should load Histoire and show components",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should identify available stories",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button variants visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button sizes visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button hover states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match basic floating dock visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-firefox-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock hover state",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-firefox-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock with different panel content",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-firefox-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match keyboard drag handle focus visual",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-firefox-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match mobile layout",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match tablet layout",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dark mode appearance",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture loading states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture focus states",
+          "status": "unexpected",
+          "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should load Histoire successfully",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to Simple Demo and interact with buttons",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to FloatingDock pattern",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should test basic interactivity",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should display different button variants",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should be responsive on mobile viewport",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should take visual snapshots for regression testing",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-firefox-linux.png, writing actual."
+        }
+      ]
+    },
+    {
+      "project": "Mobile Safari",
+      "job": 118494729122,
+      "url": "https://github.com/goatcheese98/synapseui/actions/runs/39382546921/job/118494729122",
+      "stats": {
+        "startTime": "2026-10-20T06:49:34.124Z",
+        "duration": 201606.331,
+        "expected": 24,
+        "skipped": 0,
+        "unexpected": 18,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "file": "button.spec.ts",
+          "title": "should display all button variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should display different button sizes",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should handle button interactions",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should apply correct CSS classes for variants",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should be accessible",
+          "status": "expected"
+        },
+        {
+          "file": "button.spec.ts",
+          "title": "should render correctly on mobile",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should allow dragging the floating dock",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should show visual feedback during drag",
+          "status": "unexpected",
+          "reason": "Error: expect(received).not.toBe(expected) // Object.is equality\n\nExpected: not \"rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px\"\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle drag boundaries and constraints",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should keep controls interactive and ignore secondary pointer buttons",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('main.dock-demo[data-synapse-theme=\"light\"]').getByText('Actions: 1', { exact: true })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('main.dock-demo[data-synapse-theme=\"light\"]').getByText('Actions: 1', { exact: true })\n"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should handle rapid drag movements",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should preserve dock state during drag",
+          "status": "expected"
+        },
+        {
+          "file": "drag-drop.spec.ts",
+          "title": "should settle bounded inertia and cancel a captured drag safely",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should render the retained dock with its handle and slotted content",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display selectable panel tabs",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should switch between panels when tabs are clicked",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should reset position while preserving panel and action state",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should show a real hover effect without changing geometry",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should display actual slotted content for each panel",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should fit its workspace and retain controls at every viewport",
+          "status": "expected"
+        },
+        {
+          "file": "floating-dock.spec.ts",
+          "title": "should retain fixed positioning and scoped LUM surfaces",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should load Histoire and show components",
+          "status": "expected"
+        },
+        {
+          "file": "histoire-navigation.spec.ts",
+          "title": "should identify available stories",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button variants visual snapshot",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button sizes visual snapshot",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match button hover states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match basic floating dock visual snapshot",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-Mobile-Safari-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock hover state",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-Mobile-Safari-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dock with different panel content",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-Mobile-Safari-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match keyboard drag handle focus visual",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-Mobile-Safari-linux.png, writing actual."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match mobile layout",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match tablet layout",
+          "status": "expected"
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should match dark mode appearance",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture loading states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "visual-regression.spec.ts",
+          "title": "should capture focus states",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should load Histoire successfully",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to Simple Demo and interact with buttons",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should navigate to FloatingDock pattern",
+          "status": "expected"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should test basic interactivity",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should display different button variants",
+          "status": "unexpected",
+          "reason": "Test timeout of 15000ms exceeded."
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should be responsive on mobile viewport",
+          "status": "unexpected",
+          "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+        },
+        {
+          "file": "working-tests.spec.ts",
+          "title": "should take visual snapshots for regression testing",
+          "status": "unexpected",
+          "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-Mobile-Safari-linux.png, writing actual."
+        }
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@
     </span>
   </AlertDialogCancel>
 </template><script setup lang="ts">
-import { ref, computed, useSlots } from 'vue'
+import { type ComponentPublicInstance, ref, computed, useSlots } from 'vue'
 import { AlertDialogCancel } from 'reka-ui'
 import { cn } from '@/lib/utils'
 import { dialogButtonVariants } from './dialogVariants'
@@ -40,13 +40,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const slots = useSlots()
-const buttonRef = ref<HTMLElement>()
+const buttonRef = ref<HTMLElement | ComponentPublicInstance>()
 const activeAnimation = ref('')
 
 const hasIcon = computed(() => {
   const defaultSlot = slots.default?.()
   return defaultSlot?.some(vnode => 
-    vnode.type?.name === 'Icon' || 
+    (((typeof vnode.type === 'object' && vnode.type !== null) || typeof vnode.type === 'function') && 'name' in vnode.type && vnode.type.name === 'Icon') ||
     (typeof vnode.children === 'string' && vnode.children.includes('icon'))
   ) || false
 })
@@ -56,7 +56,7 @@ const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Preserve for future enhancements
 }
 
@@ -67,7 +67,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!buttonRef.value) return
   
-  const element = buttonRef.value.$el || buttonRef.value
+  const element = ('$el' in buttonRef.value ? buttonRef.value.$el : buttonRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

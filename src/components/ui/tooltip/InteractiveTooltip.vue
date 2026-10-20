@@ -76,8 +76,8 @@
               <Button
                 v-for="action in actions"
                 :key="action.label"
-                :variant="action.variant || 'default'"
-                :size="action.size || 'sm'"
+                :variant="action.variant === 'default' ? 'neutral' : action.variant === 'destructive' ? 'error' : action.variant || 'neutral'"
+                :size="action.size === 'default' ? 'md' : action.size || 'sm'"
                 :disabled="action.disabled"
                 @click="handleAction(action)"
               >
@@ -102,8 +102,8 @@ import { cn } from '@/lib/utils'
 import Tooltip from './BaseTooltip.vue'
 import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
-import Button from "./BaseButton.vue"
-import Icon from '@/components/ui/icon/Icon.vue'
+import Button from "../button/BaseButton.vue"
+import Icon from '@/components/ui/icon/BaseIcon.vue'
 
 interface Action {
   label: string
@@ -148,7 +148,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const open = computed({
+const open = computed<boolean | undefined, boolean>({
   get: () => props.open,
   set: (value) => emit('update:open', value)
 })

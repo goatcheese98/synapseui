@@ -25,11 +25,11 @@
                 The button below automatically adapts to this card's context.
               </p>
             </CardContent>
-            <CardFooter>
+            <CardFooter class="flex-wrap gap-2">
               <SmartButton>Auto-Adapted Button</SmartButton>
               <SmartButton
                 variant="secondary"
-                class="ml-2"
+                :auto-adapt="false"
               >
                 Manual Override
               </SmartButton>
@@ -91,7 +91,9 @@
               </p>
             </CardContent>
             <CardFooter>
-              <SmartButton>Large Success Button</SmartButton>
+              <SmartButton class="max-w-full whitespace-normal h-auto min-h-12 py-2">
+                Large Success Button
+              </SmartButton>
             </CardFooter>
           </InterconnectedCard>
 
@@ -208,7 +210,10 @@
                 </CardTitle>
               </CardHeader>
               <CardContent size="lg">
-                <SmartButton size="lg">
+                <SmartButton
+                  size="lg"
+                  class="max-w-full whitespace-normal h-auto min-h-12 py-2"
+                >
                   LG Button
                 </SmartButton>
               </CardContent>
@@ -240,5 +245,5 @@ import CardContent from '@/components/ui/card/CardContent.vue'
 import CardFooter from '@/components/ui/card/CardFooter.vue'
 import CardTitle from '@/components/ui/card/CardTitle.vue'
 import CardDescription from '@/components/ui/card/CardDescription.vue'
-import SmartButton from '@/components/ui/button/BaseButton.vue'
+import SmartButton from '@/components/ui/button/SmartButton.vue'
 </script>

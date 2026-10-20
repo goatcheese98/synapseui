@@ -1,0 +1,442 @@
+[
+  {
+    "width": 320,
+    "theme": "light",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 240,
+      "scroll": 240,
+      "page": 320,
+      "viewport": 320
+    },
+    "minimumContrast": 5.683288178174538,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"light\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"light\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "width": 320,
+    "theme": "dark",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 240,
+      "scroll": 240,
+      "page": 320,
+      "viewport": 320
+    },
+    "minimumContrast": 6.414769403438669,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "width": 768,
+    "theme": "light",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 326,
+      "scroll": 326,
+      "page": 768,
+      "viewport": 768
+    },
+    "minimumContrast": 5.683288178174538,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"light\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"light\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "width": 768,
+    "theme": "dark",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 326,
+      "scroll": 326,
+      "page": 768,
+      "viewport": 768
+    },
+    "minimumContrast": 6.414769403438669,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 681,
+      "scroll": 681,
+      "page": 1440,
+      "viewport": 1440
+    },
+    "minimumContrast": 5.683288178174538,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"light\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"light\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "keyboard": "Enter + Space exactly once",
+    "input": "passed",
+    "clipboard": "reject + resolve passed",
+    "overflow": {
+      "client": 681,
+      "scroll": 681,
+      "page": 1440,
+      "viewport": 1440
+    },
+    "minimumContrast": 6.414769403438669,
+    "typography": {
+      "faces": [
+        {
+          "family": "Geist",
+          "status": "loaded",
+          "weight": "100 900"
+        },
+        {
+          "family": "Geist Mono",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/Geist-Variable-C_ya05Eu.woff2",
+          "status": 200,
+          "bytes": 58512,
+          "signature": "wOF2",
+          "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+          "selfHosted": true
+        },
+        {
+          "path": "/assets/GeistMono-Variable-BJ0bRpLQ.woff2",
+          "status": 200,
+          "bytes": 58092,
+          "signature": "wOF2",
+          "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+          "selfHosted": true
+        }
+      ],
+      "rendered": [
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] h1",
+          "fonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        },
+        {
+          "selector": "main[data-synapse-theme=\"dark\"] pre code",
+          "fonts": [
+            {
+              "familyName": "Geist Mono",
+              "postScriptName": "GeistMono-Regular",
+              "isCustomFont": true,
+              "glyphCount": 65
+            }
+          ]
+        }
+      ]
+    },
+    "motion": "none",
+    "errors": []
+  },
+  {
+    "systemTheme": "light",
+    "passed": true
+  },
+  {
+    "systemTheme": "dark",
+    "passed": true
+  }
+]

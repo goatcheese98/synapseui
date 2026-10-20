@@ -22,19 +22,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { type ComponentPublicInstance, ref } from 'vue'
 import { ToastClose } from 'reka-ui'
 import { Icon } from '@iconify/vue'
 import { cn } from '@/lib/utils'
 
-const closeRef = ref<HTMLElement>()
+const closeRef = ref<HTMLElement | ComponentPublicInstance>()
 const activeAnimation = ref('')
 
 const handleMouseEnter = (event: MouseEvent) => {
   detectCornerEntry(event)
 }
 
-const handleMouseMove = (event: MouseEvent) => {
+const handleMouseMove = (_event: MouseEvent) => {
   // Future enhancements
 }
 
@@ -45,7 +45,7 @@ const handleMouseLeave = () => {
 const detectCornerEntry = (event: MouseEvent) => {
   if (!closeRef.value) return
   
-  const element = closeRef.value.$el || closeRef.value
+  const element = ('$el' in closeRef.value ? closeRef.value.$el : closeRef.value)
   if (!element || typeof element.getBoundingClientRect !== 'function') return
   
   const rect = element.getBoundingClientRect()

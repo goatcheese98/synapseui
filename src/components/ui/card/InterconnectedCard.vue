@@ -36,6 +36,6 @@ const cardClasses = computed(() => {
 })
 
 // Provide context for child components
-const cardContext = createCardContext(props.variant, props.size)
+const cardContext = createCardContext(() => props.variant, () => props.size)
 provide(CARD_CONTEXT_KEY, cardContext)
 </script>

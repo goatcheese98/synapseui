@@ -55,8 +55,8 @@
             <Button
               v-for="action in actions"
               :key="action.id"
-              :variant="action.variant || 'ghost'"
-              :size="action.size || 'sm'"
+              :variant="action.variant === 'default' ? 'neutral' : action.variant === 'destructive' ? 'error' : action.variant || 'ghost'"
+              :size="action.size === 'default' ? 'md' : action.size || 'sm'"
               :disabled="action.disabled"
               :class="cn(
                 'h-auto p-2 flex-col gap-1 hover:bg-accent',
@@ -190,12 +190,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const open = computed({
+const open = computed<boolean | undefined, boolean>({
   get: () => props.open,
   set: (value) => emit('update:open', value)
 })
 
-const gridCols = {
+const gridCols: Record<number, string> = {
   1: 'grid-cols-1',
   2: 'grid-cols-2',
   3: 'grid-cols-3',

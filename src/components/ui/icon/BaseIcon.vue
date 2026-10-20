@@ -30,6 +30,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Map simple names to Iconify icon names
 const iconMap: Record<string, string> = {
+  'help-circle': 'lucide:circle-help',
+  'alert-triangle': 'lucide:triangle-alert',
   'alert-circle': 'lucide:alert-circle',
   'check-circle': 'lucide:check-circle-2',
   'x': 'lucide:x',

@@ -95,8 +95,7 @@
 <script setup lang="ts">
 import { 
   TooltipRoot, 
-  TooltipTrigger as TooltipTriggerPrimitive, 
-  TooltipContent as TooltipContentPrimitive, 
+
   TooltipPortal 
 } from 'reka-ui'
 

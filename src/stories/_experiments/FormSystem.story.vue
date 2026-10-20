@@ -336,7 +336,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Form from '@/components/ui/form/BaseForm.vue'
-import FormField from '@/components/ui/form/FormField.vue'
 import FormInput from '@/components/ui/form/FormInput.vue'
 import FormTextarea from '@/components/ui/form/FormTextarea.vue'
 import Button from '@/components/ui/button/BaseButton.vue'
@@ -365,7 +364,7 @@ const validatePasswordStrength = (value: string): boolean | string => {
   return 'Password must contain uppercase, lowercase, number and special character'
 }
 
-const validatePasswordMatch = (value: string): boolean | string => {
+const validatePasswordMatch = (_value: string): boolean | string => {
   // This is a simplified version - in a real app, you'd access the form context
   // to compare with the password field
   return true // Placeholder
@@ -376,7 +375,7 @@ const validateAge = (value: number): boolean | string => {
   return value >= 18 || 'Must be 18 or older'
 }
 
-const validateDependentField = (value: string): boolean | string => {
+const validateDependentField = (_value: string): boolean | string => {
   // Simplified dependency check
   return true // Placeholder
 }

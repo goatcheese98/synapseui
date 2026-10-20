@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/toast'
 
 const state = reactive({
-  variant: 'default',
+  variant: 'default' as 'default' | 'info' | 'success' | 'warning' | 'destructive',
   duration: 5000,
   withAction: true,
   withTitle: true,
@@ -288,7 +288,7 @@ const getVariantDescription = (variant: string) => {
           <ToastRoot
             v-for="index in Math.min(toastCount, 3)"
             :key="`demo-${index}`"
-            :variant="['success', 'warning', 'info'][index - 1]"
+            :variant="(['success', 'warning', 'info'] as const)[index - 1]"
             :duration="6000"
           >
             <div class="grid gap-1">

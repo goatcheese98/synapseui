@@ -1,0 +1,755 @@
+{
+  "captureHead": "042749a2d9699b740439d07fe3598e1166c78938",
+  "run": 39389609900,
+  "platform": "mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f",
+  "acceptance": "Independent engineering review of all 90 PNGs supplied in task handoff. This is not human Paper design approval. Exact Git blob references only; no regenerated images.",
+  "archives": [
+    {
+      "id": 12249042217,
+      "name": "visual-review-chromium",
+      "sha256": "sha256:441e1cff6fadff0f90079d9db6dc1bea857a3e4249ba803604169e96f19a0ee5"
+    },
+    {
+      "id": 12248888077,
+      "name": "visual-review-webkit",
+      "sha256": "sha256:30a43b3c583ac1e24ce8b414d0dfaee2c71618cfba8f805c0cb86c70f9acae50"
+    },
+    {
+      "id": 12248673712,
+      "name": "visual-review-firefox",
+      "sha256": "sha256:0163ba0ef20ef9b711b174322dc317bd42a9f549b9f270fe0b18b73f6904a8a9"
+    },
+    {
+      "id": 12248653520,
+      "name": "visual-review-Mobile Chrome",
+      "sha256": "sha256:70927b4a27a3fa41515812532f814aad8bff1651995c08e794052478cd06e66a"
+    },
+    {
+      "id": 12248469169,
+      "name": "visual-review-Mobile Safari",
+      "sha256": "sha256:51f9574f98142846ce137972adc816fe019ec531ad8d15b17c6ef021347fb179"
+    }
+  ],
+  "entries": [
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-variants-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63ecd42c484e457c84925b0acc07ba29a6619768",
+      "project": "chromium",
+      "case": "should match button variants visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-sizes-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64f46a3ba3e610fffc1425cf7cf83571b241e898",
+      "project": "chromium",
+      "case": "should match button sizes visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-normal-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06b82999de912d9a40021bb8e78cba17ea073f63",
+      "project": "chromium",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-hover-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7af8f0b6af624639624cd4e8915bd1707f6c07b2",
+      "project": "chromium",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ebc3425d589f4b0475fd3384bbbead8194bc5b8",
+      "project": "chromium",
+      "case": "should match basic floating dock visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ebc3425d589f4b0475fd3384bbbead8194bc5b8",
+      "project": "chromium",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-hover-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2e48fa7e4ed38df8e88122cc499167fd518a3ce",
+      "project": "chromium",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ebc3425d589f4b0475fd3384bbbead8194bc5b8",
+      "project": "chromium",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-2-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd1516ed78cb599a87b6b4be638f762d4062997c",
+      "project": "chromium",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50aeda4962c7eee8770a2bb82e1c7f058842ea2b",
+      "project": "chromium",
+      "case": "should match keyboard drag handle focus visual"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-mobile-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60480c2ffffa0b9608e4fcebc80f203895c2562b",
+      "project": "chromium",
+      "case": "should match mobile layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-tablet-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e3206b4d49a1a1403e629d94dd3c91fc7f2c4c2",
+      "project": "chromium",
+      "case": "should match tablet layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-dark-mode-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5947dd2be1952ecc707ea467bb08114c1f28b18e",
+      "project": "chromium",
+      "case": "should match dark mode appearance"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-idle-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "339d3535e9458e4cade69e4682b7839c3ae8830a",
+      "project": "chromium",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-active-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03d9387e7f310add4e08d838bac29e960214feea",
+      "project": "chromium",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-focused-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22103b1a3e6d4fcf819ee6fdf741ad8f6408ec9f",
+      "project": "chromium",
+      "case": "should capture focus states"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b488ebfd7f914547dcad8b0e5b4ffc46cade5370",
+      "project": "chromium",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/foundations-components-chromium-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0ee202261004234c2a1d34a37d9b9d643e103aa",
+      "project": "chromium",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-variants-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9661cb52f35fe662d7e1a9e09da9005b5d896c12",
+      "project": "webkit",
+      "case": "should match button variants visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-sizes-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f57fe3013c1e0d4b4500bebaff385d3855028c10",
+      "project": "webkit",
+      "case": "should match button sizes visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-normal-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ca6ebef25713cbb579bdd454a8ee4e5447aac6f",
+      "project": "webkit",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-hover-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e06704327b88c55ee6c7b54f9285f2508a5de747",
+      "project": "webkit",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47bc9a114306a20d239fd4f3c1a5da8f50a570a3",
+      "project": "webkit",
+      "case": "should match basic floating dock visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47bc9a114306a20d239fd4f3c1a5da8f50a570a3",
+      "project": "webkit",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-hover-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2bd2b602df03c210fd4b829a9b11ccfcadf7ec9",
+      "project": "webkit",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47bc9a114306a20d239fd4f3c1a5da8f50a570a3",
+      "project": "webkit",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-2-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f50c66a45f3c785cafb35e5aefd23fdad0861d0",
+      "project": "webkit",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76dc45cf8b0461fcb5e4cb508001ad358b7ba173",
+      "project": "webkit",
+      "case": "should match keyboard drag handle focus visual"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-mobile-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69503ee2d3d397080ac6234be96aa779b796006",
+      "project": "webkit",
+      "case": "should match mobile layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-tablet-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da951b20af6f5c760b96a300522eedb2e1d7ccc8",
+      "project": "webkit",
+      "case": "should match tablet layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-dark-mode-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9a8e8cb24309d73657cc5d364eb3c02f1a49b9f",
+      "project": "webkit",
+      "case": "should match dark mode appearance"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-idle-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5f21b461503e8bdbf137327a6e205e0c49f9920",
+      "project": "webkit",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-active-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16e37f50a672f12ffdd0ee0e065c25ff53e39592",
+      "project": "webkit",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-focused-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92c3541582eeabce16ebacf8495cb22f48a76142",
+      "project": "webkit",
+      "case": "should capture focus states"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c7c0c26eba92d5abf01869647d727aee8311ec1",
+      "project": "webkit",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/foundations-components-webkit-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4c2c6e24b171e2d71120f2c73923dbb47755a82",
+      "project": "webkit",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-variants-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11634ae7ccefa983884e5eeae1246becd78cc509",
+      "project": "firefox",
+      "case": "should match button variants visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-sizes-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ac9ee04e15aebb12db532c8116e4ba862c8a360",
+      "project": "firefox",
+      "case": "should match button sizes visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-normal-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2b0ee8c5308ce423d51e9a6eebe301607442233",
+      "project": "firefox",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-hover-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f0eb03ccd357c11e729d4c24dc9f06667bc0fed",
+      "project": "firefox",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99bf6cee81ffcf9bad3431bb833abef674fd99e0",
+      "project": "firefox",
+      "case": "should match basic floating dock visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99bf6cee81ffcf9bad3431bb833abef674fd99e0",
+      "project": "firefox",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-hover-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc60f943692517d64df5ffc373dfa3f00c6b976b",
+      "project": "firefox",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99bf6cee81ffcf9bad3431bb833abef674fd99e0",
+      "project": "firefox",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-2-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b35a9a3e97db326fb19fd13d1c4e5627674905fa",
+      "project": "firefox",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "002c8dd2ca9870a85a56d5c2f1114fe8bcf72fc0",
+      "project": "firefox",
+      "case": "should match keyboard drag handle focus visual"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-mobile-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3baed9de582b4ba3e43b4caf6fe28dcb4235c897",
+      "project": "firefox",
+      "case": "should match mobile layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-tablet-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11e8b3084ae5377f1ff936d7ab1fa7319bc116c7",
+      "project": "firefox",
+      "case": "should match tablet layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-dark-mode-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0416df76ece91745e32f2510533abf244e110120",
+      "project": "firefox",
+      "case": "should match dark mode appearance"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-idle-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c14d261cf759e857d452fd43f97ae7adfe1911d",
+      "project": "firefox",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-active-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ef60550927062adcfc5118344f824f5cfd713e6",
+      "project": "firefox",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-focused-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2b9d46ba8be994211a85c69405fc19df05c4b2e",
+      "project": "firefox",
+      "case": "should capture focus states"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80489f42b18f0b5372d18de06f424f3653194f85",
+      "project": "firefox",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/foundations-components-firefox-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6a1f143964df0b1c62860fbfda783327f7bb00e",
+      "project": "firefox",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-variants-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69d82808a8798be85931bc0e8433442e2cd8decc",
+      "project": "Mobile Chrome",
+      "case": "should match button variants visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-sizes-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7c58160e2a026e53e2cd915b30e39f529a78ced",
+      "project": "Mobile Chrome",
+      "case": "should match button sizes visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-normal-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "477429547d46ff12e18a16f7d009844c2bd43496",
+      "project": "Mobile Chrome",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-hover-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cf2b50a9e4a3015a19f9222507410c31c46dcbe",
+      "project": "Mobile Chrome",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ce8ed36a0a0cffa9a9988ef56ec7d53d40e9a94",
+      "project": "Mobile Chrome",
+      "case": "should match basic floating dock visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ce8ed36a0a0cffa9a9988ef56ec7d53d40e9a94",
+      "project": "Mobile Chrome",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-hover-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a7fed26c8f54c0fd465018fe8352c0d9e5a209d",
+      "project": "Mobile Chrome",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ce8ed36a0a0cffa9a9988ef56ec7d53d40e9a94",
+      "project": "Mobile Chrome",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-2-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c204b9e9de50787ca66693427e7436ae123f5929",
+      "project": "Mobile Chrome",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cd1abc0d093aa9377c6f7b6edd43b612b78420d",
+      "project": "Mobile Chrome",
+      "case": "should match keyboard drag handle focus visual"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-mobile-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70e2b6c5cd16cafbd63c0f3d7a2430df8a238cf2",
+      "project": "Mobile Chrome",
+      "case": "should match mobile layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-tablet-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d8ad7a1be497de940a5d84b503d18d2aed2eadf",
+      "project": "Mobile Chrome",
+      "case": "should match tablet layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-dark-mode-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82efbd3a440fbbd48bd0b218908ee660ef2ae6f5",
+      "project": "Mobile Chrome",
+      "case": "should match dark mode appearance"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-idle-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb912604df46d8080b8064165f07b98ef6da1f1b",
+      "project": "Mobile Chrome",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-active-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d490d06fd6bb7bc39c279df309db9c9cf267ab2",
+      "project": "Mobile Chrome",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-focused-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77046d27278af88bc703943e32b87ccfc69ef0da",
+      "project": "Mobile Chrome",
+      "case": "should capture focus states"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "182152a661f5f8a2dbcc0e1bd348e99c1db02dde",
+      "project": "Mobile Chrome",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/foundations-components-Mobile-Chrome-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa1c6574b643889cdee2595e433f952134749f2e",
+      "project": "Mobile Chrome",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-variants-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7bd6ffb824053701500d9bda7c4bca3a06c4420",
+      "project": "Mobile Safari",
+      "case": "should match button variants visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-sizes-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf1ca8f7be1b3bb60b3c349cf43eea70a81e93d6",
+      "project": "Mobile Safari",
+      "case": "should match button sizes visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-normal-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "937d3efb82f5a22c4037cce2478cd03407466c36",
+      "project": "Mobile Safari",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-hover-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d3b5e2d1ddb741377fd81d2298479a3bdbeac42",
+      "project": "Mobile Safari",
+      "case": "should match button hover states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed22b451ade6e2194d24b0dd25344481a8aec94a",
+      "project": "Mobile Safari",
+      "case": "should match basic floating dock visual snapshot"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed22b451ade6e2194d24b0dd25344481a8aec94a",
+      "project": "Mobile Safari",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-hover-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ca78617b63da20e96f4a25e17b625b1e6dcfefe",
+      "project": "Mobile Safari",
+      "case": "should match dock hover state"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed22b451ade6e2194d24b0dd25344481a8aec94a",
+      "project": "Mobile Safari",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-2-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "274f1cb5742ef2476b9b2583e8f94782acf2ff11",
+      "project": "Mobile Safari",
+      "case": "should match dock with different panel content"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8838d134fe64e63970c11a2913a88d5be2187dfb",
+      "project": "Mobile Safari",
+      "case": "should match keyboard drag handle focus visual"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-mobile-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b9d3db588352d2996638b9242dfd8bbf30fe51c",
+      "project": "Mobile Safari",
+      "case": "should match mobile layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/dock-tablet-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d5074a51de1735d41fccd03d7ebc046c4f5e983",
+      "project": "Mobile Safari",
+      "case": "should match tablet layout"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/buttons-dark-mode-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43c7e938cb43a29c20dcb63f4692409538730714",
+      "project": "Mobile Safari",
+      "case": "should match dark mode appearance"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-idle-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "337bc5c95f28a902b8c1b59c889ab068ea99b320",
+      "project": "Mobile Safari",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/loading-active-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88946e47bf0dfa151cd6835cb23df851b8f8612f",
+      "project": "Mobile Safari",
+      "case": "should capture loading states"
+    },
+    {
+      "path": "tests/e2e/visual-regression.spec.ts-snapshots/button-focused-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8107680a2a31436bc4b16d516ea555dfe73a7083",
+      "project": "Mobile Safari",
+      "case": "should capture focus states"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0540140e6a7af287c407130c687952065c75a84",
+      "project": "Mobile Safari",
+      "case": "should take visual snapshots for regression testing"
+    },
+    {
+      "path": "tests/e2e/working-tests.spec.ts-snapshots/foundations-components-Mobile-Safari-linux.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e04177addf28a2595231447e8fc0764b4750c822",
+      "project": "Mobile Safari",
+      "case": "should take visual snapshots for regression testing"
+    }
+  ]
+}

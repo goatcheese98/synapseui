@@ -1,7 +1,13 @@
 import { defineConfig } from 'histoire'
 import { HstVue } from '@histoire/plugin-vue'
+import { histoireCssCompatibility } from './scripts/histoire-css-compat'
 
 export default defineConfig({
+  theme: {
+    title: 'Synapse UI',
+    logo: { light: './src/assets/synapse-light.svg', dark: './src/assets/synapse-dark.svg' },
+    colors: { primary: { 50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#52525b', 600: '#52525b', 700: '#3f3f46', 800: '#27272a', 900: '#18181b' } }
+  },
   plugins: [
     HstVue(),
     // Override built-in plugins to disable tailwind-tokens
@@ -51,13 +57,16 @@ export default defineConfig({
   autoApplyContrastColor: true,
   // Vite configuration with GSAP/JSDOM compatibility fixes
   vite: {
+    plugins: [histoireCssCompatibility()],
     define: {
       __VUE_PROD_DEVTOOLS__: false,
       // Polyfill for GSAP in Node.js environment
       global: 'globalThis',
     },
     optimizeDeps: {
-      include: ['gsap', 'gsap/Draggable']
+      // Retained stories import these at collection/mount time. Prebundle them
+      // before navigation so Vite does not reload a cold preview mid-mount.
+      include: ['vue', 'pinia', 'reka-ui', '@iconify/vue', 'class-variance-authority', 'tailwind-variants', 'clsx', 'tailwind-merge', 'gsap', 'gsap/Draggable']
     },
     ssr: {
       noExternal: ['gsap']

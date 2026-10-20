@@ -45,7 +45,7 @@ import { cn } from '@/lib/utils'
 import { useMultiContext } from '@/composables/useComposition'
 
 export interface SmartCheckboxProps {
-  checked?: boolean
+  checked?: boolean | 'indeterminate'
   disabled?: boolean
   required?: boolean
   fieldId?: string

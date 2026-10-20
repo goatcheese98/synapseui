@@ -172,7 +172,7 @@ interface Emits {
   (e: 'theme-toggle'): void
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   brand: 'Synapse UI',
   items: () => [],
   activeItem: '',

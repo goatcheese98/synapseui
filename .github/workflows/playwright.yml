@@ -1,29 +1,44 @@
-name: Playwright Tests
+name: Legacy Playwright diagnostic
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+permissions:
+  contents: read
+concurrency:
+  group: legacy-playwright-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit, 'Mobile Chrome', 'Mobile Safari']
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
     steps:
     - uses: actions/checkout@v4
+    - name: Match ephemeral home ownership to the container user
+      run: chown "$(id -u):$(id -g)" "$HOME"
     - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
+        node-version: 24
     - name: Install dependencies
-      run: npm install -g pnpm && pnpm install
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: corepack enable && corepack pnpm install --frozen-lockfile
     - name: Run unit tests
-      run: pnpm run test --run
-    - name: Run Playwright tests
-      run: pnpm run test:e2e
+      run: corepack pnpm run test:unit
+    - name: Run bounded legacy diagnostic (failures remain failures)
+      run: corepack pnpm run test:e2e --project="${{ matrix.project }}" --workers=2 --max-failures=0
+    - name: Record every legacy result
+      if: always()
+      run: node scripts/summarize-legacy.ts
     - uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-report
-        path: playwright-report/
+        name: playwright-report-${{ matrix.project }}
+        path: |
+          playwright-report/
+          test-results/
         retention-days: 30

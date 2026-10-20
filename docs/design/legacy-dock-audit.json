@@ -1,0 +1,546 @@
+{
+  "baselineHead": "819f8a055763a303e6172812cd849c10d92074b3",
+  "baselineCloudRuns": [
+    {
+      "stats": {
+        "startTime": "2026-10-20T06:29:22.742Z",
+        "duration": 240001.427,
+        "expected": 9,
+        "skipped": 4,
+        "unexpected": 29,
+        "flaky": 0
+      }
+    },
+    {
+      "stats": {
+        "startTime": "2026-10-20T06:35:52.234Z",
+        "duration": 39801.741,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      }
+    },
+    {
+      "stats": {
+        "startTime": "2026-10-20T06:38:34.538Z",
+        "duration": 27434.371,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    }
+  ],
+  "cloudFullDiagnostic": {
+    "startTime": "2026-10-20T06:39:44.416Z",
+    "duration": 109063.875,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 16,
+    "flaky": 0
+  },
+  "correctedAfterFullRun": {
+    "case": "should allow dragging the floating dock",
+    "cause": "Subpixel client-coordinate rounding: requested 35px, observed 36px. Exact bounded displacement now allows one CSS pixel of input/render rounding; meaningful movement and all-edge checks retained.",
+    "verification": "6 focused regressions passed across desktop and Mobile Chrome, including movement, cancellation before pointer-up and native Histoire navigation."
+  },
+  "focusedBeforeFinalRefinements": {
+    "passed": 42,
+    "failed": 0,
+    "projects": [
+      "chromium",
+      "Mobile Chrome"
+    ]
+  },
+  "remainingObservedFailures": [
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 17,
+      "title": "should match button variants visual snapshot",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match button variants visual snapshot",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 27,
+      "title": "should match button sizes visual snapshot",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match button sizes visual snapshot",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 36,
+      "title": "should match button hover states",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match button hover states",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 60,
+      "title": "should match basic floating dock visual snapshot",
+      "observedFailure": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/floating-dock-basic-chromium-linux.png, writing actual.",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match basic floating dock visual snapshot",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 67,
+      "title": "should match dock hover state",
+      "observedFailure": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-normal-chromium-linux.png, writing actual.",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match dock hover state",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 76,
+      "title": "should match dock with different panel content",
+      "observedFailure": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-panel-1-chromium-linux.png, writing actual.",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match dock with different panel content",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 89,
+      "title": "should match keyboard drag handle focus visual",
+      "observedFailure": "Error: A snapshot doesn't exist at <repo>/tests/e2e/visual-regression.spec.ts-snapshots/dock-handle-focus-chromium-linux.png, writing actual.",
+      "baseline": {
+        "note": "New real keyboard-focus screenshot assertion replaces the old conditional timeline no-op; baseline FloatingDock visual beforeEach also failed on absent Patterns."
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 103,
+      "title": "should match mobile layout",
+      "observedFailure": "Test timeout of 15000ms exceeded.",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match mobile layout",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded."
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 139,
+      "title": "should match dark mode appearance",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should match dark mode appearance",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 176,
+      "title": "should capture loading states",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should capture loading states",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "line": 188,
+      "title": "should capture focus states",
+      "observedFailure": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n",
+      "baseline": {
+        "file": "visual-regression.spec.ts",
+        "title": "should capture focus states",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+      }
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "line": 28,
+      "title": "should navigate to Simple Demo and interact with buttons",
+      "observedFailure": "Test timeout of 15000ms exceeded.",
+      "baseline": {
+        "file": "working-tests.spec.ts",
+        "title": "should navigate to Simple Demo and interact with buttons",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded."
+      }
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "line": 93,
+      "title": "should test basic interactivity",
+      "observedFailure": "Test timeout of 15000ms exceeded.",
+      "baseline": {
+        "file": "working-tests.spec.ts",
+        "title": "should test basic interactivity",
+        "status": "unexpected",
+        "result": "timedOut",
+        "reason": "Test timeout of 15000ms exceeded."
+      }
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "line": 168,
+      "title": "should be responsive on mobile viewport",
+      "observedFailure": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n",
+      "baseline": {
+        "file": "working-tests.spec.ts",
+        "title": "should be responsive on mobile viewport",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+      }
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "line": 199,
+      "title": "should take visual snapshots for regression testing",
+      "observedFailure": "Test timeout of 15000ms exceeded.",
+      "baseline": {
+        "file": "working-tests.spec.ts",
+        "title": "should take visual snapshots for regression testing",
+        "status": "unexpected",
+        "result": "failed",
+        "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-chromium-linux.png, writing actual."
+      }
+    }
+  ],
+  "baselineCases": [
+    {
+      "file": "button.spec.ts",
+      "title": "should display all button variants",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "button.spec.ts",
+      "title": "should display different button sizes",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "button.spec.ts",
+      "title": "should handle button interactions",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "button.spec.ts",
+      "title": "should apply correct CSS classes for variants",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "button.spec.ts",
+      "title": "should be accessible",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "button.spec.ts",
+      "title": "should render correctly on mobile",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should allow dragging the floating dock",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should show visual feedback during drag",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should handle drag boundaries and constraints",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should handle multi-touch drag on mobile",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should handle rapid drag movements",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should preserve dock state during drag",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "drag-drop.spec.ts",
+      "title": "should animate smoothly during drag release",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should render basic floating dock",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should display panel tabs",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should switch between panels when tabs are clicked",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should have minimize button functionality",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should show hover effects",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should display correct content for different panels",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should be responsive on mobile",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "floating-dock.spec.ts",
+      "title": "should maintain dock structure and styling",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "histoire-navigation.spec.ts",
+      "title": "should load Histoire and show components",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "histoire-navigation.spec.ts",
+      "title": "should identify available stories",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match button variants visual snapshot",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match button sizes visual snapshot",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match button hover states",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match basic floating dock visual snapshot",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match dock hover state",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match dock with different panel content",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match timeline slider visual",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded while running \"beforeEach\" hook."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match mobile layout",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match tablet layout",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded."
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should match dark mode appearance",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should capture loading states",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "visual-regression.spec.ts",
+      "title": "should capture focus states",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: locator.click: Error: strict mode violation: getByText('Components') resolved to 2 elements:\n    1) <span data-v-10840b73=\"\" class=\"htw-truncate\">Components</span> aka getByRole('button', { name: 'Components' })\n    2) <span data-v-048885b7=\"\" class=\"htw-truncate\">Composite Components</span> aka getByRole('link', { name: 'Composite Components' })\n\nCall log:\n  - waiting for getByText('Components')\n"
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should load Histoire successfully",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should navigate to Simple Demo and interact with buttons",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded."
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should navigate to FloatingDock pattern",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded."
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should display different button variants",
+      "status": "expected",
+      "result": "passed",
+      "reason": ""
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should be responsive on mobile viewport",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: Timed out 5000ms waiting for expect(locator).toBeVisible()\n\nLocator: locator('.histoire-story-list')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.histoire-story-list')\n"
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should take visual snapshots for regression testing",
+      "status": "unexpected",
+      "result": "failed",
+      "reason": "Error: A snapshot doesn't exist at <repo>/tests/e2e/working-tests.spec.ts-snapshots/histoire-homepage-chromium-linux.png, writing actual."
+    },
+    {
+      "file": "working-tests.spec.ts",
+      "title": "should test basic interactivity",
+      "status": "unexpected",
+      "result": "timedOut",
+      "reason": "Test timeout of 15000ms exceeded."
+    }
+  ],
+  "hostedFinalResults": "See the exact-head workflow links in draft PR #1; reports include every project/test status and preserve all failures."
+}

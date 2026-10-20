@@ -1,0 +1,46 @@
+{
+  "baselineHead": "7464c1732bafa399458ee71509c34b2796f8805c",
+  "dev": [
+    {
+      "id": "/workspace/work/synapseui/beta/node_modules/.pnpm/@histoire+app@1.0.0-beta.1_vite@7.3.7_@types+node@24.1.0_jiti@2.5.1_lightningcss@1.30.1_/node_modules/@histoire/app/dist/style.css",
+      "scopes": 0,
+      "bytes": 146769
+    },
+    {
+      "id": "/workspace/work/synapseui/beta/node_modules/.pnpm/@histoire+app@1.0.0-beta.1_vite@7.3.7_@types+node@24.1.0_jiti@2.5.1_lightningcss@1.30.1_/node_modules/@histoire/app/dist/bundled/app.css",
+      "scopes": 1,
+      "bytes": 2147
+    }
+  ],
+  "static": {
+    "runtimeSourceHead": "7464c1732bafa399458ee71509c34b2796f8805c",
+    "css": [
+      {
+        "path": ".histoire/dist/assets/style-DGI41zsJ.css",
+        "sha256": "ff1c1c7a7f4f4df0f88dad768804974e76de5b4289046dd0706f40b8a43ba5c6",
+        "scopes": 1,
+        "componentMarker": true
+      }
+    ],
+    "linkedStyles": [
+      "<link rel=\"stylesheet\" href=\"/assets/style-DGI41zsJ.css\">"
+    ]
+  },
+  "sourceFiles": [
+    {
+      "path": "bundle-main.js",
+      "sha256": "d20d70b1483d79b53ba93aafbf8b0ea3c2e2014a636d314939eda713111afdb5",
+      "sourceScopeCount": 0
+    },
+    {
+      "path": "style.css",
+      "sha256": "04e51d700d86e71639fba07e88d7c10600bc5087e70c9f0f3764cb3ac629e0f0",
+      "sourceScopeCount": 1
+    },
+    {
+      "path": "bundled/app.css",
+      "sha256": "fc92756a71c1fc665c2fa8a5093c672fa7983b377f65a14bb32023ab362a2d5a",
+      "sourceScopeCount": 15
+    }
+  ]
+}

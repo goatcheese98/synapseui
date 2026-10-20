@@ -56,13 +56,13 @@ const activeAnimation = ref('')
 const hasIcon = computed(() => {
   const defaultSlot = slots.default?.()
   return defaultSlot?.some(vnode => 
-    (typeof vnode.type === 'object' && vnode.type !== null && 'name' in vnode.type && vnode.type.name === 'Icon') || 
+    (((typeof vnode.type === 'object' && vnode.type !== null) || typeof vnode.type === 'function') && 'name' in vnode.type && vnode.type.name === 'Icon') ||
     (typeof vnode.children === 'string' && vnode.children.includes('icon'))
   ) || false
 })
 
 const getDialogVariant = () => {
-  const variantMap: Record<string, string> = {
+  const variantMap = {
     neutral: 'dialog-cancel',
     primary: 'dialog-primary', 
     secondary: 'dialog-secondary',
@@ -72,7 +72,7 @@ const getDialogVariant = () => {
     warning: 'dialog-primary',
     error: 'dialog-destructive',
     destructive: 'dialog-destructive'
-  }
+  } as const
   return variantMap[props.variant] || 'dialog-primary'
 }
 

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": [
+      "node"
+    ],
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "scripts/**/*.ts",
+    "playwright.config.ts",
+    "tests/e2e/button.spec.ts",
+    "tests/e2e/working-tests.spec.ts",
+    "tests/e2e/drag-drop.spec.ts",
+    "tests/e2e/floating-dock.spec.ts",
+    "tests/e2e/visual-regression.spec.ts",
+    "tests/e2e/histoire-navigation.spec.ts",
+    "tests/e2e/helpers/**/*.ts"
+  ]
+}

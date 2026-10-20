@@ -334,7 +334,6 @@ import CardFooter from '@/components/ui/card/CardFooter.vue'
 import CardTitle from '@/components/ui/card/CardTitle.vue'
 import CardDescription from '@/components/ui/card/CardDescription.vue'
 import UltraSmartButton from '@/components/ui/button/BaseButton.vue'
-import SmartButton from '@/components/ui/button/BaseButton.vue'
 import SmartInput from '@/components/ui/input/SmartInput.vue'
 
 // Context Providers (these would be real components in your actual implementation)

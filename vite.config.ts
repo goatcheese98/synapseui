@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SynapseUI',
-      fileName: (format) => `synapse-ui.${format}.js`
+      fileName: (format) => `synapse-ui.${format}.${format === 'umd' ? 'cjs' : 'js'}`
     },
     rollupOptions: {
       external: ['vue'],
