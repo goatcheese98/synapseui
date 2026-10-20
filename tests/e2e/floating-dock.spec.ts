@@ -1,11 +1,6 @@
 import { test, expect } from '@playwright/test'
+import { openDock } from './helpers/histoire'
 
-async function openDock(page: import('@playwright/test').Page) {
-  await page.goto('/story/src-stories-floatingdock-story-vue?variantId=src-stories-floatingdock-story-vue-0')
-  const main = page.locator('main.dock-demo[data-synapse-theme="light"]')
-  await main.getByRole('button', { name: 'Drag dock', exact: true }).waitFor({ state: 'visible' })
-  return main
-}
 
 test.describe('FloatingDock Component', () => {
   test('should render the retained dock with its handle and slotted content', async ({ page }) => {

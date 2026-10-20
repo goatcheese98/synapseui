@@ -1,11 +1,6 @@
 import { test, expect, type Locator, type Page } from '@playwright/test'
+import { openDock } from './helpers/histoire'
 
-async function openDock(page: Page) {
-  await page.goto('/story/src-stories-floatingdock-story-vue?variantId=src-stories-floatingdock-story-vue-0')
-  const main = page.locator('main.dock-demo[data-synapse-theme="light"]')
-  await main.locator('.floating-dock .dock-drag-handle').waitFor({ state: 'visible' })
-  return main
-}
 async function box(locator: Locator) {
   const result = await locator.boundingBox()
   expect(result).not.toBeNull()

@@ -12,6 +12,7 @@ export async function openDock(page: Page) {
   await page.goto(`/story/${storyIds.dock}?variantId=${storyIds.dock}-0`)
   const main = page.locator('main.dock-demo[data-synapse-theme="light"]')
   await main.getByRole('button', { name: 'Drag dock', exact: true }).waitFor({ state: 'visible' })
+  await readyFonts(page)
   return main
 }
 export async function openButtonVariant(page: Page, title: 'Main Variants' | 'All Sizes') {
