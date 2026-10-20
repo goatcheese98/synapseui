@@ -1,0 +1,30 @@
+name: Button cold-start verification
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  buttons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        startup: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: corepack pnpm install --frozen-lockfile
+      - run: corepack pnpm exec playwright install --with-deps chromium
+      - name: Run all six Button cases from a fresh Histoire process
+        run: corepack pnpm exec playwright test tests/e2e/button.spec.ts --project=chromium --workers=1 --trace=retain-on-failure
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: button-cold-start-${{ matrix.startup }}
+          path: |
+            test-results/
+            playwright-report/
