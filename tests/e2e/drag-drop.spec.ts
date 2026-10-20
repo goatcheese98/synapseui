@@ -74,7 +74,7 @@ test.describe('Drag and Drop Functionality', () => {
     await expect(main.locator('.floating-dock')).toHaveAttribute('data-dragging', 'false')
   })
 
-  test('should show visual feedback during drag', async ({ page }) => {
+  test('should show visual feedback during drag', async ({ page }, info) => {
     const main = await openDock(page)
     const dock = main.locator('.floating-dock')
     const handle = main.getByRole('button', { name: 'Drag dock', exact: true })
@@ -85,6 +85,7 @@ test.describe('Drag and Drop Functionality', () => {
     await expect(handle).toHaveAttribute('aria-pressed', 'true')
     await expect(handle).toHaveCSS('cursor', 'grabbing')
     await expect.poll(() => dock.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe(initialShadow)
+    await info.attach('active-drag-feedback', { body: await page.screenshot({ scale: 'css' }), contentType: 'image/png' })
     await page.mouse.up()
     await expect(handle).toHaveAttribute('aria-pressed', 'false')
     await expect(handle).toHaveCSS('cursor', 'grab')

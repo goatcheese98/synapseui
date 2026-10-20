@@ -94,5 +94,5 @@ const dockClasses = computed(() => cn(
 .dock-drag-handle { display: block; width: 100%; min-height: 44px; padding: 6px 12px; cursor: grab; touch-action: none; user-select: none; font: inherit; color: inherit; border-bottom: 1px solid currentColor; }
 .floating-dock--dragging .dock-drag-handle { cursor: grabbing; }
 .dock-drag-handle:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.floating-dock.floating-dock--dragging { box-shadow: 0 0 0 2px currentColor; }
+.floating-dock.floating-dock--dragging { box-shadow: 0 0 0 2px currentColor; transition: none; }
 </style>

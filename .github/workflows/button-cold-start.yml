@@ -38,7 +38,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project: [firefox, webkit, 'Mobile Safari']
+        include:
+          - { project: firefox, startup: 1 }
+          - { project: webkit, startup: 1 }
+          - { project: 'Mobile Safari', startup: 1 }
+          - { project: 'Mobile Safari', startup: 2 }
+          - { project: 'Mobile Safari', startup: 3 }
     steps:
       - uses: actions/checkout@v4
       - name: Match ephemeral home ownership to the container user
@@ -53,7 +58,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dock-cross-browser-${{ matrix.project }}
+          name: dock-cross-browser-${{ matrix.project }}-${{ matrix.startup }}
           path: |
             test-results/
             playwright-report/
