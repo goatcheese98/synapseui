@@ -1,0 +1,28 @@
+diff --git a/dist/node/dom/env.js b/dist/node/dom/env.js
+index 2a50cb070eb698e555363efb879a637ae824b94a..b8f4f6c1d0847739e6ccd3b2abe96e531d8f26e1 100644
+--- a/dist/node/dom/env.js
++++ b/dist/node/dom/env.js
+@@ -11,6 +11,8 @@ export function createDomEnv() {
+     });
+     const { keys, originals } = populateGlobal(globalThis, dom.window, { bindFunctions: true });
+     function destroy() {
++        // Stop real window timers and animation frames before removing their globals.
++        dom.window.close();
+         keys.forEach(key => delete globalThis[key]);
+         originals.forEach((v, k) => {
+             globalThis[k] = v;
+diff --git a/dist/node/dom/util.js b/dist/node/dom/util.js
+index 1d64282763c7c35050f9caa6483b07e843dd2f94..a2610284d979a9c2a0cb8d1a63d770d884453865 100644
+--- a/dist/node/dom/util.js
++++ b/dist/node/dom/util.js
+@@ -11,6 +11,10 @@ const skipKeys = [
+ export function getWindowKeys(global, win) {
+     const keys = new Set(KEYS.concat(Object.getOwnPropertyNames(win))
+         .filter((k) => {
++        // JSDOM delegates decoding to Node globals; replacing them causes recursion.
++        if ((k === 'atob' || k === 'btoa') && typeof global[k] === 'function') {
++            return false;
++        }
+         if (skipKeys.includes(k)) {
+             return false;
+         }
