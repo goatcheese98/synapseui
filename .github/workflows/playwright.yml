@@ -20,6 +20,8 @@ jobs:
     container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
     steps:
     - uses: actions/checkout@v4
+    - name: Match ephemeral home ownership to the container user
+      run: chown "$(id -u):$(id -g)" "$HOME"
     - uses: actions/setup-node@v4
       with:
         node-version: 24

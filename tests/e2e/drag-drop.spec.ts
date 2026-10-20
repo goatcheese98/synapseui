@@ -118,10 +118,13 @@ test.describe('Drag and Drop Functionality', () => {
   test('should keep controls interactive and ignore secondary pointer buttons', async ({ page }) => {
     const main = await openDock(page)
     const transform = await main.locator('.floating-dock').evaluate(el => getComputedStyle(el).transform)
-    await main.getByRole('button', { name: 'Drag dock' }).click({ button: 'right' })
+    const secondaryHandle = main.getByRole('button', { name: 'Drag dock' })
+    // This case verifies application pointer discrimination, not native browser chrome.
+    // WebKit's native context menu consumes pointer-up and later clicks, even after Escape.
+    // Suppress only this one context menu; deliver the real secondary down/up to the app.
+    await secondaryHandle.evaluate(el => el.addEventListener('contextmenu', event => event.preventDefault(), { once: true }))
+    await secondaryHandle.click({ button: 'right' })
     await expect(main.locator('.floating-dock')).toHaveAttribute('data-dragging', 'false')
-    // A real right-click opens WebKit's native context menu; dismiss it before clicking a control.
-    await page.keyboard.press('Escape')
     await main.getByRole('button', { name: 'Run action' }).click()
     await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
     const final = await box(main.locator('.floating-dock'))

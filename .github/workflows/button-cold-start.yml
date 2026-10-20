@@ -14,6 +14,8 @@ jobs:
         startup: [1, 2, 3]
     steps:
       - uses: actions/checkout@v4
+      - name: Match ephemeral home ownership to the container user
+        run: chown "$(id -u):$(id -g)" "$HOME"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -39,6 +41,8 @@ jobs:
         project: [firefox, webkit, 'Mobile Safari']
     steps:
       - uses: actions/checkout@v4
+      - name: Match ephemeral home ownership to the container user
+        run: chown "$(id -u):$(id -g)" "$HOME"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
