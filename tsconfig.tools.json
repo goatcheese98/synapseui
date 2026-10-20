@@ -17,6 +17,9 @@
     "tests/e2e/button.spec.ts",
     "tests/e2e/working-tests.spec.ts",
     "tests/e2e/drag-drop.spec.ts",
-    "tests/e2e/floating-dock.spec.ts"
+    "tests/e2e/floating-dock.spec.ts",
+    "tests/e2e/visual-regression.spec.ts",
+    "tests/e2e/histoire-navigation.spec.ts",
+    "tests/e2e/helpers/**/*.ts"
   ]
 }

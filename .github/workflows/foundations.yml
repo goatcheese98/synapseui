@@ -7,7 +7,8 @@ permissions:
   contents: read
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +23,6 @@ jobs:
       - run: corepack pnpm run build
       - run: node scripts/verify-package.ts
       - run: corepack pnpm run story:build
-      - run: corepack pnpm exec playwright install --with-deps chromium
       - name: Verify foundations in Chromium
         timeout-minutes: 4
         run: |

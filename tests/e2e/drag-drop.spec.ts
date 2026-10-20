@@ -28,6 +28,37 @@ async function withinWorkspace(main: Locator) {
 }
 
 test.describe('Drag and Drop Functionality', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      const events: unknown[] = []
+      Object.assign(window, { __dockEvents: events })
+      for (const type of ['pointerdown', 'pointerup', 'click', 'contextmenu']) document.addEventListener(type, event => {
+        const target = event.target as Element | null
+        if (!target?.closest('.floating-dock')) return
+        const pointer = event as PointerEvent
+        events.push({ type, target: target.closest('button')?.textContent?.trim(), button: pointer.button, pointerId: pointer.pointerId, defaultPrevented: event.defaultPrevented })
+      })
+    })
+  })
+  test.afterEach(async ({ page }, info) => {
+    if (info.status === info.expectedStatus) return
+    const diagnostic = await page.evaluate(() => {
+      const dock = document.querySelector<HTMLElement>('main.dock-demo .floating-dock')
+      const events = (window as Window & { __dockEvents?: unknown[] }).__dockEvents
+      const rules: unknown[] = []
+      for (const sheet of document.styleSheets) {
+        try { for (const rule of sheet.cssRules) {
+          if (rule instanceof CSSStyleRule && rule.selectorText.includes('floating-dock') && rule.style.boxShadow) {
+            rules.push({ selector: rule.selectorText, shadow: rule.style.boxShadow, matches: dock?.matches(rule.selectorText) })
+          }
+        } } catch { /* Cross-origin styles do not affect this scoped diagnostic. */ }
+      }
+      return { events, classes: dock?.className, dragging: dock?.dataset.dragging, shadow: dock ? getComputedStyle(dock).boxShadow : null,
+        transition: dock ? getComputedStyle(dock).transition : null, output: dock?.querySelector('output')?.textContent, rules }
+    })
+    console.log('DOCK_DIAGNOSTIC', JSON.stringify(diagnostic))
+  })
+
   test('should allow dragging the floating dock', async ({ page }) => {
     const main = await openDock(page)
     const initial = await box(main.locator('.floating-dock'))

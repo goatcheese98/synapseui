@@ -1,0 +1,32 @@
+name: Review visual candidates (not baseline approval)
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  capture:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit, 'Mobile Chrome', 'Mobile Safari']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable && corepack pnpm install --frozen-lockfile
+      - name: Capture review candidates and assert real component states
+        env:
+          VISUAL_CANDIDATES: '1'
+        run: corepack pnpm exec playwright test tests/e2e/visual-regression.spec.ts tests/e2e/working-tests.spec.ts --project="${{ matrix.project }}" --workers=1 --max-failures=0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-review-${{ matrix.project }}
+          path: |
+            test-results/
+            playwright-report/

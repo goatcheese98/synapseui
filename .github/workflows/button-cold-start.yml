@@ -5,7 +5,8 @@ permissions:
   contents: read
 jobs:
   buttons:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -18,13 +19,37 @@ jobs:
           node-version: 24
       - run: corepack enable
       - run: corepack pnpm install --frozen-lockfile
-      - run: corepack pnpm exec playwright install --with-deps chromium
       - name: Run all six Button and fifteen dock cases from a fresh Histoire process
-        run: corepack pnpm exec playwright test tests/e2e/button.spec.ts tests/e2e/drag-drop.spec.ts tests/e2e/floating-dock.spec.ts --project=chromium --workers=1 --trace=retain-on-failure
+        run: corepack pnpm exec playwright test tests/e2e/button.spec.ts tests/e2e/drag-drop.spec.ts tests/e2e/floating-dock.spec.ts --project=chromium --workers=1 --max-failures=0 --trace=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: button-cold-start-${{ matrix.startup }}
+          path: |
+            test-results/
+            playwright-report/
+
+  dock-cross-browser:
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [firefox, webkit, 'Mobile Safari']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: corepack pnpm install --frozen-lockfile
+      - name: Verify real dock behavior independently of legacy snapshots
+        run: corepack pnpm exec playwright test tests/e2e/drag-drop.spec.ts tests/e2e/floating-dock.spec.ts --project="${{ matrix.project }}" --workers=1 --max-failures=0 --trace=retain-on-failure
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dock-cross-browser-${{ matrix.project }}
           path: |
             test-results/
             playwright-report/

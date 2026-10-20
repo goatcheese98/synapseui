@@ -11,6 +11,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Keep known legacy failures bounded and visible rather than retrying them. */
   retries: 0,
+  // Baselines are added only after explicit review; diagnostics never write goldens.
+  updateSnapshots: 'none',
   timeout: 15_000,
   expect: { timeout: 5_000 },
   globalTimeout: process.env.CI ? 240_000 : undefined,

@@ -16,7 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         project: [chromium, firefox, webkit, 'Mobile Chrome', 'Mobile Safari']
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.54.1-noble@sha256:307ace13c8ba4349f790f4dfbc6eaa9fcafdeb29c218ff36129c7cacebb1e35f
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -24,8 +25,6 @@ jobs:
         node-version: 24
     - name: Install dependencies
       run: corepack enable && corepack pnpm install --frozen-lockfile
-    - name: Install Playwright Browsers
-      run: corepack pnpm exec playwright install --with-deps
     - name: Run unit tests
       run: corepack pnpm run test:unit
     - name: Run bounded legacy diagnostic (failures remain failures)
