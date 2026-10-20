@@ -23,7 +23,7 @@
     "typecheck": "vue-tsc --noEmit -p tsconfig.lib.json && vue-tsc --noEmit -p tsconfig.foundations.json && tsc --noEmit -p tsconfig.tools.json",
     "typecheck:all": "vue-tsc --noEmit",
     "test:unit": "vitest run --maxWorkers=2",
-    "lint": "eslint src/components/ui/button/BaseButton.vue src/components/ui/button/button-variants.ts src/components/ui/input/BaseInput.vue src/stories/LumFoundations.story.vue src/components/docs/LumFoundations.vue"
+    "lint": "eslint src/components/ui/button/BaseButton.vue src/components/ui/button/button-variants.ts src/components/ui/input/BaseInput.vue src/stories/LumFoundations.story.vue src/components/docs/LumFoundations.vue src/components/patterns/floating-dock/FloatingDock.vue src/components/docs/DraggableDockDemo.vue src/stories/FloatingDock.story.vue src/composables/useDraggable.ts"
   },
   "keywords": [],
   "author": "",

@@ -12,6 +12,10 @@ concurrency:
 jobs:
   test:
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit, 'Mobile Chrome', 'Mobile Safari']
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -25,11 +29,14 @@ jobs:
     - name: Run unit tests
       run: corepack pnpm run test:unit
     - name: Run bounded legacy diagnostic (failures remain failures)
-      run: corepack pnpm run test:e2e
+      run: corepack pnpm run test:e2e --project="${{ matrix.project }}" --workers=2 --max-failures=0
+    - name: Record every legacy result
+      if: always()
+      run: node scripts/summarize-legacy.ts
     - uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-report
+        name: playwright-report-${{ matrix.project }}
         path: |
           playwright-report/
           test-results/

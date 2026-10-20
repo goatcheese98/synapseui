@@ -14,6 +14,7 @@ async function openButtons(page: Page) {
 }
 async function openFoundations(page: Page) {
   await page.goto('/story/src-stories-lumfoundations-story-vue?variantId=src-stories-lumfoundations-story-vue-0')
+  await page.locator('.histoire-generic-render-story > [data-v-app]').waitFor({ state: 'attached' })
   const content = page.locator('main[data-synapse-theme="light"]')
   await expect(content).toBeVisible()
   return content

@@ -42,24 +42,19 @@ test.describe('Synapse UI E2E Tests', () => {
     }
   });
 
-  test('should navigate to FloatingDock pattern', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    
-    // Navigate to Patterns > FloatingDock
-    const patternsFolder = page.locator('.histoire-story-list-folder').filter({ hasText: 'Patterns' });
-    await patternsFolder.click();
-    await page.waitForTimeout(500);
-    
-    const floatingDockStory = page.locator('.histoire-story-list-item').filter({ hasText: 'FloatingDock' });
-    await floatingDockStory.click();
-    await page.waitForTimeout(1000);
-    
-    // Should see floating dock elements
-    const dockElements = page.locator('.floating-dock, [class*="dock"], [class*="panel"]');
-    
-    // At least one dock-related element should be visible
-    await expect(dockElements.first()).toBeVisible();
+  test('should navigate to FloatingDock pattern', async ({ page, isMobile }) => {
+    await page.goto('/')
+    if (isMobile) await page.getByText('Select a story...', { exact: true }).click()
+    const patterns = page.getByRole('button', { name: 'Patterns', exact: true })
+    await patterns.click()
+    const story = page.getByRole('link', { name: /^FloatingDock \d+$/ })
+    await expect(story).toHaveAttribute('href', '/story/src-stories-floatingdock-story-vue')
+    await story.click()
+    if (isMobile) await page.getByText('Select a variant...', { exact: true }).click()
+    await page.getByRole('link', { name: 'Light', exact: true }).click()
+    await page.locator('main.dock-demo').waitFor({ state: 'visible' })
+    await expect(page.locator('main.dock-demo')).toBeVisible()
+    await expect(page.locator('main.dock-demo').getByRole('button', { name: 'Drag dock', exact: true })).toBeVisible()
   });
 
   test('should test basic interactivity', async ({ page }) => {

@@ -19,8 +19,8 @@ jobs:
       - run: corepack enable
       - run: corepack pnpm install --frozen-lockfile
       - run: corepack pnpm exec playwright install --with-deps chromium
-      - name: Run all six Button cases from a fresh Histoire process
-        run: corepack pnpm exec playwright test tests/e2e/button.spec.ts --project=chromium --workers=1 --trace=retain-on-failure
+      - name: Run all six Button and fifteen dock cases from a fresh Histoire process
+        run: corepack pnpm exec playwright test tests/e2e/button.spec.ts tests/e2e/drag-drop.spec.ts tests/e2e/floating-dock.spec.ts --project=chromium --workers=1 --trace=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: always()
         with:

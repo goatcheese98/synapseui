@@ -1,0 +1,48 @@
+[
+  {
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "theme": "light",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "theme": "dark",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "realTouch": true,
+    "additionalContactIgnored": true,
+    "cancellation": true,
+    "controlAfterCancel": true,
+    "displacement": {
+      "x": 20,
+      "y": 25
+    }
+  }
+]

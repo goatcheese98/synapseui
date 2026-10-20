@@ -1,234 +1,148 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Locator, type Page } from '@playwright/test'
+
+async function openDock(page: Page) {
+  await page.goto('/story/src-stories-floatingdock-story-vue?variantId=src-stories-floatingdock-story-vue-0')
+  const main = page.locator('main.dock-demo[data-synapse-theme="light"]')
+  await main.locator('.floating-dock .dock-drag-handle').waitFor({ state: 'visible' })
+  return main
+}
+async function box(locator: Locator) {
+  const result = await locator.boundingBox()
+  expect(result).not.toBeNull()
+  return result!
+}
+async function start(page: Page, main: Locator) {
+  const handle = await box(main.getByRole('button', { name: 'Drag dock', exact: true }))
+  const point = { x: handle.x + handle.width / 2, y: handle.y + handle.height / 2 }
+  await page.mouse.move(point.x, point.y)
+  await page.mouse.down()
+  return point
+}
+async function withinWorkspace(main: Locator) {
+  const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
+  await expect.poll(async () => {
+    const dock = await box(main.locator('.floating-dock'))
+    return dock.x >= stage.x - 1 && dock.y >= stage.y - 1
+      && dock.x + dock.width <= stage.x + stage.width + 1 && dock.y + dock.height <= stage.y + stage.height + 1
+  }).toBe(true)
+}
 
 test.describe('Drag and Drop Functionality', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    
-    // Navigate to FloatingDock story for drag testing
-    await page.getByText('Patterns').click();
-    await page.getByText('FloatingDock').click();
-    await page.waitForLoadState('networkidle');
-  });
-
   test('should allow dragging the floating dock', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    await expect(dock).toBeVisible();
-
-    // Get initial position
-    const initialBox = await dock.boundingBox();
-    expect(initialBox).toBeTruthy();
-
-    const header = dock.locator('.dock-header');
-    await expect(header).toBeVisible();
-
-    // Perform drag operation
-    if (initialBox) {
-      const startX = initialBox.x + initialBox.width / 2;
-      const startY = initialBox.y + initialBox.height / 4; // Drag from header area
-      const endX = startX + 100;
-      const endY = startY + 50;
-
-      // Drag the dock
-      await page.mouse.move(startX, startY);
-      await page.mouse.down();
-      await page.mouse.move(endX, endY, { steps: 10 });
-      await page.mouse.up();
-
-      // Wait for animation to complete
-      await page.waitForTimeout(500);
-
-      // Check that dock has moved
-      const finalBox = await dock.boundingBox();
-      expect(finalBox).toBeTruthy();
-      
-      if (finalBox) {
-        // Position should have changed
-        expect(Math.abs(finalBox.x - initialBox.x)).toBeGreaterThan(50);
-      }
-    }
-  });
+    const main = await openDock(page)
+    const initial = await box(main.locator('.floating-dock'))
+    const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
+    const dx = Math.min(70, stage.x + stage.width - initial.x - initial.width)
+    const dy = Math.min(35, stage.y + stage.height - initial.y - initial.height)
+    expect(dx).toBeGreaterThan(10)
+    const p = await start(page, main)
+    await page.mouse.move(p.x + 70, p.y + 35, { steps: 5 })
+    await expect.poll(async () => Math.abs((await box(main.locator('.floating-dock'))).x - initial.x - dx)).toBeLessThanOrEqual(1)
+    await expect.poll(async () => Math.abs((await box(main.locator('.floating-dock'))).y - initial.y - dy)).toBeLessThanOrEqual(1)
+    await page.mouse.up()
+    await expect(main.locator('.floating-dock')).toHaveAttribute('data-dragging', 'false')
+  })
 
   test('should show visual feedback during drag', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    const header = dock.locator('.dock-header');
-    
-    await expect(dock).toBeVisible();
-    await expect(header).toBeVisible();
-
-    // Start drag operation
-    await header.hover();
-    await page.mouse.down();
-    
-    // During drag, dock should have dragging state
-    await page.waitForTimeout(100);
-    
-    // Check for drag cursor or visual changes
-    const cursor = await header.evaluate(el => getComputedStyle(el).cursor);
-    expect(cursor).toContain('grab');
-    
-    await page.mouse.up();
-  });
+    const main = await openDock(page)
+    const dock = main.locator('.floating-dock')
+    const handle = main.getByRole('button', { name: 'Drag dock', exact: true })
+    await expect(handle).toHaveCSS('cursor', 'grab')
+    const initialShadow = await dock.evaluate(el => getComputedStyle(el).boxShadow)
+    await start(page, main)
+    await expect(dock).toHaveAttribute('data-dragging', 'true')
+    await expect(handle).toHaveAttribute('aria-pressed', 'true')
+    await expect(handle).toHaveCSS('cursor', 'grabbing')
+    await expect.poll(() => dock.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe(initialShadow)
+    await page.mouse.up()
+    await expect(handle).toHaveAttribute('aria-pressed', 'false')
+    await expect(handle).toHaveCSS('cursor', 'grab')
+  })
 
   test('should handle drag boundaries and constraints', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    const header = dock.locator('.dock-header');
-    
-    await expect(dock).toBeVisible();
+    const main = await openDock(page)
+    const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
+    await start(page, main)
+    await page.mouse.move(stage.x - 100, stage.y - 100, { steps: 5 })
+    await withinWorkspace(main)
+    await page.mouse.move(stage.x + stage.width + 100, stage.y + stage.height + 100, { steps: 5 })
+    await withinWorkspace(main)
+    await page.mouse.up()
+    await withinWorkspace(main)
+    const dock = await box(main.locator('.floating-dock'))
+    expect(Math.abs(dock.x + dock.width - stage.x - stage.width)).toBeLessThan(2)
+    expect(Math.abs(dock.y + dock.height - stage.y - stage.height)).toBeLessThan(2)
+  })
 
-    // Try to drag dock outside viewport
-    const viewportSize = page.viewportSize();
-    if (viewportSize) {
-      const initialBox = await dock.boundingBox();
-      if (initialBox) {
-        // Try to drag far beyond viewport boundaries
-        const startX = initialBox.x + initialBox.width / 2;
-        const startY = initialBox.y + initialBox.height / 4;
-        
-        await page.mouse.move(startX, startY);
-        await page.mouse.down();
-        
-        // Drag way beyond viewport
-        await page.mouse.move(viewportSize.width + 200, viewportSize.height + 200, { steps: 10 });
-        await page.mouse.up();
-        
-        await page.waitForTimeout(500);
-        
-        // Dock should still be within reasonable bounds
-        const finalBox = await dock.boundingBox();
-        if (finalBox) {
-          expect(finalBox.x).toBeLessThan(viewportSize.width);
-          expect(finalBox.y).toBeLessThan(viewportSize.height);
-          expect(finalBox.x).toBeGreaterThan(-finalBox.width / 2);
-          expect(finalBox.y).toBeGreaterThan(-finalBox.height / 2);
-        }
-      }
-    }
-  });
-
-  test('should handle multi-touch drag on mobile', async ({ page, isMobile }) => {
-    if (isMobile) {
-      const dock = page.locator('.floating-dock').first();
-      await expect(dock).toBeVisible();
-
-      const initialBox = await dock.boundingBox();
-      if (initialBox) {
-        // Perform touch drag
-        const startX = initialBox.x + initialBox.width / 2;
-        const startY = initialBox.y + initialBox.height / 4;
-        const endX = startX + 50;
-        const endY = startY + 30;
-
-        await page.touchscreen.tap(startX, startY);
-        await page.touchscreen.tap(endX, endY);
-        
-        await page.waitForTimeout(300);
-        
-        // Dock should respond to touch interactions
-        await expect(dock).toBeVisible();
-      }
-    }
-  });
+  test('should keep controls interactive and ignore secondary pointer buttons', async ({ page }) => {
+    const main = await openDock(page)
+    const transform = await main.locator('.floating-dock').evaluate(el => getComputedStyle(el).transform)
+    await main.getByRole('button', { name: 'Drag dock' }).click({ button: 'right' })
+    await expect(main.locator('.floating-dock')).toHaveAttribute('data-dragging', 'false')
+    await main.getByRole('button', { name: 'Run action' }).click()
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+    const final = await box(main.locator('.floating-dock'))
+    expect(await main.locator('.floating-dock').evaluate(el => getComputedStyle(el).transform)).toBe(transform)
+    const handle = main.getByRole('button', { name: 'Drag dock' })
+    await handle.focus()
+    await handle.press('ArrowRight')
+    await expect.poll(async () => Math.round((await box(main.locator('.floating-dock'))).x - final.x)).toBe(10)
+    await main.getByRole('tab', { name: 'Overview', exact: true }).focus()
+    await page.keyboard.press('ArrowRight')
+    await expect(main.getByRole('tab', { name: 'Details', exact: true })).toBeFocused()
+    await expect(main.getByRole('tabpanel')).toContainText('Panel selection')
+  })
 
   test('should handle rapid drag movements', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    const header = dock.locator('.dock-header');
-    
-    await expect(dock).toBeVisible();
-
-    const initialBox = await dock.boundingBox();
-    if (initialBox) {
-      const centerX = initialBox.x + initialBox.width / 2;
-      const centerY = initialBox.y + initialBox.height / 4;
-
-      // Perform rapid drag movements
-      await page.mouse.move(centerX, centerY);
-      await page.mouse.down();
-      
-      // Quick successive movements
-      await page.mouse.move(centerX + 50, centerY + 20, { steps: 1 });
-      await page.mouse.move(centerX - 30, centerY + 40, { steps: 1 });
-      await page.mouse.move(centerX + 80, centerY - 10, { steps: 1 });
-      
-      await page.mouse.up();
-      await page.waitForTimeout(500);
-
-      // Dock should still be visible and responsive
-      await expect(dock).toBeVisible();
-      
-      // Should be able to interact with dock after rapid movements
-      const controlBtn = dock.locator('.dock-control-btn');
-      await controlBtn.click();
-    }
-  });
+    const main = await openDock(page)
+    const initial = await box(main.locator('.floating-dock'))
+    const p = await start(page, main)
+    const stage = await box(main.getByRole('region', { name: 'Dock workspace' }))
+    const dx = Math.min(80, stage.x + stage.width - initial.x - initial.width)
+    expect(dx).toBeGreaterThan(10)
+    for (const [x, y] of [[50, 20], [30, 40], [80, 10]]) await page.mouse.move(p.x + x, p.y + y)
+    await expect.poll(async () => Math.abs((await box(main.locator('.floating-dock'))).x - initial.x - dx)).toBeLessThanOrEqual(1)
+    await page.mouse.up()
+    await withinWorkspace(main)
+    await main.getByRole('button', { name: 'Run action' }).click()
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+  })
 
   test('should preserve dock state during drag', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    
-    await expect(dock).toBeVisible();
+    const main = await openDock(page)
+    await main.getByRole('tab', { name: 'Details', exact: true }).click()
+    await main.getByRole('button', { name: 'Run action' }).click()
+    const p = await start(page, main)
+    await page.mouse.move(p.x + 90, p.y + 40, { steps: 5 })
+    await page.mouse.up()
+    await expect(main.getByRole('tab', { name: 'Details', exact: true })).toHaveAttribute('aria-selected', 'true')
+    await expect(main.getByRole('tabpanel')).toContainText('Panel selection and actions survive every drag.')
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+  })
 
-    // Check initial panel state
-    const activeTab = dock.locator('.dock-tab--active');
-    const initialTabText = await activeTab.textContent();
-
-    // Perform drag
-    const header = dock.locator('.dock-header');
-    const initialBox = await dock.boundingBox();
-    
-    if (initialBox) {
-      const startX = initialBox.x + initialBox.width / 2;
-      const startY = initialBox.y + initialBox.height / 4;
-      
-      await page.mouse.move(startX, startY);
-      await page.mouse.down();
-      await page.mouse.move(startX + 100, startY + 50, { steps: 5 });
-      await page.mouse.up();
-      
-      await page.waitForTimeout(300);
-    }
-
-    // Panel state should be preserved
-    const finalActiveTab = dock.locator('.dock-tab--active');
-    const finalTabText = await finalActiveTab.textContent();
-    
-    expect(finalTabText).toBe(initialTabText);
-    
-    // Content should still be visible
-    const content = dock.locator('.dock-content');
-    await expect(content).toBeVisible();
-  });
-
-  test('should animate smoothly during drag release', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    const header = dock.locator('.dock-header');
-    
-    await expect(dock).toBeVisible();
-
-    const initialBox = await dock.boundingBox();
-    if (initialBox) {
-      const startX = initialBox.x + initialBox.width / 2;
-      const startY = initialBox.y + initialBox.height / 4;
-      
-      // Start drag
-      await page.mouse.move(startX, startY);
-      await page.mouse.down();
-      
-      // Move and release quickly to test inertia/animation
-      await page.mouse.move(startX + 150, startY + 100, { steps: 5 });
-      await page.mouse.up();
-      
-      // Wait for potential animation/physics settling
-      await page.waitForTimeout(1000);
-      
-      // Dock should still be visible and stable
-      await expect(dock).toBeVisible();
-      
-      // Should be able to interact after animation
-      const tabs = dock.locator('.dock-tab');
-      if (await tabs.count() > 0) {
-        await tabs.first().click();
-        await expect(tabs.first()).toBeVisible();
-      }
-    }
-  });
-});
+  test('should settle bounded inertia and cancel a captured drag safely', async ({ page }) => {
+    const main = await openDock(page)
+    const p = await start(page, main)
+    await page.mouse.move(p.x + 65, p.y + 30)
+    await page.mouse.up()
+    await withinWorkspace(main)
+    const dock = main.locator('.floating-dock')
+    await expect.poll(() => dock.evaluate(async el => {
+      const before = el.getBoundingClientRect()
+      for (let frame = 0; frame < 3; frame++) await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
+      const after = el.getBoundingClientRect()
+      return Math.abs(after.x - before.x) < 0.01 && Math.abs(after.y - before.y) < 0.01
+    })).toBe(true)
+    await withinWorkspace(main)
+    await main.getByRole('button', { name: 'Reset position' }).click()
+    await dock.evaluate(el => el.addEventListener('pointerdown', event => el.setAttribute('data-test-pointer-id', String((event as PointerEvent).pointerId)), { once: true }))
+    const next = await start(page, main)
+    await page.mouse.move(next.x + 30, next.y + 10)
+    const pointerId = Number(await dock.getAttribute('data-test-pointer-id'))
+    await dock.dispatchEvent('pointercancel', { pointerId })
+    await expect(dock).toHaveAttribute('data-dragging', 'false')
+    await page.mouse.up()
+    await main.getByRole('tab', { name: 'Details', exact: true }).click()
+    await expect(main.getByRole('tabpanel')).toContainText('Panel selection')
+  })
+})

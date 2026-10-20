@@ -46,69 +46,39 @@ test.describe('Visual Regression Tests', () => {
 
   test.describe('FloatingDock Component Visuals', () => {
     test.beforeEach(async ({ page }) => {
-      await page.getByText('Patterns').click();
-      await page.getByText('FloatingDock').click();
-      await page.waitForLoadState('networkidle');
+      await page.goto('/story/src-stories-floatingdock-story-vue?variantId=src-stories-floatingdock-story-vue-0');
+      await page.locator('main.dock-demo[data-synapse-theme="light"] .dock-drag-handle').waitFor({ state: 'visible' });
     });
 
     test('should match basic floating dock visual snapshot', async ({ page }) => {
-      const dock = page.locator('.floating-dock').first();
+      const dock = page.locator('main.dock-demo[data-synapse-theme="light"] .floating-dock');
       await expect(dock).toBeVisible();
-      
-      // Wait for any animations to settle
-      await page.waitForTimeout(1000);
-      
       await expect(dock).toHaveScreenshot('floating-dock-basic.png');
     });
 
     test('should match dock hover state', async ({ page }) => {
-      const dock = page.locator('.floating-dock').first();
+      const dock = page.locator('main.dock-demo[data-synapse-theme="light"] .floating-dock');
       await expect(dock).toBeVisible();
-      
-      // Normal state
       await expect(dock).toHaveScreenshot('dock-normal.png');
-      
-      // Hover state
       await dock.hover();
-      await page.waitForTimeout(300);
       await expect(dock).toHaveScreenshot('dock-hover.png');
     });
 
     test('should match dock with different panel content', async ({ page }) => {
-      const dock = page.locator('.floating-dock').first();
-      await expect(dock).toBeVisible();
-      
-      // Check if there are tabs to switch between
-      const tabs = dock.locator('.dock-tab');
-      const tabCount = await tabs.count();
-      
-      if (tabCount > 1) {
-        // Screenshot first panel
-        await expect(dock).toHaveScreenshot('dock-panel-1.png');
-        
-        // Switch to second panel
-        await tabs.nth(1).click();
-        await page.waitForTimeout(300);
-        await expect(dock).toHaveScreenshot('dock-panel-2.png');
-      }
+      const dock = page.locator('main.dock-demo[data-synapse-theme="light"] .floating-dock');
+      await expect(dock.getByRole('tab')).toHaveCount(2);
+      await expect(dock).toHaveScreenshot('dock-panel-1.png');
+      await dock.getByRole('tab', { name: 'Details', exact: true }).click();
+      await expect(dock.getByRole('tabpanel')).toContainText('Panel selection');
+      await expect(dock).toHaveScreenshot('dock-panel-2.png');
     });
 
-    test('should match timeline slider visual', async ({ page }) => {
-      // Look for timeline slider in multi-panel or interactive variant
-      const slider = page.locator('.timeline-slider').first();
-      
-      if (await slider.count() > 0) {
-        await expect(slider).toBeVisible();
-        await expect(slider).toHaveScreenshot('timeline-slider.png');
-        
-        // Test slider hover state
-        const handle = slider.locator('.timeline-handle');
-        if (await handle.count() > 0) {
-          await handle.hover();
-          await page.waitForTimeout(200);
-          await expect(slider).toHaveScreenshot('timeline-slider-hover.png');
-        }
-      }
+    test('should match keyboard drag handle focus visual', async ({ page }) => {
+      const dock = page.locator('main.dock-demo[data-synapse-theme="light"] .floating-dock');
+      const handle = dock.getByRole('button', { name: 'Drag dock', exact: true });
+      await handle.focus();
+      await expect(handle).toBeFocused();
+      await expect(dock).toHaveScreenshot('dock-handle-focus.png');
     });
   });
 

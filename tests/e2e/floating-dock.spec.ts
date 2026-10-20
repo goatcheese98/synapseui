@@ -1,149 +1,90 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
+
+async function openDock(page: import('@playwright/test').Page) {
+  await page.goto('/story/src-stories-floatingdock-story-vue?variantId=src-stories-floatingdock-story-vue-0')
+  const main = page.locator('main.dock-demo[data-synapse-theme="light"]')
+  await main.getByRole('button', { name: 'Drag dock', exact: true }).waitFor({ state: 'visible' })
+  return main
+}
 
 test.describe('FloatingDock Component', () => {
-  test.beforeEach(async ({ page }) => {
-    // Navigate to Histoire and wait for it to load
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    
-    // Navigate to the FloatingDock story
-    await page.getByText('Patterns').click();
-    await page.getByText('FloatingDock').click();
-    await page.waitForLoadState('networkidle');
-  });
-
-  test('should render basic floating dock', async ({ page }) => {
-    // Look for the floating dock container
-    const dock = page.locator('.floating-dock').first();
-    await expect(dock).toBeVisible();
-
-    // Check for dock header
-    const header = dock.locator('.dock-header');
-    await expect(header).toBeVisible();
-
-    // Check for dock title
-    const title = header.locator('.dock-title');
-    await expect(title).toBeVisible();
-    await expect(title).toContainText('Control Panel');
-
-    // Check for dock content
-    const content = dock.locator('.dock-content');
-    await expect(content).toBeVisible();
-  });
-
-  test('should display panel tabs', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    
-    // Look for dock tabs
-    const tabs = dock.locator('.dock-tabs');
-    await expect(tabs).toBeVisible();
-
-    // Check for individual tab buttons
-    const tabButtons = tabs.locator('.dock-tab');
-    await expect(tabButtons).toHaveCount(1); // Basic dock has 1 panel
-
-    // Check that Information tab is active by default
-    const infoTab = tabButtons.filter({ hasText: 'Information' });
-    await expect(infoTab).toHaveClass(/dock-tab--active/);
-  });
-
+  test('should render the retained dock with its handle and slotted content', async ({ page }) => {
+    const main = await openDock(page)
+    const dock = main.locator('.floating-dock')
+    await expect(dock).toBeVisible()
+    await expect(dock.getByRole('button', { name: 'Drag dock' })).toBeVisible()
+    await expect(dock.getByRole('tabpanel')).toContainText('A movable home for compact controls.')
+  })
+  test('should display selectable panel tabs', async ({ page }) => {
+    const main = await openDock(page)
+    await expect(main.getByRole('tab')).toHaveCount(2)
+    await expect(main.getByRole('tab', { name: 'Overview', exact: true })).toHaveAttribute('aria-selected', 'true')
+    await expect(main.getByRole('tab', { name: 'Details', exact: true })).toHaveAttribute('aria-selected', 'false')
+  })
   test('should switch between panels when tabs are clicked', async ({ page }) => {
-    // Navigate to Multi-Panel variant for this test
-    const multiPanelVariant = page.getByText('Multi-Panel Dock');
-    if (await multiPanelVariant.count() > 0) {
-      await multiPanelVariant.click();
-      await page.waitForTimeout(1000);
-
-      const dock = page.locator('.floating-dock').first();
-      const tabs = dock.locator('.dock-tabs .dock-tab');
-      
-      if (await tabs.count() > 1) {
-        // Click on different tabs and verify content changes
-        const firstTab = tabs.first();
-        const secondTab = tabs.nth(1);
-        
-        await firstTab.click();
-        await expect(firstTab).toHaveClass(/dock-tab--active/);
-        
-        await secondTab.click();
-        await expect(secondTab).toHaveClass(/dock-tab--active/);
-        await expect(firstTab).not.toHaveClass(/dock-tab--active/);
-      }
+    const main = await openDock(page)
+    for (const name of ['Details', 'Overview']) {
+      await main.getByRole('tab', { name, exact: true }).click()
+      await expect(main.getByRole('tab', { name, exact: true })).toHaveAttribute('aria-selected', 'true')
+      await expect(main.getByRole('tabpanel').getByRole('heading')).toHaveText(name)
     }
-  });
-
-  test('should have minimize button functionality', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    
-    // Find the minimize button
-    const minimizeBtn = dock.locator('.dock-control-btn');
-    await expect(minimizeBtn).toBeVisible();
-
-    // Test minimize functionality
-    await minimizeBtn.click();
-    
-    // The dock should become hidden or change state
-    // (Implementation may vary based on how minimize is handled)
-    await page.waitForTimeout(500);
-  });
-
-  test('should show hover effects', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    await expect(dock).toBeVisible();
-
-    // Test hover effect on dock
-    await dock.hover();
-    
-    // Check if hover class is applied or styles change
-    await expect(dock).toHaveClass(/dock--hovered|floating-dock/);
-    
-    // Test hover on control button
-    const controlBtn = dock.locator('.dock-control-btn');
-    await controlBtn.hover();
-    await expect(controlBtn).toBeVisible();
-  });
-
-  test('should display correct content for different panels', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    const content = dock.locator('.dock-content');
-    
-    // Check that content is visible
-    await expect(content).toBeVisible();
-    
-    // Basic dock should show Information panel content
-    await expect(content).toContainText(/Information|System Status|CPU Usage/i);
-  });
-
-  test('should be responsive on mobile', async ({ page, isMobile }) => {
-    if (isMobile) {
-      const dock = page.locator('.floating-dock').first();
-      await expect(dock).toBeVisible();
-      
-      // Dock should maintain minimum dimensions on mobile
-      const box = await dock.boundingBox();
-      expect(box?.width).toBeGreaterThan(200); // min-w-64 = 256px
-      expect(box?.height).toBeGreaterThan(150); // min-h-48 = 192px
-      
-      // Test touch interactions
-      const controlBtn = dock.locator('.dock-control-btn');
-      await controlBtn.tap();
-    }
-  });
-
-  test('should maintain dock structure and styling', async ({ page }) => {
-    const dock = page.locator('.floating-dock').first();
-    
-    // Check for required CSS classes
-    await expect(dock).toHaveClass(/floating-dock/);
-    await expect(dock).toHaveClass(/fixed/); // Should be positioned fixed
-    await expect(dock).toHaveClass(/z-50/); // Should have high z-index
-    
-    // Check for backdrop blur and transparency
-    await expect(dock).toHaveClass(/backdrop-blur/);
-    await expect(dock).toHaveClass(/bg-opacity/);
-    
-    // Check for border and rounded corners
-    await expect(dock).toHaveClass(/border/);
-    await expect(dock).toHaveClass(/rounded/);
-  });
-});
+  })
+  test('should reset position while preserving panel and action state', async ({ page }) => {
+    const main = await openDock(page)
+    const dock = main.locator('.floating-dock')
+    const before = (await dock.boundingBox())!
+    await main.getByRole('tab', { name: 'Details', exact: true }).click()
+    await main.getByRole('button', { name: 'Run action' }).click()
+    await main.getByRole('button', { name: 'Drag dock' }).focus()
+    await page.keyboard.press('ArrowRight')
+    await expect.poll(async () => Math.round((await dock.boundingBox())!.x - before.x)).toBe(10)
+    await main.getByRole('button', { name: 'Reset position' }).click()
+    await expect.poll(async () => Math.round((await dock.boundingBox())!.x - before.x)).toBe(0)
+    await expect(main.getByRole('tab', { name: 'Details', exact: true })).toHaveAttribute('aria-selected', 'true')
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+  })
+  test('should show a real hover effect without changing geometry', async ({ page }) => {
+    const main = await openDock(page)
+    const dock = main.locator('.floating-dock')
+    await page.mouse.move(0, 0)
+    const before = await dock.evaluate(el => getComputedStyle(el).boxShadow)
+    const initial = (await dock.boundingBox())!
+    await dock.hover()
+    await expect.poll(() => dock.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe(before)
+    const final = (await dock.boundingBox())!
+    expect(final.width).toBeCloseTo(initial.width, 0)
+    expect(final.height).toBeCloseTo(initial.height, 0)
+  })
+  test('should display actual slotted content for each panel', async ({ page }) => {
+    const main = await openDock(page)
+    await expect(main.getByRole('tabpanel')).toContainText('A movable home for compact controls.')
+    await main.getByRole('tab', { name: 'Details', exact: true }).click()
+    await expect(main.getByRole('tabpanel')).toContainText('Panel selection and actions survive every drag.')
+    await main.getByRole('button', { name: 'Run action' }).click()
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+  })
+  test('should fit its workspace and retain controls at every viewport', async ({ page, isMobile }) => {
+    const main = await openDock(page)
+    const stage = (await main.getByRole('region', { name: 'Dock workspace' }).boundingBox())!
+    const dock = (await main.locator('.floating-dock').boundingBox())!
+    expect(dock.width).toBeLessThanOrEqual(stage.width)
+    expect(dock.height).toBeLessThanOrEqual(stage.height)
+    expect(dock.x).toBeGreaterThanOrEqual(stage.x)
+    expect(dock.x + dock.width).toBeLessThanOrEqual(stage.x + stage.width)
+    const action = main.getByRole('button', { name: 'Run action' })
+    if (isMobile) await action.tap()
+    else await action.click()
+    await expect(main.getByText('Actions: 1', { exact: true })).toBeVisible()
+  })
+  test('should retain fixed positioning and scoped LUM surfaces', async ({ page }) => {
+    const main = await openDock(page)
+    const dock = main.locator('.floating-dock')
+    await expect(dock).toHaveCSS('position', 'fixed')
+    await expect(dock).toHaveCSS('z-index', '50')
+    await expect(dock).toHaveCSS('border-radius', '12px')
+    const colors = await dock.evaluate(el => ({ surface: getComputedStyle(el).backgroundColor, token: getComputedStyle(el).getPropertyValue('--panel').trim(), border: getComputedStyle(el).borderTopWidth }))
+    expect(colors.surface).toBe('rgb(255, 255, 255)')
+    expect(colors.token).toBe('#fff')
+    expect(colors.border).toBe('1px')
+  })
+})

@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "include": [
     "src/stories/LumFoundations.story.vue",
-    "src/components/docs/LumFoundations.vue"
+    "src/components/docs/LumFoundations.vue",
+    "src/stories/FloatingDock.story.vue",
+    "src/components/docs/DraggableDockDemo.vue"
   ],
   "references": []
 }
